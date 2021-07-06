@@ -46,7 +46,7 @@ function initMenuPage() {
     img.className = 'menu_image';
     img.setAttribute("onclick","new Audio('../assets/sounds/click2.mp3').play()");
     img.onmouseover = () => {
-      new Audio('../assets/sounds/click1.mp3').play()
+      new Audio('../assets/sounds/slide.mp3').play()
     };
 
     return img;
