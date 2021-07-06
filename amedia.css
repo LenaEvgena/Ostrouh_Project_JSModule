@@ -1,0 +1,6 @@
+/*main page*/
+@media only screen and (max-width:767px) {
+  .btn_img {
+    width: 33vw;
+  }
+}
