@@ -1,5 +1,5 @@
 'use strict';
-initMenuPage();
+// initMenuPage();
 
 function initMenuPage() {
   const wrapper = document.querySelector('.wrapper');
