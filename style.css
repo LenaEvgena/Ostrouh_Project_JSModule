@@ -77,7 +77,6 @@ html {
   font-size: 16px;
 }
 
-
 @font-face {
   font-family: 'Georgia';
   src: url('assets/fonts/Georgia/Georgia-Bold.eot');
@@ -104,10 +103,28 @@ html {
   font-display: swap;
 }
 
-/* ::-webkit-scrollbar {
-  width: 0;
-  background: 0 0
+/*start main page*/
+.wrapper {
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
 }
-::-webkit-scrollbar-thumb {
-  background: red
-} */
+.main_wrapper {
+  background: url(assets/img/main/bg1.jpg);
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main_button {
+  margin: 0 auto;
+}
+.btn_img:hover {
+  transition: 0.3s;
+  filter: drop-shadow(8px 8px 10px green);
+  cursor: pointer;
+}
+/*end main page*/
