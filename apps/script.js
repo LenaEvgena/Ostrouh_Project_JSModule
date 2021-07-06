@@ -1,10 +1,23 @@
 'use strict';
 
-const wrapper = document.querySelector('.wrapper');
-window.onload = () => iniStart();
+window.onload = () => iniStartPage();
 
-function iniStart() {
+function iniStartPage() {
+  const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createMainPage() );
+
+  const playButton = document.querySelector('.btn_img');
+  const main_wrapper = document.querySelector('.main_wrapper');
+
+  playButton.addEventListener('mousedown', () => playButton.style.transform = 'scale(0.9)');
+  playButton.addEventListener('mouseup', () => playButton.style.transform = 'scale(1.0)');
+  playButton.addEventListener('touchstart', () => playButton.style.transform = 'scale(0.9)');
+  playButton.addEventListener('touchend', () => playButton.style.transform = 'scale(1.0)');
+
+  playButton.addEventListener('click', () => console.log('Play the game!'));
+
+
+  playButton.addEventListener('click', () => main_wrapper.style.display = 'none');
 
   function createMainPage() {
     const main_wrapper = document.createElement('div');
@@ -26,18 +39,4 @@ function iniStart() {
 
     return main_wrapper;
   }
-
-  const playButton = document.querySelector('.btn_img');
-  const main_wrapper = document.querySelector('.main_wrapper');
-  playButton.addEventListener('mousedown', () => playButton.style.transform = 'scale(0.9)');
-  playButton.addEventListener('mouseup', () => playButton.style.transform = 'scale(1.0)');
-  playButton.addEventListener('touchstart', () => playButton.style.transform = 'scale(0.9)');
-  playButton.addEventListener('touchend', () => playButton.style.transform = 'scale(1.0)');
-
-  playButton.addEventListener('click', () => console.log('Play the game!'));
-
-
-
-
-  playButton.addEventListener('click', () => main_wrapper.style.display = 'none');
 }
