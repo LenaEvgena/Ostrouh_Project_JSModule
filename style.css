@@ -130,6 +130,37 @@ html {
 /*end main page*/
 
 /*start menu*/
-
+.menu_wrapper {
+  position: relative;
+  background: url(assets/img/menu/bg0.png);
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu_images {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+}
+.menu_image:hover{
+  transition: 0.3s;
+  filter: drop-shadow(8px 8px 10px green);
+  cursor: pointer;
+  transform: scale(1.1);
+}
 /*end menu*/
 
+
+
+
+
+
+
+
+
+/* .back_btn_img {
+  width: 100px;
+} */

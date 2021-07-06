@@ -1,6 +1,23 @@
-/*main page*/
 @media only screen and (max-width:767px) {
+  /*main page*/
   .btn_img {
     width: 33vw;
+  }
+  /*menu page*/
+  .menu_image {
+    width: 40vw;
+  }
+}
+@media only screen and (max-height:730px) {
+  /*menu page*/
+  .menu_image {
+    width: 25vw;
+  }
+}
+@media only screen and (max-height:520px) {
+  /*menu page*/
+  .menu_images {
+    display:flex;
+    flex-direction: row;
   }
 }
