@@ -129,6 +129,7 @@ html {
 }
 /*end main page*/
 
+
 /*start menu*/
 .menu_wrapper {
   position: relative;
@@ -143,7 +144,9 @@ html {
 }
 .menu_images {
   display: grid;
-  grid-template-columns: repeat(2, 2fr);
+  grid-template-columns: repeat(2, auto);
+  grid-column-gap: 20px;
+  grid-row-gap: 10px;
 }
 .menu_image:hover{
   transition: 0.3s;
@@ -154,13 +157,43 @@ html {
 /*end menu*/
 
 
+/*start colors page*/
+.colors_game_wrapper {
+  position: relative;
+  background: url(assets/img/colors/room01.jpg);
+  /* width: 100%; */
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.colors_drag_images {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  column-gap: 15px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 110px;
+}
+.drag_image {
+  width: 180px;
+}
+.colors_drop_images{
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  column-gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+.drop_image {
+  width: 180px;
+}
+.drop_image:hover {
+  transform: scale(1.2);
+}
+/*end colors page*/
 
 
-
-
-
-
-
-/* .back_btn_img {
-  width: 100px;
-} */
