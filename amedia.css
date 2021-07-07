@@ -1,3 +1,9 @@
+@media only screen and (max-width:1100px) {
+  /*colors page*/
+  .colors_drag_images, .colors_drop_images {
+    column-gap: 5vw;
+  }
+}
 @media only screen and (max-width:767px) {
   /*main page*/
   .btn_img {
@@ -7,11 +13,21 @@
   .menu_image {
     width: 40vw;
   }
+  /*colors page*/
+  .back_arrow {
+    top: 10px;
+    left: 10px;
+    width: 5vw;
+  }
+  .drag_image, .drop_image {
+    width: 23vw;
+  }
 }
-@media only screen and (max-height:730px) {
+
+@media only screen and (max-height:750px) {
   /*menu page*/
   .menu_image {
-    width: 25vw;
+    width: 42vh;
   }
 }
 @media only screen and (max-height:520px) {
@@ -21,4 +37,17 @@
     flex-direction: row;
     grid-column-gap: 0px;
   }
+  /*colors page*/
+  .colors_drag_images {
+    margin-bottom: 70px;
+  }
+  .back_arrow {
+    top: 10px;
+    left: 10px;
+    width: 7vh;
+  }
+  .drag_image, .drop_image {
+    width: 30vh;
+  }
 }
+

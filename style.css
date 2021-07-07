@@ -161,7 +161,7 @@ html {
 .colors_game_wrapper {
   position: relative;
   background: url(assets/img/colors/room01.jpg);
-  /* width: 100%; */
+  width: 100vw;
   height: 100vh;
   background-size: cover;
   overflow: hidden;
@@ -170,27 +170,38 @@ html {
   justify-content: center;
   align-items: center;
 }
+.back_arrow {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 45px;
+  background-color: red;
+  border-radius: 50%;
+  border: 1px solid darkred;
+  transition: 0.3s;
+}
+.back_arrow:hover {
+  transform: scale(1.1);
+}
 .colors_drag_images {
   display: grid;
   grid-template-columns: repeat(3, auto);
-  column-gap: 15px;
+  column-gap: 100px;
   justify-content: center;
   align-items: center;
   margin-bottom: 110px;
 }
-.drag_image {
-  width: 180px;
+.drag_image, .drop_image {
+  width: 200px;
 }
 .colors_drop_images{
   display: grid;
   grid-template-columns: repeat(3, auto);
-  column-gap: 15px;
+  column-gap: 100px;
   justify-content: center;
   align-items: center;
 }
-.drop_image {
-  width: 180px;
-}
+
 .drop_image:hover {
   transform: scale(1.2);
 }

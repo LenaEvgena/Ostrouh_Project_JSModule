@@ -1,5 +1,4 @@
 'use strict';
-// initMenuPage();
 
 function initMenuPage() {
   const wrapper = document.querySelector('.wrapper');
@@ -14,7 +13,7 @@ function initMenuPage() {
 
   puzzleGame.addEventListener('click', () => {console.log('Start Puzzle Game')});
   shapesGame.addEventListener('click', () => {console.log('Start Shapes Game')});
-  colorsGame.addEventListener('click', () => {console.log('Start Colors Game')});
+  colorsGame.addEventListener('click', startColorsGame);
   logicGame.addEventListener('click', () => {console.log('Start Logic Game')});
 
   puzzleGame.addEventListener('click', () => menu_wrapper.style.display = 'none');
@@ -22,6 +21,12 @@ function initMenuPage() {
   colorsGame.addEventListener('click', () => menu_wrapper.style.display = 'none');
   logicGame.addEventListener('click', () => menu_wrapper.style.display = 'none');
 
+  function startColorsGame() {
+    const main_wrapper = document.querySelector('.main_wrapper');
+    main_wrapper.style.display = 'none';
+
+    initColorsGame();
+  }
 
   function createMenuPage() {
     const menu_wrapper = document.createElement('div');
@@ -44,7 +49,7 @@ function initMenuPage() {
     img.id = id;
     img.alt = alt;
     img.className = 'menu_image';
-    img.setAttribute("onclick","new Audio('../assets/sounds/click2.mp3').play()");
+    img.setAttribute('onclick', "new Audio('../assets/sounds/click2.mp3').play()");
     img.onmouseover = () => {
       new Audio('../assets/sounds/slide.mp3').play()
     };

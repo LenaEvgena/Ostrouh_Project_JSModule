@@ -13,7 +13,7 @@ function iniStartPage() {
   playButton.addEventListener('touchstart', () => playButton.style.transform = 'scale(0.9)');
   playButton.addEventListener('touchend', () => playButton.style.transform = 'scale(1.0)');
 
-  playButton.addEventListener('click', () => startMenuPage());
+  playButton.addEventListener('click', startMenuPage);
 
   function startMenuPage() {
     const main_wrapper = document.querySelector('.main_wrapper');
