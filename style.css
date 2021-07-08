@@ -175,9 +175,9 @@ html {
   top: 20px;
   left: 20px;
   width: 45px;
-  background-color: red;
+  background-color: yellow;
   border-radius: 50%;
-  border: 1px solid darkred;
+  border: 1px solid darkyellow;
   transition: 0.3s;
 }
 .back_arrow:hover {

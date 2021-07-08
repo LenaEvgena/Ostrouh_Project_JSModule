@@ -1,6 +1,31 @@
 'use strict';
 
-window.onload = () => iniStartPage();
+
+
+class AudioSounds {
+  constructor() {
+    this.bgMusic = new Audio('../assets/sounds/bgmusic.mp3');
+    this.slideSound = new Audio('../assets/sounds/slide.mp3');
+    this.clickSound = new Audio('../assets/sounds/click2.mp3');
+    this.bgMusic.volume = 0.03;
+    this.bgMusic.loop = true;
+  }
+  startMusic() {
+    this.bgMusic.play();
+  }
+  stopMusic() {
+    this.bgMusic.pause();
+    this.bgMusic.currentTime = 0;
+  }
+  clickItem() {
+    this.clickSound.play();
+  }
+  slideItem() {
+    this.slideSound.play();
+  }
+  //victory sound
+}
+
 
 function iniStartPage() {
   const wrapper = document.querySelector('.wrapper');
@@ -14,6 +39,7 @@ function iniStartPage() {
   playButton.addEventListener('touchend', () => playButton.style.transform = 'scale(1.0)');
 
   playButton.addEventListener('click', startMenuPage);
+
 
   function startMenuPage() {
     const main_wrapper = document.querySelector('.main_wrapper');
@@ -36,6 +62,7 @@ function iniStartPage() {
     img.alt = 'play_icon';
     img.onclick = () => {
       new Audio('../assets/sounds/click2.mp3').play()
+      // audio.clickSound();
     };
     // img.setAttribute("onclick","new Audio('../assets/sounds/click1.mp3').play()");
     main_button.appendChild(img);
@@ -43,3 +70,9 @@ function iniStartPage() {
     return main_wrapper;
   }
 }
+
+window.onload = () => iniStartPage();
+window.addEventListener('load', () => {
+  let bgMusic = new AudioSounds;
+  // bgMusic.startMusic();
+})
