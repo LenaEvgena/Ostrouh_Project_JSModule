@@ -24,54 +24,113 @@ function initColorsGame() {
 
 
   let dragImages = Array.from(document.querySelectorAll('.drag_image'));
+  let drag_container = document.querySelector('.colors_drag_images');
+
   let dropImages = Array.from(document.querySelectorAll('.drop_image'));
+  let dropContainers = Array.from(document.querySelectorAll('.image_container'));
 
   console.log('dragImages', dragImages);
-  console.log('dropImages', dropImages);
+  console.log('dropContainers', dropContainers);
 
   let DraggedImage = null;
-
-  dropImages.forEach((image) => {
-    image.addEventListener('drop', DivDrop(this));
-    image.addEventListener('dragover', DivDragOver);
-  });
+  let DragShiftX;
+  let DragShiftY;
 
   dragImages.forEach((image) => {
-    image.addEventListener('dragstart', DragStart);
-    image.addEventListener('dragend', DragEnd);
+    image.addEventListener('mousedown', Drag_Start);
+    image.addEventListener('mouseup', Drag_Stop);
   });
 
+  dropContainers.forEach((container) => {
+    container.addEventListener('mouseenter', DivDragEnter);
+    container.addEventListener('mouseup', DivDrop);
+    container.addEventListener('mouseleave', DivDragLeave);
+  });
 
-  function DragStart(EO) {
+  setTimeout(() => {
+    getElementPos(dragImages);
+  }, 500);
+
+  function Drag_Start(EO) {
     // началось перетаскивание мячика
     EO = EO || window.event;
     console.log('starting drag id=' + EO.target.id);
     DraggedImage = EO.target;
+    DragShiftX = EO.pageX - DraggedImage.x;
+    DragShiftY = EO.pageY - DraggedImage.y;
+    DraggedImage.style.cursor = 'grabbing';
+    DraggedImage.style.zIndex = '1000';
+
+    drag_container.addEventListener('mousemove', Drag_Move);
+    DraggedImage.addEventListener('mouseup', Drag_Stop);
   }
 
-  function DragEnd(EO) {
+  function Drag_Move(EO) {
+    EO = EO || window.event;
+    EO.preventDefault();
+    DraggedImage.style.left = (EO.pageX - DragShiftX) + "px";
+    DraggedImage.style.top = (EO.pageY - DragShiftY) + "px";
+  }
+
+  function Drag_Stop(EO) {
     // закончилось перетаскивание мячика (неважно куда он уронен)
     EO = EO || window.event;
     console.log('drag finished');
+    console.log('drag finished at id=' + EO.currentTarget.id);
+    EO.preventDefault();
+    DraggedImage.style.cursor = 'auto';
+    DraggedImage.style.zIndex = '1';
+    drag_container.removeEventListener('mousemove', Drag_Move);
+    DraggedImage.removeEventListener('mouseup', Drag_Stop);
     DraggedImage = null;
   }
 
-  function DivDragOver(EO) {
-    EO = EO || window.event;
-    // по-умолчанию ронять элементы в div запрещено, отменяем:
-    EO.preventDefault();
-  }
-
-  function DivDrop(Div, EO) {
+  function DivDrop(EO) {
     // мячик уронен
     EO = EO || window.event;
     EO.preventDefault();
+    // var DragElem = document.getElementById('COON');
+    // Div.appendChild(DragElem);
     if (DraggedImage)
-      Div.appendChild(DraggedImage);
+      EO.currentTarget.appendChild(DraggedImage);
   }
 
+  function DivDragEnter( EO) {
+    EO = EO || window.event;
+  // по-умолчанию ронять элементы в div запрещено, отменяем:
+    EO.preventDefault();
+    EO.currentTarget.style.transform = 'scale(1.1)';
+    EO.currentTarget.addEventListener('mouseover', DivDragOver);
+    console.log('div enter id=' + EO.currentTarget.id);
+  }
+  function DivDragOver(EO) {
+    EO = EO || window.event;
+    EO.preventDefault();
+    console.log('div over');
+  }
+  function DivDragLeave(EO) {
+    EO = EO || window.event;
+    EO.preventDefault();
+    EO.currentTarget.style.transform = 'scale(1.0)';
+    EO.currentTarget.removeEventListener('mouseover', DivDragOver);
+    // EO.currentTarget.removeEventListener('mouseenter', DivDragEnter);
+    console.log('div leave');
+  }
 
-
+  function getElementPos(arr) {
+    var X = [];
+    var Y = [];
+    for (var i = 0; i < arr.length; i++) {
+      X.push(arr[i].offsetLeft);
+      Y.push(arr[i].offsetTop);
+    }
+    for (var i = 0; i < arr.length; i++) {
+      arr[i].style.position = 'absolute';
+      arr[i].style.left = X[i] + 'px';
+      arr[i].style.top = Y[i] + 'px';
+    }
+    return {left: X, top: Y};
+  }
 
 
 
@@ -98,24 +157,36 @@ function initColorsGame() {
     colors_drop_images.className = 'colors_drop_images';
 
     colors_game_wrapper.appendChild( createBackArrow() );
-    colors_drag_images.appendChild( createColorGameImage('redcar', 'drag_image', 'true') );
-    colors_drag_images.appendChild( createColorGameImage('yellowcar', 'drag_image', 'true') );
-    colors_drag_images.appendChild( createColorGameImage('bluecar', 'drag_image', 'true') );
-    colors_drop_images.appendChild( createColorGameImage('bluebox', 'drop_image') );
-    colors_drop_images.appendChild( createColorGameImage('redbox', 'drop_image') );
-    colors_drop_images.appendChild( createColorGameImage('yellowbox', 'drop_image') );
+    colors_drag_images.appendChild( createColorGameImage('redcar', 'drag_image',) );
+    colors_drag_images.appendChild( createColorGameImage('yellowcar', 'drag_image',) );
+    colors_drag_images.appendChild( createColorGameImage('bluecar', 'drag_image',) );
+    const div1 = document.createElement('div');
+    div1.className = 'image_container';
+    div1.id = 'blue';
+
+    const div2 = document.createElement('div');
+    div2.className = 'image_container';
+    div2.id = 'red';
+    const div3 = document.createElement('div');
+    div3.className = 'image_container';
+    div3.id = 'yelllow';
+    div1.appendChild( createColorGameImage('bluebox', 'drop_image') );
+    div2.appendChild( createColorGameImage('redbox', 'drop_image') );
+    div3.appendChild( createColorGameImage('yellowbox', 'drop_image') );
+    colors_drop_images.appendChild( div1 );
+    colors_drop_images.appendChild( div2 );
+    colors_drop_images.appendChild( div3 );
     colors_game_wrapper.appendChild(colors_drag_images);
     colors_game_wrapper.appendChild(colors_drop_images);
 
     return colors_game_wrapper;
   }
 
-  function createColorGameImage(image, className, draggable) {
+  function createColorGameImage(image, className) {
     const img = document.createElement('img');
     img.id = image;
     img.src = `../assets/img/colors/${image}.png`;
     img.className = className;
-    // img.setAttribute('draggable', draggable);
     // img.setAttribute("onclick","new Audio('../assets/sounds/click2.mp3').play()");
     // img.onmouseover = () => {
     //   new Audio('../assets/sounds/slide.mp3').play()

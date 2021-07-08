@@ -177,8 +177,8 @@ html {
   width: 45px;
   background-color: yellow;
   border-radius: 50%;
-  border: 1px solid darkyellow;
   transition: 0.3s;
+  filter: drop-shadow(6px 6px 8px rgb(221, 173, 101));
 }
 .back_arrow:hover {
   transform: scale(1.1);
@@ -186,25 +186,31 @@ html {
 .colors_drag_images {
   display: grid;
   grid-template-columns: repeat(3, auto);
-  column-gap: 100px;
+  width: 100vh;
   justify-content: center;
   align-items: center;
-  margin-bottom: 110px;
-}
-.drag_image, .drop_image {
-  width: 200px;
+  margin-bottom: 180px;
 }
 .colors_drop_images{
   display: grid;
   grid-template-columns: repeat(3, auto);
-  column-gap: 100px;
+  width: 100vh;
   justify-content: center;
   align-items: center;
 }
-
-.drop_image:hover {
-  transform: scale(1.2);
+/* .image_container {
+  position: relative;
+} */
+.drag_image, .drop_image {
+  width: 200px;
 }
+.drag_image:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(8px 8px 10px rgb(221, 173, 101));
+}
+/* .drop_image:hover {
+  transform: scale(1.2);
+} */
 /*end colors page*/
 
 
