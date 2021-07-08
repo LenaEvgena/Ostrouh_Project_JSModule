@@ -29,12 +29,8 @@ function initColorsGame() {
   let dropImages = Array.from(document.querySelectorAll('.drop_image'));
   let dropContainers = Array.from(document.querySelectorAll('.image_container'));
 
-  console.log('dragImages', dragImages);
-  console.log('dropContainers', dropContainers);
-
   // let dragObject = {};
   let DraggedImage = null;
-  let currentDroppable = null;
   let DragShiftX;
   let DragShiftY;
 
@@ -64,7 +60,7 @@ function initColorsGame() {
     DragShiftY = EO.pageY - DraggedImage.y;
     DraggedImage.style.cursor = 'grabbing';
     DraggedImage.style.zIndex = '1000';
-    console.log('starting drag id=' + EO.target.id);
+    // console.log('starting drag id=' + EO.target.id);
 
     document.addEventListener('mousemove', Drag_Move);
     drag_container.addEventListener('mouseup', Drag_Stop);
@@ -81,12 +77,12 @@ function initColorsGame() {
 
     DraggedImage.hidden = true;
     let elemBelow = document.elementFromPoint(EO.clientX, EO.clientY);
-    console.log(elemBelow);
+    // console.log(elemBelow);
     DraggedImage.hidden = false;
 
     if(!elemBelow) return;
     if (DraggedImage.id === elemBelow.id) {
-      console.log(DraggedImage.id, EO.target);
+      // console.log(DraggedImage.id, EO.target);
       DivDrop();
     }
   }
@@ -94,7 +90,7 @@ function initColorsGame() {
   function Drag_Stop(EO) {
     // закончилось перетаскивание мячика (неважно куда он уронен)
     EO = EO || window.event;
-    console.log('drag finished');
+    // console.log('drag finished');
     EO.preventDefault();
     DraggedImage.style.cursor = 'auto';
     DraggedImage.style.zIndex = '1';
@@ -107,28 +103,29 @@ function initColorsGame() {
     // мячик уронен
     EO = EO || window.event;
     EO.preventDefault();
-    if (DraggedImage)
+    if (DraggedImage){
       drag_container.removeChild(DraggedImage);
       EO.target.style.opacity = 0;
+      Drag_Stop();
+    }
   }
 
   function DivDragEnter( EO) {
     EO = EO || window.event;
-  // по-умолчанию ронять элементы в div запрещено, отменяем:
     EO.preventDefault();
     EO.currentTarget.style.transform = 'scale(1.1)';
-    console.log('div enter id=' + EO.currentTarget.id);
+    // console.log('div enter id=' + EO.currentTarget.id);
   }
   function DivDragOver(EO) {
     EO = EO || window.event;
     EO.preventDefault();
-    console.log('div over');
+    // console.log('div over');
   }
   function DivDragLeave(EO) {
     EO = EO || window.event;
     EO.preventDefault();
     EO.currentTarget.style.transform = 'scale(1.0)';
-    console.log('div leave');
+    // console.log('div leave');
   }
 
   function getElementPos(arr) {
@@ -145,14 +142,6 @@ function initColorsGame() {
     }
     return {left: X, top: Y};
   }
-
-
-
-
-
-
-
-
 
   function turnBack() {
     const colors_game_wrapper = document.querySelector('.colors_game_wrapper');
@@ -229,34 +218,3 @@ function initColorsGame() {
 //   initColorsGame();
 // }
 
-
-
-
-  // let dragItems = Array.from(document.querySelectorAll('.drag_image'));
-  // let dropImages = document.querySelector('.color_drop_images');
-
-  // dropImages.ondragover = allowDrop;
-
-  // function allowDrop(event) {
-  //   event.preventDefault();
-  // }
-
-
-  // dragItems.forEach((item) => {
-  //   item.ondragstart = () => drag();
-  // });
-
-  // function drag(event) {
-  //   event.preventDefault();
-  //   event.dataTransfer.setData('id', event.target.id)
-  // }
-
-
-  // dropImages.ondrop = drop;
-
-  // function drop(event) {
-  //   // event.preventDefault();
-  //   let itemId = event.dataTransfer.get('id');
-  //   console.log(itemId);
-  //   event.target.append(document.getElementById(itemId));
-  // }
