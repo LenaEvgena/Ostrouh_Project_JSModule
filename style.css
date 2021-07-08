@@ -203,6 +203,7 @@ html {
 } */
 .drag_image, .drop_image {
   width: 200px;
+  opacity: 1;
 }
 .drag_image:hover {
   transform: scale(1.1);
