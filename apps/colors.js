@@ -60,8 +60,6 @@ function initColorsGame() {
     DragShiftY = EO.pageY - DraggedImage.y;
     DraggedImage.style.cursor = 'grabbing';
     DraggedImage.style.zIndex = '1000';
-    // console.log('starting drag id=' + EO.target.id);
-
     document.addEventListener('mousemove', Drag_Move);
     drag_container.addEventListener('mouseup', Drag_Stop);
   }
@@ -69,20 +67,16 @@ function initColorsGame() {
   function Drag_Move(EO) {
     EO = EO || window.event;
     EO.preventDefault();
-    if (Math.abs(EO.pageX - DragShiftX) < 3 && Math.abs(EO.pageY - DragShiftY) < 3) {
-      return;
-    }
     DraggedImage.style.left = (EO.pageX - DragShiftX) + "px";
     DraggedImage.style.top = (EO.pageY - DragShiftY) + "px";
 
+
     DraggedImage.hidden = true;
     let elemBelow = document.elementFromPoint(EO.clientX, EO.clientY);
-    // console.log(elemBelow);
     DraggedImage.hidden = false;
 
     if(!elemBelow) return;
     if (DraggedImage.id === elemBelow.id) {
-      // console.log(DraggedImage.id, EO.target);
       DivDrop();
     }
   }
@@ -90,8 +84,10 @@ function initColorsGame() {
   function Drag_Stop(EO) {
     // закончилось перетаскивание мячика (неважно куда он уронен)
     EO = EO || window.event;
-    // console.log('drag finished');
     EO.preventDefault();
+    if (Math.abs(EO.pageX - DragShiftX) < 20 && Math.abs(EO.pageY - DragShiftY) < 20) {
+      return;
+    }
     DraggedImage.style.cursor = 'auto';
     DraggedImage.style.zIndex = '1';
     document.removeEventListener('mousemove', Drag_Move);
@@ -110,32 +106,29 @@ function initColorsGame() {
     }
   }
 
-  function DivDragEnter( EO) {
+  function DivDragEnter(EO) {
     EO = EO || window.event;
     EO.preventDefault();
     EO.currentTarget.style.transform = 'scale(1.1)';
-    // console.log('div enter id=' + EO.currentTarget.id);
   }
   function DivDragOver(EO) {
     EO = EO || window.event;
     EO.preventDefault();
-    // console.log('div over');
   }
   function DivDragLeave(EO) {
     EO = EO || window.event;
     EO.preventDefault();
     EO.currentTarget.style.transform = 'scale(1.0)';
-    // console.log('div leave');
   }
 
   function getElementPos(arr) {
-    var X = [];
-    var Y = [];
-    for (var i = 0; i < arr.length; i++) {
+    let X = [];
+    let Y = [];
+    for (let i = 0; i < arr.length; i++) {
       X.push(arr[i].offsetLeft);
       Y.push(arr[i].offsetTop);
     }
-    for (var i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
       arr[i].style.position = 'absolute';
       arr[i].style.left = X[i] + 'px';
       arr[i].style.top = Y[i] + 'px';
@@ -145,8 +138,8 @@ function initColorsGame() {
 
   function turnBack() {
     const colors_game_wrapper = document.querySelector('.colors_game_wrapper');
-    colors_game_wrapper.style.display = 'none';
     back_arrow.style.transform = 'scale(0.9)';
+    colors_game_wrapper.style.display = 'none';
 
     initMenuPage();
   }
@@ -163,22 +156,28 @@ function initColorsGame() {
     colors_drag_images.appendChild( createColorGameImage('redcar', 'drag_image', 'red') );
     colors_drag_images.appendChild( createColorGameImage('yellowcar', 'drag_image', 'yelllow') );
     colors_drag_images.appendChild( createColorGameImage('bluecar', 'drag_image', 'blue') );
+    colors_drag_images.appendChild( createColorGameImage('greencar', 'drag_image', 'green') );
     const div1 = document.createElement('div');
     div1.className = 'image_container';
     div1.id = 'blue';
-
     const div2 = document.createElement('div');
     div2.className = 'image_container';
     div2.id = 'red';
     const div3 = document.createElement('div');
     div3.className = 'image_container';
     div3.id = 'yelllow';
+    const div4 = document.createElement('div');
+    div4.className = 'image_container';
+    div4.id = 'green';
+
     div1.appendChild( createColorGameImage('bluebox', 'drop_image', 'blue') );
     div2.appendChild( createColorGameImage('redbox', 'drop_image', 'red') );
     div3.appendChild( createColorGameImage('yellowbox', 'drop_image', 'yelllow') );
+    div4.appendChild( createColorGameImage('greenbox', 'drop_image', 'green') );
     colors_drop_images.appendChild( div1 );
     colors_drop_images.appendChild( div2 );
     colors_drop_images.appendChild( div3 );
+    colors_drop_images.appendChild( div4 );
     colors_game_wrapper.appendChild(colors_drag_images);
     colors_game_wrapper.appendChild(colors_drop_images);
 

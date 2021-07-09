@@ -185,22 +185,23 @@ html {
 }
 .colors_drag_images {
   display: grid;
-  grid-template-columns: repeat(3, auto);
-  width: 100vh;
+  grid-template-columns: repeat(4, auto);
+  height: 150px;
+  width: 100vw;
+  margin: 0 auto;
   justify-content: center;
-  align-items: center;
-  margin-bottom: 180px;
+  margin-bottom: 100px;
 }
 .colors_drop_images{
   display: grid;
-  grid-template-columns: repeat(3, auto);
-  width: 100vh;
+  grid-template-columns: repeat(4, auto);
+  width: 100vw;
   justify-content: center;
   align-items: center;
 }
-/* .image_container {
-  position: relative;
-} */
+.colors_drag_images, .colors_drop_images {
+  column-gap: 5vw;
+}
 .drag_image, .drop_image {
   width: 200px;
   opacity: 1;
@@ -209,9 +210,6 @@ html {
   transform: scale(1.1);
   filter: drop-shadow(8px 8px 10px rgb(221, 173, 101));
 }
-/* .drop_image:hover {
-  transform: scale(1.2);
-} */
 /*end colors page*/
 
 

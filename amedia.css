@@ -3,6 +3,9 @@
   .colors_drag_images, .colors_drop_images {
     column-gap: 5vw;
   }
+  .drag_image, .drop_image {
+    width: 15vw;
+  }
 }
 @media only screen and (max-width:767px) {
   /*main page*/
@@ -20,8 +23,10 @@
     width: 5vw;
   }
   .drag_image, .drop_image {
-    width: 23vw;
+    width: 15vw;
+    column-gap: 4vw;
   }
+
 }
 
 @media only screen and (max-height:750px) {
