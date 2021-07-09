@@ -154,36 +154,47 @@ function initColorsGame() {
 
     colors_game_wrapper.appendChild( createBackArrow() );
     colors_drag_images.appendChild( createColorGameImage('redcar', 'drag_image', 'red') );
-    colors_drag_images.appendChild( createColorGameImage('yellowcar', 'drag_image', 'yelllow') );
+    colors_drag_images.appendChild( createColorGameImage('yellowcar', 'drag_image', 'yellow') );
     colors_drag_images.appendChild( createColorGameImage('bluecar', 'drag_image', 'blue') );
     colors_drag_images.appendChild( createColorGameImage('greencar', 'drag_image', 'green') );
-    const div1 = document.createElement('div');
-    div1.className = 'image_container';
-    div1.id = 'blue';
-    const div2 = document.createElement('div');
-    div2.className = 'image_container';
-    div2.id = 'red';
-    const div3 = document.createElement('div');
-    div3.className = 'image_container';
-    div3.id = 'yelllow';
-    const div4 = document.createElement('div');
-    div4.className = 'image_container';
-    div4.id = 'green';
+    // const div1 = document.createElement('div');
+    // div1.className = 'image_container';
+    // div1.id = 'blue';
+    // const div2 = document.createElement('div');
+    // div2.className = 'image_container';
+    // div2.id = 'red';
+    // const div3 = document.createElement('div');
+    // div3.className = 'image_container';
+    // div3.id = 'yelllow';
+    // const div4 = document.createElement('div');
+    // div4.className = 'image_container';
+    // div4.id = 'green';
 
-    div1.appendChild( createColorGameImage('bluebox', 'drop_image', 'blue') );
-    div2.appendChild( createColorGameImage('redbox', 'drop_image', 'red') );
-    div3.appendChild( createColorGameImage('yellowbox', 'drop_image', 'yelllow') );
-    div4.appendChild( createColorGameImage('greenbox', 'drop_image', 'green') );
-    colors_drop_images.appendChild( div1 );
-    colors_drop_images.appendChild( div2 );
-    colors_drop_images.appendChild( div3 );
-    colors_drop_images.appendChild( div4 );
+    // div1.appendChild( createColorGameImage('bluebox', 'drop_image', 'blue') );
+    // div2.appendChild( createColorGameImage('redbox', 'drop_image', 'red') );
+    // div3.appendChild( createColorGameImage('yellowbox', 'drop_image', 'yellow') );
+    // div4.appendChild( createColorGameImage('greenbox', 'drop_image', 'green') );
+    colors_drop_images.appendChild( createColorBoxDiv('bluebox', 'blue', 'drop_image') );
+    colors_drop_images.appendChild( createColorBoxDiv('redbox', 'red', 'drop_image') );
+    colors_drop_images.appendChild( createColorBoxDiv('yellowbox', 'yellow', 'drop_image') );
+    colors_drop_images.appendChild( createColorBoxDiv('greenbox', 'green', 'drop_image') );
+    // colors_drop_images.appendChild( div1 );
+    // colors_drop_images.appendChild( div2 );
+    // colors_drop_images.appendChild( div3 );
+    // colors_drop_images.appendChild( div4 );
     colors_game_wrapper.appendChild(colors_drag_images);
     colors_game_wrapper.appendChild(colors_drop_images);
 
     return colors_game_wrapper;
   }
 
+  function createColorBoxDiv(image, id, imgClassName) {
+    const box = document.createElement('div');
+    box.className = 'image_container';
+    box.id = id;
+    box.appendChild( createColorGameImage(image, imgClassName, id) );
+    return box;
+  }
   function createColorGameImage(image, className, id) {
     const img = document.createElement('img');
     img.id = id;
@@ -193,7 +204,6 @@ function initColorsGame() {
     // img.onmouseover = () => {
     //   new Audio('../assets/sounds/slide.mp3').play()
     // };
-
     return img;
   }
 
