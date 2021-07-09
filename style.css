@@ -202,9 +202,12 @@ html {
 .colors_drag_images, .colors_drop_images {
   column-gap: 5vw;
 }
-.drag_image, .drop_image {
+.drag_image {
   width: 200px;
   opacity: 1;
+}
+.drop_image {
+  width: 200px;
 }
 .drag_image:hover {
   transform: scale(1.1);

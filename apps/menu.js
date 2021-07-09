@@ -25,7 +25,11 @@ function initMenuPage() {
     const main_wrapper = document.querySelector('.main_wrapper');
     main_wrapper.style.display = 'none';
 
-    initColorsGame();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initColorsGame());
+    } else {
+      initColorsGame();
+    }
   }
 
   function createMenuPage() {

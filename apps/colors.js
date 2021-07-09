@@ -29,7 +29,6 @@ function initColorsGame() {
   let dropImages = Array.from(document.querySelectorAll('.drop_image'));
   let dropContainers = Array.from(document.querySelectorAll('.image_container'));
 
-  // let dragObject = {};
   let DraggedImage = null;
   let DragShiftX;
   let DragShiftY;
@@ -49,15 +48,17 @@ function initColorsGame() {
 
   setTimeout(() => {
     getElementPos(dragImages);
-  }, 500);
+  }, 100);
 
   function Drag_Start(EO) {
     // началось перетаскивание мячика
     EO = EO || window.event;
     if (EO.which != 1) return;
     DraggedImage = EO.target;
+
     DragShiftX = EO.pageX - DraggedImage.x;
     DragShiftY = EO.pageY - DraggedImage.y;
+
     DraggedImage.style.cursor = 'grabbing';
     DraggedImage.style.zIndex = '1000';
     document.addEventListener('mousemove', Drag_Move);
@@ -69,7 +70,6 @@ function initColorsGame() {
     EO.preventDefault();
     DraggedImage.style.left = (EO.pageX - DragShiftX) + "px";
     DraggedImage.style.top = (EO.pageY - DragShiftY) + "px";
-
 
     DraggedImage.hidden = true;
     let elemBelow = document.elementFromPoint(EO.clientX, EO.clientY);
@@ -85,9 +85,9 @@ function initColorsGame() {
     // закончилось перетаскивание мячика (неважно куда он уронен)
     EO = EO || window.event;
     EO.preventDefault();
-    if (Math.abs(EO.pageX - DragShiftX) < 20 && Math.abs(EO.pageY - DragShiftY) < 20) {
-      return;
-    }
+    // if (Math.abs(EO.pageX - DragShiftX) < 20 && Math.abs(EO.pageY - DragShiftY) < 20) {
+    //   return;
+    // }
     DraggedImage.style.cursor = 'auto';
     DraggedImage.style.zIndex = '1';
     document.removeEventListener('mousemove', Drag_Move);
@@ -101,7 +101,7 @@ function initColorsGame() {
     EO.preventDefault();
     if (DraggedImage){
       drag_container.removeChild(DraggedImage);
-      EO.target.style.opacity = 0;
+      DraggedImage.style.opacity = 0;
       Drag_Stop();
     }
   }
@@ -157,31 +157,12 @@ function initColorsGame() {
     colors_drag_images.appendChild( createColorGameImage('yellowcar', 'drag_image', 'yellow') );
     colors_drag_images.appendChild( createColorGameImage('bluecar', 'drag_image', 'blue') );
     colors_drag_images.appendChild( createColorGameImage('greencar', 'drag_image', 'green') );
-    // const div1 = document.createElement('div');
-    // div1.className = 'image_container';
-    // div1.id = 'blue';
-    // const div2 = document.createElement('div');
-    // div2.className = 'image_container';
-    // div2.id = 'red';
-    // const div3 = document.createElement('div');
-    // div3.className = 'image_container';
-    // div3.id = 'yelllow';
-    // const div4 = document.createElement('div');
-    // div4.className = 'image_container';
-    // div4.id = 'green';
 
-    // div1.appendChild( createColorGameImage('bluebox', 'drop_image', 'blue') );
-    // div2.appendChild( createColorGameImage('redbox', 'drop_image', 'red') );
-    // div3.appendChild( createColorGameImage('yellowbox', 'drop_image', 'yellow') );
-    // div4.appendChild( createColorGameImage('greenbox', 'drop_image', 'green') );
     colors_drop_images.appendChild( createColorBoxDiv('bluebox', 'blue', 'drop_image') );
     colors_drop_images.appendChild( createColorBoxDiv('redbox', 'red', 'drop_image') );
     colors_drop_images.appendChild( createColorBoxDiv('yellowbox', 'yellow', 'drop_image') );
     colors_drop_images.appendChild( createColorBoxDiv('greenbox', 'green', 'drop_image') );
-    // colors_drop_images.appendChild( div1 );
-    // colors_drop_images.appendChild( div2 );
-    // colors_drop_images.appendChild( div3 );
-    // colors_drop_images.appendChild( div4 );
+
     colors_game_wrapper.appendChild(colors_drag_images);
     colors_game_wrapper.appendChild(colors_drop_images);
 
@@ -195,6 +176,7 @@ function initColorsGame() {
     box.appendChild( createColorGameImage(image, imgClassName, id) );
     return box;
   }
+
   function createColorGameImage(image, className, id) {
     const img = document.createElement('img');
     img.id = id;
@@ -212,9 +194,6 @@ function initColorsGame() {
     back_arrow.src = '../assets/img/other/arrow_back.png'
     back_arrow.className = 'back_arrow';
     back_arrow.setAttribute('onclick',"new Audio('../assets/sounds/click2.mp3').play()");
-    // back_arrow.onclick = () => {
-    //   turnBack();
-    // };
 
     return back_arrow;
   }

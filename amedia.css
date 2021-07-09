@@ -36,6 +36,9 @@
   }
 }
 @media only screen and (max-height:520px) {
+  .btn_img {
+    width: 50vh;
+  }
   /*menu page*/
   .menu_images {
     display:flex;
