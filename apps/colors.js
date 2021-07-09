@@ -12,12 +12,47 @@
 //   }
 // }
 
+
 function initColorsGame() {
   const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createColorsPage() );
 
   const back_arrow = document.querySelector('.back_arrow');
   back_arrow.addEventListener('click', () => turnBack());
+
+  const game = {
+    sprites: {
+      background: null,
+      cell: null,
+      head: null,
+      body: null,
+      food: null,
+      food1: null,
+      food2: null,
+      bomb: null,
+    },
+    preload(callback) {
+      let loaded = 0;
+      const required = Object.keys(this.sprites).length;
+
+      const onAssetLoaded = () => {
+        ++loaded;
+        if (loaded >= required) {
+          callback();
+        }
+      };
+
+      this.preloadSprites(onAssetLoaded);
+    },
+    preloadSprites(onAssetLoadedCallback) {
+      for (let key in this.sprites) {
+        this.sprites[key] = new Image();
+        this.sprites[key].src = 'img/colors/' + key + '.png';
+        this.sprites[key].addEventListener('load', onAssetLoadedCallback);
+      }
+    },
+  };
+
 
 
 
@@ -153,10 +188,10 @@ function initColorsGame() {
     colors_drop_images.className = 'colors_drop_images';
 
     colors_game_wrapper.appendChild( createBackArrow() );
-    colors_drag_images.appendChild( createColorGameImage('redcar', 'drag_image', 'red') );
-    colors_drag_images.appendChild( createColorGameImage('yellowcar', 'drag_image', 'yellow') );
-    colors_drag_images.appendChild( createColorGameImage('bluecar', 'drag_image', 'blue') );
-    colors_drag_images.appendChild( createColorGameImage('greencar', 'drag_image', 'green') );
+    // colors_drag_images.appendChild( createColorGameImage('redcar', 'drag_image', 'red') );
+    // colors_drag_images.appendChild( createColorGameImage('yellowcar', 'drag_image', 'yellow') );
+    // colors_drag_images.appendChild( createColorGameImage('bluecar', 'drag_image', 'blue') );
+    // colors_drag_images.appendChild( createColorGameImage('greencar', 'drag_image', 'green') );
 
     colors_drop_images.appendChild( createColorBoxDiv('bluebox', 'blue', 'drop_image') );
     colors_drop_images.appendChild( createColorBoxDiv('redbox', 'red', 'drop_image') );

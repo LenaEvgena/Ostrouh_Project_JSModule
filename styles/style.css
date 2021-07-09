@@ -110,7 +110,7 @@ html {
   height: 100vh;
 }
 .main_wrapper {
-  background: url(assets/img/main/bg1.jpg);
+  background: url(../assets/img/backgrounds/startbg.jpg);
   width: 100vw;
   height: 100vh;
   background-size: cover;
@@ -133,7 +133,7 @@ html {
 /*start menu*/
 .menu_wrapper {
   position: relative;
-  background: url(assets/img/menu/bg0.png);
+  background: url(../assets/img/backgrounds/menubg.png);
   width: 100vw;
   height: 100vh;
   background-size: cover;
@@ -160,7 +160,7 @@ html {
 /*start colors page*/
 .colors_game_wrapper {
   position: relative;
-  background: url(assets/img/colors/room01.jpg);
+  background: url(../assets/img/backgrounds/colorsbg.jpg);
   width: 100vw;
   height: 100vh;
   background-size: cover;
