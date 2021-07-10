@@ -186,10 +186,10 @@ html {
 .colors_drag_images {
   display: grid;
   grid-template-columns: repeat(4, auto);
-  height: 150px;
+  height: 130px;
   width: 100vw;
-  margin: 0 auto;
   justify-content: center;
+  /* align-items: center; */
   margin-bottom: 100px;
 }
 .colors_drop_images{

@@ -20,48 +20,9 @@ function initColorsGame() {
   const back_arrow = document.querySelector('.back_arrow');
   back_arrow.addEventListener('click', () => turnBack());
 
-  const game = {
-    sprites: {
-      background: null,
-      cell: null,
-      head: null,
-      body: null,
-      food: null,
-      food1: null,
-      food2: null,
-      bomb: null,
-    },
-    preload(callback) {
-      let loaded = 0;
-      const required = Object.keys(this.sprites).length;
-
-      const onAssetLoaded = () => {
-        ++loaded;
-        if (loaded >= required) {
-          callback();
-        }
-      };
-
-      this.preloadSprites(onAssetLoaded);
-    },
-    preloadSprites(onAssetLoadedCallback) {
-      for (let key in this.sprites) {
-        this.sprites[key] = new Image();
-        this.sprites[key].src = 'img/colors/' + key + '.png';
-        this.sprites[key].addEventListener('load', onAssetLoadedCallback);
-      }
-    },
-  };
-
-
-
-
-
 
   let dragImages = Array.from(document.querySelectorAll('.drag_image'));
   let drag_container = document.querySelector('.colors_drag_images');
-
-  let dropImages = Array.from(document.querySelectorAll('.drop_image'));
   let dropContainers = Array.from(document.querySelectorAll('.image_container'));
 
   let DraggedImage = null;
@@ -83,7 +44,8 @@ function initColorsGame() {
 
   setTimeout(() => {
     getElementPos(dragImages);
-  }, 100);
+  }, 500);
+
 
   function Drag_Start(EO) {
     // началось перетаскивание мячика
@@ -120,9 +82,6 @@ function initColorsGame() {
     // закончилось перетаскивание мячика (неважно куда он уронен)
     EO = EO || window.event;
     EO.preventDefault();
-    // if (Math.abs(EO.pageX - DragShiftX) < 20 && Math.abs(EO.pageY - DragShiftY) < 20) {
-    //   return;
-    // }
     DraggedImage.style.cursor = 'auto';
     DraggedImage.style.zIndex = '1';
     document.removeEventListener('mousemove', Drag_Move);
@@ -173,8 +132,8 @@ function initColorsGame() {
 
   function turnBack() {
     const colors_game_wrapper = document.querySelector('.colors_game_wrapper');
-    back_arrow.style.transform = 'scale(0.9)';
     colors_game_wrapper.style.display = 'none';
+    back_arrow.style.transform = 'scale(0.9)';
 
     initMenuPage();
   }
@@ -188,10 +147,10 @@ function initColorsGame() {
     colors_drop_images.className = 'colors_drop_images';
 
     colors_game_wrapper.appendChild( createBackArrow() );
-    // colors_drag_images.appendChild( createColorGameImage('redcar', 'drag_image', 'red') );
-    // colors_drag_images.appendChild( createColorGameImage('yellowcar', 'drag_image', 'yellow') );
-    // colors_drag_images.appendChild( createColorGameImage('bluecar', 'drag_image', 'blue') );
-    // colors_drag_images.appendChild( createColorGameImage('greencar', 'drag_image', 'green') );
+    colors_drag_images.appendChild( createColorGameImage('redcar', 'drag_image', 'red') );
+    colors_drag_images.appendChild( createColorGameImage('yellowcar', 'drag_image', 'yellow') );
+    colors_drag_images.appendChild( createColorGameImage('bluecar', 'drag_image', 'blue') );
+    colors_drag_images.appendChild( createColorGameImage('greencar', 'drag_image', 'green') );
 
     colors_drop_images.appendChild( createColorBoxDiv('bluebox', 'blue', 'drop_image') );
     colors_drop_images.appendChild( createColorBoxDiv('redbox', 'red', 'drop_image') );
@@ -233,11 +192,3 @@ function initColorsGame() {
     return back_arrow;
   }
 }
-
-
-// if (document.readyState === 'loading') {
-//   document.addEventListener('DOMContentLoaded', initColorsGame());
-// } else {
-//   initColorsGame();
-// }
-
