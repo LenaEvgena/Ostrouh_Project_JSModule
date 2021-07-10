@@ -97,6 +97,7 @@ function initColorsGame() {
       drag_container.removeChild(DraggedImage);
       DraggedImage.style.opacity = 0;
       Drag_Stop();
+      taskIsDone();
     }
   }
 
@@ -147,10 +148,11 @@ function initColorsGame() {
     colors_drop_images.className = 'colors_drop_images';
 
     colors_game_wrapper.appendChild( createBackArrow() );
+    colors_game_wrapper.appendChild( createTaskCheckPoint(4) );
     colors_drag_images.appendChild( createColorGameImage('redcar', 'drag_image', 'red') );
-    colors_drag_images.appendChild( createColorGameImage('yellowcar', 'drag_image', 'yellow') );
-    colors_drag_images.appendChild( createColorGameImage('bluecar', 'drag_image', 'blue') );
     colors_drag_images.appendChild( createColorGameImage('greencar', 'drag_image', 'green') );
+    colors_drag_images.appendChild( createColorGameImage('bluecar', 'drag_image', 'blue') );
+    colors_drag_images.appendChild( createColorGameImage('yellowcar', 'drag_image', 'yellow') );
 
     colors_drop_images.appendChild( createColorBoxDiv('bluebox', 'blue', 'drop_image') );
     colors_drop_images.appendChild( createColorBoxDiv('redbox', 'red', 'drop_image') );
@@ -190,5 +192,99 @@ function initColorsGame() {
     back_arrow.setAttribute('onclick',"new Audio('../assets/sounds/click2.mp3').play()");
 
     return back_arrow;
+  }
+  function createTaskCheckPoint(count) {
+    const tasksPointsDiv = document.createElement('div');
+    tasksPointsDiv.id = 'tasksPoints';
+    for (let i = 0; i < count; i++) {
+      const taskPoint = document.createElement('span');
+      taskPoint.style.background = 'url(../assets/img/icons/emptycircle.png)';
+      taskPoint.style.backgroundSize = 'cover';
+      tasksPointsDiv.appendChild(taskPoint);
+    }
+    return tasksPointsDiv;
+  }
+
+  let tasks = 4;
+  function taskIsDone() {
+    tasks--;
+    const tasksPointsDiv = document.querySelector('#tasksPoints');
+    let points = tasksPointsDiv.children;
+    let n = tasks;
+    let point = points[n];
+
+    if (tasks != 0) {
+
+      if (point.id != 'done') {
+        point.style.background = 'url(../assets/img/icons/redcircle.png)';
+        point.style.backgroundSize = 'cover';
+        point.id = 'done';
+        point = points[n--];
+      } else {
+        point = point.nextSibling;
+        point.style.background = 'url(../assets/img/icons/redcircle.png)';
+        point.style.backgroundSize = 'cover';
+        point.id = 'done';
+      }
+
+    } else {
+      point.style.background = 'url(../assets/img/icons/redcircle.png)';
+      point.style.backgroundSize = 'cover';
+      point.id = 'done';
+      setTimeout(() => {
+        alert('Task is done');
+      }, 100);
+    }
+  }
+
+  function appendImageToBlock() {
+    let childrenCount = 4;
+    let arrayToPop = Array.from(createRandomToys());
+    let dragArray = [];
+    const colors_drag_images = Array.from(document.querySelector('.colors_drag_images'));
+
+    for (let j = arrayToPop.length - 1; j >= 0; j--) {
+      let img = arrayToPop[j];
+      colors_drag_images.appendChild(img);
+      dragArray.push(img);
+      arrayToPop.pop();
+    }
+    console.log('dragArray', dragArray);
+    console.log('arrayToPop2', arrayToPop);
+
+    return dragArray;
+  }
+  // appendImageToBlock();
+
+  function createRandomToys() {
+    let toys = [];
+    const toysImages = ['bluecar', 'blueduck', 'blueplane', 'greencar', 'greenduck', 'greenplane',
+    'redcar', 'redduck', 'redplane', 'yellowcar', 'yellowduck', 'yellowplane'];
+
+    for (var i = 0; i < toysImages.length; i++) {
+      const img = document.createElement('img');
+      img.src = `../assets/img/colors/${toysImages[i]}.png`;
+      // img.className = 'drag_image invisible';
+      img.className = 'drag_image';
+
+      let str = toysImages[i];
+      if (str.includes('red')) {
+        img.id = 'red';
+      } else if (str.includes('blue')) {
+        img.id = 'blue';
+      } else if (str.includes('yellow')) {
+        img.id = 'yellow';
+      } else if (str.includes('green')) {
+        img.id = 'green';
+      }
+      toys.push(img);
+      shuffleImages(toys);
+    }
+    // console.log(toys);
+    return toys;
+  }
+
+  function shuffleImages(array) {
+    array.sort(() => Math.random() - 0.5);
   }
 }

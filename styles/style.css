@@ -183,14 +183,27 @@ html {
 .back_arrow:hover {
   transform: scale(1.1);
 }
+#tasksPoints {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+#tasksPoints span {
+  display: block;
+  margin: 10px;
+  float: left;
+  width: 15px;
+  height: 15px;
+  /* background: url(../assets/img/icons/emptycircle.png); */
+  /* background-size: cover; */
+}
 .colors_drag_images {
   display: grid;
   grid-template-columns: repeat(4, auto);
   height: 130px;
   width: 100vw;
   justify-content: center;
-  /* align-items: center; */
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 .colors_drop_images{
   display: grid;
