@@ -14,6 +14,9 @@
 
 
 function initColorsGame() {
+  let bgMusic = new AudioController;
+  bgMusic.stopMusic();
+
   const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createColorsPage() );
 
@@ -135,8 +138,7 @@ function initColorsGame() {
     const colors_game_wrapper = document.querySelector('.colors_game_wrapper');
     colors_game_wrapper.style.display = 'none';
     back_arrow.style.transform = 'scale(0.9)';
-
-    initMenuPage();
+    document.querySelector('.menu_wrapper').style.display = 'flex';
   }
 
   function createColorsPage() {
@@ -158,7 +160,7 @@ function initColorsGame() {
     colors_drop_images.appendChild( createColorBoxDiv('redbox', 'red', 'drop_image') );
     colors_drop_images.appendChild( createColorBoxDiv('yellowbox', 'yellow', 'drop_image') );
     colors_drop_images.appendChild( createColorBoxDiv('greenbox', 'green', 'drop_image') );
-
+    colors_game_wrapper.appendChild( createOverlay() );
     colors_game_wrapper.appendChild(colors_drag_images);
     colors_game_wrapper.appendChild(colors_drop_images);
 
@@ -205,15 +207,28 @@ function initColorsGame() {
     return tasksPointsDiv;
   }
 
-  let tasks = 4;
+  function createOverlay() {
+    const overlay = document.createElement('div');
+    overlay.className = 'overlay';
+    overlay.style.display = 'none';
+    let span = document.createElement('span');
+    span.textContent = 'exellent!!!'
+    overlay.appendChild(span);
+    return overlay;
+  }
+
+  let tasksCount = 4;
   function taskIsDone() {
-    tasks--;
+    tasksCount--;
     const tasksPointsDiv = document.querySelector('#tasksPoints');
     let points = tasksPointsDiv.children;
-    let n = tasks;
+    let n = tasksCount;
     let point = points[n];
+    const drop = new Audio('../assets/sounds/drop1.mp3');
+    const hooray = new Audio('../assets/sounds/hooray.mp3');
 
-    if (tasks != 0) {
+    if (tasksCount != 0) {
+      drop.play();
 
       if (point.id != 'done') {
         point.style.background = 'url(../assets/img/icons/redcircle.png)';
@@ -231,14 +246,23 @@ function initColorsGame() {
       point.style.background = 'url(../assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
       point.id = 'done';
+      drop.play();
       setTimeout(() => {
-        alert('Task is done');
+        document.querySelector('.overlay').style.display = 'flex';
+        hooray.play();
+
+        setTimeout(() => {
+          document.querySelector('.colors_game_wrapper').style.display = 'none';
+          document.querySelector('.menu_wrapper').style.display = 'flex';
+        }, 5000)
+
+
       }, 100);
     }
   }
 
   function appendImageToBlock() {
-    let childrenCount = 4;
+    // let childrenCount = 4;
     let arrayToPop = Array.from(createRandomToys());
     let dragArray = [];
     const colors_drag_images = Array.from(document.querySelector('.colors_drag_images'));
@@ -254,7 +278,6 @@ function initColorsGame() {
 
     return dragArray;
   }
-  // appendImageToBlock();
 
   function createRandomToys() {
     let toys = [];
@@ -264,7 +287,6 @@ function initColorsGame() {
     for (var i = 0; i < toysImages.length; i++) {
       const img = document.createElement('img');
       img.src = `../assets/img/colors/${toysImages[i]}.png`;
-      // img.className = 'drag_image invisible';
       img.className = 'drag_image';
 
       let str = toysImages[i];
@@ -280,7 +302,6 @@ function initColorsGame() {
       toys.push(img);
       shuffleImages(toys);
     }
-    // console.log(toys);
     return toys;
   }
 

@@ -2,7 +2,7 @@
 
 
 
-class AudioSounds {
+class AudioController {
   constructor() {
     this.bgMusic = new Audio('../assets/sounds/bgmusic.mp3');
     this.slideSound = new Audio('../assets/sounds/slide.mp3');
@@ -17,10 +17,10 @@ class AudioSounds {
     this.bgMusic.pause();
     this.bgMusic.currentTime = 0;
   }
-  clickItem() {
+  clickSound() {
     this.clickSound.play();
   }
-  slideItem() {
+  slideSound() {
     this.slideSound.play();
   }
   //victory sound
@@ -73,6 +73,6 @@ function iniStartPage() {
 
 window.onload = () => iniStartPage();
 window.addEventListener('load', () => {
-  let bgMusic = new AudioSounds;
+  const bgMusic = new AudioController;
   // bgMusic.startMusic();
 })

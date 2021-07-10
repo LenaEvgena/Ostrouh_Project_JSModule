@@ -192,10 +192,8 @@ html {
   display: block;
   margin: 10px;
   float: left;
-  width: 15px;
-  height: 15px;
-  /* background: url(../assets/img/icons/emptycircle.png); */
-  /* background-size: cover; */
+  width: 18px;
+  height: 18px;
 }
 .colors_drag_images {
   display: grid;
@@ -225,6 +223,33 @@ html {
 .drag_image:hover {
   transform: scale(1.1);
   filter: drop-shadow(8px 8px 10px rgb(221, 173, 101));
+}
+.invisible {
+  display: none;
+}
+.overlay {
+  /* display: none; */
+  display: flex;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  background-color: rgba(170, 167, 167, 0.5);
+  background-size: cover;
+  color:aqua;
+  text-shadow: 0 2px 0 rgb(110, 105, 105);
+  font-size: 70px;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.5;
+  letter-spacing: 8px;
+  z-index: 100;
+  overflow: hidden;
+
+  align-items: center;
+  justify-content: center;
 }
 /*end colors page*/
 
