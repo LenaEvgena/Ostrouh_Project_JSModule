@@ -215,7 +215,7 @@ function initColorsGame() {
     overlay.className = 'overlay';
     overlay.style.display = 'none';
     let span = document.createElement('span');
-    span.textContent = 'exellent!!!';
+    span.textContent = 'excellent!!!';
 
     overlay.appendChild(span);
     overlay.appendChild( createBalloons() );
