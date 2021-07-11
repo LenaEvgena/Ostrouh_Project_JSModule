@@ -20,6 +20,7 @@ function initColorsGame() {
   const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createColorsPage() );
 
+  // document.querySelector('.colors_game_wrapper').style.display = 'flex';//после двух повторов без этого не работает
   const back_arrow = document.querySelector('.back_arrow');
   back_arrow.addEventListener('click', () => turnBack());
 
@@ -135,8 +136,9 @@ function initColorsGame() {
   }
 
   function turnBack() {
-    const colors_game_wrapper = document.querySelector('.colors_game_wrapper');
-    colors_game_wrapper.style.display = 'none';
+    // const colors_game_wrapper = document.querySelector('.colors_game_wrapper');
+    // colors_game_wrapper.style.display = 'none';
+    document.querySelector('.colors_game_wrapper').style.display = 'none';
     back_arrow.style.transform = 'scale(0.9)';
     document.querySelector('.menu_wrapper').style.display = 'flex';
   }
@@ -161,6 +163,7 @@ function initColorsGame() {
     colors_drop_images.appendChild( createColorBoxDiv('yellowbox', 'yellow', 'drop_image') );
     colors_drop_images.appendChild( createColorBoxDiv('greenbox', 'green', 'drop_image') );
     colors_game_wrapper.appendChild( createOverlay() );
+
     colors_game_wrapper.appendChild(colors_drag_images);
     colors_game_wrapper.appendChild(colors_drop_images);
 
@@ -212,10 +215,50 @@ function initColorsGame() {
     overlay.className = 'overlay';
     overlay.style.display = 'none';
     let span = document.createElement('span');
-    span.textContent = 'exellent!!!'
+    span.textContent = 'exellent!!!';
+
     overlay.appendChild(span);
+    overlay.appendChild( createBalloons() );
     return overlay;
   }
+
+  function createBalloons() {
+    const balloonsContainer = document.createElement('div');
+    balloonsContainer.className = 'balloonsContainer';
+    const balloons = document.createElement('div');
+    balloons.id = 'balloons';
+    for (let i = 1; i <= 10; i++) {
+      let ballon = document.createElement('span');
+      ballon.style.background = 'url(../assets/img/other/ballon' + i + '.png)';
+      ballon.style.backgroundSize = 'cover';
+      ballon.style.position = 'absolute';
+      let leftPosition = Math.floor(Math.random() * (1050 - 0 + 1) + 50) ;
+      let topPosition = Math.floor(Math.random() * (1000 - 0 + 1));
+      // let leftPosition = Math.floor(Math.random() * window.innerWidth / 2.5) - 600 ;
+      // let topPosition = Math.floor(Math.random() * window.innerHeight / 2.5) - 300;
+      ballon.style.left = leftPosition + 'px';
+      ballon.style.top = topPosition + 'px';
+      balloons.appendChild(ballon);
+    }
+    balloonsContainer.appendChild(balloons);
+    return balloonsContainer;
+  }
+
+  // function animateBalloons() {
+  //   let balloons = document.querySelectorAll('#balloons span');
+
+  //   let start = new Date();
+  //   let timer = setInterval(() => {
+  //     let timePassed = Date.now() - start;
+  //     if (timePassed >= 7000) {
+  //       clearInterval(timer);
+  //       return;
+  //     }
+  //     balloons.forEach(balloon => {
+  //       balloon.style.top += timePassed/5 + 'px';
+  //     })
+  //   }, 1000/60)
+  // }
 
   let tasksCount = 4;
   function taskIsDone() {
@@ -250,62 +293,63 @@ function initColorsGame() {
       setTimeout(() => {
         document.querySelector('.overlay').style.display = 'flex';
         hooray.play();
+        animateBalloons();
 
         setTimeout(() => {
           document.querySelector('.colors_game_wrapper').style.display = 'none';
           document.querySelector('.menu_wrapper').style.display = 'flex';
-        }, 5000)
+        }, 10000)//10000
 
 
       }, 100);
     }
   }
 
-  function appendImageToBlock() {
-    // let childrenCount = 4;
-    let arrayToPop = Array.from(createRandomToys());
-    let dragArray = [];
-    const colors_drag_images = Array.from(document.querySelector('.colors_drag_images'));
+  // function appendImageToBlock() {
+  //   // let childrenCount = 4;
+  //   let arrayToPop = Array.from(createRandomToys());
+  //   let dragArray = [];
+  //   const colors_drag_images = Array.from(document.querySelector('.colors_drag_images'));
 
-    for (let j = arrayToPop.length - 1; j >= 0; j--) {
-      let img = arrayToPop[j];
-      colors_drag_images.appendChild(img);
-      dragArray.push(img);
-      arrayToPop.pop();
-    }
-    console.log('dragArray', dragArray);
-    console.log('arrayToPop2', arrayToPop);
+  //   for (let j = arrayToPop.length - 1; j >= 0; j--) {
+  //     let img = arrayToPop[j];
+  //     colors_drag_images.appendChild(img);
+  //     dragArray.push(img);
+  //     arrayToPop.pop();
+  //   }
+  //   console.log('dragArray', dragArray);
+  //   console.log('arrayToPop2', arrayToPop);
 
-    return dragArray;
-  }
+  //   return dragArray;
+  // }
 
-  function createRandomToys() {
-    let toys = [];
-    const toysImages = ['bluecar', 'blueduck', 'blueplane', 'greencar', 'greenduck', 'greenplane',
-    'redcar', 'redduck', 'redplane', 'yellowcar', 'yellowduck', 'yellowplane'];
+  // function createRandomToys() {
+  //   let toys = [];
+  //   const toysImages = ['bluecar', 'blueduck', 'blueplane', 'greencar', 'greenduck', 'greenplane',
+  //   'redcar', 'redduck', 'redplane', 'yellowcar', 'yellowduck', 'yellowplane'];
 
-    for (var i = 0; i < toysImages.length; i++) {
-      const img = document.createElement('img');
-      img.src = `../assets/img/colors/${toysImages[i]}.png`;
-      img.className = 'drag_image';
+  //   for (var i = 0; i < toysImages.length; i++) {
+  //     const img = document.createElement('img');
+  //     img.src = `../assets/img/colors/${toysImages[i]}.png`;
+  //     img.className = 'drag_image';
 
-      let str = toysImages[i];
-      if (str.includes('red')) {
-        img.id = 'red';
-      } else if (str.includes('blue')) {
-        img.id = 'blue';
-      } else if (str.includes('yellow')) {
-        img.id = 'yellow';
-      } else if (str.includes('green')) {
-        img.id = 'green';
-      }
-      toys.push(img);
-      shuffleImages(toys);
-    }
-    return toys;
-  }
+  //     let str = toysImages[i];
+  //     if (str.includes('red')) {
+  //       img.id = 'red';
+  //     } else if (str.includes('blue')) {
+  //       img.id = 'blue';
+  //     } else if (str.includes('yellow')) {
+  //       img.id = 'yellow';
+  //     } else if (str.includes('green')) {
+  //       img.id = 'green';
+  //     }
+  //     toys.push(img);
+  //     shuffleImages(toys);
+  //   }
+  //   return toys;
+  // }
 
-  function shuffleImages(array) {
-    array.sort(() => Math.random() - 0.5);
-  }
+  // function shuffleImages(array) {
+  //   array.sort(() => Math.random() - 0.5);
+  // }
 }
