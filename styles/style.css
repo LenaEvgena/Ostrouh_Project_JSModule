@@ -169,6 +169,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: translateZ(0);
 }
 .back_arrow {
   position: absolute;
@@ -201,7 +202,7 @@ html {
   height: 130px;
   width: 100vw;
   justify-content: center;
-  margin-bottom: 60px;
+  margin-bottom: 100px;
 }
 .colors_drop_images{
   display: grid;
@@ -236,6 +237,10 @@ html {
   background-size: cover;
   color:aqua;
   text-shadow: 0 2px 0 rgb(110, 105, 105);
+  /* text-shadow: 3px 3px 0 yellow,
+  6px 6px 0 blue,
+  9px 9px 0 red,
+  12px 12px 0 green; */
   font-size: 70px;
   font-weight: bold;
   text-transform: uppercase;
@@ -246,6 +251,7 @@ html {
   align-items: center;
   justify-content: center;
   transition: 0.3s;
+  transform: translateZ(0);
 }
 .balloonsContainer {
   position: absolute;
@@ -253,6 +259,7 @@ html {
   left: 0;
   z-index: 1000;
   width: 100vw;
+  transform: translateZ(0);
 
 }
 #balloons {
@@ -269,5 +276,67 @@ html {
 }
 
 /*end colors page*/
+
+/*start shapes page*/
+.shapes_game_wrapper {
+  position: relative;
+  background: url(../assets/img/backgrounds/shapesbg.jpg);
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  transform: translateZ(0);
+}
+.drop_container {
+  position: absolute;
+  bottom: 100px;
+  left: 0;
+  width: calc(100% - 230px);
+}
+.shapes_drop_images {
+  position: relative;
+  height: calc(100% - 250px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+}
+.shapes_shadow_container {
+
+}
+.shadow_image {
+  width: 150px;
+  padding: 10px;
+  filter: drop-shadow(8px 8px 10px rgb(110, 103, 95));
+}
+
+.drag_container {
+  position: fixed;
+  right: 0;
+  top: 0;
+  background: url(../assets/img/backgrounds/wood.jpg);
+  background-size: cover;
+  width: 230px;
+  display: flex;
+  justify-content: center;
+}
+.shapes_drag_images{
+  position: relative;
+
+}
+.shapes_image_container {
+
+}
+.shape_image {
+  width: 150px;
+  filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
+  padding: 10px;
+}
+
+/*end shapes page*/
 
 

@@ -136,8 +136,6 @@ function initColorsGame() {
   }
 
   function turnBack() {
-    // const colors_game_wrapper = document.querySelector('.colors_game_wrapper');
-    // colors_game_wrapper.style.display = 'none';
     document.querySelector('.colors_game_wrapper').style.display = 'none';
     back_arrow.style.transform = 'scale(0.9)';
     document.querySelector('.menu_wrapper').style.display = 'flex';
@@ -290,15 +288,17 @@ function initColorsGame() {
       point.style.backgroundSize = 'cover';
       point.id = 'done';
       drop.play();
+
       setTimeout(() => {
         document.querySelector('.overlay').style.display = 'flex';
         hooray.play();
-        animateBalloons();
+        // animateBalloons();
 
         setTimeout(() => {
-          document.querySelector('.colors_game_wrapper').style.display = 'none';
-          document.querySelector('.menu_wrapper').style.display = 'flex';
-        }, 10000)//10000
+          turnBack();
+          // document.querySelector('.colors_game_wrapper').style.display = 'none';
+          // document.querySelector('.menu_wrapper').style.display = 'flex';
+        }, 7000)
 
 
       }, 100);
