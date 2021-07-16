@@ -176,6 +176,7 @@ html {
   top: 20px;
   left: 20px;
   width: 45px;
+  padding: 5px;
   background-color: yellow;
   border-radius: 50%;
   transition: 0.3s;
@@ -286,55 +287,68 @@ html {
   background-size: cover;
   overflow: hidden;
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   transform: translateZ(0);
 }
-.drop_container {
+.buttons_container {
   position: absolute;
-  bottom: 100px;
+  top: 0;
   left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  z-index: 800;
+}
+.drop_container {
   width: calc(100% - 230px);
+  align-self: flex-end;
 }
 .shapes_drop_images {
-  position: relative;
-  height: calc(100% - 250px);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-end;
-}
-.shapes_shadow_container {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(2, auto);
+  justify-content: space-between;
+  align-items: center;
 
 }
+/* .shapes_shadow_container {
+} */
 .shadow_image {
   width: 150px;
-  padding: 10px;
+  padding: 30px;
   filter: drop-shadow(8px 8px 10px rgb(110, 103, 95));
 }
 
 .drag_container {
-  position: fixed;
-  right: 0;
+  position: relative;
+  left: 0;
   top: 0;
   background: url(../assets/img/backgrounds/wood.jpg);
   background-size: cover;
   width: 230px;
+  height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .shapes_drag_images{
   position: relative;
+  height: 830px;
+  overflow: hidden;
+  /* justify-content: center; */
+  display: flex;
+  flex-direction: column;
 
 }
-.shapes_image_container {
+/* .shapes_image_container {
+  position: relative;
 
-}
+} */
 .shape_image {
   width: 150px;
   filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
-  padding: 10px;
+  padding: 15px;
 }
 
 /*end shapes page*/
