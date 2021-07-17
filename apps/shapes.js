@@ -330,23 +330,11 @@ function initShapesGame() {
 
     if (tasksCount != 0) {
       drop.play();
-
-      if (point.id != 'done') {
-        point.style.background = 'url(../assets/img/icons/redcircle.png)';
-        point.style.backgroundSize = 'cover';
-        point.id = 'done';
-        point = points[n--];
-      } else {
-        point = point.nextSibling;
-        point.style.background = 'url(../assets/img/icons/redcircle.png)';
-        point.style.backgroundSize = 'cover';
-        point.id = 'done';
-      }
-
+      point.style.background = 'url(../assets/img/icons/redcircle.png)';
+      point.style.backgroundSize = 'cover';
     } else {
       point.style.background = 'url(../assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
-      point.id = 'done';
       drop.play();
 
       setTimeout(() => {

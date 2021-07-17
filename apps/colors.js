@@ -28,6 +28,7 @@ function initColorsGame() {
   let dragImages = Array.from(document.querySelectorAll('.drag_image'));
   let drag_container = document.querySelector('.colors_drag_images');
   let dropContainers = Array.from(document.querySelectorAll('.image_container'));
+  let tasksCount = dragImages.length;
 
   let DraggedImage = null;
   let DragShiftX;
@@ -258,7 +259,6 @@ function initColorsGame() {
   //   }, 1000/60)
   // }
 
-  let tasksCount = 4;
   function taskIsDone() {
     tasksCount--;
     const tasksPointsDiv = document.querySelector('#tasksPoints');
@@ -270,23 +270,11 @@ function initColorsGame() {
 
     if (tasksCount != 0) {
       drop.play();
-
-      if (point.id != 'done') {
-        point.style.background = 'url(../assets/img/icons/redcircle.png)';
-        point.style.backgroundSize = 'cover';
-        point.id = 'done';
-        point = points[n--];
-      } else {
-        point = point.nextSibling;
-        point.style.background = 'url(../assets/img/icons/redcircle.png)';
-        point.style.backgroundSize = 'cover';
-        point.id = 'done';
-      }
-
+      point.style.background = 'url(../assets/img/icons/redcircle.png)';
+      point.style.backgroundSize = 'cover';
     } else {
       point.style.background = 'url(../assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
-      point.id = 'done';
       drop.play();
 
       setTimeout(() => {
@@ -296,8 +284,6 @@ function initColorsGame() {
 
         setTimeout(() => {
           turnBack();
-          // document.querySelector('.colors_game_wrapper').style.display = 'none';
-          // document.querySelector('.menu_wrapper').style.display = 'flex';
         }, 7000)
 
 
