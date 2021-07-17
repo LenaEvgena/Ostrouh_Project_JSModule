@@ -247,7 +247,7 @@ html {
   text-transform: uppercase;
   line-height: 1.5;
   letter-spacing: 8px;
-  z-index: 100;
+  z-index: 1000;
   overflow: hidden;
   align-items: center;
   justify-content: center;
@@ -258,10 +258,9 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 900;
   width: 100vw;
   transform: translateZ(0);
-
 }
 #balloons {
   position: relative;
@@ -270,12 +269,10 @@ html {
 #balloons span {
   display: flex;
   position: relative;
-
   margin: 10px;
   width: 70px;
   height: 120px;
 }
-
 /*end colors page*/
 
 /*start shapes page*/
@@ -310,10 +307,10 @@ html {
   grid-template-rows: repeat(2, auto);
   justify-content: space-between;
   align-items: center;
-
 }
-/* .shapes_shadow_container {
-} */
+.shape_image:hover {
+  cursor: pointer;
+}
 .shadow_image {
   width: 150px;
   padding: 30px;
@@ -336,21 +333,14 @@ html {
   position: relative;
   height: 830px;
   overflow: hidden;
-  /* justify-content: center; */
   display: flex;
   flex-direction: column;
-
 }
-/* .shapes_image_container {
-  position: relative;
-
-} */
 .shape_image {
   width: 150px;
   filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
   padding: 15px;
 }
-
 /*end shapes page*/
 
 

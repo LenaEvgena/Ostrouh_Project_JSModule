@@ -14,6 +14,9 @@ function initShapesGame() {
   let shiftX;
   let shiftY;
   let isDragging = false;
+  // let tasksCount = 7;
+  let tasksCount = dragImages.length;
+
 
   dragImages.forEach((image) => {
     image.addEventListener('mousedown', Drag_Start);
@@ -91,7 +94,7 @@ function initShapesGame() {
 
     element.style.position = 'absolute';
     element.style.cursor = 'pointer';
-    element.style.zIndex = '1000';
+    element.style.zIndex = '100';
 
     wrapper.appendChild(element);
 
@@ -129,7 +132,9 @@ function initShapesGame() {
     EO.preventDefault();
     if (DraggedImage) {
       wrapper.removeChild(DraggedImage);
-      container.replaceChild(DraggedImage, elemBelow);//////
+      // container.replaceChild(DraggedImage, elemBelow);//////
+      elemBelow.src = DraggedImage.src;
+      finishDrag();
       taskIsDone();
     }
   }
@@ -141,6 +146,7 @@ function initShapesGame() {
     isDragging = false;
     DraggedImage.style.top = parseInt(DraggedImage.style.top) + pageYOffset + 'px';
     DraggedImage.style.position = 'absolute';
+    DraggedImage = null;
 
     document.removeEventListener('mousemove', onMouseMove);
     document.removeEventListener('mouseup', onMouseUp);
@@ -313,7 +319,6 @@ function initShapesGame() {
     return balloonsContainer;
   }
 
-  let tasksCount = 7;
   function taskIsDone() {
     tasksCount--;
     const tasksPointsDiv = document.querySelector('#tasksPoints');

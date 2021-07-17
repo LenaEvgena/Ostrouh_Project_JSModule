@@ -4,10 +4,10 @@ function initMenuPage() {
   const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createMenuPage() );
 
-  const puzzleGame = document.getElementById('Ipuzzle');
-  const shapesGame = document.getElementById('Ishapes');
   const colorsGame = document.getElementById('Icolors');
+  const shapesGame = document.getElementById('Ishapes');
   const logicGame = document.getElementById('Ilogic');
+  const puzzleGame = document.getElementById('Ipuzzle');
   const menu_wrapper = document.querySelector('.menu_wrapper');
   const main_wrapper = document.querySelector('.main_wrapper');
 
@@ -51,10 +51,10 @@ function initMenuPage() {
     menu_images.className = 'menu_images';
 
     menu_wrapper.appendChild(menu_images);
-    menu_images.appendChild( createMenuImage('puzzle_menu', 'Ipuzzle', 'puzzle') );
-    menu_images.appendChild( createMenuImage('shapes_menu', 'Ishapes', 'shapes') );
     menu_images.appendChild( createMenuImage('colors_menu', 'Icolors', 'colors') );
+    menu_images.appendChild( createMenuImage('shapes_menu', 'Ishapes', 'shapes') );
     menu_images.appendChild( createMenuImage('wilddomestic_menu', 'Ilogic', 'logic') );
+    menu_images.appendChild( createMenuImage('puzzle_menu', 'Ipuzzle', 'puzzle') );
 
     return menu_wrapper;
   }
