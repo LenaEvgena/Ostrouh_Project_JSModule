@@ -1,21 +1,20 @@
 'use strict';
 
-// class Game {
-//   constructor(images) {
-//     this.imagesArray = images;
-//     this.sounds = new AudioSounds();
-//   }
-//   startGame() {
-//     this.imageToCheck = null;
-//     this.matchedImages = [];
-//     this.playing = true;
-//   }
-// }
-
-
 function initColorsGame() {
   let bgMusic = new AudioController;
   bgMusic.stopMusic();
+
+  const base = '../assets/img/colors/';
+  const toysImages = ['bluecar', 'blueduck', 'blueplane', 'greencar', 'greenduck', 'greenplane',
+    'redcar', 'redduck', 'redplane', 'yellowcar', 'yellowduck', 'yellowplane'];
+  const boxesImages = ['bluebox', 'greenbox', 'redbox', "yellowbox"];
+  const toys = shuffleImages(toysImages);
+  const boxes = shuffleImages(boxesImages);
+  let colorTasksCount = toysImages.length;
+  let DraggedImage = null;
+  let isDragging = false;
+  let shiftX;
+  let shiftY;
 
   const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createColorsPage() );
@@ -24,19 +23,11 @@ function initColorsGame() {
   const back_arrow = document.querySelector('.back_arrow');
   back_arrow.addEventListener('click', () => turnBack());
 
-
   let dragImages = Array.from(document.querySelectorAll('.drag_image'));
-  let drag_container = document.querySelector('.colors_drag_images');
-  let dropContainers = Array.from(document.querySelectorAll('.image_container'));
-  let tasksCount = dragImages.length;
-
-  let DraggedImage = null;
-  let DragShiftX;
-  let DragShiftY;
+  let dropContainers = Array.from(document.querySelectorAll('.drop_image'));
 
   dragImages.forEach((image) => {
     image.addEventListener('mousedown', Drag_Start);
-    image.addEventListener('mouseup', Drag_Stop);
   });
 
   dropContainers.forEach((container) => {
@@ -44,66 +35,104 @@ function initColorsGame() {
     container.addEventListener('mouseup', DivDrop);
     container.addEventListener('mouseleave', DivDragLeave);
     container.addEventListener('mouseover', DivDragOver);
-
   });
-
-  setTimeout(() => {
-    getElementPos(dragImages);
-  }, 500);
 
 
   function Drag_Start(EO) {
     // началось перетаскивание мячика
     EO = EO || window.event;
-    if (EO.which != 1) return;
     DraggedImage = EO.target;
 
-    DragShiftX = EO.pageX - DraggedImage.x;
-    DragShiftY = EO.pageY - DraggedImage.y;
+    if (EO.which != 1) return;
+    if (!DraggedImage) return;
 
-    DraggedImage.style.cursor = 'grabbing';
-    DraggedImage.style.zIndex = '1000';
-    document.addEventListener('mousemove', Drag_Move);
-    drag_container.addEventListener('mouseup', Drag_Stop);
+    EO.preventDefault();
+
+    DraggedImage.ondragstart = function() {
+      return false;
+    }
+
+    startDrag(DraggedImage, EO.clientX, EO.clientY);
+
   }
 
-  function Drag_Move(EO) {
+  function startDrag(element, clientX, clientY) {
+    if (isDragging) {
+      return;
+    }
+
+    isDragging = true;
+    document.addEventListener('mousemove', onMouseMove);
+    element.addEventListener('mouseup', onMouseUp);
+
+    shiftX = clientX - element.getBoundingClientRect().left;
+    shiftY = clientY - element.getBoundingClientRect().top;
+
+    element.style.position = 'absolute';
+    element.style.cursor = 'pointer';
+    element.style.zIndex = '100';
+
+    wrapper.appendChild(element);
+
+    moveAt(clientX, clientY);
+  }
+
+  function moveAt(clientX, clientY) {
+    let newX = clientX - shiftX;
+    let newY = clientY - shiftY;
+    // if (Math.abs(newX) < 100 || Math.abs(newY) < 100) return;
+    DraggedImage.style.left = newX + 'px';
+    DraggedImage.style.top = newY + 'px';
+  }
+
+  function onMouseUp(EO) {
     EO = EO || window.event;
     EO.preventDefault();
-    DraggedImage.style.left = (EO.pageX - DragShiftX) + "px";
-    DraggedImage.style.top = (EO.pageY - DragShiftY) + "px";
+    finishDrag();
+  }
+
+  function onMouseMove(EO) {
+    EO = EO || window.event;
+    EO.preventDefault();
+
+    moveAt(EO.clientX, EO.clientY);
 
     DraggedImage.hidden = true;
     let elemBelow = document.elementFromPoint(EO.clientX, EO.clientY);
     DraggedImage.hidden = false;
 
     if(!elemBelow) return;
-    if (DraggedImage.id === elemBelow.id) {
+    if ((DraggedImage.id + 'box') === elemBelow.id) {
       DivDrop();
     }
-  }
-
-  function Drag_Stop(EO) {
-    // закончилось перетаскивание мячика (неважно куда он уронен)
-    EO = EO || window.event;
-    EO.preventDefault();
-    DraggedImage.style.cursor = 'auto';
-    DraggedImage.style.zIndex = '1';
-    document.removeEventListener('mousemove', Drag_Move);
-    drag_container.removeEventListener('mouseup', Drag_Stop);
-    DraggedImage = null;
   }
 
   function DivDrop(EO) {
     // мячик уронен
     EO = EO || window.event;
     EO.preventDefault();
-    if (DraggedImage){
-      drag_container.removeChild(DraggedImage);
+    if (DraggedImage) {
+      wrapper.removeChild(DraggedImage);
       DraggedImage.style.opacity = 0;
-      Drag_Stop();
+      finishDrag();
       taskIsDone();
     }
+  }
+
+  function finishDrag() {
+    if(!isDragging) {
+      return;
+    }
+
+    DraggedImage.style.cursor = 'auto';
+    isDragging = false;
+    DraggedImage.style.top = parseInt(DraggedImage.style.top) + pageYOffset + 'px';
+    DraggedImage.style.position = 'absolute';
+
+    DraggedImage = null;
+
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
   }
 
   function DivDragEnter(EO) {
@@ -121,21 +150,6 @@ function initColorsGame() {
     EO.currentTarget.style.transform = 'scale(1.0)';
   }
 
-  function getElementPos(arr) {
-    let X = [];
-    let Y = [];
-    for (let i = 0; i < arr.length; i++) {
-      X.push(arr[i].offsetLeft);
-      Y.push(arr[i].offsetTop);
-    }
-    for (let i = 0; i < arr.length; i++) {
-      arr[i].style.position = 'absolute';
-      arr[i].style.left = X[i] + 'px';
-      arr[i].style.top = Y[i] + 'px';
-    }
-    return {left: X, top: Y};
-  }
-
   function turnBack() {
     document.querySelector('.colors_game_wrapper').style.display = 'none';
     back_arrow.style.transform = 'scale(0.9)';
@@ -151,42 +165,47 @@ function initColorsGame() {
     colors_drop_images.className = 'colors_drop_images';
 
     colors_game_wrapper.appendChild( createBackArrow() );
-    colors_game_wrapper.appendChild( createTaskCheckPoint(4) );
-    colors_drag_images.appendChild( createColorGameImage('redcar', 'drag_image', 'red') );
-    colors_drag_images.appendChild( createColorGameImage('greencar', 'drag_image', 'green') );
-    colors_drag_images.appendChild( createColorGameImage('bluecar', 'drag_image', 'blue') );
-    colors_drag_images.appendChild( createColorGameImage('yellowcar', 'drag_image', 'yellow') );
-
-    colors_drop_images.appendChild( createColorBoxDiv('bluebox', 'blue', 'drop_image') );
-    colors_drop_images.appendChild( createColorBoxDiv('redbox', 'red', 'drop_image') );
-    colors_drop_images.appendChild( createColorBoxDiv('yellowbox', 'yellow', 'drop_image') );
-    colors_drop_images.appendChild( createColorBoxDiv('greenbox', 'green', 'drop_image') );
+    colors_game_wrapper.appendChild( createTaskCheckPoint(colorTasksCount) );
+    colors_game_wrapper.appendChild( createToysImage(base, toys, 'drag_image', 'colors_drag_images') );
+    colors_game_wrapper.appendChild( createBoxImage(base, boxes, 'drop_image', 'colors_drop_images') );
     colors_game_wrapper.appendChild( createOverlay() );
-
-    colors_game_wrapper.appendChild(colors_drag_images);
-    colors_game_wrapper.appendChild(colors_drop_images);
 
     return colors_game_wrapper;
   }
 
-  function createColorBoxDiv(image, id, imgClassName) {
-    const box = document.createElement('div');
-    box.className = 'image_container';
-    box.id = id;
-    box.appendChild( createColorGameImage(image, imgClassName, id) );
-    return box;
+  function createToysImage(base, arr, className, parentClassName) {
+    const parent = document.createElement('div');
+    parent.className = parentClassName;
+    for (var i = 0; i < arr.length; i++) {
+      const img = document.createElement('img');
+      let str = arr[i];
+      if (str.includes('red')) {
+        img.id = 'red';
+      } else if (str.includes('blue')) {
+        img.id = 'blue';
+      } else if (str.includes('yellow')) {
+        img.id = 'yellow';
+      } else if (str.includes('green')) {
+        img.id = 'green';
+      }
+      img.src = base + arr[i] + '.png';
+      img.className = className;
+      parent.appendChild(img);
+    }
+    return parent;
   }
 
-  function createColorGameImage(image, className, id) {
-    const img = document.createElement('img');
-    img.id = id;
-    img.src = `../assets/img/colors/${image}.png`;
-    img.className = className;
-    // img.setAttribute("onclick","new Audio('../assets/sounds/click2.mp3').play()");
-    // img.onmouseover = () => {
-    //   new Audio('../assets/sounds/slide.mp3').play()
-    // };
-    return img;
+  function createBoxImage(base, arr, className, parentClassName) {
+    const parent = document.createElement('div');
+    parent.className = parentClassName;
+    for (var i = 0; i < arr.length; i++) {
+      const img = document.createElement('img');
+      img.id = arr[i];
+      img.src = base + arr[i] + '.png';
+      img.className = className;
+      parent.appendChild(img);
+    }
+    return parent;
   }
 
   function createBackArrow() {
@@ -197,6 +216,7 @@ function initColorsGame() {
 
     return back_arrow;
   }
+
   function createTaskCheckPoint(count) {
     const tasksPointsDiv = document.createElement('div');
     tasksPointsDiv.id = 'tasksPoints';
@@ -260,15 +280,15 @@ function initColorsGame() {
   // }
 
   function taskIsDone() {
-    tasksCount--;
+    colorTasksCount--;
     const tasksPointsDiv = document.querySelector('#tasksPoints');
     let points = tasksPointsDiv.children;
-    let n = tasksCount;
+    let n = colorTasksCount;
     let point = points[n];
     const drop = new Audio('../assets/sounds/drop1.mp3');
     const hooray = new Audio('../assets/sounds/hooray.mp3');
 
-    if (tasksCount != 0) {
+    if (colorTasksCount != 0) {
       drop.play();
       point.style.background = 'url(../assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
@@ -291,51 +311,8 @@ function initColorsGame() {
     }
   }
 
-  // function appendImageToBlock() {
-  //   // let childrenCount = 4;
-  //   let arrayToPop = Array.from(createRandomToys());
-  //   let dragArray = [];
-  //   const colors_drag_images = Array.from(document.querySelector('.colors_drag_images'));
-
-  //   for (let j = arrayToPop.length - 1; j >= 0; j--) {
-  //     let img = arrayToPop[j];
-  //     colors_drag_images.appendChild(img);
-  //     dragArray.push(img);
-  //     arrayToPop.pop();
-  //   }
-  //   console.log('dragArray', dragArray);
-  //   console.log('arrayToPop2', arrayToPop);
-
-  //   return dragArray;
-  // }
-
-  // function createRandomToys() {
-  //   let toys = [];
-  //   const toysImages = ['bluecar', 'blueduck', 'blueplane', 'greencar', 'greenduck', 'greenplane',
-  //   'redcar', 'redduck', 'redplane', 'yellowcar', 'yellowduck', 'yellowplane'];
-
-  //   for (var i = 0; i < toysImages.length; i++) {
-  //     const img = document.createElement('img');
-  //     img.src = `../assets/img/colors/${toysImages[i]}.png`;
-  //     img.className = 'drag_image';
-
-  //     let str = toysImages[i];
-  //     if (str.includes('red')) {
-  //       img.id = 'red';
-  //     } else if (str.includes('blue')) {
-  //       img.id = 'blue';
-  //     } else if (str.includes('yellow')) {
-  //       img.id = 'yellow';
-  //     } else if (str.includes('green')) {
-  //       img.id = 'green';
-  //     }
-  //     toys.push(img);
-  //     shuffleImages(toys);
-  //   }
-  //   return toys;
-  // }
-
-  // function shuffleImages(array) {
-  //   array.sort(() => Math.random() - 0.5);
-  // }
+  function shuffleImages(array) {
+    array.sort(() => Math.random() - 0.5);
+    return array;
+  }
 }

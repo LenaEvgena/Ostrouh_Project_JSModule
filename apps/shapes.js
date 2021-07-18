@@ -1,22 +1,24 @@
 'use strict';
 
 function initShapesGame() {
+  const imagesBase = `../assets/img/shapes/images/`;
+  const shadowsBase = `../assets/img/shapes/shadows/`;
+  const images = ['cat', 'cow', 'dog', 'horse', 'lamb', 'pig', 'turkey'];
+  const shadows = ['cat-shadow', 'cow-shadow', 'dog-shadow', 'horse-shadow', 'lamb-shadow', 'pig-shadow', 'turkey-shadow'];
   const wrapper = document.querySelector('.wrapper');
-  wrapper.appendChild( createShapesPage() );
-
-  const back_arrow = document.querySelector('.back_arrow');
-  back_arrow.addEventListener('click', () => turnBack());
-
-  let dragImages = Array.from(document.querySelectorAll('.shape_image'));
-  let container = document.querySelector('.shapes_drop_images');
-
+  let tasksCount = images.length;
   let DraggedImage = null;
   let shiftX;
   let shiftY;
   let isDragging = false;
-  // let tasksCount = 7;
-  let tasksCount = dragImages.length;
 
+  wrapper.appendChild( createShapesPage() );
+
+  const shapes_drag_images = document.querySelector('.shapes_drag_images');
+  const dragImages = Array.from(document.querySelectorAll('.shape_image'));
+
+  const back_arrow = document.querySelector('.back_arrow');
+  back_arrow.addEventListener('click', () => turnBack());
 
   dragImages.forEach((image) => {
     image.addEventListener('mousedown', Drag_Start);
@@ -71,15 +73,16 @@ function initShapesGame() {
 
     if (EO.which != 1) return;
     if (!DraggedImage) return;
+
     EO.preventDefault();
 
     DraggedImage.ondragstart = function() {
       return false;
     }
 
+
     startDrag(DraggedImage, EO.clientX, EO.clientY);
   }
-
   function startDrag(element, clientX, clientY) {
     if (isDragging) {
       return;
@@ -96,14 +99,15 @@ function initShapesGame() {
     element.style.cursor = 'pointer';
     element.style.zIndex = '100';
 
+    shapes_drag_images.replaceChild( createShadow(shadowsBase, element.id), element );
     wrapper.appendChild(element);
 
     moveAt(clientX, clientY);
   }
-
   function moveAt(clientX, clientY) {
     let newX = clientX - shiftX;
     let newY = clientY - shiftY;
+    // if (Math.abs(newX) < 100 || Math.abs(newY) < 100) return;
 
     DraggedImage.style.left = newX + 'px';
     DraggedImage.style.top = newY + 'px';
@@ -122,17 +126,21 @@ function initShapesGame() {
     DraggedImage.hidden = false;
 
     if(!elemBelow) return;
+
+    // if((DraggedImage.id + '-shadow') !== elemBelow.id && ) {
+    //   document.getElementById(DraggedImage.id + '-1').src = DraggedImage.src;
+    // }
     if ((DraggedImage.id + '-shadow') === elemBelow.id) {
-      DivDrop(EO, elemBelow, container);
+      shapes_drag_images.removeChild(document.getElementById(DraggedImage.id + '-1'));
+      DivDrop(EO, elemBelow);
     }
   }
-  function DivDrop(EO, elemBelow, container) {
+  function DivDrop(EO, elemBelow) {
       // мячик уронен
     EO = EO || window.event;
     EO.preventDefault();
     if (DraggedImage) {
       wrapper.removeChild(DraggedImage);
-      // container.replaceChild(DraggedImage, elemBelow);//////
       elemBelow.src = DraggedImage.src;
       finishDrag();
       taskIsDone();
@@ -146,6 +154,7 @@ function initShapesGame() {
     isDragging = false;
     DraggedImage.style.top = parseInt(DraggedImage.style.top) + pageYOffset + 'px';
     DraggedImage.style.position = 'absolute';
+
     DraggedImage = null;
 
     document.removeEventListener('mousemove', onMouseMove);
@@ -216,11 +225,6 @@ function initShapesGame() {
   }
 
   function createShapesPage() {
-    const imagesBase = `../assets/img/shapes/images/`;
-    const shadowsBase = `../assets/img/shapes/shadows/`;
-    const images = ['cat', 'cow', 'dog', 'horse', 'lamb', 'pig', 'turkey'];
-    const shadows = ['cat-shadow', 'cow-shadow', 'dog-shadow', 'horse-shadow', 'lamb-shadow', 'pig-shadow', 'turkey-shadow'];;
-
     const shapes_game_wrapper = document.createElement('div');
     shapes_game_wrapper.className = 'shapes_game_wrapper';
 
@@ -235,13 +239,11 @@ function initShapesGame() {
 
 
     buttons_container.appendChild( createBackArrow() );
-    buttons_container.appendChild( createTaskCheckPoint(7) );
+    buttons_container.appendChild( createTaskCheckPoint(tasksCount) );
     shapes_game_wrapper.appendChild( buttons_container );
 
     drop_container.appendChild( createImage(shadowsBase, shadows, 'shadow_image', 'shapes_drop_images') );
     drag_container.appendChild( createImage(imagesBase, images, 'shape_image', 'shapes_drag_images') );
-    // drop_container.appendChild( createImage(shadowsBase, shadows, 'shadow_image', 'shapes_shadow_container', 'shapes_drop_images') );
-    // drag_container.appendChild( createImage(imagesBase, images, 'shape_image', 'shapes_image_container', 'shapes_drag_images') );
 
     shapes_game_wrapper.appendChild( createOverlay() );
 
@@ -251,7 +253,7 @@ function initShapesGame() {
     return shapes_game_wrapper;
   }
 
-  function createImage(base, arr, className, parentClassName) {//boxClassName,
+  function createImage(base, arr, className, parentClassName) {
     const parent = document.createElement('div');
     parent.className = parentClassName;
     for (var i = 0; i < arr.length; i++) {
@@ -259,10 +261,17 @@ function initShapesGame() {
       img.id = arr[i];
       img.src = base + arr[i] + '.png';
       img.className = className;
-      // box.appendChild(img);
       parent.appendChild(img);
     }
     return parent;
+  }
+
+  function createShadow(base, imageId) {
+      const img = document.createElement('img');
+      img.src = base + imageId + '-shadow.png';
+      img.id = imageId + '-1';
+      img.className = 'shadow_image';
+    return img;
   }
 
   function createBackArrow() {
@@ -273,6 +282,7 @@ function initShapesGame() {
 
     return back_arrow;
   }
+
   function createTaskCheckPoint(count) {
     const tasksPointsDiv = document.createElement('div');
     tasksPointsDiv.id = 'tasksPoints';

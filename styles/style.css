@@ -198,12 +198,14 @@ html {
   height: 20px;
 }
 .colors_drag_images {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  height: 130px;
-  width: 100vw;
-  justify-content: center;
-  margin-bottom: 100px;
+  /* display: grid;
+  grid-template-columns: repeat(4, auto); */
+  display: flex;
+  width: calc(100% - 10vw);
+  height: 300px;
+  overflow: hidden;
+  justify-content: left;
+  align-items: center;
 }
 .colors_drop_images{
   display: grid;
@@ -214,16 +216,20 @@ html {
 }
 .colors_drag_images, .colors_drop_images {
   column-gap: 5vw;
+
 }
 .drag_image {
   width: 200px;
   opacity: 1;
+  padding: 10px;
 }
 .drop_image {
   width: 200px;
+  padding: 10px;
+
 }
 .drag_image:hover {
-  transform: scale(1.1);
+  cursor: pointer;
   filter: drop-shadow(8px 8px 10px rgb(221, 173, 101));
 }
 .overlay {
@@ -305,7 +311,7 @@ html {
   display: grid;
   grid-template-columns: repeat(4, auto);
   grid-template-rows: repeat(2, auto);
-  justify-content: space-between;
+  justify-content: stretch;
   align-items: center;
 }
 .shape_image:hover {
@@ -313,7 +319,7 @@ html {
 }
 .shadow_image {
   width: 150px;
-  padding: 30px;
+  padding: 15px;
   filter: drop-shadow(8px 8px 10px rgb(110, 103, 95));
 }
 
