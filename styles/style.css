@@ -358,29 +358,50 @@ html {
   background-size: cover;
   overflow: hidden;
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
   transform: translateZ(0);
 }
 .logic_title {
+  display: flex;
   color: aqua;
+  justify-content: center;
   text-align: center;
   text-transform: uppercase;
-  font-size: 24px;
-  margin: 50px;
+  font-size: 36px;
+  margin: 30px;
+  height: auto;
+  text-shadow: 0 2px 0 rgb(110, 105, 105);
 }
 .cards_container {
   display: grid;
-  grid-template-columns: repeat(4, auto)
+  grid-template-columns: repeat(6, auto);
+  grid-gap: 20px;
+  margin: 20px;
+  cursor: pointer;
 }
 .card {
-  /* position: relative; */
-  /* background-color: black; */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  height: 180px;
 }
 
 .logic_image {
-  width: 60px;
+  /* align-self: center; */
+}
+
+.bubble {
+  width: 160px;
+}
+.animal {
+  width: 130px;
+  position: absolute;
+  top: 10%;
+  left: 10%;
 }
 
 
