@@ -402,6 +402,7 @@ html {
 
 .bubble {
   width: 180px;
+  filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
 }
 .animal {
   width: 130px;
@@ -409,15 +410,16 @@ html {
   top: 10%;
 }
 .card_front {
-  display: none;
+  /* display: none; */
 }
 .card_back {
-  /* display: none; */
+  display: none;
 
 }
 
 .back_image {
   width: 180px;
+  filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
 }
 
 
