@@ -244,10 +244,6 @@ html {
   background-size: cover;
   color:aqua;
   text-shadow: 0 2px 0 rgb(110, 105, 105);
-  /* text-shadow: 3px 3px 0 yellow,
-  6px 6px 0 blue,
-  9px 9px 0 red,
-  12px 12px 0 green; */
   font-size: 70px;
   font-weight: bold;
   text-transform: uppercase;
@@ -381,6 +377,7 @@ html {
   margin: 20px auto;
   align-items: center;
   justify-content: center;
+  perspective: 1000px;
 }
 .card {
   position: relative;
@@ -395,33 +392,50 @@ html {
   justify-content: center;
   width: 100%;
   height: 100%;
+  transition: transform 500ms ease-in-out;
   backface-visibility: hidden;
 }
 .logic_image {
+  filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
 }
 
 .bubble {
   width: 180px;
-  filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
 }
 .animal {
   width: 130px;
   position: absolute;
-  top: 10%;
 }
-.card_front {
-  /* display: none; */
-}
-.card_back {
-  display: none;
-
-}
-
 .back_image {
   width: 180px;
   filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
 }
 
+.card_back {
+  /* display: none; */
+  transform: rotateY(0);
+}
+
+.card_front {
+  /* display: none; */
+  transform: rotateY(180deg);
+}
+
+/* .card.visible .card_back {
+  transform: rotateY(-180deg);
+}
+
+.card.visible .card_front {
+  transform: rotateY(0);
+} */
+
+.card:hover .card_back {
+  transform: rotateY(-180deg);
+}
+
+.card:hover .card_front {
+  transform: rotateY(0);
+}
 
 
 /*end logic page*/
