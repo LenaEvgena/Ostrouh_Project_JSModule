@@ -378,30 +378,46 @@ html {
   display: grid;
   grid-template-columns: repeat(6, auto);
   grid-gap: 20px;
-  margin: 20px;
-  cursor: pointer;
+  margin: 20px auto;
+  align-items: center;
+  justify-content: center;
 }
 .card {
   position: relative;
+  width: 180px;
+  height: 180px;
+  cursor: pointer;
+}
+.card_face {
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 180px;
-  height: 180px;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
 }
-
 .logic_image {
-  /* align-self: center; */
 }
 
 .bubble {
-  width: 160px;
+  width: 180px;
 }
 .animal {
   width: 130px;
   position: absolute;
   top: 10%;
-  left: 10%;
+}
+.card_front {
+  display: none;
+}
+.card_back {
+  /* display: none; */
+
+}
+
+.back_image {
+  width: 180px;
 }
 
 
