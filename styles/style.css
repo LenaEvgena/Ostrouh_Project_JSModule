@@ -349,4 +349,40 @@ html {
 }
 /*end shapes page*/
 
+/*start logic page*/
+.logic_game_wrapper {
+  /* position: relative; */
+  background: url(../assets/img/backgrounds/logicbg.jpg);
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  /* align-items: center; */
+  transform: translateZ(0);
+}
+.logic_title {
+  color: aqua;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 24px;
+  margin: 50px;
+}
+.cards_container {
+  display: grid;
+  grid-template-columns: repeat(4, auto)
+}
+.card {
+  /* position: relative; */
+  /* background-color: black; */
+}
 
+.logic_image {
+  width: 60px;
+}
+
+
+
+/*end logic page*/

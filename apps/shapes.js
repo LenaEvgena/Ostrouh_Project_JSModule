@@ -24,7 +24,7 @@ function initShapesGame() {
     image.addEventListener('mousedown', Drag_Start);
   });
 
-    // let dropImages = {
+  //   let dropImages = {
   //   cat: {
   //     x: 40,
   //     y: 0
