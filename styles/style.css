@@ -180,7 +180,7 @@ html {
   background-color: yellow;
   border-radius: 50%;
   transition: 0.3s;
-  filter: drop-shadow(6px 6px 8px rgb(221, 173, 101));
+  filter: drop-shadow(6px 6px 8px rgb(122, 118, 110));
 }
 .back_arrow:hover {
   transform: scale(1.1);
@@ -196,10 +196,11 @@ html {
   float: left;
   width: 20px;
   height: 20px;
+  filter: drop-shadow(5px 5px 5px rgb(39, 38, 38));
 }
 .colors_drag_images {
-  /* display: grid;
-  grid-template-columns: repeat(4, auto); */
+  position: absolute;
+  top: 20vh;
   display: flex;
   width: calc(100% - 10vw);
   height: 300px;
@@ -207,31 +208,40 @@ html {
   justify-content: left;
   align-items: center;
 }
+
 .colors_drop_images{
+  position: absolute;
+  bottom: 10%;
   display: grid;
   grid-template-columns: repeat(4, auto);
   width: 100vw;
   justify-content: center;
   align-items: center;
+  filter: drop-shadow(13px 15px 10px rgb(85, 82, 77));
 }
+
 .colors_drag_images, .colors_drop_images {
   column-gap: 5vw;
-
 }
+
 .drag_image {
   width: 200px;
   opacity: 1;
   padding: 10px;
+  animation: danceToys 2s linear infinite 200ms;
+  filter: drop-shadow(8px 8px 10px rgb(112, 100, 81));
 }
+
 .drop_image {
   width: 200px;
   padding: 10px;
-
 }
+
 .drag_image:hover {
   cursor: pointer;
   filter: drop-shadow(8px 8px 10px rgb(221, 173, 101));
 }
+
 .overlay {
   display: flex;
   position: fixed;
@@ -241,10 +251,10 @@ html {
   height: 100vh;
   margin: 0 auto;
   background-color: rgba(170, 167, 167, 0.5);
+  font-size: 70px;
   background-size: cover;
   color:aqua;
   text-shadow: 0 2px 0 rgb(110, 105, 105);
-  font-size: 70px;
   font-weight: bold;
   text-transform: uppercase;
   line-height: 1.5;
@@ -253,9 +263,22 @@ html {
   overflow: hidden;
   align-items: center;
   justify-content: center;
-  transition: 0.3s;
+  /* transition: background-color 500ms, font-size 500ms;
+  transition: overlay-grow 500ms forwards; */
   transform: translateZ(0);
 }
+
+@keyframes overlay-grow {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 0;
+  }
+  to {
+    background-color: rgba(170, 166, 154, 0.5);
+    font-size: 70px;
+  }
+}
+
 .balloonsContainer {
   position: absolute;
   top: 0;
@@ -264,16 +287,30 @@ html {
   width: 100vw;
   transform: translateZ(0);
 }
+
 #balloons {
   position: relative;
   display: flex;
 }
+
 #balloons span {
   display: flex;
   position: relative;
   margin: 10px;
   width: 70px;
   height: 120px;
+}
+
+@keyframes danceToys {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-5%);
+  }
+  75% {
+    transform: translateY(10%);
+  }
 }
 /*end colors page*/
 
@@ -333,7 +370,7 @@ html {
 }
 .shapes_drag_images{
   position: relative;
-  height: 830px;
+  height: 880px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -341,13 +378,24 @@ html {
 .shape_image {
   width: 150px;
   filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
-  padding: 15px;
+  padding: 20px;
+  animation: danceToys1 1s linear infinite 200ms;
+}
+@keyframes danceToys1 {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-2deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
 }
 /*end shapes page*/
 
 /*start logic page*/
 .logic_game_wrapper {
-  /* position: relative; */
   background: url(../assets/img/backgrounds/logicbg.jpg);
   width: 100vw;
   height: 100vh;
@@ -359,6 +407,7 @@ html {
   align-items: center;
   transform: translateZ(0);
 }
+
 .logic_title {
   display: flex;
   color: aqua;
@@ -370,6 +419,7 @@ html {
   height: auto;
   text-shadow: 0 2px 0 rgb(110, 105, 105);
 }
+
 .cards_container {
   display: grid;
   grid-template-columns: repeat(6, auto);
@@ -379,12 +429,14 @@ html {
   justify-content: center;
   perspective: 1000px;
 }
+
 .card {
   position: relative;
   width: 180px;
   height: 180px;
   cursor: pointer;
 }
+
 .card_face {
   position: absolute;
   display: flex;
@@ -395,6 +447,7 @@ html {
   transition: transform 500ms ease-in-out;
   backface-visibility: hidden;
 }
+
 .logic_image {
   filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
 }
@@ -402,10 +455,12 @@ html {
 .bubble {
   width: 180px;
 }
+
 .animal {
   width: 130px;
   position: absolute;
 }
+
 .back_image {
   width: 180px;
   filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
@@ -427,7 +482,11 @@ html {
 
 .card.visible .card_front {
   transform: rotateY(0);
-} */
+}
+
+.card.matched .card_front .card_back {
+  animation: dance 1s linear infinite 500ms;
+}*/
 
 .card:hover .card_back {
   transform: rotateY(-180deg);
@@ -437,5 +496,32 @@ html {
   transform: rotateY(0);
 }
 
+.card:hover .card_front .animal {
+  /* animation: dance 1s linear infinite 500ms; */
+  animation: dance1 1s linear infinite 500ms;
+}
 
+@keyframes dance {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-25deg);
+  }
+  75% {
+    transform: rotate(25deg);
+  }
+}
+
+@keyframes dance1 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-7%);
+  }
+  75% {
+    transform: translateY(7%);
+  }
+}
 /*end logic page*/

@@ -80,9 +80,9 @@ function initShapesGame() {
       return false;
     }
 
-
     startDrag(DraggedImage, EO.clientX, EO.clientY);
   }
+
   function startDrag(element, clientX, clientY) {
     if (isDragging) {
       return;
@@ -104,6 +104,7 @@ function initShapesGame() {
 
     moveAt(clientX, clientY);
   }
+
   function moveAt(clientX, clientY) {
     let newX = clientX - shiftX;
     let newY = clientY - shiftY;
@@ -112,11 +113,13 @@ function initShapesGame() {
     DraggedImage.style.left = newX + 'px';
     DraggedImage.style.top = newY + 'px';
   }
+
   function onMouseUp(EO) {
     EO = EO || window.event;
     EO.preventDefault();
     finishDrag();
   }
+
   function onMouseMove(EO) {
     EO = EO || window.event;
     EO.preventDefault();
@@ -127,14 +130,12 @@ function initShapesGame() {
 
     if(!elemBelow) return;
 
-    // if((DraggedImage.id + '-shadow') !== elemBelow.id && ) {
-    //   document.getElementById(DraggedImage.id + '-1').src = DraggedImage.src;
-    // }
     if ((DraggedImage.id + '-shadow') === elemBelow.id) {
       shapes_drag_images.removeChild(document.getElementById(DraggedImage.id + '-1'));
       DivDrop(EO, elemBelow);
     }
   }
+
   function DivDrop(EO, elemBelow) {
       // мячик уронен
     EO = EO || window.event;
