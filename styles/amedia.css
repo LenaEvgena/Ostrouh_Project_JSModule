@@ -7,6 +7,70 @@
     width: 15vw;
   }
 }
+
+@media only screen and (max-width:1170px) {
+  /*logic page*/
+  .cards_container {
+    grid-template-columns: repeat(6, auto);
+    grid-gap: 15px;
+  }
+  .card {
+    width: 150px;
+    height: 150px;
+  }
+  .bubble {
+    width: 150px;
+  }
+  .animal {
+    width: 100px;
+  }
+  .back_image {
+    width: 150px;
+  }
+}
+
+@media only screen and (max-width:840px) {
+  /*logic page*/
+  .cards_container {
+    grid-template-columns: repeat(5, auto);
+    grid-gap: 15px;
+  }
+  .card {
+    width: 100px;
+    height: 100px;
+  }
+  .bubble {
+    width: 100px;
+  }
+  .animal {
+    width: 70px;
+  }
+  .back_image {
+    width: 100px;
+  }
+}
+
+@media only screen and (max-width:540px) {
+  /*logic page*/
+  .cards_container {
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 15px;
+  }
+  .card {
+    width: 80px;
+    height: 80px;
+  }
+  .bubble {
+    width: 80px;
+  }
+  .animal {
+    width: 50px;
+  }
+  .back_image {
+    width: 80px;
+  }
+}
+
 @media only screen and (max-width:767px) {
   /*main page*/
   .btn_img {
@@ -57,5 +121,7 @@
   .drag_image, .drop_image {
     width: 30vh;
   }
+
+
 }
 
