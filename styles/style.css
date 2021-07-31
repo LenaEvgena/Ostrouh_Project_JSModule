@@ -527,9 +527,9 @@ html {
   transform: rotateY(0);
 }
 
-.card.visible .card_front .animal {
+/* .card.visible .card_front .animal {
   animation: dance1 1.5s linear infinite 500ms;
-}
+} */
 
 .card.matched .card_front .animal {
   animation: dance2 1s linear infinite 500ms;

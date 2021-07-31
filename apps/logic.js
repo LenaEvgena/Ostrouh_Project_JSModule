@@ -40,6 +40,8 @@ class MemoryGame {
     this.matchedCardsArray = [];
 
     this.audioController.startMusic();
+    this.shuffleCards(this.cardsArray);
+
   }
 
   openCard(card) {
@@ -50,6 +52,14 @@ class MemoryGame {
 
   closeCard(card) {
     card.classList.remove('visible');
+  }
+
+  shuffleCards(cardsArray) { //Fisher-Yates алгоритм
+    for (let i = cardsArray.length - 1; i > 0; i--) {
+      let randomInd = Math.floor( Math.random() * (i + 1) );
+      cardsArray[randomInd].style.order = i;
+      cardsArray[i].style.order = randomInd;
+    }
   }
 }
 
@@ -64,7 +74,7 @@ function initLogicGame() {
   const cards = Array.from(document.querySelectorAll('.card'));
   const memoryGame = new MemoryGame(cards);
 
-
+  memoryGame.startGame();
   cards.forEach(card => {
     card.addEventListener('click', () => {
       //переворот карты
