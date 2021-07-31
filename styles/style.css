@@ -275,6 +275,11 @@ html {
 .overlay1.visible {
   display: flex;
   animation: overlay-grow 500ms forwards;
+  animation: overlayText-grow 5s infinite 200ms;
+}
+
+.overlay1.visible span {
+  animation: overlayText-grow 2s ease-in-out infinite 200ms;
 }
 
 @keyframes overlay-grow {
@@ -285,6 +290,17 @@ html {
   to {
     background-color: rgba(173, 146, 131, 0.596);
     font-size: 70px;
+  }
+}
+@keyframes overlayText-grow {
+  0%, 100% {
+    transform: scale(1);
+    /* font-size: 70px; */
+  }
+  50% {
+    transform: scale(1.3);
+    /* font-size: 100px; */
+
   }
 }
 
