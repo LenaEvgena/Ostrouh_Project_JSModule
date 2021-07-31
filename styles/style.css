@@ -271,14 +271,16 @@ html {
   /*transition: overlay-grow 500ms forwards; */
   transform: translateZ(0);
 }
+.overlay > span {
+  animation: overlayText-grow 2s ease-in-out infinite 200ms;
+}
 
 .overlay1.visible {
   display: flex;
   animation: overlay-grow 500ms forwards;
-  animation: overlayText-grow 5s infinite 200ms;
 }
 
-.overlay1.visible span {
+.overlay1.visible > span {
   animation: overlayText-grow 2s ease-in-out infinite 200ms;
 }
 
@@ -292,15 +294,13 @@ html {
     font-size: 70px;
   }
 }
+
 @keyframes overlayText-grow {
   0%, 100% {
     transform: scale(1);
-    /* font-size: 70px; */
   }
   50% {
     transform: scale(1.3);
-    /* font-size: 100px; */
-
   }
 }
 
@@ -324,6 +324,25 @@ html {
   margin: 10px;
   width: 70px;
   height: 120px;
+  cursor: pointer;
+  animation: balloonsFlying 10s linear infinite;
+}
+
+@keyframes balloonsFlying {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  10% {
+    opacity: 1;
+    width: 70px;
+    height: 120px;
+  }
+  100% {
+    transform: translateY(-900px);
+  }
 }
 
 @keyframes danceToys {

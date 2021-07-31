@@ -147,6 +147,7 @@ function initShapesGame() {
       taskIsDone();
     }
   }
+
   function finishDrag() {
     if(!isDragging) {
       return;
@@ -161,61 +162,6 @@ function initShapesGame() {
     document.removeEventListener('mousemove', onMouseMove);
     document.removeEventListener('mouseup', onMouseUp);
   }
-  // function Drag_Move(EO) {
-  //   EO = EO || window.event;
-  //   EO.preventDefault();
-  //   DraggedImage.style.left = (EO.pageX - DragShiftX) + "px";
-  //   DraggedImage.style.top = (EO.pageY - DragShiftY) + "px";
-
-  //   DraggedImage.hidden = true;
-  //   let elemBelow = document.elementFromPoint(EO.clientX, EO.clientY);
-  //   DraggedImage.hidden = false;
-
-  //   if(!elemBelow) return;
-  //   if (DraggedImage.id === elemBelow.id) {
-  //     DivDrop();
-  //   }
-  // }
-
-  // function Drag_Stop(EO) {
-  //   // закончилось перетаскивание мячика (неважно куда он уронен)
-  //   EO = EO || window.event;
-  //   EO.preventDefault();
-  //   DraggedImage.style.cursor = 'auto';
-  //   DraggedImage.style.zIndex = '1';
-  //   document.removeEventListener('mousemove', Drag_Move);
-  //   dragImages.forEach((image) => {
-  //     image.removeEventListener('mouseup', Drag_Stop);
-  //   });
-  //   DraggedImage = null;
-  // }
-
-  // function DivDrop(EO) {
-  //   // мячик уронен
-  //   EO = EO || window.event;
-  //   EO.preventDefault();
-  //   if (DraggedImage){
-  //     shapes_drag_images.removeChild(DraggedImage);
-  //     DraggedImage.style.opacity = 0;
-  //     Drag_Stop();
-  //     taskIsDone();
-  //   }
-  // }
-
-  // function DivDragEnter(EO) {
-  //   EO = EO || window.event;
-  //   EO.preventDefault();
-  //   // EO.currentTarget.style.transform = 'scale(1.1)';
-  // }
-  // function DivDragOver(EO) {
-  //   EO = EO || window.event;
-  //   EO.preventDefault();
-  // }
-  // function DivDragLeave(EO) {
-  //   EO = EO || window.event;
-  //   EO.preventDefault();
-  //   // EO.currentTarget.style.transform = 'scale(1.0)';
-  // }
 
   function turnBack() {
     document.querySelector('.shapes_game_wrapper').style.display = 'none';
