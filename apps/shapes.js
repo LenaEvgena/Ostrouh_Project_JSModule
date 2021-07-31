@@ -13,7 +13,6 @@ function initShapesGame() {
   let isDragging = false;
 
   wrapper.appendChild( createShapesPage() );
-
   const shapes_drag_images = document.querySelector('.shapes_drag_images');
   const dragImages = Array.from(document.querySelectorAll('.shape_image'));
 
@@ -276,6 +275,22 @@ function initShapesGame() {
     return balloonsContainer;
   }
 
+  function tapBalloons() {
+    let balloons = Array.from(document.querySelectorAll('#balloons span'));
+    balloons.forEach(balloon => {
+      balloon.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        e.target.style.background = 'url(../assets/img/other/confetti.png)';
+        e.target.style.backgroundSize = 'cover';
+        e.target.style.width = '150px';
+
+        setTimeout(() => {e.target.style.display = 'none'}, 500);
+        //sound
+      });
+    });
+  }
+
   function taskIsDone() {
     tasksCount--;
     const tasksPointsDiv = document.querySelector('#tasksPoints');
@@ -297,11 +312,11 @@ function initShapesGame() {
       setTimeout(() => {
         document.querySelector('.overlay').style.display = 'flex';
         hooray.play();
-        // animateBalloons();
+        tapBalloons();
 
         setTimeout(() => {
           turnBack();
-        }, 7000)
+        }, 8000)
 
       }, 100);
     }

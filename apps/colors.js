@@ -263,21 +263,21 @@ function initColorsGame() {
     return balloonsContainer;
   }
 
-  // function animateBalloons() {
-  //   let balloons = document.querySelectorAll('#balloons span');
+  function tapBalloons() {
+    let balloons = Array.from(document.querySelectorAll('#balloons span'));
+    balloons.forEach(balloon => {
+      balloon.addEventListener('click', (e) => {
+        e.preventDefault();
 
-  //   let start = new Date();
-  //   let timer = setInterval(() => {
-  //     let timePassed = Date.now() - start;
-  //     if (timePassed >= 7000) {
-  //       clearInterval(timer);
-  //       return;
-  //     }
-  //     balloons.forEach(balloon => {
-  //       balloon.style.top += timePassed/5 + 'px';
-  //     })
-  //   }, 1000/60)
-  // }
+        e.target.style.background = 'url(../assets/img/other/confetti.png)';
+        e.target.style.backgroundSize = 'cover';
+        e.target.style.width = '150px';
+
+        setTimeout(() => {e.target.style.display = 'none'}, 500);
+        //sound
+      });
+    });
+  }
 
   function taskIsDone() {
     colorTasksCount--;
@@ -300,11 +300,11 @@ function initColorsGame() {
       setTimeout(() => {
         document.querySelector('.overlay').style.display = 'flex';
         hooray.play();
-        // animateBalloons();
+        tapBalloons();
 
         setTimeout(() => {
           turnBack();
-        }, 7000)
+        }, 8000)
 
 
       }, 100);

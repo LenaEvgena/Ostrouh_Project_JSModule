@@ -1,30 +1,43 @@
 'use strict';
-// class AudioController {
-//   constructor() {
-//     this.bgMusic = new Audio('../assets/sounds/bgmusic.mp3');
-//     this.slideSound = new Audio('../assets/sounds/slide.mp3');
-//     this.clickSound = new Audio('../assets/sounds/click2.mp3');
-//     this.bgMusic.volume = 0.03;
-//     this.bgMusic.loop = true;
-//   }
-//   startMusic() {
-//     this.bgMusic.play();
-//   }
-//   stopMusic() {
-//     this.bgMusic.pause();
-//     this.bgMusic.currentTime = 0;
-//   }
-//   clickSound() {
-//     this.clickSound.play();
-//   }
-//   slideSound() {
-//     this.slideSound.play();
-//   }
-//   //victory sound
-// }
+class AudioController {
+  constructor() {
+    this.bgMusic = new Audio('../assets/sounds/bgmusic.mp3');
+    this.slideSound = new Audio('../assets/sounds/slide.mp3');
+    this.clickSound = new Audio('../assets/sounds/click2.mp3');
+    this.bgMusic.volume = 0.03;
+    this.bgMusic.loop = true;
+  }
+  startMusic() {
+    this.bgMusic.play();
+  }
+  stopMusic() {
+    this.bgMusic.pause();
+    this.bgMusic.currentTime = 0;
+  }
+  clickSound() {
+    this.clickSound.play();
+  }
+  slideSound() {
+    this.slideSound.play();
+  }
+  //victory sound
+  //flip sound
+  //bubble sound
+}
+
+class MemoryGame {
+  constructor() {
+
+  }
+}
 
 function initLogicGame() {
-  let cards = Array.from(document.querySelectorAll('.card'));
+  const overlay1 = document.querySelector('.overlay1');
+  overlay1.appendChild( createBalloons() );
+  tapBalloons();
+  const cards = Array.from(document.querySelectorAll('.card'));
+  // const memoryGame = new MemoryGame();
+
 
   cards.forEach(card => {
     card.addEventListener('click', () => {
@@ -37,17 +50,21 @@ function initLogicGame() {
 
 
 
-  let overlay1 = document.querySelector('.overlay1');
-  overlay1.appendChild( createBalloons() );
 
-  function createBalloons() {
+
+
+
+
+}
+
+function createBalloons() {
     const balloonsContainer = document.createElement('div');
     balloonsContainer.className = 'balloonsContainer';
     const balloons = document.createElement('div');
     balloons.id = 'balloons';
     for (let i = 1; i <= 10; i++) {
       let ballon = document.createElement('span');
-      ballon.style.background = 'url(../assets/img/other/ballon' + i + '.png)';
+      ballon.style.background = `url(../assets/img/other/ballon${i}.png)`;
       ballon.style.backgroundSize = 'cover';
       ballon.style.position = 'absolute';
       let leftPosition = Math.floor(Math.random() * (1050 - 0 + 1) + 50) ;
@@ -63,8 +80,20 @@ function initLogicGame() {
     return balloonsContainer;
   }
 
-
-
-}
-
 initLogicGame();
+
+function tapBalloons() {
+  let balloons = Array.from(document.querySelectorAll('#balloons span'));
+  balloons.forEach(balloon => {
+    balloon.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      e.target.style.background = 'url(../assets/img/other/confetti.png)';
+      e.target.style.backgroundSize = 'cover';
+      e.target.style.width = '150px';
+
+      setTimeout(() => {e.target.style.display = 'none'}, 500);
+      //sound
+    });
+  });
+}

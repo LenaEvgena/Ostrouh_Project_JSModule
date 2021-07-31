@@ -326,6 +326,7 @@ html {
   height: 120px;
   cursor: pointer;
   animation: balloonsFlying 10s linear infinite;
+  transition: width 0.5s, height 0.5s;
 }
 
 @keyframes balloonsFlying {
