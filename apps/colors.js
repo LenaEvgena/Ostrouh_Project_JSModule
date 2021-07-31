@@ -264,6 +264,8 @@ function initColorsGame() {
   }
 
   function tapBalloons() {
+    const balloonPop = new Audio('../assets/sounds/balloonpop.mp3');
+
     let balloons = Array.from(document.querySelectorAll('#balloons span'));
     balloons.forEach(balloon => {
       balloon.addEventListener('click', (e) => {
@@ -272,6 +274,7 @@ function initColorsGame() {
         e.target.style.background = 'url(../assets/img/other/confetti.png)';
         e.target.style.backgroundSize = 'cover';
         e.target.style.width = '150px';
+        balloonPop.play();
 
         setTimeout(() => {e.target.style.display = 'none'}, 500);
         //sound

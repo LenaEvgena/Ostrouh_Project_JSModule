@@ -61,7 +61,7 @@ function iniStartPage() {
     img.className = 'btn_img';
     img.alt = 'play_icon';
     img.onclick = () => {
-      new Audio('../assets/sounds/click2.mp3').play()
+      new Audio('../assets/sounds/click2.mp3').play();
       // audio.clickSound();
     };
     // img.setAttribute("onclick","new Audio('../assets/sounds/click1.mp3').play()");
@@ -73,6 +73,6 @@ function iniStartPage() {
 
 window.onload = () => iniStartPage();
 window.addEventListener('load', () => {
-  const bgMusic = new AudioController;
+  // const bgMusic = new AudioController;
   // bgMusic.startMusic();
 })

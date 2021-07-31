@@ -512,16 +512,14 @@ html {
 }
 
 .card_back {
-  /* display: none; */
   transform: rotateY(0);
 }
 
 .card_front {
-  /* display: none; */
   transform: rotateY(180deg);
 }
 
-/* .card.visible .card_back {
+.card.visible .card_back {
   transform: rotateY(-180deg);
 }
 
@@ -529,11 +527,15 @@ html {
   transform: rotateY(0);
 }
 
-.card.matched .card_front .card_back {
-  animation: dance 1s linear infinite 500ms;
-}*/
+.card.visible .card_front .animal {
+  animation: dance1 1.5s linear infinite 500ms;
+}
 
-.card:hover .card_back {
+.card.matched .card_front .animal {
+  animation: dance2 1s linear infinite 500ms;
+}
+
+/* .card:hover .card_back {
   transform: rotateY(-180deg);
 }
 
@@ -542,9 +544,8 @@ html {
 }
 
 .card:hover .card_front .animal {
-  /* animation: dance 1s linear infinite 500ms; */
   animation: dance1 1s linear infinite 500ms;
-}
+} */
 
 .overlay1 {
   display: none;
@@ -591,10 +592,10 @@ html {
     transform: rotate(0);
   }
   25% {
-    transform: rotate(-25deg);
+    transform: rotate(-8deg);
   }
   75% {
-    transform: rotate(25deg);
+    transform: rotate(8deg);
   }
 }
 
@@ -607,6 +608,18 @@ html {
   }
   75% {
     transform: translateY(7%);
+  }
+}
+
+@keyframes dance2 {
+  0%, 100% {
+    transform: scale(0.9);
+  }
+  25% {
+    transform: scale(0.8);
+  }
+  75% {
+    transform: scale(1);
   }
 }
 /*end logic page*/

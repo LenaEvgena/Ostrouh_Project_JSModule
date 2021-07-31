@@ -16,12 +16,12 @@ function initMenuPage() {
   puzzleGame.addEventListener('click', () => {console.log('Start Puzzle Game')});
   shapesGame.addEventListener('click', startShapesGame);
   colorsGame.addEventListener('click', startColorsGame);
-  logicGame.addEventListener('click', () => {console.log('Start Logic Game')});
+  logicGame.addEventListener('click', startLogicGame);
 
   puzzleGame.addEventListener('click', () => menu_wrapper.style.display = 'none');
   // shapesGame.addEventListener('click', () => menu_wrapper.style.display = 'none');
   // colorsGame.addEventListener('click', () => menu_wrapper.style.display = 'none');
-  logicGame.addEventListener('click', () => menu_wrapper.style.display = 'none');
+  // logicGame.addEventListener('click', () => menu_wrapper.style.display = 'none');
 
   function startColorsGame() {
     main_wrapper.style.display = 'none';
@@ -41,6 +41,16 @@ function initMenuPage() {
       document.addEventListener('DOMContentLoaded', initShapesGame());
     } else {
       initShapesGame();
+    }
+  }
+  function startLogicGame() {
+    main_wrapper.style.display = 'none';
+    menu_wrapper.style.display = 'none';
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLogicGame());
+    } else {
+      initLogicGame();
     }
   }
 
