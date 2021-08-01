@@ -8,6 +8,7 @@ class AudioController {
     this.balloonPop = new Audio('../assets/sounds/balloonpop.mp3');
     this.hooray = new Audio('../assets/sounds/hooray.mp3');
     this.cardPop = new Audio('../assets/sounds/cardpop.mp3');
+    // this.balloonPop.volume = 0.01;
     this.bgMusic.volume = 0.03;
     this.bgMusic.loop = true;
   }
@@ -36,7 +37,6 @@ class AudioController {
   cardPopSound() {
     this.cardPop.play();
   }
-  //flip sound
 }
 
 class MemoryGame {
@@ -53,7 +53,7 @@ class MemoryGame {
       this.isBusy = false;//можем начинать играть
     }, 500);
     // this.audioController.startMusic();
-    this.shuffleCards(this.cardsArray);
+    // this.shuffleCards(this.cardsArray);
   }
 
   endGame() {
@@ -99,11 +99,13 @@ class MemoryGame {
     console.log(this.matchedCardsArray);
     card1.classList.add('matched');
     card2.classList.add('matched');
+    this.isBusy = true;
     //убрать карту
     setTimeout(() => {
       this.audioController.cardPopSound();
       card1.style.opacity = '0';
       card2.style.opacity = '0';
+      this.isBusy = false;
     }, 1000);
     //win
     if (this.matchedCardsArray.length === this.cardsArray.length) {
@@ -141,10 +143,6 @@ class MemoryGame {
 
 
 function initLogicGame() {
-  const overlay1 = document.querySelector('.overlay1');
-  overlay1.appendChild( createBalloons() );
-  tapBalloons();
-
   const cards = Array.from(document.querySelectorAll('.card'));
   const memoryGame = new MemoryGame(cards);
 
@@ -169,8 +167,20 @@ function createBalloons() {
       ballon.style.background = `url(../assets/img/other/ballon${i}.png)`;
       ballon.style.backgroundSize = 'cover';
       ballon.style.position = 'absolute';
-      let leftPosition = Math.floor(Math.random() * (1050 - 0 + 1) + 50) ;
-      let topPosition = Math.floor(Math.random() * (1000 - 0 + 1));
+      let leftPosition = Math.floor(Math.random() * (window.innerWidth + 1));
+      let topPosition = Math.floor(Math.random() * (window.innerHeight + 1));
+      ballon.style.left = leftPosition + 'px';
+      ballon.style.top = topPosition + 'px';
+
+      balloons.appendChild(ballon);
+    }
+    for (let j = 1; j <= 10; j++) {
+      let ballon = document.createElement('span');
+      ballon.style.background = `url(../assets/img/other/ballon${j}.png)`;
+      ballon.style.backgroundSize = 'cover';
+      ballon.style.position = 'absolute';
+      let leftPosition = Math.floor(Math.random() * (window.innerWidth + 1));
+      let topPosition = Math.floor(Math.random() * (window.innerHeight * 1.5 + 1));
       ballon.style.left = leftPosition + 'px';
       ballon.style.top = topPosition + 'px';
 
