@@ -58,16 +58,15 @@ class MemoryGame {
   }
 
   openCard(card) {
-    if(!this.isBusy) {//чтоб не закрывалась самостоятельно в одиночку, неверно работает сопадения, может закрыться, если дважды кликнуть
+    if(card !== this.checkingCard && !this.isBusy) {//можем ли мы открыть карту
       card.classList.add('visible');
-
+      //sound
+      //проверка на совпадение
+      if (this.checkingCard) { //если можем, и карта уже есть одна нажатая - проверяем совпадение
+        this.checkMatching(card);
+      }
+      this.checkingCard = card;
     }
-    //sound
-    //проверка на совпадение
-    if (this.checkingCard) {
-      this.checkMatching(card);
-    }
-    this.checkingCard = card;
   }
 
   checkMatching(card) {
