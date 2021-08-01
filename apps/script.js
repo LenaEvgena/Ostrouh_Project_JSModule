@@ -1,32 +1,5 @@
 'use strict';
 
-
-
-// class AudioController {
-//   constructor() {
-//     this.bgMusic = new Audio('../assets/sounds/bgmusic.mp3');
-//     this.slideSound = new Audio('../assets/sounds/slide.mp3');
-//     this.clickSound = new Audio('../assets/sounds/click2.mp3');
-//     this.bgMusic.volume = 0.03;
-//     this.bgMusic.loop = true;
-//   }
-//   startMusic() {
-//     this.bgMusic.play();
-//   }
-//   stopMusic() {
-//     this.bgMusic.pause();
-//     this.bgMusic.currentTime = 0;
-//   }
-//   clickSound() {
-//     this.clickSound.play();
-//   }
-//   slideSound() {
-//     this.slideSound.play();
-//   }
-//   //victory sound
-// }
-
-
 function iniStartPage() {
   const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createMainPage() );
@@ -76,3 +49,81 @@ window.addEventListener('load', () => {
   // const bgMusic = new AudioController;
   // bgMusic.startMusic();
 })
+
+
+
+//SPA
+
+window.onhashchange = renderNewState;
+
+function renderNewState() {
+  const hash = window.location.hash;
+  let state = decodeURIComponent(hash.substr(1));
+
+  (state.page === '') ? state = { page: 'Menu' } : state = JSON.parse(state);
+  let page = '';
+
+  switch (state.page) {
+    case 'Start':
+      iniStartPage();
+      break;
+    case 'Menu':
+
+      break;
+    case 'Colors':
+
+      break;
+    case 'Shapes':
+
+      break;
+    case 'Logic':
+
+      break;
+    case 'LogicEasy':
+
+      break;
+    case 'LogicMedium':
+
+      break;
+    case 'LogicHard':
+
+      break;
+  }
+  document.querySelector('.wrapper').innerHTML = page;
+}
+
+function switchToState(state) {
+  window.location.hash = encodeURIComponent(JSON.stringify(state));
+}
+
+function switchToStart(state) {
+  switchToState({ page: "Start" });
+}
+
+function switchToMenu(state) {
+  switchToState({ page: "Menu" });
+}
+
+function switchToColors(state) {
+  switchToState({ page: 'Colors' });
+}
+
+function switchToShapes(state) {
+  switchToState({ page: "Shapes" });
+}
+
+function switchToLogic(state) {
+  switchToState({ page: "Logic" });
+}
+
+function switchToLogicEasy(state) {
+  switchToState({ page: 'LogicEasy' });
+}
+function switchToLogicMedium(state) {
+  switchToState({ page: 'LogicMedium' });
+}
+function switchToLogicHard(state) {
+  switchToState({ page: 'LogicHard' });
+}
+
+renderNewState();
