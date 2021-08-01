@@ -3,6 +3,7 @@ class AudioController {
   constructor() {
     this.bgMusic = new Audio('../assets/sounds/bgmusic.mp3');
     this.slide = new Audio('../assets/sounds/slide.mp3');
+    this.flip = new Audio('../assets/sounds/flip.mp3');
     this.click = new Audio('../assets/sounds/click2.mp3');
     this.balloonPop = new Audio('../assets/sounds/balloonpop.mp3');
     this.hooray = new Audio('../assets/sounds/hooray.mp3');
@@ -19,6 +20,9 @@ class AudioController {
   }
   clickSound() {
     this.click.play();
+  }
+  flipSound() {
+    this.flip.play();
   }
   slideSound() {
     this.slide.play();
@@ -46,14 +50,18 @@ class MemoryGame {
     this.checkingCard = null;
     this.matchedCardsArray = [];
     setTimeout(() => {
-      this.isBusy = false;
+      this.isBusy = false;//можем начинать играть
     }, 500);
     // this.audioController.startMusic();
-    // this.shuffleCards(this.cardsArray);
+    this.shuffleCards(this.cardsArray);
   }
 
   endGame() {
-    document.querySelector('.overlay1').classList.add('visible');
+    const overlay1 = document.querySelector('.overlay1');
+    overlay1.classList.add('visible');
+    overlay1.appendChild( createBalloons() );
+    tapBalloons();
+    //sound
     this.audioController.hooraySound();
   }
 
@@ -61,11 +69,13 @@ class MemoryGame {
     if(card !== this.checkingCard && !this.isBusy) {//можем ли мы открыть карту
       card.classList.add('visible');
       //sound
+      this.audioController.clickSound();
       //проверка на совпадение
       if (this.checkingCard) { //если можем, и карта уже есть одна нажатая - проверяем совпадение
         this.checkMatching(card);
+      } else {
+        this.checkingCard = card;
       }
-      this.checkingCard = card;
     }
   }
 
@@ -86,6 +96,7 @@ class MemoryGame {
   isMatched(card1, card2) {
     this.matchedCardsArray.push(card1);
     this.matchedCardsArray.push(card2);
+    console.log(this.matchedCardsArray);
     card1.classList.add('matched');
     card2.classList.add('matched');
     //убрать карту
@@ -94,32 +105,27 @@ class MemoryGame {
       card1.style.opacity = '0';
       card2.style.opacity = '0';
     }, 1000);
-    //sound
     //win
     if (this.matchedCardsArray.length === this.cardsArray.length) {
-      this.closeCards();
-      const overlay1 = document.querySelector('.overlay1');
-      overlay1.classList.add('visible');
-      overlay1.appendChild( createBalloons() );
-      tapBalloons();
+      this.endGame();
     }
   }
 
   notMatched(card1, card2) {
     this.isBusy = true;
     setTimeout(() => {
-      card1.classList.remove('visible');
-      card2.classList.remove('visible');
+      this.audioController.flipSound();
+
+      this.closeCard(card1);
+      this.closeCard(card2);
       this.isBusy = false;
     }, 1000);
     //обнуляем карту
     this.checkingCard = null;
   }
 
-  closeCards() {
-    this.cardsArray.forEach(card => {card.classList.remove('visible');
-      card.classList.remove('visible');
-    });
+  closeCard(card) {
+    card.classList.remove('visible');
   }
 
   shuffleCards(cardsArray) { //Fisher-Yates алгоритм
