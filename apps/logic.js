@@ -2,10 +2,11 @@
 class AudioController {
   constructor() {
     this.bgMusic = new Audio('../assets/sounds/bgmusic.mp3');
-    this.slideSound = new Audio('../assets/sounds/slide.mp3');
-    this.clickSound = new Audio('../assets/sounds/click2.mp3');
-    this.balloonPopSound = new Audio('../assets/sounds/balloonpop.mp3');
-    this.hooraySound = new Audio('../assets/sounds/hooray.mp3')
+    this.slide = new Audio('../assets/sounds/slide.mp3');
+    this.click = new Audio('../assets/sounds/click2.mp3');
+    this.balloonPop = new Audio('../assets/sounds/balloonpop.mp3');
+    this.hooray = new Audio('../assets/sounds/hooray.mp3');
+    this.cardPop = new Audio('../assets/sounds/cardpop.mp3');
     this.bgMusic.volume = 0.03;
     this.bgMusic.loop = true;
   }
@@ -17,16 +18,19 @@ class AudioController {
     this.bgMusic.currentTime = 0;
   }
   clickSound() {
-    this.clickSound.play();
+    this.click.play();
   }
   slideSound() {
-    this.slideSound.play();
+    this.slide.play();
   }
   balloonPopSound() {
-    this.balloonPopSound.play();
+    this.balloon.play();
   }
   hooraySound() {
-    this.hooraySound.play();
+    this.hooray.play();
+  }
+  cardPopSound() {
+    this.cardPop.play();
   }
   //flip sound
 }
@@ -44,7 +48,7 @@ class MemoryGame {
     setTimeout(() => {
       this.isBusy = false;
     }, 500);
-    this.audioController.startMusic();
+    // this.audioController.startMusic();
     // this.shuffleCards(this.cardsArray);
   }
 
@@ -87,6 +91,7 @@ class MemoryGame {
     card2.classList.add('matched');
     //убрать карту
     setTimeout(() => {
+      this.audioController.cardPopSound();
       card1.style.opacity = '0';
       card2.style.opacity = '0';
     }, 1000);
@@ -108,6 +113,8 @@ class MemoryGame {
       card2.classList.remove('visible');
       this.isBusy = false;
     }, 1000);
+    //обнуляем карту
+    this.checkingCard = null;
   }
 
   closeCards() {
