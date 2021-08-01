@@ -38,10 +38,12 @@ class MemoryGame {
   }
 
   startGame() {
-    this.playing = true;
+    this.isBusy = true;//ч-л выполняется, играть нельзя
     this.checkingCard = null;
     this.matchedCardsArray = [];
-
+    setTimeout(() => {
+      this.isBusy = false;
+    }, 500);
     this.audioController.startMusic();
     // this.shuffleCards(this.cardsArray);
   }
@@ -52,22 +54,26 @@ class MemoryGame {
   }
 
   openCard(card) {
-    card.classList.add('visible');
+    if(!this.isBusy) {//чтоб не закрывалась самостоятельно в одиночку, неверно работает сопадения, может закрыться, если дважды кликнуть
+      card.classList.add('visible');
+
+    }
     //sound
     //проверка на совпадение
     if (this.checkingCard) {
-      this.checkMatch(card);
+      this.checkMatching(card);
     }
     this.checkingCard = card;
-    console.log(this.checkingCard);
   }
 
-  checkMatch(card) {
+  checkMatching(card) {
     if (this.getCardSrc(card) === this.getCardSrc(this.checkingCard)) {
       this.isMatched(card, this.checkingCard);
     } else {
       this.notMatched(card, this.checkingCard);
     }
+    //обнуляем карту
+    this.checkingCard = null;
   }
 
   getCardSrc(card) {
@@ -79,17 +85,33 @@ class MemoryGame {
     this.matchedCardsArray.push(card2);
     card1.classList.add('matched');
     card2.classList.add('matched');
+    //убрать карту
+    setTimeout(() => {
+      card1.style.opacity = '0';
+      card2.style.opacity = '0';
+    }, 1000);
     //sound
-    console.log(this.matchedCardsArray);
     //win
+    if (this.matchedCardsArray.length === this.cardsArray.length) {
+      this.closeCards();
+      const overlay1 = document.querySelector('.overlay1');
+      overlay1.classList.add('visible');
+      overlay1.appendChild( createBalloons() );
+      tapBalloons();
+    }
   }
 
-  notMatched() {
-
+  notMatched(card1, card2) {
+    this.isBusy = true;
+    setTimeout(() => {
+      card1.classList.remove('visible');
+      card2.classList.remove('visible');
+      this.isBusy = false;
+    }, 1000);
   }
 
   closeCards() {
-    this.cardsArray.forEach(card => {
+    this.cardsArray.forEach(card => {card.classList.remove('visible');
       card.classList.remove('visible');
     });
   }
