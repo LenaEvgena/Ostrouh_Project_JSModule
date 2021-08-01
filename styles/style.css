@@ -186,6 +186,7 @@ html {
 }
 .back_arrow:hover {
   transform: scale(1.1);
+  cursor: pointer;
 }
 #tasksPoints {
   position: absolute;
@@ -467,7 +468,7 @@ html {
 
 .cards_container {
   display: grid;
-  grid-template-columns: repeat(7, auto);
+  grid-template-columns: repeat(6, auto);
   grid-gap: 20px;
   margin: 20px auto;
   align-items: center;
