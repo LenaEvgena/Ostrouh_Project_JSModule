@@ -5,6 +5,7 @@ class AudioController {
     this.slideSound = new Audio('../assets/sounds/slide.mp3');
     this.clickSound = new Audio('../assets/sounds/click2.mp3');
     this.balloonPopSound = new Audio('../assets/sounds/balloonpop.mp3');
+    this.hooraySound = new Audio('../assets/sounds/hooray.mp3')
     this.bgMusic.volume = 0.03;
     this.bgMusic.loop = true;
   }
@@ -24,7 +25,9 @@ class AudioController {
   balloonPopSound() {
     this.balloonPopSound.play();
   }
-  //victory sound
+  hooraySound() {
+    this.hooraySound.play();
+  }
   //flip sound
 }
 
@@ -40,18 +43,55 @@ class MemoryGame {
     this.matchedCardsArray = [];
 
     this.audioController.startMusic();
-    this.shuffleCards(this.cardsArray);
+    // this.shuffleCards(this.cardsArray);
+  }
 
+  endGame() {
+    document.querySelector('.overlay1').classList.add('visible');
+    this.audioController.hooraySound();
   }
 
   openCard(card) {
     card.classList.add('visible');
     //sound
     //проверка на совпадение
+    if (this.checkingCard) {
+      this.checkMatch(card);
+    }
+    this.checkingCard = card;
+    console.log(this.checkingCard);
   }
 
-  closeCard(card) {
-    card.classList.remove('visible');
+  checkMatch(card) {
+    if (this.getCardSrc(card) === this.getCardSrc(this.checkingCard)) {
+      this.isMatched(card, this.checkingCard);
+    } else {
+      this.notMatched(card, this.checkingCard);
+    }
+  }
+
+  getCardSrc(card) {
+    return card.querySelector('.animal').src;
+  }
+
+  isMatched(card1, card2) {
+    this.matchedCardsArray.push(card1);
+    this.matchedCardsArray.push(card2);
+    card1.classList.add('matched');
+    card2.classList.add('matched');
+    //sound
+    console.log(this.matchedCardsArray);
+    //win
+  }
+
+  notMatched() {
+
+  }
+
+  closeCards() {
+    this.cardsArray.forEach(card => {
+      card.classList.remove('visible');
+    });
   }
 
   shuffleCards(cardsArray) { //Fisher-Yates алгоритм
@@ -97,8 +137,6 @@ function createBalloons() {
       ballon.style.position = 'absolute';
       let leftPosition = Math.floor(Math.random() * (1050 - 0 + 1) + 50) ;
       let topPosition = Math.floor(Math.random() * (1000 - 0 + 1));
-      // let leftPosition = Math.floor(Math.random() * window.innerWidth / 2.5) - 600 ;
-      // let topPosition = Math.floor(Math.random() * window.innerHeight / 2.5) - 300;
       ballon.style.left = leftPosition + 'px';
       ballon.style.top = topPosition + 'px';
 
@@ -127,3 +165,4 @@ function tapBalloons() {
     });
   });
 }
+
