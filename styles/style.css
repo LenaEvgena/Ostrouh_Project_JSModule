@@ -273,7 +273,7 @@ html {
   transform: translateZ(0);
 }
 .overlay > span {
-  animation: overlayText-grow 2s ease-in-out infinite 200ms;
+  animation: overlayText-grow 2s ease-in-out;
 }
 
 .overlay1.visible {
@@ -282,7 +282,7 @@ html {
 }
 
 .overlay1.visible > span {
-  animation: overlayText-grow 2s ease-in-out infinite 200ms;
+  animation: overlayText-grow 2s ease-in-out;
 }
 
 @keyframes overlay-grow {
