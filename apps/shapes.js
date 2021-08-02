@@ -21,8 +21,8 @@ export function initShapesGame() {
   const shapes_drag_images = document.querySelector('.shapes_drag_images');
   const dragImages = Array.from(document.querySelectorAll('.shape_image'));
 
-  const back_arrow = document.querySelector('.back_arrow');
-  back_arrow.addEventListener('click', () => turnBack());
+  // const back_arrow = document.querySelector('.back_arrow');
+  // back_arrow.addEventListener('click', () => turnBack());
 
   dragImages.forEach((image) => {
     image.addEventListener('mousedown', Drag_Start);
@@ -147,6 +147,7 @@ export function initShapesGame() {
     if (DraggedImage) {
       wrapper.removeChild(DraggedImage);
       elemBelow.src = DraggedImage.src;
+      audio.dropSound();
       finishDrag();
       taskIsDone();
     }
@@ -180,7 +181,7 @@ export function initShapesGame() {
     const drag_container = document.createElement('div');
     drag_container.className = 'drag_container';
 
-
+    shapes_game_wrapper.appendChild( createOverlay() );
     buttons_container.appendChild( createBackArrow() );
     buttons_container.appendChild( createTaskCheckPoint(tasksCount) );
     shapes_game_wrapper.appendChild( buttons_container );
@@ -188,7 +189,6 @@ export function initShapesGame() {
     drop_container.appendChild( createImage(shadowsBase, shadows, 'shadow_image', 'shapes_drop_images') );
     drag_container.appendChild( createImage(imagesBase, images, 'shape_image', 'shapes_drag_images') );
 
-    shapes_game_wrapper.appendChild( createOverlay() );
 
     shapes_game_wrapper.appendChild(drag_container);
     shapes_game_wrapper.appendChild(drop_container);
@@ -220,6 +220,7 @@ export function initShapesGame() {
 
 
   function turnBack() {
+    const back_arrow = document.querySelector('.back_arrow');
     back_arrow.style.transform = 'scale(0.9)';
     back_arrow.style.cursor = 'pointer';
     SPA.switchToMenu();
@@ -232,6 +233,7 @@ export function initShapesGame() {
     back_arrow.onclick = () => {
       audio.clickSound();
     }
+    back_arrow.addEventListener('click', () => turnBack());
     return back_arrow;
   }
 
@@ -251,6 +253,7 @@ export function initShapesGame() {
     const overlay = document.createElement('div');
     overlay.className = 'overlay';
     let span = document.createElement('span');
+    span.className = 'overlay_text';
     span.textContent = 'excellent!!!';
 
     overlay.appendChild(span);
@@ -281,8 +284,6 @@ export function initShapesGame() {
   }
 
   function tapBalloons() {
-    const audio1 = new AudioController();
-
     let balloons = document.querySelector('#balloons');
     balloons.addEventListener('click', (e) => {
       e.preventDefault();
@@ -290,10 +291,22 @@ export function initShapesGame() {
       e.target.style.background = 'url(../assets/img/other/confetti.png)';
       e.target.style.backgroundSize = 'cover';
       e.target.style.width = '150px';
-      audio1.balloonPopSound();
+      audio.balloonPopSound();
 
       setTimeout(() => {e.target.style.display = 'none'}, 300);
     });
+  }
+
+  function endGame() {
+    const overlay = document.querySelector('.overlay');
+    overlay.classList.add('visible');
+    tapBalloons();
+    //sound
+    audio.hooraySound();
+
+    setTimeout(() => {
+      turnBack();
+    }, 8000)
   }
 
   function taskIsDone() {
@@ -304,24 +317,17 @@ export function initShapesGame() {
     let point = points[n];
 
     if (tasksCount != 0) {
-      audio.dropSound();
       point.style.background = 'url(../assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
     } else {
-      audio.dropSound();
       point.style.background = 'url(../assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
 
       setTimeout(() => {
-        document.querySelector('.overlay').classList.add('visible');
-        audio.hooraySound();
-        tapBalloons();
-
-        setTimeout(() => {
-          turnBack();
-        }, 8000)
-
-      }, 100);
+        endGame();
+      }, 100)
     }
   }
 }
+
+

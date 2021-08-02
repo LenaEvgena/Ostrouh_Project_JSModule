@@ -41,7 +41,6 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
 * {
 	vertical-align: baseline;
 	font-weight: inherit;
@@ -53,7 +52,6 @@ table {
 	padding: 0;
 	margin: 0;
 	}
-
 html, body {
 	padding: 0;
 	margin: 0;
@@ -67,7 +65,6 @@ body {
 a img, :link img, :visited img {
 	border: 0;
 }
-
 html {
   box-sizing: border-box;
   overflow-x: hidden;
@@ -165,7 +162,7 @@ html {
 }
 
 .overlay.visible > span {
-  animation: overlayText-grow 2s ease-in-out;
+  animation: overlayText-grow 2s ease-in-out 200ms;
 }
 
 @keyframes overlay-grow {
@@ -200,6 +197,7 @@ html {
 #balloons {
   position: relative;
   display: flex;
+  transition: 0.7s;
 }
 
 #balloons span {
@@ -486,8 +484,8 @@ html {
 
 .card {
   position: relative;
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   cursor: pointer;
 }
 
@@ -507,16 +505,16 @@ html {
 }
 
 .bubble {
-  width: 150px;
+  width: 130px;
 }
 
 .animal {
   position: absolute;
-  width: 120px;
+  width: 110px;
 }
 
 .back_image {
-  width: 150px;
+  width: 130px;
   filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
 }
 

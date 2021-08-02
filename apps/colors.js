@@ -245,6 +245,7 @@ export function initColorsGame() {
     const overlay = document.createElement('div');
     overlay.className = 'overlay';
     let span = document.createElement('span');
+    span.className = 'overlay_text';
     span.textContent = 'excellent!!!';
 
     overlay.appendChild(span);
@@ -290,6 +291,18 @@ export function initColorsGame() {
     });
   }
 
+  function endGame() {
+    const overlay = document.querySelector('.overlay');
+    overlay.classList.add('visible');
+    tapBalloons();
+    //sound
+    audio.hooraySound();
+
+    setTimeout(() => {
+      turnBack();
+    }, 8000)
+  }
+
   function taskIsDone() {
     colorTasksCount--;
     const tasksPointsDiv = document.querySelector('#tasksPoints');
@@ -298,22 +311,14 @@ export function initColorsGame() {
     let point = points[n];
 
     if (colorTasksCount != 0) {
-      audio.dropSound();
       point.style.background = 'url(../assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
     } else {
-      audio.dropSound();
       point.style.background = 'url(../assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
 
       setTimeout(() => {
-        document.querySelector('.overlay').classList.add('visible');
-        audio.hooraySound();
-        tapBalloons();
-
-        setTimeout(() => {
-          turnBack();
-        }, 8000)
+        endGame();
       }, 100);
     }
   }

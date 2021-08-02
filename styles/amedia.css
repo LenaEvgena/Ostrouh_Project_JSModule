@@ -18,41 +18,11 @@
     grid-template-columns: repeat(6, auto);
     grid-gap: 15px;
   }
-  .card {
-    width: 150px;
-    height: 150px;
-  }
-  .bubble {
-    width: 150px;
-  }
-  .animal {
-    width: 110px;
-  }
-  .back_image {
-    width: 150px;
-  }
-}
-@media only screen and (max-width:1000px) {
-  /*logic page*/
-  .card {
-    width: 130px;
-    height: 130px;
-  }
-  .bubble {
-    width: 130px;
-  }
-  .animal {
-    width: 110px;
-  }
-  .back_image {
-    width: 130px;
-  }
 }
 
 @media only screen and (max-width:840px) {
   /*logic page*/
   .cards_container {
-    grid-template-columns: repeat(4, auto);
     grid-gap: 15px;
   }
   .card {
@@ -85,16 +55,18 @@
     left: 10px;
     width: 5vw;
   }
+  #tasksPoints span {
+    margin: 5px;
+    width: 13px;
+    height: 13px;
+  }
   .drag_image, .drop_image {
     width: 15vw;
     column-gap: 4vw;
   }
-}
-
-@media only screen and (max-width:540px) {
   /*logic page*/
   .cards_container {
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(4, auto);
     grid-gap: 15px;
   }
   .card {

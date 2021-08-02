@@ -6,6 +6,7 @@ import { AudioController } from './AudioController.js';
 const audio = new AudioController();
 
 function turnBack() {
+  const back_arrow = document.querySelector('.back_arrow');
   back_arrow.style.transform = 'scale(0.9)';
   back_arrow.style.cursor = 'pointer';
   SPA.switchToMenu();
@@ -18,7 +19,7 @@ function createBackArrow() {
   back_arrow.onclick = () => {
     audio.clickSound();
   }
-
+  back_arrow.addEventListener('click', () => turnBack());
   return back_arrow;
 }
 
@@ -34,30 +35,52 @@ function createTaskCheckPoint(count) {
   return tasksPointsDiv;
 }
 
+// function taskIsDone() {
+//   colorTasksCount--;
+//   const tasksPointsDiv = document.querySelector('#tasksPoints');
+//   let points = tasksPointsDiv.children;
+//   let n = colorTasksCount;
+//   let point = points[n];
+
+//   if (colorTasksCount != 0) {
+//     audio.dropSound();
+//     point.style.background = 'url(../assets/img/icons/redcircle.png)';
+//     point.style.backgroundSize = 'cover';
+//   } else {
+//     audio.dropSound();
+//     point.style.background = 'url(../assets/img/icons/redcircle.png)';
+//     point.style.backgroundSize = 'cover';
+
+//     setTimeout(() => {
+//       document.querySelector('.overlay').classList.add('visible');
+//       audio.hooraySound();
+//       tapBalloons();
+
+//       setTimeout(() => {
+//         turnBack();
+//       }, 8000)
+//     }, 100);
+//   }
+// }
+      // audio.dropSound();
+      // audio.dropSound();
+
 function taskIsDone() {
-  colorTasksCount--;
+  tasksCount--;
   const tasksPointsDiv = document.querySelector('#tasksPoints');
   let points = tasksPointsDiv.children;
-  let n = colorTasksCount;
+  let n = tasksCount;
   let point = points[n];
 
-  if (colorTasksCount != 0) {
-    audio.dropSound();
+  if (tasksCount != 0) {
     point.style.background = 'url(../assets/img/icons/redcircle.png)';
     point.style.backgroundSize = 'cover';
   } else {
-    audio.dropSound();
     point.style.background = 'url(../assets/img/icons/redcircle.png)';
     point.style.backgroundSize = 'cover';
 
     setTimeout(() => {
-      document.querySelector('.overlay').classList.add('visible');
-      audio.hooraySound();
-      tapBalloons();
-
-      setTimeout(() => {
-        turnBack();
-      }, 8000)
-    }, 100);
+      endGame();
+    }, 100)
   }
 }

@@ -7,6 +7,7 @@ function createOverlay() {
   const overlay = document.createElement('div');
   overlay.className = 'overlay';
   let span = document.createElement('span');
+  span.className = 'overlay_text';
   span.textContent = 'excellent!!!';
 
   overlay.appendChild(span);

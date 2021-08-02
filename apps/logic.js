@@ -1,6 +1,10 @@
 'use strict';
 
 import { AudioController } from './AudioController.js';
+import * as SPA from './SPA.js';
+
+const audio = new AudioController();
+
 class MemoryGame {
   constructor(cards) {
     this.audioController = new AudioController();
@@ -21,7 +25,6 @@ class MemoryGame {
   endGame() {
     const overlay = document.querySelector('.overlay');
     overlay.classList.add('visible');
-    overlay.appendChild( createBalloons() );
     tapBalloons();
     //sound
     this.audioController.hooraySound();
@@ -68,6 +71,7 @@ class MemoryGame {
       card1.style.opacity = '0';
       card2.style.opacity = '0';
       this.isBusy = false;
+      taskIsDone();
     }, 1000);
     //win
     if (this.matchedCardsArray.length === this.cardsArray.length) {
@@ -101,7 +105,13 @@ class MemoryGame {
   }
 }
 
+const images = ['cat', 'cow', 'croco', 'dog', 'elef', 'girrafe', 'horse', 'lamb', 'lion', 'monkey', 'panda', 'pig', 'squirrel', 'turkey', 'zebra'];
+let tasksCount = images.length;
+
 export function initLogicGame() {
+  const wrapper = document.querySelector('.wrapper');
+  wrapper.appendChild( renderLogicPage() );
+
   const cards = Array.from(document.querySelectorAll('.card'));
   const memoryGame = new MemoryGame(cards);
 
@@ -115,40 +125,126 @@ export function initLogicGame() {
   });
 }
 
-initLogicGame();
+
+
+function renderLogicPage() {
+
+  const logic_game_wrapper = document.createElement('div');
+  logic_game_wrapper.className = 'logic_game_wrapper';
+
+  const buttons_container = document.createElement('div');
+  buttons_container.className = 'buttons_container';
+
+  logic_game_wrapper.appendChild( createOverlay() );
+  buttons_container.appendChild( createBackArrow() );
+  buttons_container.appendChild( createTaskCheckPoint(tasksCount) );
+  logic_game_wrapper.appendChild( buttons_container );
+  logic_game_wrapper.appendChild( createCard(images) );
+
+  return logic_game_wrapper;
+}
+
+
+function createCard(array) {
+  const cards_container = document.createElement('div');
+  cards_container.className = 'cards_container';
+  const doubleArray = array.concat(array);
+
+  for (let i = 0; i < doubleArray.length; i++) {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const card_back = document.createElement('div');
+    card_back.classList.add('card_back', 'card_face');
+    const back_image = document.createElement('img');
+    back_image.className = 'back_image';
+    back_image.src = './assets/img/bubbles/coloredbig.png';
+    card_back.appendChild(back_image);
+
+    const card_front = document.createElement('div');
+    card_front.classList.add('card_front', 'card_face');
+    const bubble = document.createElement('img');
+    bubble.classList.add('bubble', 'logic_image');
+    bubble.src = './assets/img/bubbles/pink.png';
+    card_front.appendChild(bubble);
+
+    const animal = document.createElement('img');
+    animal.classList.add('animal', 'logic_image');
+    animal.src = `./assets/img/logic/${doubleArray[i]}.png`;
+    card_front.appendChild(animal);
+
+    card.appendChild(card_back);
+    card.appendChild(card_front);
+    cards_container.appendChild(card);
+  }
+  return cards_container;
+}
+
+
+
+function turnBack() {
+  const back_arrow = document.querySelector('.back_arrow');
+  back_arrow.style.transform = 'scale(0.9)';
+  back_arrow.style.cursor = 'pointer';
+  SPA.switchToMenu();
+}
+
+function createBackArrow() {
+  const back_arrow = document.createElement('img');
+  back_arrow.src = '../assets/img/other/arrow_back.png'
+  back_arrow.className = 'back_arrow';
+  back_arrow.onclick = () => {
+    audio.clickSound();
+  }
+  back_arrow.addEventListener('click', () => turnBack());
+  return back_arrow;
+}
+
+function createTaskCheckPoint(count) {
+  const tasksPointsDiv = document.createElement('div');
+  tasksPointsDiv.id = 'tasksPoints';
+  for (let i = 0; i < count; i++) {
+    const taskPoint = document.createElement('span');
+    taskPoint.style.background = 'url(../assets/img/icons/emptycircle.png)';
+    taskPoint.style.backgroundSize = 'cover';
+    tasksPointsDiv.appendChild(taskPoint);
+  }
+  return tasksPointsDiv;
+}
+
+function createOverlay() {
+  const overlay = document.createElement('div');
+  overlay.className = 'overlay';
+  let span = document.createElement('span');
+  span.className = 'overlay_text';
+  span.textContent = 'excellent!!!';
+
+  overlay.appendChild(span);
+  overlay.appendChild( createBalloons() );
+  return overlay;
+}
 
 function createBalloons() {
-    const balloonsContainer = document.createElement('div');
-    balloonsContainer.className = 'balloonsContainer';
-    const balloons = document.createElement('div');
-    balloons.id = 'balloons';
-    for (let i = 1; i <= 10; i++) {
-      let ballon = document.createElement('span');
-      ballon.style.background = `url(../assets/img/other/ballon${i}.png)`;
-      ballon.style.backgroundSize = 'cover';
-      ballon.style.position = 'absolute';
-      let leftPosition = Math.floor(Math.random() * (window.innerWidth + 1));
-      let topPosition = Math.floor(Math.random() * (window.innerHeight + 1));
-      ballon.style.left = leftPosition + 'px';
-      ballon.style.top = topPosition + 'px';
-
-      balloons.appendChild(ballon);
-    }
-    for (let j = 1; j <= 10; j++) {
-      let ballon = document.createElement('span');
-      ballon.style.background = `url(../assets/img/other/ballon${j}.png)`;
-      ballon.style.backgroundSize = 'cover';
-      ballon.style.position = 'absolute';
-      let leftPosition = Math.floor(Math.random() * (window.innerWidth + 1));
-      let topPosition = Math.floor(Math.random() * (window.innerHeight * 1.5 + 1));
-      ballon.style.left = leftPosition + 'px';
-      ballon.style.top = topPosition + 'px';
-
-      balloons.appendChild(ballon);
-    }
-    balloonsContainer.appendChild(balloons);
-    return balloonsContainer;
+  const balloonsContainer = document.createElement('div');
+  balloonsContainer.className = 'balloonsContainer';
+  const balloons = document.createElement('div');
+  balloons.id = 'balloons';
+  for (let i = 1; i <= 10; i++) {
+    let ballon = document.createElement('span');
+    ballon.style.background = 'url(../assets/img/other/ballon' + i + '.png)';
+    ballon.style.backgroundSize = 'cover';
+    ballon.style.position = 'absolute';
+    let leftPosition = Math.floor(Math.random() * (1050 - 0 + 1) + 50) ;
+    let topPosition = Math.floor(Math.random() * (1000 - 0 + 1));
+    // let leftPosition = Math.floor(Math.random() * window.innerWidth / 2.5) - 600 ;
+    // let topPosition = Math.floor(Math.random() * window.innerHeight / 2.5) - 300;
+    ballon.style.left = leftPosition + 'px';
+    ballon.style.top = topPosition + 'px';
+    balloons.appendChild(ballon);
   }
+  balloonsContainer.appendChild(balloons);
+  return balloonsContainer;
+}
 
 function tapBalloons() {
   const audio1 = new AudioController();
@@ -166,3 +262,33 @@ function tapBalloons() {
   });
 }
 
+function taskIsDone() {
+  tasksCount--;
+  const tasksPointsDiv = document.querySelector('#tasksPoints');
+  let points = tasksPointsDiv.children;
+  let n = tasksCount;
+  let point = points[n];
+
+  if (tasksCount != 0) {
+    audio.dropSound();
+    point.style.background = 'url(../assets/img/icons/redcircle.png)';
+    point.style.backgroundSize = 'cover';
+  } else {
+    audio.dropSound();
+    point.style.background = 'url(../assets/img/icons/redcircle.png)';
+    point.style.backgroundSize = 'cover';
+
+    setTimeout(() => {
+
+      //function endGame()
+      document.querySelector('.overlay').classList.add('visible');
+      audio.hooraySound();
+      tapBalloons();
+
+      setTimeout(() => {
+        turnBack();
+      }, 8000)
+
+    }, 100);
+  }
+}
