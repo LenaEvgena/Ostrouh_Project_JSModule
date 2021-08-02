@@ -101,10 +101,7 @@ class MemoryGame {
   }
 }
 
-
-
-
-function initLogicGame() {
+export function initLogicGame() {
   const cards = Array.from(document.querySelectorAll('.card'));
   const memoryGame = new MemoryGame(cards);
 

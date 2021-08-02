@@ -1,6 +1,11 @@
 'use strict';
 
-function initShapesGame() {
+import { AudioController } from './AudioController.js';
+import * as SPA from './SPA.js';
+
+export function initShapesGame() {
+  const audio = new AudioController();
+
   const imagesBase = `../assets/img/shapes/images/`;
   const shadowsBase = `../assets/img/shapes/shadows/`;
   const images = ['cat', 'cow', 'dog', 'horse', 'lamb', 'pig', 'turkey'];
@@ -163,11 +168,9 @@ function initShapesGame() {
   }
 
   function turnBack() {
-    document.querySelector('.shapes_game_wrapper').style.display = 'none';
     back_arrow.style.transform = 'scale(0.9)';
     back_arrow.style.cursor = 'pointer';
-
-    document.querySelector('.menu_wrapper').style.display = 'flex';
+    SPA.switchToMenu();
   }
 
   function createShapesPage() {
@@ -224,8 +227,9 @@ function initShapesGame() {
     const back_arrow = document.createElement('img');
     back_arrow.src = '../assets/img/other/arrow_back.png'
     back_arrow.className = 'back_arrow';
-    back_arrow.setAttribute('onclick',"new Audio('../assets/sounds/click2.mp3').play()");
-
+    back_arrow.onclick = () => {
+      audio.clickSound();
+    }
     return back_arrow;
   }
 
@@ -300,21 +304,19 @@ function initShapesGame() {
     let points = tasksPointsDiv.children;
     let n = tasksCount;
     let point = points[n];
-    const drop = new Audio('../assets/sounds/drop1.mp3');
-    const hooray = new Audio('../assets/sounds/hooray.mp3');
 
     if (tasksCount != 0) {
-      drop.play();
+      audio.dropSound();
       point.style.background = 'url(../assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
     } else {
+      audio.dropSound();
       point.style.background = 'url(../assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
-      drop.play();
 
       setTimeout(() => {
         document.querySelector('.overlay').style.display = 'flex';
-        hooray.play();
+        audio.hooraySound();
         tapBalloons();
 
         setTimeout(() => {

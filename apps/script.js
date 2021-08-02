@@ -1,6 +1,10 @@
 'use strict';
+import * as SPA from './SPA.js';
+import { AudioController } from './AudioController.js';
 
-function iniStartPage() {
+export function initStartPage() {
+  const audio = new AudioController();
+
   const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createMainPage() );
 
@@ -11,15 +15,7 @@ function iniStartPage() {
   playButton.addEventListener('touchstart', () => playButton.style.transform = 'scale(0.9)');
   playButton.addEventListener('touchend', () => playButton.style.transform = 'scale(1.0)');
 
-  playButton.addEventListener('click', startMenuPage);
-
-
-  function startMenuPage() {
-    const main_wrapper = document.querySelector('.main_wrapper');
-    main_wrapper.style.display = 'none';
-
-    initMenuPage();
-  }
+  playButton.addEventListener('click', SPA.switchToMenu);
 
   function createMainPage() {
     const main_wrapper = document.createElement('div');
@@ -34,96 +30,10 @@ function iniStartPage() {
     img.className = 'btn_img';
     img.alt = 'play_icon';
     img.onclick = () => {
-      new Audio('../assets/sounds/click2.mp3').play();
-      // audio.clickSound();
+      audio.clickSound();
     };
-    // img.setAttribute("onclick","new Audio('../assets/sounds/click1.mp3').play()");
     main_button.appendChild(img);
 
     return main_wrapper;
   }
 }
-
-window.onload = () => iniStartPage();
-window.addEventListener('load', () => {
-  // const bgMusic = new AudioController;
-  // bgMusic.startMusic();
-})
-
-
-
-//SPA
-
-window.onhashchange = renderNewState;
-
-function renderNewState() {
-  const hash = window.location.hash;
-  let state = decodeURIComponent(hash.substr(1));
-
-  (state.page === '') ? state = { page: 'Menu' } : state = JSON.parse(state);
-  let page = '';
-
-  switch (state.page) {
-    case 'Start':
-      iniStartPage();
-      break;
-    case 'Menu':
-
-      break;
-    case 'Colors':
-
-      break;
-    case 'Shapes':
-
-      break;
-    case 'Logic':
-
-      break;
-    case 'LogicEasy':
-
-      break;
-    case 'LogicMedium':
-
-      break;
-    case 'LogicHard':
-
-      break;
-  }
-  document.querySelector('.wrapper').innerHTML = page;
-}
-
-function switchToState(state) {
-  window.location.hash = encodeURIComponent(JSON.stringify(state));
-}
-
-function switchToStart(state) {
-  switchToState({ page: "Start" });
-}
-
-function switchToMenu(state) {
-  switchToState({ page: "Menu" });
-}
-
-function switchToColors(state) {
-  switchToState({ page: 'Colors' });
-}
-
-function switchToShapes(state) {
-  switchToState({ page: "Shapes" });
-}
-
-function switchToLogic(state) {
-  switchToState({ page: "Logic" });
-}
-
-function switchToLogicEasy(state) {
-  switchToState({ page: 'LogicEasy' });
-}
-function switchToLogicMedium(state) {
-  switchToState({ page: 'LogicMedium' });
-}
-function switchToLogicHard(state) {
-  switchToState({ page: 'LogicHard' });
-}
-
-renderNewState();

@@ -1,8 +1,10 @@
 'use strict';
 
-function initColorsGame() {
-  let bgMusic = new AudioController;
-  bgMusic.stopMusic();
+import { AudioController } from './AudioController.js';
+import * as SPA from './SPA.js';
+
+export function initColorsGame() {
+  const audio = new AudioController();
 
   const base = '../assets/img/colors/';
   const toysImages = ['bluecar', 'blueduck', 'blueplane', 'greencar', 'greenduck', 'greenplane',
@@ -19,7 +21,6 @@ function initColorsGame() {
   const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createColorsPage() );
 
-  // document.querySelector('.colors_game_wrapper').style.display = 'flex';//после двух повторов без этого не работает
   const back_arrow = document.querySelector('.back_arrow');
   back_arrow.addEventListener('click', () => turnBack());
 
@@ -36,7 +37,6 @@ function initColorsGame() {
     container.addEventListener('mouseleave', DivDragLeave);
     container.addEventListener('mouseover', DivDragOver);
   });
-
 
   function Drag_Start(EO) {
     // началось перетаскивание мячика
@@ -114,6 +114,7 @@ function initColorsGame() {
     if (DraggedImage) {
       wrapper.removeChild(DraggedImage);
       DraggedImage.style.opacity = 0;
+      audio.dropSound();
       finishDrag();
       taskIsDone();
     }
@@ -140,10 +141,12 @@ function initColorsGame() {
     EO.preventDefault();
     EO.currentTarget.style.transform = 'scale(1.1)';
   }
+
   function DivDragOver(EO) {
     EO = EO || window.event;
     EO.preventDefault();
   }
+
   function DivDragLeave(EO) {
     EO = EO || window.event;
     EO.preventDefault();
@@ -151,9 +154,9 @@ function initColorsGame() {
   }
 
   function turnBack() {
-    document.querySelector('.colors_game_wrapper').style.display = 'none';
     back_arrow.style.transform = 'scale(0.9)';
-    document.querySelector('.menu_wrapper').style.display = 'flex';
+    back_arrow.style.cursor = 'pointer';
+    SPA.switchToMenu();
   }
 
   function createColorsPage() {
@@ -212,7 +215,9 @@ function initColorsGame() {
     const back_arrow = document.createElement('img');
     back_arrow.src = '../assets/img/other/arrow_back.png'
     back_arrow.className = 'back_arrow';
-    back_arrow.setAttribute('onclick',"new Audio('../assets/sounds/click2.mp3').play()");
+    back_arrow.onclick = () => {
+      audio.clickSound();
+    }
 
     return back_arrow;
   }
@@ -288,28 +293,24 @@ function initColorsGame() {
     let points = tasksPointsDiv.children;
     let n = colorTasksCount;
     let point = points[n];
-    const drop = new Audio('../assets/sounds/drop1.mp3');
-    const hooray = new Audio('../assets/sounds/hooray.mp3');
 
     if (colorTasksCount != 0) {
-      drop.play();
+      audio.dropSound();
       point.style.background = 'url(../assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
     } else {
+      audio.dropSound();
       point.style.background = 'url(../assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
-      drop.play();
 
       setTimeout(() => {
         document.querySelector('.overlay').style.display = 'flex';
-        hooray.play();
+        audio.hooraySound();
         tapBalloons();
 
         setTimeout(() => {
           turnBack();
         }, 8000)
-
-
       }, 100);
     }
   }
