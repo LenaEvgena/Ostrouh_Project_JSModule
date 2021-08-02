@@ -19,9 +19,9 @@ class MemoryGame {
   }
 
   endGame() {
-    const overlay1 = document.querySelector('.overlay1');
-    overlay1.classList.add('visible');
-    overlay1.appendChild( createBalloons() );
+    const overlay = document.querySelector('.overlay');
+    overlay.classList.add('visible');
+    overlay.appendChild( createBalloons() );
     tapBalloons();
     //sound
     this.audioController.hooraySound();

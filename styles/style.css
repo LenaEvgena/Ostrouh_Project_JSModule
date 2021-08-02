@@ -105,74 +105,7 @@ html {
   font-display: swap;
 }
 
-/*start main page*/
-.wrapper {
-  margin: 0 auto;
-  width: 100vw;
-  height: 100vh;
-}
-.main_wrapper {
-  background: url(../assets/img/backgrounds/startbg.jpg);
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.main_button {
-  margin: 0 auto;
-}
-.btn_img:hover {
-  transition: 0.3s;
-  filter: drop-shadow(8px 8px 10px green);
-  cursor: pointer;
-}
-/*end main page*/
-
-
-/*start menu*/
-.menu_wrapper {
-  position: relative;
-  background: url(../assets/img/backgrounds/menubg.png);
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.menu_images {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-column-gap: 20px;
-  grid-row-gap: 10px;
-}
-.menu_image:hover{
-  transition: 0.3s;
-  filter: drop-shadow(8px 8px 10px green);
-  cursor: pointer;
-  transform: scale(1.1);
-}
-/*end menu*/
-
-
-/*start colors page*/
-.colors_game_wrapper {
-  position: relative;
-  background: url(../assets/img/backgrounds/colorsbg.jpg);
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transform: translateZ(0);
-}
+/* controlls and overlay*/
 .back_arrow {
   position: absolute;
   top: 20px;
@@ -201,65 +134,21 @@ html {
   height: 20px;
   filter: drop-shadow(5px 5px 5px rgb(39, 38, 38));
 }
-.colors_drag_images {
-  position: absolute;
-  top: 20vh;
-  display: flex;
-  width: calc(100% - 10vw);
-  height: 300px;
-  overflow: hidden;
-  justify-content: left;
-  align-items: center;
-}
-
-.colors_drop_images{
-  position: absolute;
-  bottom: 10%;
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  width: 100vw;
-  justify-content: center;
-  align-items: center;
-  filter: drop-shadow(13px 15px 10px rgb(85, 82, 77));
-}
-
-.colors_drag_images, .colors_drop_images {
-  column-gap: 5vw;
-}
-
-.drag_image {
-  width: 200px;
-  opacity: 1;
-  padding: 10px;
-  animation: danceToys 2s linear infinite 200ms;
-  filter: drop-shadow(8px 8px 10px rgb(112, 100, 81));
-}
-
-.drop_image {
-  width: 200px;
-  padding: 10px;
-}
-
-.drag_image:hover {
-  cursor: pointer;
-  filter: drop-shadow(8px 8px 10px rgb(221, 173, 101));
-}
 
 .overlay {
-  /* display: flex; */
   display: none;
   position: fixed;
   left: 0;
   top: 0;
+  right: 0;
+  bottom: 0;
   width: 100vw;
   height: 100vh;
   margin: 0 auto;
-  background-color: rgba(170, 167, 167, 0.5);
   font-family: 'Permanent Marker', cursive;
-  font-size: 70px;
   background-size: cover;
   color:aqua;
-  text-shadow: 0 2px 0 rgb(110, 105, 105);
+  text-shadow: 0 2px 0 rgb(85, 80, 80);
   font-weight: bold;
   text-transform: uppercase;
   line-height: 1.5;
@@ -268,20 +157,15 @@ html {
   overflow: hidden;
   align-items: center;
   justify-content: center;
-  /* transition: background-color 500ms, font-size 500ms; */
-  /*transition: overlay-grow 500ms forwards; */
   transform: translateZ(0);
 }
-.overlay > span {
-  animation: overlayText-grow 2s ease-in-out;
-}
 
-.overlay1.visible {
+.overlay.visible {
   display: flex;
   animation: overlay-grow 500ms forwards;
 }
 
-.overlay1.visible > span {
+.overlay.visible > span {
   animation: overlayText-grow 2s ease-in-out;
 }
 
@@ -347,6 +231,118 @@ html {
   }
 }
 
+/*start main page*/
+.wrapper {
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+}
+.main_wrapper {
+  background: url(../assets/img/backgrounds/startbg.jpg);
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main_button {
+  margin: 0 auto;
+}
+.btn_img:hover {
+  transition: 0.3s;
+  filter: drop-shadow(8px 8px 10px green);
+  cursor: pointer;
+}
+/*end main page*/
+
+/*start menu*/
+.menu_wrapper {
+  position: relative;
+  background: url(../assets/img/backgrounds/menubg.png);
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu_images {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-column-gap: 20px;
+  grid-row-gap: 10px;
+}
+.menu_image:hover{
+  transition: 0.3s;
+  filter: drop-shadow(8px 8px 10px green);
+  cursor: pointer;
+  transform: scale(1.1);
+}
+/*end menu*/
+
+
+/*start colors page*/
+.colors_game_wrapper {
+  position: relative;
+  background: url(../assets/img/backgrounds/colorsbg.jpg);
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateZ(0);
+}
+
+.colors_drag_images {
+  position: absolute;
+  top: 20vh;
+  display: flex;
+  width: calc(100% - 10vw);
+  height: 300px;
+  overflow: hidden;
+  justify-content: left;
+  align-items: center;
+}
+
+.colors_drop_images{
+  position: absolute;
+  bottom: 10%;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(13px 15px 10px rgb(85, 82, 77));
+}
+
+.colors_drag_images, .colors_drop_images {
+  column-gap: 5vw;
+}
+
+.drag_image {
+  width: 200px;
+  opacity: 1;
+  padding: 10px;
+  animation: danceToys 2s linear infinite 200ms;
+  filter: drop-shadow(8px 8px 10px rgb(112, 100, 81));
+}
+
+.drop_image {
+  width: 200px;
+  padding: 10px;
+}
+
+.drag_image:hover {
+  cursor: pointer;
+  filter: drop-shadow(8px 8px 10px rgb(221, 173, 101));
+}
+
 @keyframes danceToys {
   0%, 100% {
     transform: translateY(0);
@@ -373,6 +369,7 @@ html {
   align-items: center;
   transform: translateZ(0);
 }
+
 .buttons_container {
   position: absolute;
   top: 0;
@@ -382,10 +379,12 @@ html {
   justify-content: space-between;
   z-index: 800;
 }
+
 .drop_container {
   width: calc(100% - 230px);
   align-self: flex-end;
 }
+
 .shapes_drop_images {
   display: grid;
   grid-template-columns: repeat(4, auto);
@@ -393,9 +392,11 @@ html {
   justify-content: stretch;
   align-items: center;
 }
+
 .shape_image:hover {
   cursor: pointer;
 }
+
 .shadow_image {
   width: 150px;
   padding: 15px;
@@ -414,6 +415,7 @@ html {
   justify-content: center;
   align-items: center;
 }
+
 .shapes_drag_images{
   position: relative;
   height: 880px;
@@ -421,12 +423,14 @@ html {
   display: flex;
   flex-direction: column;
 }
+
 .shape_image {
   width: 150px;
   filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
   padding: 20px;
   animation: danceToys1 1s linear infinite 200ms;
 }
+
 @keyframes danceToys1 {
   0%, 100% {
     transform: rotate(0);
@@ -534,46 +538,6 @@ html {
 
 .card.matched .card_front .animal {
   animation: dance1 1s linear infinite 500ms;
-}
-
-.overlay1 {
-  display: none;
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  margin: 0 auto;
-  font-family: 'Permanent Marker', cursive;
-  background-size: cover;
-  color:aqua;
-  text-shadow: 0 2px 0 rgb(85, 80, 80);
-  font-weight: bold;
-  text-transform: uppercase;
-  line-height: 1.5;
-  letter-spacing: 8px;
-  z-index: 1000;
-  overflow: hidden;
-  align-items: center;
-  justify-content: center;
-  /* transition: background-color 500ms, font-size 500ms; */
-  transform: translateZ(0);
-}
-.overlay1.visible {
-  display: flex;
-  animation: overlay-grow 500ms forwards;
-}
-@keyframes overlay-grow {
-  from {
-    background-color: rgba(0, 0, 0, 0);
-    font-size: 0;
-  }
-  to {
-    background-color: rgba(173, 146, 131, 0.596);
-    font-size: 70px;
-  }
 }
 
 @keyframes dance {

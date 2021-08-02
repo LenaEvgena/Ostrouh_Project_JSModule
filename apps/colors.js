@@ -237,7 +237,6 @@ export function initColorsGame() {
   function createOverlay() {
     const overlay = document.createElement('div');
     overlay.className = 'overlay';
-    overlay.style.display = 'none';
     let span = document.createElement('span');
     span.textContent = 'excellent!!!';
 
@@ -304,7 +303,7 @@ export function initColorsGame() {
       point.style.backgroundSize = 'cover';
 
       setTimeout(() => {
-        document.querySelector('.overlay').style.display = 'flex';
+        document.querySelector('.overlay').classList.add('visible');
         audio.hooraySound();
         tapBalloons();
 
