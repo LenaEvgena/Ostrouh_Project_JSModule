@@ -22,8 +22,8 @@ export function initMenuPage() {
     menu_images.className = 'menu_images';
 
     menu_wrapper.appendChild(menu_images);
-    menu_images.appendChild( createMenuImage('wilddomestic_menu', 'Ilogic', 'logic') );
     menu_images.appendChild( createMenuImage('colors_menu', 'Icolors', 'colors') );
+    menu_images.appendChild( createMenuImage('wilddomestic_menu', 'Ilogic', 'logic') );
     menu_images.appendChild( createMenuImage('shapes_menu', 'Ishapes', 'shapes') );
 
     return menu_wrapper;

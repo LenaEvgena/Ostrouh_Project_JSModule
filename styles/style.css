@@ -73,10 +73,6 @@ html {
   overflow-x: hidden;
 }
 
-:root {
-  font-size: 16px;
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
 @font-face {
@@ -237,6 +233,7 @@ html {
   width: 100vw;
   height: 100vh;
 }
+
 .main_wrapper {
   background: url(../assets/img/backgrounds/startbg.jpg);
   width: 100vw;
@@ -247,9 +244,11 @@ html {
   justify-content: center;
   align-items: center;
 }
+
 .main_button {
   margin: 0 auto;
 }
+
 .btn_img:hover {
   transition: 0.3s;
   filter: drop-shadow(8px 8px 10px green);
@@ -269,12 +268,11 @@ html {
   justify-content: center;
   align-items: center;
 }
+
 .menu_images {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-column-gap: 20px;
-  grid-row-gap: 10px;
+  display: flex;
 }
+
 .menu_image:hover{
   transition: 0.3s;
   filter: drop-shadow(8px 8px 10px green);
@@ -282,7 +280,6 @@ html {
   transform: scale(1.1);
 }
 /*end menu*/
-
 
 /*start colors page*/
 .colors_game_wrapper {

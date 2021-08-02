@@ -9,6 +9,10 @@
 }
 
 @media only screen and (max-width:1170px) {
+  /*menu page*/
+  .menu_image {
+    width: 35vw;
+  }
   /*logic page*/
   .cards_container {
     grid-template-columns: repeat(6, auto);
@@ -66,6 +70,27 @@
   }
 }
 
+@media only screen and (max-width:767px) {
+  /*main page*/
+  .btn_img {
+    width: 33vw;
+  }
+  /*menu page*/
+  .menu_image {
+    width: 30vw;
+  }
+  /*colors page*/
+  .back_arrow {
+    top: 10px;
+    left: 10px;
+    width: 5vw;
+  }
+  .drag_image, .drop_image {
+    width: 15vw;
+    column-gap: 4vw;
+  }
+}
+
 @media only screen and (max-width:540px) {
   /*logic page*/
   .cards_container {
@@ -87,43 +112,17 @@
   }
 }
 
-@media only screen and (max-width:767px) {
-  /*main page*/
-  .btn_img {
-    width: 33vw;
-  }
-  /*menu page*/
-  .menu_image {
-    width: 40vw;
-  }
-  /*colors page*/
-  .back_arrow {
-    top: 10px;
-    left: 10px;
-    width: 5vw;
-  }
-  .drag_image, .drop_image {
-    width: 15vw;
-    column-gap: 4vw;
-  }
 
-}
 
 @media only screen and (max-height:750px) {
   /*menu page*/
   .menu_image {
-    width: 42vh;
+    width: 40vh;
   }
 }
 @media only screen and (max-height:520px) {
   .btn_img {
     width: 50vh;
-  }
-  /*menu page*/
-  .menu_images {
-    display:flex;
-    flex-direction: row;
-    grid-column-gap: 0px;
   }
   /*colors page*/
   .colors_drag_images {
@@ -137,7 +136,6 @@
   .drag_image, .drop_image {
     width: 30vh;
   }
-
 
 }
 
