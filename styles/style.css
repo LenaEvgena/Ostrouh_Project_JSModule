@@ -113,22 +113,25 @@ html {
   transition: 0.3s;
   filter: drop-shadow(6px 6px 8px rgb(122, 118, 110));
 }
+
 .back_arrow:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
+
 #tasksPoints {
   position: absolute;
   top: 20px;
   right: 20px;
 }
+
 #tasksPoints span {
   display: block;
   margin: 10px;
   float: left;
   width: 20px;
   height: 20px;
-  filter: drop-shadow(5px 5px 5px rgb(39, 38, 38));
+  filter: drop-shadow(2px 2px 4px rgb(24, 23, 23));
 }
 
 .overlay {
@@ -271,6 +274,10 @@ html {
 
 .menu_images {
   display: flex;
+}
+
+.menu_image {
+  animation: danceToys1 1.5s linear infinite 200ms;
 }
 
 .menu_image:hover{

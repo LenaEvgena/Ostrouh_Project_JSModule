@@ -11,7 +11,7 @@ export class AudioController {
     this.cardPop = new Audio('../assets/sounds/cardpop.mp3');
     this.drop = new Audio('../assets/sounds/drop1.mp3');
 
-    // this.balloonPop.volume = 0.01;
+    this.balloonPop.volume = 0.2;
     this.bgMusic.volume = 0.03;
     this.bgMusic.loop = true;
   }
@@ -32,7 +32,7 @@ export class AudioController {
     this.slide.play();
   }
   balloonPopSound() {
-    this.balloon.play();
+    this.balloonPop.play();
   }
   hooraySound() {
     this.hooray.play();

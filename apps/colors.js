@@ -153,12 +153,6 @@ export function initColorsGame() {
     EO.currentTarget.style.transform = 'scale(1.0)';
   }
 
-  function turnBack() {
-    back_arrow.style.transform = 'scale(0.9)';
-    back_arrow.style.cursor = 'pointer';
-    SPA.switchToMenu();
-  }
-
   function createColorsPage() {
     const colors_game_wrapper = document.createElement('div');
     colors_game_wrapper.className = 'colors_game_wrapper';
@@ -209,6 +203,19 @@ export function initColorsGame() {
       parent.appendChild(img);
     }
     return parent;
+  }
+
+  function shuffleImages(array) {
+    array.sort(() => Math.random() - 0.5);
+    return array;
+  }
+
+
+
+  function turnBack() {
+    back_arrow.style.transform = 'scale(0.9)';
+    back_arrow.style.cursor = 'pointer';
+    SPA.switchToMenu();
   }
 
   function createBackArrow() {
@@ -268,21 +275,18 @@ export function initColorsGame() {
   }
 
   function tapBalloons() {
-    const balloonPop = new Audio('../assets/sounds/balloonpop.mp3');
+    const audio1 = new AudioController();
 
-    let balloons = Array.from(document.querySelectorAll('#balloons span'));
-    balloons.forEach(balloon => {
-      balloon.addEventListener('click', (e) => {
-        e.preventDefault();
+    let balloons = document.querySelector('#balloons');
+    balloons.addEventListener('click', (e) => {
+      e.preventDefault();
 
-        e.target.style.background = 'url(../assets/img/other/confetti.png)';
-        e.target.style.backgroundSize = 'cover';
-        e.target.style.width = '150px';
-        balloonPop.play();
+      e.target.style.background = 'url(../assets/img/other/confetti.png)';
+      e.target.style.backgroundSize = 'cover';
+      e.target.style.width = '150px';
+      audio1.balloonPopSound();
 
-        setTimeout(() => {e.target.style.display = 'none'}, 500);
-        //sound
-      });
+      setTimeout(() => {e.target.style.display = 'none'}, 300);
     });
   }
 
@@ -312,10 +316,5 @@ export function initColorsGame() {
         }, 8000)
       }, 100);
     }
-  }
-
-  function shuffleImages(array) {
-    array.sort(() => Math.random() - 0.5);
-    return array;
   }
 }

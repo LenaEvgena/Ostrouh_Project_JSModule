@@ -167,12 +167,6 @@ export function initShapesGame() {
     document.removeEventListener('mouseup', onMouseUp);
   }
 
-  function turnBack() {
-    back_arrow.style.transform = 'scale(0.9)';
-    back_arrow.style.cursor = 'pointer';
-    SPA.switchToMenu();
-  }
-
   function createShapesPage() {
     const shapes_game_wrapper = document.createElement('div');
     shapes_game_wrapper.className = 'shapes_game_wrapper';
@@ -221,6 +215,14 @@ export function initShapesGame() {
       img.id = imageId + '-1';
       img.className = 'shadow_image';
     return img;
+  }
+
+
+
+  function turnBack() {
+    back_arrow.style.transform = 'scale(0.9)';
+    back_arrow.style.cursor = 'pointer';
+    SPA.switchToMenu();
   }
 
   function createBackArrow() {
@@ -279,21 +281,18 @@ export function initShapesGame() {
   }
 
   function tapBalloons() {
-    const balloonPop = new Audio('../assets/sounds/balloonpop.mp3');
+    const audio1 = new AudioController();
 
-    let balloons = Array.from(document.querySelectorAll('#balloons span'));
-    balloons.forEach(balloon => {
-      balloon.addEventListener('click', (e) => {
-        e.preventDefault();
+    let balloons = document.querySelector('#balloons');
+    balloons.addEventListener('click', (e) => {
+      e.preventDefault();
 
-        e.target.style.background = 'url(../assets/img/other/confetti.png)';
-        e.target.style.backgroundSize = 'cover';
-        e.target.style.width = '150px';
-        balloonPop.play();
+      e.target.style.background = 'url(../assets/img/other/confetti.png)';
+      e.target.style.backgroundSize = 'cover';
+      e.target.style.width = '150px';
+      audio1.balloonPopSound();
 
-        setTimeout(() => {e.target.style.display = 'none'}, 500);
-        //sound
-      });
+      setTimeout(() => {e.target.style.display = 'none'}, 300);
     });
   }
 
@@ -325,6 +324,4 @@ export function initShapesGame() {
       }, 100);
     }
   }
-
-
 }
