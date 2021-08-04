@@ -86,12 +86,12 @@ class MemoryGame {
       this.isBusy = false;
       this.count--;
       this.controlls.taskIsDone(this.count);
-    }, 500);
+    }, 800);
     //win
     if (this.matchedCardsArray.length === this.cardsArray.length) {
       setTimeout(() => {
         this.endGame();
-      }, 1000);
+      }, 500);
     }
   }
 
@@ -103,7 +103,7 @@ class MemoryGame {
       this.closeCard(card1);
       this.closeCard(card2);
       this.isBusy = false;
-    }, 1000);
+    }, 800);
     //обнуляем карту
     this.checkingCard = null;
   }
@@ -134,9 +134,6 @@ class MemoryGame {
     logic_game_wrapper.appendChild( this.overlay.createOverlay() );
     logic_game_wrapper.appendChild( this.createCard(this.images) );
     console.log(this.images);
-    // logic_game_wrapper.appendChild( createOverlay() );
-    // buttons_container.appendChild( createBackArrow() );
-    // buttons_container.appendChild( createTaskCheckPoint(this.tasksCount) );
 
     wrapper.appendChild( logic_game_wrapper );
   }
