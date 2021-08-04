@@ -1,11 +1,11 @@
 'use strict';
 
 import { AudioController } from './AudioController.js';
-import { Controlls } from './Controlls.js';
 
 export class Overlay {
   constructor() {
-    this.createOverlay();
+    this.audioController = new AudioController();
+    // this.createOverlay();
   }
   createOverlay() {
     const overlay = document.createElement('div');
@@ -24,6 +24,7 @@ export class Overlay {
     const balloons = document.createElement('div');
     balloons.id = 'balloons';
     // balloons.addEventListener('click', this.tapBalloons());
+    balloons.onclick = () => this.tapBalloons();
     this.drawBalloons(balloons);
     this.drawBalloons(balloons);
     balloonsContainer.appendChild(balloons);
@@ -43,15 +44,15 @@ export class Overlay {
       parent.appendChild(ballon);
     }
   }
-  tapBalloons(e) {
-    e = e || window.event;
-    e.preventDefault();
-    e.target.style.background = 'url(../assets/img/other/confetti.png)';
-    e.target.style.backgroundSize = 'cover';
-    e.target.style.width = '150px';
-    AudioController.balloonPopSound();
+  tapBalloons(EO) {
+    EO = EO || window.EO;
+    // EO.preventDefault();
+    EO.target.style.background = 'url(../assets/img/other/confetti.png)';
+    EO.target.style.backgroundSize = 'cover';
+    EO.target.style.width = '150px';
+    this.audioController.balloonPopSound();
 
-    setTimeout(() => {e.target.style.display = 'none'}, 300);
+    setTimeout(() => {EO.target.style.display = 'none'}, 300);
   }
   endGame() {
     document.querySelector('.overlay').classList.add('visible');

@@ -2,7 +2,6 @@
 
 import { AudioController } from './AudioController.js';
 import * as SPA from './SPA.js';
-import { Overlay } from './Overlay.js';
 
 export class Controlls {
   constructor(count) {
@@ -46,7 +45,6 @@ export class Controlls {
     } else {
       point.style.background = 'url(../assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
-      // Overlay.endGame();
     }
   }
 }

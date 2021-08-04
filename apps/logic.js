@@ -1,13 +1,12 @@
 'use strict';
 
 import { AudioController } from './AudioController.js';
-import * as SPA from './SPA.js';
 import { Controlls } from './Controlls.js';
 import { Overlay } from './Overlay.js';
 
 class MemoryGame {
-  // constructor(cards) {
   constructor() {
+    // constructor(cards) {
     this.audioController = new AudioController();
     this.overlay = new Overlay();
     this.images = ['cat', 'cow', 'croco', 'dog', 'elef', 'girrafe', 'horse', 'lamb', 'lion', 'monkey', 'panda', 'pig', 'squirrel', 'turkey', 'zebra'];
@@ -38,13 +37,14 @@ class MemoryGame {
 
   endGame() {
     this.overlay.endGame();
+    this.audioController.hooraySound();
     setTimeout(() => {
       this.controlls.turnBack();
     }, 8000)
   }
 
   openCard(card) {
-    if(card !== this.checkingCard && !this.isBusy) {//можем ли мы открыть карту
+    if(card !== this.checkingCard && !this.isBusy && !this.matchedCardsArray.includes(card)) {//можем ли мы открыть карту, послюусловие - т.к. неверно работает при нажатии на уже скрытую карту
       card.classList.add('visible');
       //sound
       this.audioController.clickSound();
@@ -86,11 +86,12 @@ class MemoryGame {
       this.isBusy = false;
       this.count--;
       this.controlls.taskIsDone(this.count);
-    }, 1000);
+    }, 500);
     //win
     if (this.matchedCardsArray.length === this.cardsArray.length) {
-      this.endGame();
-      this.audioController.hooraySound();
+      setTimeout(() => {
+        this.endGame();
+      }, 1000);
     }
   }
 
@@ -181,124 +182,4 @@ export function initLogicGame() {
   // const memoryGame = new MemoryGame(cards);
   const memoryGame = new MemoryGame();
   memoryGame.startGame();
-
-  // cards.forEach(card => {
-  //   card.addEventListener('click', () => {
-  //     //переворот карты
-  //     memoryGame.openCard(card);
-  //   });
-  // });
 }
-
-
-
-// function turnBack() {
-//   const back_arrow = document.querySelector('.back_arrow');
-//   back_arrow.style.transform = 'scale(0.9)';
-//   back_arrow.style.cursor = 'pointer';
-//   SPA.switchToMenu();
-// }
-
-// function createBackArrow() {
-//   const back_arrow = document.createElement('img');
-//   back_arrow.src = '../assets/img/other/arrow_back.png'
-//   back_arrow.className = 'back_arrow';
-//   back_arrow.onclick = () => {
-//     audio.clickSound();
-//   }
-//   back_arrow.addEventListener('click', () => turnBack());
-//   return back_arrow;
-// }
-
-// function createTaskCheckPoint(count) {
-//   const tasksPointsDiv = document.createElement('div');
-//   tasksPointsDiv.id = 'tasksPoints';
-//   for (let i = 0; i < count; i++) {
-//     const taskPoint = document.createElement('span');
-//     taskPoint.style.background = 'url(../assets/img/icons/emptycircle.png)';
-//     taskPoint.style.backgroundSize = 'cover';
-//     tasksPointsDiv.appendChild(taskPoint);
-//   }
-//   return tasksPointsDiv;
-// }
-
-// function createOverlay() {
-//   const overlay = document.createElement('div');
-//   overlay.className = 'overlay';
-//   let span = document.createElement('span');
-//   span.className = 'overlay_text';
-//   span.textContent = 'excellent!!!';
-
-//   overlay.appendChild(span);
-//   overlay.appendChild( createBalloons() );
-//   return overlay;
-// }
-
-// function createBalloons() {
-//   const balloonsContainer = document.createElement('div');
-//   balloonsContainer.className = 'balloonsContainer';
-//   const balloons = document.createElement('div');
-//   balloons.id = 'balloons';
-//   for (let i = 1; i <= 10; i++) {
-//     let ballon = document.createElement('span');
-//     ballon.style.background = 'url(../assets/img/other/ballon' + i + '.png)';
-//     ballon.style.backgroundSize = 'cover';
-//     ballon.style.position = 'absolute';
-//     let leftPosition = Math.floor(Math.random() * (1050 - 0 + 1) + 50) ;
-//     let topPosition = Math.floor(Math.random() * (1000 - 0 + 1));
-//     // let leftPosition = Math.floor(Math.random() * window.innerWidth / 2.5) - 600 ;
-//     // let topPosition = Math.floor(Math.random() * window.innerHeight / 2.5) - 300;
-//     ballon.style.left = leftPosition + 'px';
-//     ballon.style.top = topPosition + 'px';
-//     balloons.appendChild(ballon);
-//   }
-//   balloonsContainer.appendChild(balloons);
-//   return balloonsContainer;
-// }
-
-// function tapBalloons() {
-//   const audio1 = new AudioController();
-
-//   let balloons = document.querySelector('#balloons');
-//   balloons.addEventListener('click', (e) => {
-//     e.preventDefault();
-
-//     e.target.style.background = 'url(../assets/img/other/confetti.png)';
-//     e.target.style.backgroundSize = 'cover';
-//     e.target.style.width = '150px';
-//     audio1.balloonPopSound();
-
-//     setTimeout(() => {e.target.style.display = 'none'}, 300);
-//   });
-// }
-
-// function taskIsDone() {
-//   tasksCount--;
-//   const tasksPointsDiv = document.querySelector('#tasksPoints');
-//   let points = tasksPointsDiv.children;
-//   let n = tasksCount;
-//   let point = points[n];
-
-//   if (tasksCount != 0) {
-//     audio.dropSound();
-//     point.style.background = 'url(../assets/img/icons/redcircle.png)';
-//     point.style.backgroundSize = 'cover';
-//   } else {
-//     audio.dropSound();
-//     point.style.background = 'url(../assets/img/icons/redcircle.png)';
-//     point.style.backgroundSize = 'cover';
-
-//     setTimeout(() => {
-
-//       //function endGame()
-//       document.querySelector('.overlay').classList.add('visible');
-//       audio.hooraySound();
-//       tapBalloons();
-
-//       setTimeout(() => {
-//         turnBack();
-//       }, 8000)
-
-//     }, 100);
-//   }
-// }
