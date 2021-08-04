@@ -21,6 +21,21 @@
 }
 
 @media only screen and (max-width:840px) {
+  /*shapes page*/
+  .drag_container {
+    width: 180px;
+  }
+  .drop_container {
+    width: calc(100% - 180px);
+  }
+  .shape_image {
+    width: 110px;
+    padding: 10px;
+  }
+  .shadow_image {
+    width: 110px;
+    padding: 10px;
+  }
   /*logic page*/
   .cards_container {
     grid-gap: 15px;
@@ -48,6 +63,21 @@
   /*menu page*/
   .menu_image {
     width: 30vw;
+  }
+  /*shapes page*/
+  .drag_container {
+    left: 0;
+    top: 0;
+    width: 180px;
+
+  }
+  .shape_image {
+    width: 100px;
+    padding: 10px;
+  }
+  .shadow_image {
+    width: 100px;
+    padding: 15px;
   }
   /*colors page*/
   .back_arrow {
@@ -109,5 +139,31 @@
     width: 30vh;
   }
 
+}
+
+@media only screen and (max-height:520px) {
+  /*logic page*/
+  .cards_container {
+    grid-template-columns: repeat(10, auto);
+    grid-gap: 7px;
+  }
+  .card {
+    width: 60px;
+    height: 60px;
+  }
+  .bubble {
+    width: 60px;
+  }
+  .animal {
+    width: 50px;
+  }
+  .back_image {
+    width: 60px;
+  }
+  #tasksPoints span {
+    margin: 5px;
+    width: 13px;
+    height: 13px;
+  }
 }
 

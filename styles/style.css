@@ -100,6 +100,7 @@ html {
 
 /* controlls and overlay*/
 .back_arrow {
+  /* display: none; */
   position: absolute;
   top: 20px;
   left: 20px;
@@ -400,7 +401,7 @@ html {
 }
 
 .shadow_image {
-  width: 150px;
+  width: 130px;
   padding: 15px;
   filter: drop-shadow(8px 8px 10px rgb(110, 103, 95));
 }
@@ -427,7 +428,7 @@ html {
 }
 
 .shape_image {
-  width: 150px;
+  width: 130px;
   filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
   padding: 20px;
   animation: danceToys1 1s linear infinite 200ms;
