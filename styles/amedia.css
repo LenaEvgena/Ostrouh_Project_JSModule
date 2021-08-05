@@ -1,18 +1,14 @@
 @media only screen and (max-width:1100px) {
   /*colors page*/
-  .colors_drag_images, .colors_drop_images {
+  /* .colors_drag_images, .colors_drop_images {
     column-gap: 5vw;
   }
   .drag_image, .drop_image {
     width: 15vw;
-  }
+  } */
 }
 
 @media only screen and (max-width:1170px) {
-  /*menu page*/
-  /* .menu_image {
-    width: 35vw;
-  } */
   /*logic page*/
   .cards_container {
     grid-template-columns: repeat(6, auto);
@@ -22,7 +18,7 @@
 
 @media only screen and (max-width:840px) {
   /*shapes page*/
-  .drag_container {
+  /* .drag_container {
     width: 180px;
   }
   .drop_container {
@@ -35,7 +31,7 @@
   .shadow_image {
     width: 110px;
     padding: 10px;
-  }
+  } */
   /*logic page*/
   .cards_container {
     grid-gap: 15px;
@@ -60,16 +56,11 @@
   .btn_img {
     width: 33vw;
   }
-  /*menu page*/
-  /* .menu_image {
-    width: 30vw;
-  } */
   /*shapes page*/
   .drag_container {
     left: 0;
     top: 0;
     width: 180px;
-
   }
   .shape_image {
     width: 100px;
@@ -80,20 +71,15 @@
     padding: 15px;
   }
   /*colors page*/
-  .back_arrow {
-    top: 10px;
-    left: 10px;
-    width: 5vw;
-  }
   #tasksPoints span {
     margin: 5px;
     width: 13px;
     height: 13px;
   }
-  .drag_image, .drop_image {
+  /* .drag_image, .drop_image {
     width: 15vw;
     column-gap: 4vw;
-  }
+  } */
   /*logic page*/
   .cards_container {
     grid-template-columns: repeat(4, auto);
@@ -117,10 +103,6 @@
 
 
 @media only screen and (max-height:750px) {
-  /*menu page*/
-  /* .menu_image {
-    width: 40vh;
-  } */
   /*logic page*/
   .cards_container {
     grid-template-columns: repeat(10, auto);
@@ -150,17 +132,12 @@
     width: 50vh;
   }
   /*colors page*/
-  .colors_drag_images {
+  /* .colors_drag_images {
     margin-bottom: 70px;
-  }
-  .back_arrow {
-    top: 10px;
-    left: 10px;
-    width: 7vh;
   }
   .drag_image, .drop_image {
     width: 30vh;
-  }
+  } */
   /*logic page*/
   .cards_container {
     grid-template-columns: repeat(6, auto);
