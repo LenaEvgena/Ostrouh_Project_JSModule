@@ -1,15 +1,14 @@
 'use strict';
 
-import { AudioController } from './AudioController.js';
+// import { AudioController } from './AudioController.js';
 import { Controlls } from './Controlls.js';
 import { Overlay } from './Overlay.js';
 
-class MemoryGame {
+export class MemoryGame {
   constructor(images) {
     this.images = images;
     this.tasksCount = this.images.length;
     this.count = this.tasksCount;
-    this.audioController = new AudioController();
     this.overlay = new Overlay();
     this.controlls = new Controlls(this.tasksCount);
     this.renderLogicPage();
@@ -23,7 +22,8 @@ class MemoryGame {
     setTimeout(() => {
       this.isBusy = false;//можем начинать играть
     }, 500);
-    // this.audioController.startMusic();
+
+    this.controlls.updateMusicButton(globalThis.audioController);
     this.shuffleCards(this.cardsArray);
     this.cardsArray.forEach(card => {
       card.addEventListener('click', () => {
@@ -35,7 +35,8 @@ class MemoryGame {
 
   endGame() {
     this.overlay.endGame();
-    this.audioController.hooraySound();
+    globalThis.audioController.stopMusic();
+    globalThis.audioController.hooraySound();
     setTimeout(() => {
       this.controlls.turnBack();
     }, 8000)
@@ -45,7 +46,8 @@ class MemoryGame {
     if(card !== this.checkingCard && !this.isBusy && !this.matchedCardsArray.includes(card)) {//можем ли мы открыть карту, послюусловие - т.к. неверно работает при нажатии на уже скрытую карту
       card.classList.add('visible');
       //sound
-      this.audioController.clickSound();
+      // this.audioController.clickSound();
+      globalThis.audioController.clickSound();
       //проверка на совпадение
       if (this.checkingCard) { //если можем, и карта уже есть одна нажатая - проверяем совпадение
         this.checkMatching(card);
@@ -72,13 +74,14 @@ class MemoryGame {
   isMatched(card1, card2) {
     this.matchedCardsArray.push(card1);
     this.matchedCardsArray.push(card2);
-    console.log(this.matchedCardsArray);
+    // console.log(this.matchedCardsArray);
     card1.classList.add('matched');
     card2.classList.add('matched');
     this.isBusy = true;
     //убрать карту
     setTimeout(() => {
-      this.audioController.cardPopSound();
+      // this.audioController.cardPopSound();
+      globalThis.audioController.cardPopSound();
       card1.style.opacity = '0';
       card2.style.opacity = '0';
       card1.style.cursor = 'auto';
@@ -98,7 +101,8 @@ class MemoryGame {
   notMatched(card1, card2) {
     this.isBusy = true;
     setTimeout(() => {
-      this.audioController.flipSound();
+      // this.audioController.flipSound();
+      globalThis.audioController.flipSound();
 
       this.closeCard(card1);
       this.closeCard(card2);
@@ -131,9 +135,10 @@ class MemoryGame {
     this.controlls.createTaskCheckPoint(this.tasksCount, buttons_container);
     logic_game_wrapper.appendChild( buttons_container );
 
+    // this.controlls.createMusicButton(logic_game_wrapper, this.audioController);
+    this.controlls.createMusicButton(logic_game_wrapper, globalThis.audioController);
     logic_game_wrapper.appendChild( this.overlay.createOverlay() );
     logic_game_wrapper.appendChild( this.createCard(this.images) );
-    console.log(this.images);
 
     wrapper.appendChild( logic_game_wrapper );
   }
@@ -172,11 +177,4 @@ class MemoryGame {
     }
     return cards_container;
   }
-}
-
-export function initLogicGame() {
-  const images = ['cat', 'cow', 'croco', 'dog', 'elef', 'girrafe', 'horse', 'lamb', 'lion', 'monkey', 'panda', 'pig', 'squirrel', 'turkey', 'zebra'];
-
-  const memoryGame = new MemoryGame(images);
-  memoryGame.startGame();
 }

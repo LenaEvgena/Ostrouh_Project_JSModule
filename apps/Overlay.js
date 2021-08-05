@@ -1,10 +1,11 @@
 'use strict';
 
-import { AudioController } from './AudioController.js';
+// import { AudioController } from './AudioController.js';
 
 export class Overlay {
   constructor() {
-    this.audioController = new AudioController();
+    this.createOverlay();
+    // this.audioController = new AudioController();
   }
 
   createOverlay() {
@@ -53,7 +54,8 @@ export class Overlay {
       EO.target.style.background = 'url(../assets/img/other/confetti.png)';
       EO.target.style.backgroundSize = 'cover';
       EO.target.style.width = '150px';
-      this.audioController.balloonPopSound();
+      // this.audioController.balloonPopSound();
+      globalThis.audioController.balloonPopSound();
 
       setTimeout(() => {EO.target.style.display = 'none'}, 300);
     });

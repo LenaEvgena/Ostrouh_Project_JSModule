@@ -1,11 +1,10 @@
 'use strict';
 
-import { AudioController } from './AudioController.js';
+// import { AudioController } from './AudioController.js';
 import * as SPA from './SPA.js';
 
 export class Controlls {
   constructor(count) {
-    this.audioController = new AudioController();
     this.count = count;
   }
 
@@ -20,10 +19,32 @@ export class Controlls {
     back_arrow.addEventListener('click', () => {
       back_arrow.style.transform = 'scale(0.9)';
       back_arrow.style.cursor = 'pointer';
-      this.audioController.clickSound();
+      globalThis.audioController.clickSound();
       this.turnBack();
     });
     parent.appendChild(back_arrow);
+  }
+
+  createMusicButton(parent, controller) {
+    const music_button = document.createElement('img');
+    music_button.src = '../assets/img/other/musicbutton.png'
+    music_button.className = 'music_button';
+
+    music_button.addEventListener('click', () => {
+      music_button.classList.toggle('clicked');
+      controller.toggleBgMusic();
+      this.updateMusicButton();
+    });
+    parent.appendChild(music_button);
+  }
+
+  updateMusicButton() {
+    const music_button = document.querySelector('.music_button');
+    if(globalThis.isPaused) {
+      music_button.classList.add('clicked');
+    } else {
+      music_button.classList.remove('clicked');
+    }
   }
 
   createTaskCheckPoint(count, parent) {

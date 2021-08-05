@@ -2,9 +2,10 @@
 import * as SPA from './SPA.js';
 import { AudioController } from './AudioController.js';
 
-export function initStartPage() {
-  const audio = new AudioController();
+globalThis.audioController = new AudioController();
+globalThis.isPaused = false;
 
+export function initStartPage() {
   const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createMainPage() );
 
@@ -16,8 +17,9 @@ export function initStartPage() {
   playButton.addEventListener('touchend', () => playButton.style.transform = 'scale(1.0)');
 
   playButton.addEventListener('click', SPA.switchToMenu);
+}
 
-  function createMainPage() {
+function createMainPage() {
     const main_wrapper = document.createElement('div');
     main_wrapper.className = 'main_wrapper';
 
@@ -30,10 +32,9 @@ export function initStartPage() {
     img.className = 'btn_img';
     img.alt = 'play_icon';
     img.onclick = () => {
-      audio.clickSound();
+      globalThis.audioController.clickSound();
     };
     main_button.appendChild(img);
 
     return main_wrapper;
   }
-}

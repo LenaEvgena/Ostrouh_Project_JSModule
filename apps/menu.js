@@ -1,15 +1,17 @@
 'use strict';
 
-import { AudioController } from './AudioController.js';
+// import { AudioController } from './AudioController.js';
 import { Controlls } from './Controlls.js';
 import * as SPA from './SPA.js';
 
 export function initMenuPage() {
-  const audio = new AudioController();
   const controlls = new Controlls();
+  if (!globalThis.isPaused) {
+    globalThis.audioController.startMusic();
+  }
 
   const wrapper = document.querySelector('.wrapper');
-  wrapper.appendChild( createMenuPage() );
+  wrapper.appendChild( createMenuPage(controlls, globalThis.audioController) );
 
   const buttons = Array.from(document.querySelectorAll('.menu_element'));
   const easyGame = document.getElementById('easy');
@@ -18,34 +20,47 @@ export function initMenuPage() {
 
   buttons.forEach(button => {
     button.addEventListener('mouseover', () => {
-      audio.slideSound();
+      globalThis.audioController.slideSound();
     })
   });
   easyGame.addEventListener('click', () => {
-    audio.clickSound();
-    SPA.switchToShapes();
+    globalThis.audioController.clickSound();
+    SPA.switchToLogicEasy();
   });
   mediumGame.addEventListener('click', () => {
-    audio.clickSound();
-    SPA.switchToColors();
+    globalThis.audioController.clickSound();
+    SPA.switchToLogicMedium();
   });
   hardGame.addEventListener('click', () => {
-    audio.clickSound();
-    SPA.switchToLogic();
+    globalThis.audioController.clickSound();
+    SPA.switchToLogicHard();
   });
+  // easyGame.addEventListener('click', () => {
+  //   audioController.clickSound();
+  //   SPA.switchToShapes();
+  // });
+  // mediumGame.addEventListener('click', () => {
+  //   audioController.clickSound();
+  //   SPA.switchToColors();
+  // });
+  // hardGame.addEventListener('click', () => {
+  //   audioController.clickSound();
+  //   SPA.switchToLogic();
+  // });
+  controlls.updateMusicButton(globalThis.audioController);
 }
 
-  function createMenuPage() {
+  function createMenuPage(controlls, audio) {
     const menu_wrapper = document.createElement('div');
     menu_wrapper.className = 'menu_wrapper';
     const menu_elements = document.createElement('div');
     menu_elements.className = 'menu_elements';
-
     menu_wrapper.appendChild(menu_elements);
     menu_elements.appendChild( createMenuElement('greenbutton', 'easy') );
     menu_elements.appendChild( createMenuElement('orangebutton', 'medium') );
     menu_elements.appendChild( createMenuElement('redbutton', 'hard') );
 
+    controlls.createMusicButton(menu_wrapper, audio);
     return menu_wrapper;
   }
 
@@ -54,9 +69,6 @@ export function initMenuPage() {
     div.className = 'menu_element';
     div.id = id;
     div.style.backgroundImage = `url(../assets/img/menu/${image}.png)`;
-    // div.onmouseover = () => {
-    //   audio.slideSound();
-    // };
 
     const span = document.createElement('span');
     span.textContent = id;
