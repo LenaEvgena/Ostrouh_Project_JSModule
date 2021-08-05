@@ -143,6 +143,7 @@ export class MemoryGame {
     const wrapper = document.querySelector('.wrapper');
     const logic_game_wrapper = document.createElement('div');
     logic_game_wrapper.className = 'logic_game_wrapper';
+    logic_game_wrapper.appendChild( this.overlay.createOverlay() );
 
     const buttons_container = document.createElement('div');
     buttons_container.className = 'buttons_container';
@@ -152,15 +153,41 @@ export class MemoryGame {
 
     this.controlls.createMusicButton(logic_game_wrapper, globalThis.audioController);
     this.controlls.createHintButton(logic_game_wrapper);
-    logic_game_wrapper.appendChild( this.overlay.createOverlay() );
+
     logic_game_wrapper.appendChild( this.createCard(this.images) );
 
     wrapper.appendChild( logic_game_wrapper );
   }
 
+  createInfoBlock() {
+    const info_container = document.createElement('div');
+    info_container.className = 'info_container';
+    const time = document.createElement('div');
+    time.className = 'game_info';
+    time.textContent = 'Time:';
+    const spanT = document.createElement('span');
+    spanT.id = 'time';
+    spanT.textContent = '0';
+    time.appendChild( spanT );
+
+    const flips = document.createElement('div');
+    flips.className = 'game_info';
+    flips.textContent = 'Flips:';
+    const spanF = document.createElement('span');
+    spanF.id = 'flips';
+    spanF.textContent = '0';
+    flips.appendChild( spanF );
+
+    info_container.appendChild(time);
+    info_container.appendChild(flips);
+    return info_container;
+  }
+
   createCard(array) {
     const cards_container = document.createElement('div');
     cards_container.className = 'cards_container';
+    cards_container.appendChild( this.createInfoBlock() );
+
     const doubleArray = array.concat(array);
 
     for (let i = 0; i < doubleArray.length; i++) {

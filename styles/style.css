@@ -369,157 +369,6 @@ html {
 } */
 /*end menu */
 
-/*start colors page*/
-.colors_game_wrapper {
-  position: relative;
-  background: url(../assets/img/backgrounds/colorsbg.jpg);
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transform: translateZ(0);
-}
-
-.colors_drag_images {
-  position: absolute;
-  top: 20vh;
-  display: flex;
-  width: calc(100% - 10vw);
-  height: 300px;
-  overflow: hidden;
-  justify-content: left;
-  align-items: center;
-}
-
-.colors_drop_images{
-  position: absolute;
-  bottom: 10%;
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  width: 100vw;
-  justify-content: center;
-  align-items: center;
-  filter: drop-shadow(13px 15px 10px rgb(85, 82, 77));
-}
-
-.colors_drag_images, .colors_drop_images {
-  column-gap: 5vw;
-}
-
-.drag_image {
-  width: 200px;
-  opacity: 1;
-  padding: 10px;
-  animation: danceToys 2s linear infinite 200ms;
-  filter: drop-shadow(8px 8px 10px rgb(112, 100, 81));
-}
-
-.drop_image {
-  width: 200px;
-  padding: 10px;
-}
-
-.drag_image:hover {
-  cursor: pointer;
-  filter: drop-shadow(8px 8px 10px rgb(221, 173, 101));
-}
-
-@keyframes danceToys {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  25% {
-    transform: translateY(-5%);
-  }
-  75% {
-    transform: translateY(10%);
-  }
-}
-/*end colors page*/
-
-/*start shapes page*/
-.shapes_game_wrapper {
-  position: relative;
-  background: url(../assets/img/backgrounds/shapesbg.jpg);
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: translateZ(0);
-}
-
-.drop_container {
-  width: calc(100% - 230px);
-  align-self: flex-end;
-}
-
-.shapes_drop_images {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  grid-template-rows: repeat(2, auto);
-  justify-content: stretch;
-  align-items: center;
-}
-
-.shape_image:hover {
-  cursor: pointer;
-}
-
-.shadow_image {
-  width: 130px;
-  padding: 15px;
-  filter: drop-shadow(8px 8px 10px rgb(110, 103, 95));
-}
-
-.drag_container {
-  position: relative;
-  left: 0;
-  top: 0;
-  background: url(../assets/img/backgrounds/wood.jpg);
-  background-size: cover;
-  width: 230px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.shapes_drag_images{
-  position: relative;
-  /* height: 80vh; */
-  height: calc(100% - 80px);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.shape_image {
-  width: 130px;
-  filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
-  padding: 20px;
-  animation: danceToys1 1s linear infinite 200ms;
-}
-
-@keyframes danceToys1 {
-  0%, 100% {
-    transform: rotate(0);
-  }
-  25% {
-    transform: rotate(-2deg);
-  }
-  75% {
-    transform: rotate(2deg);
-  }
-}
-/*end shapes page*/
-
 /*start logic page*/
 .logic_game_wrapper {
   background: url(../assets/img/backgrounds/logicbg.jpg);
@@ -544,6 +393,22 @@ html {
   margin: 30px;
   height: auto;
   text-shadow: 0 2px 0 rgb(110, 105, 105);
+}
+
+.info_container {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.game_info {
+  font-family: 'Permanent Marker', cursive;
+  color:aqua;
+  text-shadow: 0 2px 0 rgb(85, 80, 80);
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: 8px;
 }
 
 .cards_container {
