@@ -121,6 +121,29 @@
   .menu_image {
     width: 40vh;
   }
+  /*logic page*/
+  .cards_container {
+    grid-template-columns: repeat(10, auto);
+    grid-gap: 7px;
+  }
+  .card {
+    width: 60px;
+    height: 60px;
+  }
+  .bubble {
+    width: 60px;
+  }
+  .animal {
+    width: 50px;
+  }
+  .back_image {
+    width: 60px;
+  }
+  #tasksPoints span {
+    margin: 5px;
+    width: 13px;
+    height: 13px;
+  }
 }
 @media only screen and (max-height:520px) {
   .btn_img {
@@ -138,13 +161,9 @@
   .drag_image, .drop_image {
     width: 30vh;
   }
-
-}
-
-@media only screen and (max-height:520px) {
   /*logic page*/
   .cards_container {
-    grid-template-columns: repeat(10, auto);
+    grid-template-columns: repeat(6, auto);
     grid-gap: 7px;
   }
   .card {

@@ -99,6 +99,16 @@ html {
 }
 
 /* controlls and overlay*/
+.buttons_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  z-index: 800;
+}
+
 .back_arrow {
   /* display: none; */
   position: absolute;
@@ -373,16 +383,6 @@ html {
   transform: translateZ(0);
 }
 
-.buttons_container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  display: flex;
-  justify-content: space-between;
-  z-index: 800;
-}
-
 .drop_container {
   width: calc(100% - 230px);
   align-self: flex-end;
@@ -421,7 +421,8 @@ html {
 
 .shapes_drag_images{
   position: relative;
-  height: 880px;
+  /* height: 80vh; */
+  height: calc(100% - 80px);
   overflow: hidden;
   display: flex;
   flex-direction: column;

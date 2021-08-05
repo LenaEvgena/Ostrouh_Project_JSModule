@@ -6,6 +6,7 @@ export class Overlay {
   constructor() {
     this.audioController = new AudioController();
   }
+
   createOverlay() {
     const overlay = document.createElement('div');
     overlay.className = 'overlay';
@@ -17,6 +18,7 @@ export class Overlay {
     overlay.appendChild( this.createBalloons() );
     return overlay;
   }
+
   createBalloons() {
     const balloonsContainer = document.createElement('div');
     balloonsContainer.className = 'balloonsContainer';
@@ -28,6 +30,7 @@ export class Overlay {
     this.tapBalloons(balloons);
     return balloonsContainer;
   }
+
   drawBalloons(parent) {
     for (let j = 1; j <= 10; j++) {
       let ballon = document.createElement('span');
@@ -42,6 +45,7 @@ export class Overlay {
       parent.appendChild(ballon);
     }
   }
+
   tapBalloons(container) {
     container.addEventListener('click', (EO) => {
       EO = EO || window.EO;
@@ -54,6 +58,7 @@ export class Overlay {
       setTimeout(() => {EO.target.style.display = 'none'}, 300);
     });
   }
+
   endGame() {
     document.querySelector('.overlay').classList.add('visible');
   }

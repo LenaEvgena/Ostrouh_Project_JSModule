@@ -8,9 +8,11 @@ export class Controlls {
     this.audioController = new AudioController();
     this.count = count;
   }
+
   turnBack() {
     SPA.switchToMenu();
   }
+
   createBackArrow(parent) {
     const back_arrow = document.createElement('img');
     back_arrow.src = '../assets/img/other/arrow_back.png'
@@ -23,6 +25,7 @@ export class Controlls {
     });
     parent.appendChild(back_arrow);
   }
+
   createTaskCheckPoint(count, parent) {
     const tasksPointsDiv = document.createElement('div');
     tasksPointsDiv.id = 'tasksPoints';
@@ -35,6 +38,7 @@ export class Controlls {
     }
     parent.appendChild(tasksPointsDiv);
   }
+
   taskIsDone(count) {
     const points = Array.from(document.querySelectorAll('#point'));
     let point = points[count];
@@ -48,4 +52,3 @@ export class Controlls {
     }
   }
 }
-

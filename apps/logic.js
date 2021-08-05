@@ -5,16 +5,14 @@ import { Controlls } from './Controlls.js';
 import { Overlay } from './Overlay.js';
 
 class MemoryGame {
-  constructor() {
-    // constructor(cards) {
-    this.audioController = new AudioController();
-    this.overlay = new Overlay();
-    this.images = ['cat', 'cow', 'croco', 'dog', 'elef', 'girrafe', 'horse', 'lamb', 'lion', 'monkey', 'panda', 'pig', 'squirrel', 'turkey', 'zebra'];
+  constructor(images) {
+    this.images = images;
     this.tasksCount = this.images.length;
     this.count = this.tasksCount;
+    this.audioController = new AudioController();
+    this.overlay = new Overlay();
     this.controlls = new Controlls(this.tasksCount);
     this.renderLogicPage();
-    // this.cardsArray = cards;
     this.cardsArray = Array.from(document.querySelectorAll('.card'));
   }
 
@@ -26,7 +24,7 @@ class MemoryGame {
       this.isBusy = false;//можем начинать играть
     }, 500);
     // this.audioController.startMusic();
-    // this.shuffleCards(this.cardsArray);
+    this.shuffleCards(this.cardsArray);
     this.cardsArray.forEach(card => {
       card.addEventListener('click', () => {
         //переворот карты
@@ -83,6 +81,8 @@ class MemoryGame {
       this.audioController.cardPopSound();
       card1.style.opacity = '0';
       card2.style.opacity = '0';
+      card1.style.cursor = 'auto';
+      card2.style.cursor = 'auto';
       this.isBusy = false;
       this.count--;
       this.controlls.taskIsDone(this.count);
@@ -175,8 +175,8 @@ class MemoryGame {
 }
 
 export function initLogicGame() {
-  // const cards = Array.from(document.querySelectorAll('.card'));
-  // const memoryGame = new MemoryGame(cards);
-  const memoryGame = new MemoryGame();
+  const images = ['cat', 'cow', 'croco', 'dog', 'elef', 'girrafe', 'horse', 'lamb', 'lion', 'monkey', 'panda', 'pig', 'squirrel', 'turkey', 'zebra'];
+
+  const memoryGame = new MemoryGame(images);
   memoryGame.startGame();
 }
