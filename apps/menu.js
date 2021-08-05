@@ -34,18 +34,7 @@ export function initMenuPage() {
     globalThis.audioController.clickSound();
     SPA.switchToLogicHard();
   });
-  // easyGame.addEventListener('click', () => {
-  //   audioController.clickSound();
-  //   SPA.switchToShapes();
-  // });
-  // mediumGame.addEventListener('click', () => {
-  //   audioController.clickSound();
-  //   SPA.switchToColors();
-  // });
-  // hardGame.addEventListener('click', () => {
-  //   audioController.clickSound();
-  //   SPA.switchToLogic();
-  // });
+
   controlls.updateMusicButton(globalThis.audioController);
 }
 

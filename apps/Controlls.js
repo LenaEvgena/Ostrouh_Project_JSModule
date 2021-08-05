@@ -29,9 +29,6 @@ export class Controlls {
     hint_button.src = '../assets/img/other/hint3.png'
     hint_button.className = 'hint_button';
 
-    hint_button.addEventListener('click', () => {
-
-    });
     parent.appendChild(hint_button);
   }
 
