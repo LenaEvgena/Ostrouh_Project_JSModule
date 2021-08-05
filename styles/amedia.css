@@ -10,9 +10,9 @@
 
 @media only screen and (max-width:1170px) {
   /*menu page*/
-  .menu_image {
+  /* .menu_image {
     width: 35vw;
-  }
+  } */
   /*logic page*/
   .cards_container {
     grid-template-columns: repeat(6, auto);
@@ -61,9 +61,9 @@
     width: 33vw;
   }
   /*menu page*/
-  .menu_image {
+  /* .menu_image {
     width: 30vw;
-  }
+  } */
   /*shapes page*/
   .drag_container {
     left: 0;
@@ -118,9 +118,9 @@
 
 @media only screen and (max-height:750px) {
   /*menu page*/
-  .menu_image {
+  /* .menu_image {
     width: 40vh;
-  }
+  } */
   /*logic page*/
   .cards_container {
     grid-template-columns: repeat(10, auto);

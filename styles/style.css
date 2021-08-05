@@ -281,6 +281,56 @@ html {
   align-items: center;
 }
 
+.menu_elements {
+  display: flex;
+  flex-direction: column;
+}
+.menu_element {
+  margin: 20px;
+  width: 265px;
+  height: 85px;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.menu_element span {
+  font-family: 'Permanent Marker', cursive;
+  color:aqua;
+  text-shadow: 0 2px 0 rgb(85, 80, 80);
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.5;
+  letter-spacing: 8px;
+}
+
+/* .menu_image {
+  animation: danceToys1 1.5s linear infinite 200ms;
+} */
+
+.menu_element:hover{
+  transition: 0.3s;
+  filter: drop-shadow(8px 8px 10px green);
+  cursor: pointer;
+  transform: scale(1.1);
+}
+/*end menu*/
+
+/* start menu*/
+/* .menu_wrapper {
+  position: relative;
+  background: url(../assets/img/backgrounds/menubg.png);
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .menu_images {
   display: flex;
 }
@@ -294,8 +344,8 @@ html {
   filter: drop-shadow(8px 8px 10px green);
   cursor: pointer;
   transform: scale(1.1);
-}
-/*end menu*/
+} */
+/*end menu */
 
 /*start colors page*/
 .colors_game_wrapper {

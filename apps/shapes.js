@@ -1,7 +1,10 @@
 'use strict';
 
 import { AudioController } from './AudioController.js';
+import { Controlls } from './Controlls.js';
+import { Overlay } from './Overlay.js';
 import * as SPA from './SPA.js';
+
 
 export function initShapesGame() {
   const audio = new AudioController();
@@ -21,54 +24,51 @@ export function initShapesGame() {
   const shapes_drag_images = document.querySelector('.shapes_drag_images');
   const dragImages = Array.from(document.querySelectorAll('.shape_image'));
 
-  // const back_arrow = document.querySelector('.back_arrow');
-  // back_arrow.addEventListener('click', () => turnBack());
-
   dragImages.forEach((image) => {
     image.addEventListener('mousedown', Drag_Start);
   });
 
-  //   let dropImages = {
-  //   cat: {
-  //     x: 40,
-  //     y: 0
-  //   },
-  //   cow: {
-  //     x: 600,
-  //     y: 0
-  //   },
-  //   dog: {
-  //     x: 300,
-  //     y: 50
-  //   },
-  //   horse: {
-  //     x: 450,
-  //     y: 150
-  //   },
-  //   lamb: {
-  //     x: 200,
-  //     y: 250
-  //   },
-  //   pig: {
-  //     x: 800,
-  //     y: 0
-  //   },
-  //   turkey: {
-  //     x: 700,
-  //     y: 150
-  //   },
-  //   update() {
-  //     for(let key in this) {
-  //       document.getElementById(key + '-shadow').style.position = 'absolute';
-  //       document.getElementById(key + '-shadow').style.left = this[key].x + 'px';
-  //       document.getElementById(key + '-shadow').style.top = this[key].y + 'px';
-  //     }
-  //   },
-  // }
-  // dropImages.update();
-  // setTimeout(() => {
-  //   getElementPos(dragImages);
-  // }, 500);
+//   //   let dropImages = {
+//   //   cat: {
+//   //     x: 40,
+//   //     y: 0
+//   //   },
+//   //   cow: {
+//   //     x: 600,
+//   //     y: 0
+//   //   },
+//   //   dog: {
+//   //     x: 300,
+//   //     y: 50
+//   //   },
+//   //   horse: {
+//   //     x: 450,
+//   //     y: 150
+//   //   },
+//   //   lamb: {
+//   //     x: 200,
+//   //     y: 250
+//   //   },
+//   //   pig: {
+//   //     x: 800,
+//   //     y: 0
+//   //   },
+//   //   turkey: {
+//   //     x: 700,
+//   //     y: 150
+//   //   },
+//   //   update() {
+//   //     for(let key in this) {
+//   //       document.getElementById(key + '-shadow').style.position = 'absolute';
+//   //       document.getElementById(key + '-shadow').style.left = this[key].x + 'px';
+//   //       document.getElementById(key + '-shadow').style.top = this[key].y + 'px';
+//   //     }
+//   //   },
+//   // }
+//   // dropImages.update();
+//   // setTimeout(() => {
+//   //   getElementPos(dragImages);
+//   // }, 500);
 
   function Drag_Start(EO) {
     // началось перетаскивание мячика
@@ -330,4 +330,181 @@ export function initShapesGame() {
   }
 }
 
+// class ShapesGame {
+//   constructor() {
+//     this.imagesBase = `../assets/img/shapes/images/`;
+//     this.shadowsBase = `../assets/img/shapes/shadows/`;
+//     this.images = ['cat', 'cow', 'dog', 'horse', 'lamb', 'pig', 'turkey'];
+//     this.shadows = ['cat-shadow', 'cow-shadow', 'dog-shadow', 'horse-shadow', 'lamb-shadow', 'pig-shadow', 'turkey-shadow'];
+//     this.tasksCount = this.images.length;
+//     this.count = this.tasksCount;
+//     this.DraggedImage = null;
+//     this.shiftX = null;
+//     this.shiftY = null;
+//     this.isDragging = false;
+//     this.audioController = new AudioController();
+//     this.overlay = new Overlay();
+//     this.controlls = new Controlls(this.tasksCount);
+//     this.renderShapesPage();
 
+//     this.wrapper = document.querySelector('.wrapper');
+//     this.shapes_drag_images = document.querySelector('.shapes_drag_images');
+//     this.dragImages = Array.from(document.querySelectorAll('.shape_image'));
+//   }
+
+//   startGame() {
+//     const dragImages = Array.from(document.querySelectorAll('.shape_image'));
+
+//     dragImages.forEach((image) => {
+//       image.addEventListener('mousedown', () => this.Drag_Start());
+//     });
+//   }
+
+//   Drag_Start(EO) {
+//     // началось перетаскивание мячика
+//     EO = EO || window.event;
+//     this.DraggedImage = EO.target;
+
+//     if (EO.which != 1) return;
+//     if (!this.DraggedImage) return;
+
+//     EO.preventDefault();
+//     this.DraggedImage.ondragstart = function() {
+//       return false;
+//     }
+
+//     this.startDragging(this.DraggedImage, EO.pageX, EO.pageY);
+//     document.addEventListener('mousemove', () => this.onMouseMove());
+//     this.DraggedImage.addEventListener('mouseup', () => this.onMouseUp());
+//   }
+
+//   startDragging(element, pageX, pageY) {
+//     if (this.isDragging) {
+//       return;
+//     }
+//     this.isDragging = true;
+
+//     this.shiftX = pageX - element.getBoundingClientRect().left;
+//     this.shiftY = pageY - element.getBoundingClientRect().top;
+
+//     element.style.position = 'absolute';
+//     element.style.cursor = 'pointer';
+//     element.style.zIndex = '100';
+
+//     element.style.left = pageX - this.shiftX + 'px';
+//     element.style.top = pageY - this.shiftY + 'px';
+
+//     this.shapes_drag_images.replaceChild( this.createShadow(this.shadowsBase, element.id), element );
+//     this.wrapper.appendChild(element);
+//   }
+
+//   onMouseUp(EO) {
+//     EO = EO || window.event;
+//     EO.preventDefault();
+//     this.finishDrag();
+//     document.removeEventListener('mousemove', () => this.onMouseMove());
+//     this.DraggedImage.removeEventListener('mouseup', () => this.onMouseUp());
+//     this.DraggedImage = null;
+//   }
+
+//   onMouseMove(EO) {
+//     console.log('mooooving');
+//     EO = EO || window.event;
+//     EO.preventDefault();
+
+//     this.DraggedImage.style.left = EO.pageX - this.shiftX + 'px';
+//     this.DraggedImage.style.top = EO.pageY - this.shiftY + 'px';
+
+//     this.DraggedImage.hidden = true;
+//     let elemBelow = document.elementFromPoint(EO.pageX, EO.pageY);
+//     this.DraggedImage.hidden = false;
+
+//     if(!elemBelow) return;
+
+//     if ((this.DraggedImage.id + '-shadow') === elemBelow.id) {
+//       this.shapes_drag_images.removeChild(document.getElementById(this.DraggedImage.id + '-1'));
+//       this.DivDrop(EO, elemBelow);
+//     }
+//   }
+
+//   DivDrop(EO, elemBelow) {
+//       // мячик уронен
+//     EO = EO || window.event;
+//     EO.preventDefault();
+//     if (this.DraggedImage) {
+//       this.wrapper.removeChild(this.DraggedImage);
+//       elemBelow.src = this.DraggedImage.src;
+//       this.audioController.dropSound();
+//       this.finishDrag();
+//       this.count--;
+//       this.controlls.taskIsDone(this.count);
+//     }
+//   }
+
+//   finishDrag() {
+//     if(!this.isDragging) {
+//       return;
+//     }
+
+//     this.isDragging = false;
+//     this.DraggedImage.style.top = parseInt(this.DraggedImage.style.top) + pageYOffset + 'px';
+//     this.DraggedImage.style.position = 'absolute';
+
+//     this.DraggedImage = null;
+
+//     document.removeEventListener('mousemove', () => this.onMouseMove());
+//     this.DraggedImage.removeEventListener('mouseup', () => this.onMouseUp());
+//   }
+
+//   renderShapesPage() {
+//     const wrapper = document.querySelector('.wrapper');
+//     const shapes_game_wrapper = document.createElement('div');
+//     shapes_game_wrapper.className = 'shapes_game_wrapper';
+
+//     const buttons_container = document.createElement('div');
+//     buttons_container.className = 'buttons_container';
+//     this.controlls.createBackArrow(buttons_container);
+//     this.controlls.createTaskCheckPoint(this.tasksCount, buttons_container);
+//     shapes_game_wrapper.appendChild( buttons_container );
+
+//     shapes_game_wrapper.appendChild( this.overlay.createOverlay() );
+
+//     const drag_container = document.createElement('div');
+//     drag_container.className = 'drag_container';
+//     drag_container.appendChild( this.createImage(this.imagesBase, this.images, 'shape_image', 'shapes_drag_images') );
+//     shapes_game_wrapper.appendChild(drag_container);
+
+//     const drop_container = document.createElement('div');
+//     drop_container.className = 'drop_container';
+//     drop_container.appendChild( this.createImage(this.shadowsBase, this.shadows, 'shadow_image', 'shapes_drop_images') );
+//     shapes_game_wrapper.appendChild(drop_container);
+
+//     wrapper.appendChild( shapes_game_wrapper );
+//   }
+
+//   createImage(base, arr, className, parentClassName) {
+//     const parent = document.createElement('div');
+//     parent.className = parentClassName;
+//     for (var i = 0; i < arr.length; i++) {
+//       const img = document.createElement('img');
+//       img.id = arr[i];
+//       img.src = `${base}${arr[i]}.png`;
+//       img.className = className;
+//       parent.appendChild(img);
+//     }
+//     return parent;
+//   }
+
+//   createShadow(base, imageId) {
+//       const img = document.createElement('img');
+//       img.src =`${base}${imageId}-shadow.png`;
+//       img.id = `${imageId}-1`;
+//       img.className = 'shadow_image';
+//     return img;
+//   }
+// }
+
+// export function initShapesGame() {
+//   const shapesGame = new ShapesGame();
+//   shapesGame.startGame();
+// }
