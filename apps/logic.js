@@ -12,18 +12,28 @@ export class MemoryGame {
     this.controlls = new Controlls(this.tasksCount);
     this.renderLogicPage();
     this.cardsArray = Array.from(document.querySelectorAll('.card'));
+    this.timer = document.querySelector('#timer');
+    this.moves = document.querySelector('#flips');
+    this.time = 0;
+    this.flips = 0;
   }
 
   startGame() {
+    this.time = 0;
+    this.flips = 0;
     this.isBusy = true;//ч-л выполняется, играть нельзя
     this.checkingCard = null;
     this.matchedCardsArray = [];
     setTimeout(() => {
       this.isBusy = false;//можем начинать играть
+      this.shuffleCards(this.cardsArray);
+      this.countDown = this.startCountDown();
     }, 500);
 
     this.controlls.updateMusicButton(globalThis.audioController);
-    this.shuffleCards(this.cardsArray);
+    this.timer.innerText = this.time;
+    this.moves.innerText = this.flips;
+
     this.cardsArray.forEach(card => {
       card.addEventListener('click', () => {
         //переворот карты
@@ -35,7 +45,15 @@ export class MemoryGame {
     })
   }
 
+  startCountDown() {
+    return setInterval(() => {
+      this.time++;
+      this.timer.innerText = this.time;
+    }, 1000);
+  }
+
   endGame() {
+    clearInterval(this.countDown);
     this.overlay.endGame();
     globalThis.audioController.stopMusic();
     globalThis.audioController.hooraySound();
@@ -48,8 +66,9 @@ export class MemoryGame {
     if(card !== this.checkingCard && !this.isBusy && !this.matchedCardsArray.includes(card)) {//можем ли мы открыть карту, послюусловие - т.к. неверно работает при нажатии на уже скрытую карту
       card.classList.add('visible');
       //sound
-      // this.audioController.clickSound();
       globalThis.audioController.clickSound();
+      this.flips++;
+      this.moves.innerText = this.flips;
       //проверка на совпадение
       if (this.checkingCard) { //если можем, и карта уже есть одна нажатая - проверяем совпадение
         this.checkMatching(card);
@@ -166,7 +185,7 @@ export class MemoryGame {
     time.className = 'game_info';
     time.textContent = 'Time:';
     const spanT = document.createElement('span');
-    spanT.id = 'time';
+    spanT.id = 'timer';
     spanT.textContent = '0';
     time.appendChild( spanT );
 

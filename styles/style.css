@@ -145,7 +145,7 @@ html {
 }
 
 .music_button.clicked {
-  opacity: 0.7;
+  opacity: 0.6;
   transform: scale(0.9);
 }
 
@@ -320,7 +320,7 @@ html {
 .menu_element span {
   font-family: 'Permanent Marker', cursive;
   color:aqua;
-  text-shadow: 0 2px 0 rgb(85, 80, 80);
+  text-shadow: 2px 3px 2px rgb(58, 53, 53);
   font-size: 24px;
   font-weight: bold;
   text-transform: uppercase;
@@ -383,7 +383,7 @@ html {
   transform: translateZ(0);
 }
 
-.logic_title {
+/* .logic_title {
   display: flex;
   color: aqua;
   justify-content: center;
@@ -393,19 +393,20 @@ html {
   margin: 30px;
   height: auto;
   text-shadow: 0 2px 0 rgb(110, 105, 105);
-}
+} */
 
 .info_container {
   grid-column: 1 / -1;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 30px;
 }
 
 .game_info {
   font-family: 'Permanent Marker', cursive;
-  color:aqua;
-  text-shadow: 0 2px 0 rgb(85, 80, 80);
-  font-size: 24px;
+  color:rgb(223, 158, 74);
+  text-shadow: 2px 3px 2px rgb(58, 53, 53);
+  font-size: 28px;
   font-weight: bold;
   line-height: 1.5;
   letter-spacing: 8px;
