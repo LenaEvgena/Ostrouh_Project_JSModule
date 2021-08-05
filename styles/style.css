@@ -129,7 +129,17 @@ html {
   filter: drop-shadow(6px 6px 8px rgb(76, 75, 72));
 }
 
-.back_arrow:hover, .music_button:hover {
+.hint_button {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 45px;
+  padding: 5px;
+  transition: 0.3s;
+  filter: drop-shadow(6px 6px 8px rgb(76, 75, 72));
+}
+
+.back_arrow:hover, .music_button:hover, .hint_button:hover {
   transform: scale(1.1);
   cursor: pointer;
 }

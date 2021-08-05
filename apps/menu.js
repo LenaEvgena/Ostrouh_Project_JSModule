@@ -4,10 +4,10 @@ import { Controlls } from './Controlls.js';
 import * as SPA from './SPA.js';
 
 export function initMenuPage() {
-  const controlls = new Controlls();
   if (!globalThis.isPaused) {
     globalThis.audioController.startMusic();
   }
+  const controlls = new Controlls();
 
   const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createMenuPage(controlls, globalThis.audioController) );

@@ -24,6 +24,17 @@ export class Controlls {
     parent.appendChild(back_arrow);
   }
 
+  createHintButton(parent) {
+    const hint_button = document.createElement('img');
+    hint_button.src = '../assets/img/other/hint3.png'
+    hint_button.className = 'hint_button';
+
+    hint_button.addEventListener('click', () => {
+
+    });
+    parent.appendChild(hint_button);
+  }
+
   createMusicButton(parent, controller) {
     const music_button = document.createElement('img');
     music_button.src = '../assets/img/other/musicbutton.png'

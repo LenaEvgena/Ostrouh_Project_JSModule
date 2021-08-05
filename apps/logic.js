@@ -30,6 +30,9 @@ export class MemoryGame {
         this.openCard(card);
       });
     });
+    document.querySelector('.hint_button').addEventListener('click', () => {
+      this.hintCards(this.cardsArray);
+    })
   }
 
   endGame() {
@@ -115,6 +118,19 @@ export class MemoryGame {
     card.classList.remove('visible');
   }
 
+  hintCards(cardsArray) {
+    this.isBusy = true;
+    cardsArray.forEach(card => {
+      card.classList.add('visible');
+    });
+    setTimeout(() => {
+      this.isBusy = false;
+      cardsArray.forEach(card => {
+        card.classList.remove('visible');
+      });
+    }, 4000);
+  }
+
   shuffleCards(cardsArray) { //Fisher-Yates алгоритм
     for (let i = cardsArray.length - 1; i > 0; i--) {
       let randomInd = Math.floor( Math.random() * (i + 1) );
@@ -134,8 +150,8 @@ export class MemoryGame {
     this.controlls.createTaskCheckPoint(this.tasksCount, buttons_container);
     logic_game_wrapper.appendChild( buttons_container );
 
-    // this.controlls.createMusicButton(logic_game_wrapper, this.audioController);
     this.controlls.createMusicButton(logic_game_wrapper, globalThis.audioController);
+    this.controlls.createHintButton(logic_game_wrapper);
     logic_game_wrapper.appendChild( this.overlay.createOverlay() );
     logic_game_wrapper.appendChild( this.createCard(this.images) );
 
