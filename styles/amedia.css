@@ -66,6 +66,10 @@
     width: 9px;
     height: 9px;
   }
+  .menu_element {
+    width: 66vw;
+    height: 21vw;
+  }
 }
 
 @media only screen and (max-width:320px) {

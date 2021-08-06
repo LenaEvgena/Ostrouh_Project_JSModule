@@ -227,7 +227,7 @@ html {
   }
   to {
     background-color: rgba(173, 146, 131, 0.596);
-    font-size: 70px;
+    font-size: 9vw;
   }
 }
 
@@ -338,8 +338,8 @@ html {
 
 .menu_element {
   margin: 20px;
-  width: 265px;
-  height: 85px;
+  width: 295px;
+  height: 96px;
   background-size: cover;
   display: flex;
   align-items: center;
