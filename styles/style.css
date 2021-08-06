@@ -195,7 +195,9 @@ html {
   font-family: 'Permanent Marker', cursive;
   background-size: cover;
   color:aqua;
-  text-shadow: 0 2px 0 rgb(85, 80, 80);
+  text-shadow: 2px 3px 2px rgb(58, 53, 53);
+
+  /* text-shadow: 0 2px 0 rgb(85, 80, 80); */
   font-weight: bold;
   text-transform: uppercase;
   line-height: 1.5;
@@ -258,8 +260,10 @@ html {
   display: flex;
   position: relative;
   margin: 10px;
-  width: 70px;
-  height: 120px;
+  width: 5vw;
+  height: 9vw;
+  /* width: 70px;
+  height: 120px; */
   cursor: pointer;
   animation: balloonsFlying 10s linear infinite;
   transition: width 0.5s, height 0.5s;
@@ -409,13 +413,13 @@ html {
   font-size: 28px;
   font-weight: bold;
   line-height: 1.5;
-  letter-spacing: 8px;
+  letter-spacing: 7px;
 }
 
 .cards_container {
   display: grid;
   grid-template-columns: repeat(6, auto);
-  grid-gap: 20px;
+  grid-gap: 15px;
   margin: 20px auto;
   align-items: center;
   justify-content: center;
@@ -424,8 +428,8 @@ html {
 
 .card {
   position: relative;
-  width: 130px;
-  height: 130px;
+  width: 110px;
+  height: 110px;
   cursor: pointer;
 }
 
@@ -445,16 +449,16 @@ html {
 }
 
 .bubble {
-  width: 130px;
+  width: 110px;
 }
 
 .animal {
   position: absolute;
-  width: 110px;
+  width: 90px;
 }
 
 .back_image {
-  width: 130px;
+  width: 110px;
   filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
 }
 

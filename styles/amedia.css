@@ -1,14 +1,4 @@
-@media only screen and (max-width:1100px) {
-  /*colors page*/
-  /* .colors_drag_images, .colors_drop_images {
-    column-gap: 5vw;
-  }
-  .drag_image, .drop_image {
-    width: 15vw;
-  } */
-}
-
-@media only screen and (max-width:1170px) {
+@media only screen and (max-width:1279px) {
   /*logic page*/
   .cards_container {
     grid-template-columns: repeat(6, auto);
@@ -16,23 +6,7 @@
   }
 }
 
-@media only screen and (max-width:840px) {
-  /*shapes page*/
-  /* .drag_container {
-    width: 180px;
-  }
-  .drop_container {
-    width: calc(100% - 180px);
-  }
-  .shape_image {
-    width: 110px;
-    padding: 10px;
-  }
-  .shadow_image {
-    width: 110px;
-    padding: 10px;
-  } */
-  /*logic page*/
+/* @media only screen and (max-width:840px) {
   .cards_container {
     grid-gap: 15px;
   }
@@ -49,62 +23,61 @@
   .back_image {
     width: 100px;
   }
-}
+} */
 
 @media only screen and (max-width:767px) {
   /*main page*/
   .btn_img {
     width: 33vw;
   }
-  /*shapes page*/
-  .drag_container {
-    left: 0;
-    top: 0;
-    width: 180px;
-  }
-  .shape_image {
-    width: 100px;
-    padding: 10px;
-  }
-  .shadow_image {
-    width: 100px;
-    padding: 15px;
-  }
   /*colors page*/
   #tasksPoints span {
-    margin: 5px;
+    margin: 6px;
     width: 13px;
     height: 13px;
   }
-  /* .drag_image, .drop_image {
-    width: 15vw;
-    column-gap: 4vw;
-  } */
   /*logic page*/
+  .game_info {
+    font-size: 4.5vw;
+    letter-spacing: 5px;
+  }
   .cards_container {
-    grid-template-columns: repeat(4, auto);
-    grid-gap: 15px;
+    grid-template-columns: repeat(6, auto);
+    grid-gap: 2vw;
   }
   .card {
-    width: 80px;
-    height: 80px;
+    width: 13vw;
+    height: 13vw;
   }
   .bubble {
-    width: 80px;
+    width: 13vw;
   }
   .animal {
-    width: 60px;
+    width: 11vw;
   }
   .back_image {
-    width: 80px;
+    width: 13vw;
+  }
+}
+
+@media only screen and (max-width:450px) {
+  #tasksPoints span {
+    margin: 3px;
+    width: 9px;
+    height: 9px;
+  }
+}
+
+@media only screen and (max-width:320px) {
+  .cards_container {
+    grid-gap: 1.5vw;
   }
 }
 
 
-
 @media only screen and (max-height:750px) {
   /*logic page*/
-  .cards_container {
+  /* .cards_container {
     grid-template-columns: repeat(10, auto);
     grid-gap: 7px;
   }
@@ -125,21 +98,15 @@
     margin: 5px;
     width: 13px;
     height: 13px;
-  }
+  } */
 }
 @media only screen and (max-height:520px) {
   .btn_img {
     width: 50vh;
   }
-  /*colors page*/
-  /* .colors_drag_images {
-    margin-bottom: 70px;
-  }
-  .drag_image, .drop_image {
-    width: 30vh;
-  } */
+
   /*logic page*/
-  .cards_container {
+  /* .cards_container {
     grid-template-columns: repeat(6, auto);
     grid-gap: 7px;
   }
@@ -160,6 +127,6 @@
     margin: 5px;
     width: 13px;
     height: 13px;
-  }
+  } */
 }
 
