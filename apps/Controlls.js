@@ -13,7 +13,7 @@ export class Controlls {
 
   createBackArrow(parent) {
     const back_arrow = document.createElement('img');
-    back_arrow.src = '../assets/img/other/arrow_back.png'
+    back_arrow.src = './assets/img/other/arrow_back.png'
     back_arrow.className = 'back_arrow';
     back_arrow.addEventListener('click', () => {
       back_arrow.style.transform = 'scale(0.9)';
@@ -26,7 +26,7 @@ export class Controlls {
 
   createHintButton(parent) {
     const hint_button = document.createElement('img');
-    hint_button.src = '../assets/img/other/hint3.png'
+    hint_button.src = './assets/img/other/hint3.png'
     hint_button.className = 'hint_button';
 
     parent.appendChild(hint_button);
@@ -34,7 +34,7 @@ export class Controlls {
 
   createMusicButton(parent, controller) {
     const music_button = document.createElement('img');
-    music_button.src = '../assets/img/other/musicbutton.png'
+    music_button.src = './assets/img/other/musicbutton.png'
     music_button.className = 'music_button';
 
     music_button.addEventListener('click', () => {
@@ -60,7 +60,7 @@ export class Controlls {
     for (let i = 0; i < count; i++) {
       const taskPoint = document.createElement('span');
       taskPoint.id = 'point';
-      taskPoint.style.background = 'url(../assets/img/icons/emptycircle.png)';
+      taskPoint.style.background = 'url(./assets/img/icons/emptycircle.png)';
       taskPoint.style.backgroundSize = 'cover';
       tasksPointsDiv.appendChild(taskPoint);
     }
@@ -72,10 +72,10 @@ export class Controlls {
     let point = points[count];
 
     if (count != 0) {
-      point.style.background = 'url(../assets/img/icons/redcircle.png)';
+      point.style.background = 'url(./assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
     } else {
-      point.style.background = 'url(../assets/img/icons/redcircle.png)';
+      point.style.background = 'url(./assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
     }
   }
