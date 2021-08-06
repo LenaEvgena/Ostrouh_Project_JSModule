@@ -1,7 +1,7 @@
 'use strict';
 
 import { initStartPage } from './script.js';
-import { initMenuPage } from './menu.js';
+// import { initMenuPage } from './menu.js';
 import { logicEasyGame } from './logicEasy.js';
 import { logicMediumGame } from './logicMedium.js';
 import { logicHardGame } from './logicHard.js';
@@ -23,10 +23,9 @@ function renderNewState() {
       break;
     case 'Menu':
       wrapper.innerHTML = '';
-      // import('./menu.js').then(module => {
-      //   module.initMenuPage();
-      // });
-      initMenuPage();
+      import('./menu.js').then(module => {
+        module.initMenuPage();
+      });
       break;
     case 'LogicEasy':
       wrapper.innerHTML = '';
