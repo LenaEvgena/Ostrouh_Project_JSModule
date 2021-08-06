@@ -56,10 +56,12 @@ export class Controlls {
 
   createTaskCheckPoint(count, parent) {
     const tasksPointsDiv = document.createElement('div');
+    let n = 0.01;
     tasksPointsDiv.id = 'tasksPoints';
     for (let i = 0; i < count; i++) {
+      n++;
       const taskPoint = document.createElement('span');
-      taskPoint.style.animationDelay = `0.${i}s`;
+      taskPoint.style.animationDelay = `${parseFloat(n/10).toFixed(2)}s`;
       taskPoint.id = 'point';
       taskPoint.style.background = 'url(./assets/img/icons/emptycircle.png)';
       taskPoint.style.backgroundSize = 'cover';
