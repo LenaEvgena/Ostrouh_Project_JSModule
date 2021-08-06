@@ -1,10 +1,10 @@
 'use strict';
 
 import { initStartPage } from './script.js';
-// import { initMenuPage } from './menu.js';
-// import { logicEasyGame } from './logicEasy.js';
-// import { logicMediumGame } from './logicMedium.js';
-// import { logicHardGame } from './logicHard.js';
+import { initMenuPage } from './menu.js';
+import { logicEasyGame } from './logicEasy.js';
+import { logicMediumGame } from './logicMedium.js';
+import { logicHardGame } from './logicHard.js';
 
 //SPA
 window.onhashchange = renderNewState;
@@ -23,27 +23,31 @@ function renderNewState() {
       break;
     case 'Menu':
       wrapper.innerHTML = '';
-      import('./menu.js').then(module => {
-        module.initMenuPage();
-      });
+      // import('./menu.js').then(module => {
+      //   module.initMenuPage();
+      // });
+      initMenuPage();
       break;
     case 'LogicEasy':
       wrapper.innerHTML = '';
-      import('./logicEasy.js').then(module => {
-        module.logicEasyGame();
-      });
+      // import('./logicEasy.js').then(module => {
+      //   module.logicEasyGame();
+      // });
+      logicEasyGame();
       break;
     case 'LogicMedium':
       wrapper.innerHTML = '';
-      import('./logicMedium.js').then(module => {
-        module.logicMediumGame();
-      });
+      // import('./logicMedium.js').then(module => {
+      //   module.logicMediumGame();
+      // });
+      logicMediumGame();
       break;
     case 'LogicHard':
       wrapper.innerHTML = '';
-      import('./logicHard.js').then(module => {
-        module.logicHardGame();
-      });
+      // import('./logicHard.js').then(module => {
+      //   module.logicHardGame();
+      // });
+      logicHardGame();
       break;
   }
 }
