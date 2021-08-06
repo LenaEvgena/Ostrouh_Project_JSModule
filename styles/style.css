@@ -51,6 +51,12 @@ table {
 	outline: 0;
 	padding: 0;
 	margin: 0;
+
+  -webkit-user-select: none;
+  /* user-select -- это нестандартное свойство */
+  -moz-user-select: none;
+  /* поэтому нужны префиксы */
+  -ms-user-select: none;
 	}
 html, body {
 	padding: 0;
@@ -277,6 +283,8 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translateZ(0);
+
 }
 
 .main_button {
@@ -301,6 +309,8 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translateZ(0);
+
 }
 
 .menu_elements {
@@ -328,10 +338,6 @@ html {
   letter-spacing: 8px;
 }
 
-/* .menu_image {
-  animation: danceToys1 1.5s linear infinite 200ms;
-} */
-
 .menu_element:hover{
   transition: 0.3s;
   filter: drop-shadow(8px 8px 10px green);
@@ -339,35 +345,6 @@ html {
   transform: scale(1.1);
 }
 /*end menu*/
-
-/* start menu*/
-/* .menu_wrapper {
-  position: relative;
-  background: url(../assets/img/backgrounds/menubg.png);
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.menu_images {
-  display: flex;
-}
-
-.menu_image {
-  animation: danceToys1 1.5s linear infinite 200ms;
-}
-
-.menu_image:hover{
-  transition: 0.3s;
-  filter: drop-shadow(8px 8px 10px green);
-  cursor: pointer;
-  transform: scale(1.1);
-} */
-/*end menu */
 
 /*start logic page*/
 .logic_game_wrapper {
@@ -382,18 +359,6 @@ html {
   align-items: center;
   transform: translateZ(0);
 }
-
-/* .logic_title {
-  display: flex;
-  color: aqua;
-  justify-content: center;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 36px;
-  margin: 30px;
-  height: auto;
-  text-shadow: 0 2px 0 rgb(110, 105, 105);
-} */
 
 .info_container {
   grid-column: 1 / -1;
@@ -476,10 +441,12 @@ html {
 
 .card.visible .card_front .animal {
   animation: dance2 1.5s linear infinite 500ms;
+  transform: translateZ(0);
 }
 
 .card.matched .card_front .animal {
   animation: dance1 1s linear infinite 500ms;
+  transform: translateZ(0);
 }
 
 @keyframes dance {
