@@ -269,7 +269,7 @@ html {
 }
 
 .main_wrapper {
-  background: url(../assets/img/backgrounds/startbg.jpg);
+  background: url(./assets/img/backgrounds/startbg.jpg);
   width: 100vw;
   height: 100vh;
   background-size: cover;
@@ -293,7 +293,7 @@ html {
 /*start menu*/
 .menu_wrapper {
   position: relative;
-  background: url(../assets/img/backgrounds/menubg.png);
+  background: url(./assets/img/backgrounds/menubg.png);
   width: 100vw;
   height: 100vh;
   background-size: cover;
@@ -371,7 +371,7 @@ html {
 
 /*start logic page*/
 .logic_game_wrapper {
-  background: url(../assets/img/backgrounds/logicbg.jpg);
+  background: url(./assets/img/backgrounds/logicbg.jpg);
   width: 100vw;
   height: 100vh;
   background-size: cover;

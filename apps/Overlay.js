@@ -32,7 +32,7 @@ export class Overlay {
   drawBalloons(parent) {
     for (let j = 1; j <= 10; j++) {
       let ballon = document.createElement('span');
-      ballon.style.background = `url(../assets/img/other/ballon${j}.png)`;
+      ballon.style.background = `url(./assets/img/other/ballon${j}.png)`;
       ballon.style.backgroundSize = 'cover';
       ballon.style.position = 'absolute';
       let leftPosition = Math.floor(Math.random() * (window.innerWidth + 1));
@@ -48,7 +48,7 @@ export class Overlay {
     container.addEventListener('click', (EO) => {
       EO = EO || window.EO;
       EO.preventDefault();
-      EO.target.style.background = 'url(../assets/img/other/confetti.png)';
+      EO.target.style.background = 'url(./assets/img/other/confetti.png)';
       EO.target.style.backgroundSize = 'cover';
       EO.target.style.width = '150px';
       globalThis.audioController.balloonPopSound();

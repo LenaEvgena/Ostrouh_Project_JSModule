@@ -56,7 +56,7 @@ export function initMenuPage() {
     const div = document.createElement('div');
     div.className = 'menu_element';
     div.id = id;
-    div.style.backgroundImage = `url(../assets/img/menu/${image}.png)`;
+    div.style.backgroundImage = `url(./assets/img/menu/${image}.png)`;
 
     const span = document.createElement('span');
     span.textContent = id;

@@ -28,7 +28,7 @@ function createMainPage() {
     main_wrapper.appendChild(main_button);
 
     const img = document.createElement('img');
-    img.src = 'assets/img/main/play_btn400.png';
+    img.src = './assets/img/main/play_btn400.png';
     img.className = 'btn_img';
     img.alt = 'play_icon';
     img.onclick = () => {
