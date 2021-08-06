@@ -59,6 +59,7 @@ export class Controlls {
     tasksPointsDiv.id = 'tasksPoints';
     for (let i = 0; i < count; i++) {
       const taskPoint = document.createElement('span');
+      taskPoint.style.animationDelay = `0.${i}s`;
       taskPoint.id = 'point';
       taskPoint.style.background = 'url(./assets/img/icons/emptycircle.png)';
       taskPoint.style.backgroundSize = 'cover';
