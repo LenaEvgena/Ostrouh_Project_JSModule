@@ -95,13 +95,11 @@ export class MemoryGame {
   isMatched(card1, card2) {
     this.matchedCardsArray.push(card1);
     this.matchedCardsArray.push(card2);
-    // console.log(this.matchedCardsArray);
     card1.classList.add('matched');
     card2.classList.add('matched');
     this.isBusy = true;
     //убрать карту
     setTimeout(() => {
-      // this.audioController.cardPopSound();
       globalThis.audioController.cardPopSound();
       card1.style.opacity = '0';
       card2.style.opacity = '0';
@@ -115,14 +113,13 @@ export class MemoryGame {
     if (this.matchedCardsArray.length === this.cardsArray.length) {
       setTimeout(() => {
         this.endGame();
-      }, 500);
+      }, 800);
     }
   }
 
   notMatched(card1, card2) {
     this.isBusy = true;
     setTimeout(() => {
-      // this.audioController.flipSound();
       globalThis.audioController.flipSound();
 
       this.closeCard(card1);
