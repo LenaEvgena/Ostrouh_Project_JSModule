@@ -6,6 +6,11 @@ globalThis.audioController = new AudioController();
 globalThis.isPaused = false;
 
 export function initStartPage() {
+  window.onload = function () {
+    let preloader = document.getElementById('preloader');
+    preloader.style.display = 'none';
+  };
+
   const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createMainPage() );
 

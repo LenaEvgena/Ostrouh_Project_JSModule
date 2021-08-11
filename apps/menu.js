@@ -4,6 +4,11 @@ import { Controlls } from './Controlls.js';
 import * as SPA from './SPA.js';
 
 export function initMenuPage() {
+  window.onload = function () {
+    let preloader = document.getElementById('preloader');
+    preloader.style.display = 'none';
+  };
+
   if (!globalThis.isPaused) {
     globalThis.audioController.startMusic();
   }
