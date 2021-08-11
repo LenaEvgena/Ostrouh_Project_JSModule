@@ -156,11 +156,6 @@ export class MemoryGame {
   }
 
   renderLogicPage() {
-    window.onload = function () {
-      let preloader = document.getElementById('preloader');
-      preloader.style.display = 'none';
-    };
-
     const wrapper = document.querySelector('.wrapper');
     const logic_game_wrapper = document.createElement('div');
     logic_game_wrapper.className = 'logic_game_wrapper';

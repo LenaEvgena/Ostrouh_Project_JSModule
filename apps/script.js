@@ -8,7 +8,9 @@ globalThis.isPaused = false;
 export function initStartPage() {
   window.onload = function () {
     let preloader = document.getElementById('preloader');
-    preloader.style.display = 'none';
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 1000);
   };
 
   const wrapper = document.querySelector('.wrapper');
