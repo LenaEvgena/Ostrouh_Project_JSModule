@@ -98,11 +98,10 @@ export class MemoryGame {
     this.matchedCardsArray.push(card2);
     card1.classList.add('matched');
     card2.classList.add('matched');
-    globalThis.audioController.vibro(false);
-
     this.isBusy = true;
     //убрать карту
     setTimeout(() => {
+      globalThis.audioController.vibro(false);
       globalThis.audioController.cardPopSound();
       card1.style.opacity = '0';
       card2.style.opacity = '0';
