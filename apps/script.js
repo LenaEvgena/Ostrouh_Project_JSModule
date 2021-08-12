@@ -1,17 +1,13 @@
 'use strict';
 import * as SPA from './SPA.js';
 import { AudioController } from './AudioController.js';
+import { showPreloader } from './preloader.js';
 
 globalThis.audioController = new AudioController();
 globalThis.isPaused = false;
 
 export function initStartPage() {
-  window.onload = function () {
-    let preloader = document.getElementById('preloader');
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 1000);
-  };
+  showPreloader();
 
   const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createMainPage() );
@@ -27,21 +23,23 @@ export function initStartPage() {
 }
 
 function createMainPage() {
-    const main_wrapper = document.createElement('div');
-    main_wrapper.className = 'main_wrapper';
+  const main_wrapper = document.createElement('div');
+  main_wrapper.className = 'main_wrapper';
 
-    const main_button = document.createElement('div');
-    main_button.className = 'main_button';
-    main_wrapper.appendChild(main_button);
+  const main_button = document.createElement('div');
+  main_button.className = 'main_button';
+  main_wrapper.appendChild(main_button);
 
-    const img = document.createElement('img');
-    img.src = './assets/img/main/play_btn400.png';
-    img.className = 'btn_img';
-    img.alt = 'play_icon';
-    img.onclick = () => {
-      globalThis.audioController.clickSound();
-    };
-    main_button.appendChild(img);
+  const img = document.createElement('img');
+  img.src = './assets/img/main/play_btn400.png';
+  img.className = 'btn_img';
+  img.alt = 'play_icon';
+  img.onclick = () => {
+    globalThis.audioController.clickSound();
+  };
+  main_button.appendChild(img);
 
-    return main_wrapper;
-  }
+  return main_wrapper;
+}
+
+

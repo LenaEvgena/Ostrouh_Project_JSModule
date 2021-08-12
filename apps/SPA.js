@@ -5,6 +5,8 @@ import { initStartPage } from './script.js';
 // import { logicEasyGame } from './logicEasy.js';
 // import { logicMediumGame } from './logicMedium.js';
 // import { logicHardGame } from './logicHard.js';
+// import * as AJAX from './preloader.js';
+
 
 //SPA
 window.onhashchange = renderNewState;

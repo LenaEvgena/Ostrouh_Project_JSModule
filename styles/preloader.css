@@ -1,830 +1,295 @@
 .preloader {
-  background-color: #fff;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 100;
-  align-items: center;
+  background-color: rgb(203, 243, 215);
+  transition: all 0.6s;
+  opacity: 1;
+  visibility: visible;
+}
+
+.preloader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader {
+  width: 100%;
+  height: 75px;
+  line-height: 75px;
+  text-align: center;
   justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.6s;
+
 }
 
-.cssload-container *, .cssload-container *:before, .cssload-container *:after {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-		-o-box-sizing: border-box;
-		-ms-box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-}
-.cssload-container *:before, .cssload-container *:after {
-	content: "";
+.loader span {
+  font-family: 'Permanent Marker', cursive;
+  color:aqua;
+  text-shadow: 2px 3px 2px rgb(58, 53, 53);
+  font-size: 50px;
+  text-transform: uppercase;
+  line-height: 1.5;
+  letter-spacing: 8px;
 }
 
-.cssload-container, .cssload-container *, .cssload-container *:before, .cssload-container *:after {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	margin: auto;
-	transform-style: preserve-3d;
-		-o-transform-style: preserve-3d;
-		-ms-transform-style: preserve-3d;
-		-webkit-transform-style: preserve-3d;
-		-moz-transform-style: preserve-3d;
+#cssload-pgloading .cssload-loadingwrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.cssload-thing {
-	width: 13em;
-	height: 13em;
-}
-.cssload-thing:before, .cssload-thing:after {
-	width: 0.33333em;
-	height: 0;
-}
-.cssload-thing:before {
-	margin-top: 13em;
-	bottom: auto;
-	background: rgb(39,39,39);
-}
-.cssload-thing:after {
-	top: auto;
-	background: rgb(39,39,39);
-}
-.cssload-thing:nth-child(1) {
-	transform: rotateZ(0deg);
-		-o-transform: rotateZ(0deg);
-		-ms-transform: rotateZ(0deg);
-		-webkit-transform: rotateZ(0deg);
-		-moz-transform: rotateZ(0deg);
-}
-.cssload-thing:nth-child(1):before, .cssload-thing:nth-child(1):after {
-	animation: cssload-thing 0.7075s -0s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -0s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -0s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -0s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -0s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(1):before {
-	background: rgba(255,77,77,0.1);
-	animation: cssload-thing 0.95s -0s linear infinite;
-}
-.cssload-thing:nth-child(1):after {
-	background: rgba(255,77,77,0.75);
-}
-.cssload-thing:nth-child(2) {
-	transform: rotateZ(12deg);
-		-o-transform: rotateZ(12deg);
-		-ms-transform: rotateZ(12deg);
-		-webkit-transform: rotateZ(12deg);
-		-moz-transform: rotateZ(12deg);
-}
-.cssload-thing:nth-child(2):before, .cssload-thing:nth-child(2):after {
-	animation: cssload-thing 0.7075s -0.2325s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -0.2325s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -0.2325s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -0.2325s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -0.2325s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(2):before {
-	background: rgba(255,112,77,0.1);
-	animation: cssload-thing 0.95s -0.0349965s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.0349965s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.0349965s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.0349965s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.0349965s linear infinite;
-}
-.cssload-thing:nth-child(2):after {
-	background: rgba(255,112,77,0.75);
-}
-.cssload-thing:nth-child(3) {
-	transform: rotateZ(24deg);
-		-o-transform: rotateZ(24deg);
-		-ms-transform: rotateZ(24deg);
-		-webkit-transform: rotateZ(24deg);
-		-moz-transform: rotateZ(24deg);
-}
-.cssload-thing:nth-child(3):before, .cssload-thing:nth-child(3):after {
-	animation: cssload-thing 0.7075s -0.475s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -0.475s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -0.475s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -0.475s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -0.475s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(3):before {
-	background: rgba(255,148,77,0.1);
-	animation: cssload-thing 0.95s -0.0600035s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.0600035s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.0600035s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.0600035s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.0600035s linear infinite;
-}
-.cssload-thing:nth-child(3):after {
-	background: rgba(255,148,77,0.75);
-}
-.cssload-thing:nth-child(4) {
-	transform: rotateZ(36deg);
-		-o-transform: rotateZ(36deg);
-		-ms-transform: rotateZ(36deg);
-		-webkit-transform: rotateZ(36deg);
-		-moz-transform: rotateZ(36deg);
-}
-.cssload-thing:nth-child(4):before, .cssload-thing:nth-child(4):after {
-	animation: cssload-thing 0.7075s -0.7075s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -0.7075s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -0.7075s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -0.7075s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -0.7075s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(4):before {
-	background: rgba(255,184,77,0.1);
-	animation: cssload-thing 0.95s -0.095s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.095s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.095s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.095s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.095s linear infinite;
-}
-.cssload-thing:nth-child(4):after {
-	background: rgba(255,184,77,0.75);
-}
-.cssload-thing:nth-child(5) {
-	transform: rotateZ(48deg);
-		-o-transform: rotateZ(48deg);
-		-ms-transform: rotateZ(48deg);
-		-webkit-transform: rotateZ(48deg);
-		-moz-transform: rotateZ(48deg);
-}
-.cssload-thing:nth-child(5):before, .cssload-thing:nth-child(5):after {
-	animation: cssload-thing 0.7075s -0.95s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -0.95s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -0.95s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -0.95s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -0.95s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(5):before {
-	background: rgba(255,219,77,0.1);
-	animation: cssload-thing 0.95s -0.1299965s linear infinite;
-}
-.cssload-thing:nth-child(5):after {
-	background: rgba(255,219,77,0.75);
-}
-.cssload-thing:nth-child(6) {
-	transform: rotateZ(60deg);
-		-o-transform: rotateZ(60deg);
-		-ms-transform: rotateZ(60deg);
-		-webkit-transform: rotateZ(60deg);
-		-moz-transform: rotateZ(60deg);
-}
-.cssload-thing:nth-child(6):before, .cssload-thing:nth-child(6):after {
-	animation: cssload-thing 0.7075s -1.1825s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -1.1825s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -1.1825s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -1.1825s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -1.1825s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(6):before {
-	background: rgba(255,255,77,0.1);
-	animation: cssload-thing 0.95s -0.1550035s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.1550035s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.1550035s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.1550035s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.1550035s linear infinite;
-}
-.cssload-thing:nth-child(6):after {
-	background: rgba(255,255,77,0.75);
-}
-.cssload-thing:nth-child(7) {
-	transform: rotateZ(72deg);
-		-o-transform: rotateZ(72deg);
-		-ms-transform: rotateZ(72deg);
-		-webkit-transform: rotateZ(72deg);
-		-moz-transform: rotateZ(72deg);
-}
-.cssload-thing:nth-child(7):before, .cssload-thing:nth-child(7):after {
-	animation: cssload-thing 0.7075s -1.425s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -1.425s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -1.425s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -1.425s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -1.425s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(7):before {
-	background: rgba(219,255,77,0.1);
-	animation: cssload-thing 0.95s -0.19s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.19s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.19s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.19s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.19s linear infinite;
-}
-.cssload-thing:nth-child(7):after {
-	background: rgba(219,255,77,0.75);
-}
-.cssload-thing:nth-child(8) {
-	transform: rotateZ(84deg);
-		-o-transform: rotateZ(84deg);
-		-ms-transform: rotateZ(84deg);
-		-webkit-transform: rotateZ(84deg);
-		-moz-transform: rotateZ(84deg);
-}
-.cssload-thing:nth-child(8):before, .cssload-thing:nth-child(8):after {
-	animation: cssload-thing 0.7075s -1.6575s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -1.6575s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -1.6575s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -1.6575s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -1.6575s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(8):before {
-	background: rgba(184, 255, 77, 0.1);
-	animation: cssload-thing 0.95s -0.2249965s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.2249965s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.2249965s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.2249965s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.2249965s linear infinite;
-}
-.cssload-thing:nth-child(8):after {
-	background: rgba(184, 255, 77, 0.75);
-}
-.cssload-thing:nth-child(9) {
-	transform: rotateZ(96deg);
-		-o-transform: rotateZ(96deg);
-		-ms-transform: rotateZ(96deg);
-		-webkit-transform: rotateZ(96deg);
-		-moz-transform: rotateZ(96deg);
-}
-.cssload-thing:nth-child(9):before, .cssload-thing:nth-child(9):after {
-	animation: cssload-thing 0.7075s -1.9s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -1.9s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -1.9s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -1.9s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -1.9s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(9):before {
-	background: rgba(148, 255, 77, 0.1);
-	animation: cssload-thing 0.95s -0.2500035s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.2500035s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.2500035s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.2500035s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.2500035s linear infinite;
-}
-.cssload-thing:nth-child(9):after {
-	background: rgba(148, 255, 77, 0.75);
-}
-.cssload-thing:nth-child(10) {
-	transform: rotateZ(108deg);
-		-o-transform: rotateZ(108deg);
-		-ms-transform: rotateZ(108deg);
-		-webkit-transform: rotateZ(108deg);
-		-moz-transform: rotateZ(108deg);
-}
-.cssload-thing:nth-child(10):before, .cssload-thing:nth-child(10):after {
-	animation: cssload-thing 0.7075s -2.1325s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -2.1325s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -2.1325s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -2.1325s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -2.1325s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(10):before {
-	background: rgba(112, 255, 77, 0.1);
-	animation: cssload-thing 0.95s -0.285s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.285s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.285s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.285s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.285s linear infinite;
-}
-.cssload-thing:nth-child(10):after {
-	background: rgba(112, 255, 77, 0.75);
-}
-.cssload-thing:nth-child(11) {
-	transform: rotateZ(120deg);
-		-o-transform: rotateZ(120deg);
-		-ms-transform: rotateZ(120deg);
-		-webkit-transform: rotateZ(120deg);
-		-moz-transform: rotateZ(120deg);
-}
-.cssload-thing:nth-child(11):before, .cssload-thing:nth-child(11):after {
-	animation: cssload-thing 0.7075s -2.375s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -2.375s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -2.375s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -2.375s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -2.375s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(11):before {
-	background: rgba(77, 255, 77, 0.1);
-	animation: cssload-thing 0.95s -0.3199965s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.3199965s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.3199965s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.3199965s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.3199965s linear infinite;
-}
-.cssload-thing:nth-child(11):after {
-	background: rgba(77, 255, 77, 0.75);
-}
-.cssload-thing:nth-child(12) {
-	transform: rotateZ(132deg);
-		-o-transform: rotateZ(132deg);
-		-ms-transform: rotateZ(132deg);
-		-webkit-transform: rotateZ(132deg);
-		-moz-transform: rotateZ(132deg);
-}
-.cssload-thing:nth-child(12):before, .cssload-thing:nth-child(12):after {
-	animation: cssload-thing 0.7075s -2.6075s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -2.6075s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -2.6075s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -2.6075s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -2.6075s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(12):before {
-	background: rgba(77, 255, 112, 0.1);
-	animation: cssload-thing 0.95s -0.3450035s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.3450035s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.3450035s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.3450035s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.3450035s linear infinite;
-}
-.cssload-thing:nth-child(12):after {
-	background: rgba(77, 255, 112, 0.75);
-}
-.cssload-thing:nth-child(13) {
-	transform: rotateZ(144deg);
-		-o-transform: rotateZ(144deg);
-		-ms-transform: rotateZ(144deg);
-		-webkit-transform: rotateZ(144deg);
-		-moz-transform: rotateZ(144deg);
-}
-.cssload-thing:nth-child(13):before, .cssload-thing:nth-child(13):after {
-	animation: cssload-thing 0.7075s -2.85s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -2.85s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -2.85s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -2.85s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -2.85s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(13):before {
-	background: rgba(77, 255, 148, 0.1);
-	animation: cssload-thing 0.95s -0.38s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.38s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.38s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.38s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.38s linear infinite;
-}
-.cssload-thing:nth-child(13):after {
-	background: rgba(77, 255, 148, 0.75);
-}
-.cssload-thing:nth-child(14) {
-	transform: rotateZ(156deg);
-		-o-transform: rotateZ(156deg);
-		-ms-transform: rotateZ(156deg);
-		-webkit-transform: rotateZ(156deg);
-		-moz-transform: rotateZ(156deg);
-}
-.cssload-thing:nth-child(14):before, .cssload-thing:nth-child(14):after {
-	animation: cssload-thing 0.7075s -3.0825s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -3.0825s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -3.0825s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -3.0825s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -3.0825s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(14):before {
-	background: rgba(77, 255, 184, 0.1);
-	animation: cssload-thing 0.95s -0.4149965s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.4149965s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.4149965s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.4149965s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.4149965s linear infinite;
-}
-.cssload-thing:nth-child(14):after {
-	background: rgba(77, 255, 184, 0.75);
-}
-.cssload-thing:nth-child(15) {
-	transform: rotateZ(168deg);
-		-o-transform: rotateZ(168deg);
-		-ms-transform: rotateZ(168deg);
-		-webkit-transform: rotateZ(168deg);
-		-moz-transform: rotateZ(168deg);
-}
-.cssload-thing:nth-child(15):before, .cssload-thing:nth-child(15):after {
-	animation: cssload-thing 0.7075s -3.325s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -3.325s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -3.325s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -3.325s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -3.325s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(15):before {
-	background: rgba(77, 255, 219, 0.1);
-	animation: cssload-thing 0.95s -0.4400035s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.4400035s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.4400035s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.4400035s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.4400035s linear infinite;
-}
-.cssload-thing:nth-child(15):after {
-	background: rgba(77, 255, 219, 0.75);
-}
-.cssload-thing:nth-child(16) {
-	transform: rotateZ(180deg);
-		-o-transform: rotateZ(180deg);
-		-ms-transform: rotateZ(180deg);
-		-webkit-transform: rotateZ(180deg);
-		-moz-transform: rotateZ(180deg);
-}
-.cssload-thing:nth-child(16):before, .cssload-thing:nth-child(16):after {
-	animation: cssload-thing 0.7075s -3.5575s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -3.5575s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -3.5575s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -3.5575s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -3.5575s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(16):before {
-	background: rgba(77, 255, 255, 0.1);
-	animation: cssload-thing 0.95s -0.475s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.475s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.475s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.475s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.475s linear infinite;
-}
-.cssload-thing:nth-child(16):after {
-	background: rgba(77, 255, 255, 0.75);
-}
-.cssload-thing:nth-child(17) {
-	transform: rotateZ(192deg);
-		-o-transform: rotateZ(192deg);
-		-ms-transform: rotateZ(192deg);
-		-webkit-transform: rotateZ(192deg);
-		-moz-transform: rotateZ(192deg);
-}
-.cssload-thing:nth-child(17):before, .cssload-thing:nth-child(17):after {
-	animation: cssload-thing 0.7075s -3.8s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -3.8s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -3.8s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -3.8s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -3.8s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(17):before {
-	background: rgba(77, 219, 255, 0.1);
-	animation: cssload-thing 0.95s -0.5099965s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.5099965s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.5099965s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.5099965s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.5099965s linear infinite;
-}
-.cssload-thing:nth-child(17):after {
-	background: rgba(77, 219, 255, 0.75);
-}
-.cssload-thing:nth-child(18) {
-	transform: rotateZ(204deg);
-		-o-transform: rotateZ(204deg);
-		-ms-transform: rotateZ(204deg);
-		-webkit-transform: rotateZ(204deg);
-		-moz-transform: rotateZ(204deg);
-}
-.cssload-thing:nth-child(18):before, .cssload-thing:nth-child(18):after {
-	animation: cssload-thing 0.7075s -4.0325s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -4.0325s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -4.0325s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -4.0325s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -4.0325s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(18):before {
-	background: rgba(77, 184, 255, 0.1);
-	animation: cssload-thing 0.95s -0.5350035s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.5350035s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.5350035s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.5350035s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.5350035s linear infinite;
-}
-.cssload-thing:nth-child(18):after {
-	background: rgba(77, 184, 255, 0.75);
-}
-.cssload-thing:nth-child(19) {
-	transform: rotateZ(216deg);
-		-o-transform: rotateZ(216deg);
-		-ms-transform: rotateZ(216deg);
-		-webkit-transform: rotateZ(216deg);
-		-moz-transform: rotateZ(216deg);
-}
-.cssload-thing:nth-child(19):before, .cssload-thing:nth-child(19):after {
-	animation: cssload-thing 0.7075s -4.275s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -4.275s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -4.275s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -4.275s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -4.275s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(19):before {
-	background: rgba(77, 148, 255, 0.1);
-	animation: cssload-thing 0.95s -0.57s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.57s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.57s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.57s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.57s linear infinite;
-}
-.cssload-thing:nth-child(19):after {
-	background: rgba(77, 148, 255, 0.75);
-}
-.cssload-thing:nth-child(20) {
-	transform: rotateZ(228deg);
-		-o-transform: rotateZ(228deg);
-		-ms-transform: rotateZ(228deg);
-		-webkit-transform: rotateZ(228deg);
-		-moz-transform: rotateZ(228deg);
-}
-.cssload-thing:nth-child(20):before, .cssload-thing:nth-child(20):after {
-	animation: cssload-thing 0.7075s -4.5075s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -4.5075s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -4.5075s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -4.5075s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -4.5075s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(20):before {
-	background: rgba(77, 112, 255, 0.1);
-	animation: cssload-thing 0.95s -0.6049965s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.6049965s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.6049965s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.6049965s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.6049965s linear infinite;
-}
-.cssload-thing:nth-child(20):after {
-	background: rgba(77, 112, 255, 0.75);
-}
-.cssload-thing:nth-child(21) {
-	transform: rotateZ(240deg);
-		-o-transform: rotateZ(240deg);
-		-ms-transform: rotateZ(240deg);
-		-webkit-transform: rotateZ(240deg);
-		-moz-transform: rotateZ(240deg);
-}
-.cssload-thing:nth-child(21):before, .cssload-thing:nth-child(21):after {
-	animation: cssload-thing 0.7075s -4.75s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -4.75s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -4.75s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -4.75s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -4.75s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(21):before {
-	background: rgba(77, 77, 255, 0.1);
-	animation: cssload-thing 0.95s -0.6300035s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.6300035s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.6300035s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.6300035s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.6300035s linear infinite;
-}
-.cssload-thing:nth-child(21):after {
-	background: rgba(77, 77, 255, 0.75);
-}
-.cssload-thing:nth-child(22) {
-	transform: rotateZ(252deg);
-		-o-transform: rotateZ(252deg);
-		-ms-transform: rotateZ(252deg);
-		-webkit-transform: rotateZ(252deg);
-		-moz-transform: rotateZ(252deg);
-}
-.cssload-thing:nth-child(22):before, .cssload-thing:nth-child(22):after {
-	animation: cssload-thing 0.7075s -4.9825s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -4.9825s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -4.9825s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -4.9825s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -4.9825s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(22):before {
-	background: rgba(112, 77, 255, 0.1);
-	animation: cssload-thing 0.95s -0.665s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.665s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.665s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.665s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.665s linear infinite;
-}
-.cssload-thing:nth-child(22):after {
-	background: rgba(112, 77, 255, 0.75);
-}
-.cssload-thing:nth-child(23) {
-	transform: rotateZ(264deg);
-		-o-transform: rotateZ(264deg);
-		-ms-transform: rotateZ(264deg);
-		-webkit-transform: rotateZ(264deg);
-		-moz-transform: rotateZ(264deg);
-}
-.cssload-thing:nth-child(23):before, .cssload-thing:nth-child(23):after {
-	animation: cssload-thing 0.7075s -5.225s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -5.225s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -5.225s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -5.225s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -5.225s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(23):before {
-	background: rgba(148, 77, 255, 0.1);
-	animation: cssload-thing 0.95s -0.6999965s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.6999965s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.6999965s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.6999965s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.6999965s linear infinite;
-}
-.cssload-thing:nth-child(23):after {
-	background: rgba(148, 77, 255, 0.75);
-}
-.cssload-thing:nth-child(24) {
-	transform: rotateZ(276deg);
-		-o-transform: rotateZ(276deg);
-		-ms-transform: rotateZ(276deg);
-		-webkit-transform: rotateZ(276deg);
-		-moz-transform: rotateZ(276deg);
-}
-.cssload-thing:nth-child(24):before, .cssload-thing:nth-child(24):after {
-	animation: cssload-thing 0.7075s -5.4575s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -5.4575s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -5.4575s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -5.4575s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -5.4575s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(24):before {
-	background: rgba(184, 77, 255, 0.1);
-	animation: cssload-thing 0.95s -0.7250035s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.7250035s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.7250035s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.7250035s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.7250035s linear infinite;
-}
-.cssload-thing:nth-child(24):after {
-	background: rgba(184, 77, 255, 0.75);
-}
-.cssload-thing:nth-child(25) {
-	transform: rotateZ(288deg);
-		-o-transform: rotateZ(288deg);
-		-ms-transform: rotateZ(288deg);
-		-webkit-transform: rotateZ(288deg);
-		-moz-transform: rotateZ(288deg);
-}
-.cssload-thing:nth-child(25):before, .cssload-thing:nth-child(25):after {
-	animation: cssload-thing 0.7075s -5.7s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -5.7s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -5.7s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -5.7s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -5.7s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(25):before {
-	background: rgba(219, 77, 255, 0.1);
-	animation: cssload-thing 0.95s -0.76s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.76s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.76s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.76s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.76s linear infinite;
-}
-.cssload-thing:nth-child(25):after {
-	background: rgba(219, 77, 255, 0.75);
-}
-.cssload-thing:nth-child(26) {
-	transform: rotateZ(300deg);
-		-o-transform: rotateZ(300deg);
-		-ms-transform: rotateZ(300deg);
-		-webkit-transform: rotateZ(300deg);
-		-moz-transform: rotateZ(300deg);
-}
-.cssload-thing:nth-child(26):before, .cssload-thing:nth-child(26):after {
-	animation: cssload-thing 0.7075s -5.9325s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -5.9325s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -5.9325s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -5.9325s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -5.9325s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(26):before {
-	background: rgba(255, 77, 255, 0.1);
-	animation: cssload-thing 0.95s -0.7949965s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.7949965s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.7949965s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.7949965s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.7949965s linear infinite;
-}
-.cssload-thing:nth-child(26):after {
-	background: rgba(255, 77, 255, 0.75);
-}
-.cssload-thing:nth-child(27) {
-	transform: rotateZ(312deg);
-		-o-transform: rotateZ(312deg);
-		-ms-transform: rotateZ(312deg);
-		-webkit-transform: rotateZ(312deg);
-		-moz-transform: rotateZ(312deg);
-}
-.cssload-thing:nth-child(27):before, .cssload-thing:nth-child(27):after {
-	animation: cssload-thing 0.7075s -6.175s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -6.175s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -6.175s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -6.175s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -6.175s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(27):before {
-	background: rgba(255, 77, 219, 0.1);
-	animation: cssload-thing 0.95s -0.8200035s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.8200035s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.8200035s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.8200035s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.8200035s linear infinite;
-}
-.cssload-thing:nth-child(27):after {
-	background: rgba(255, 77, 219, 0.75);
-}
-.cssload-thing:nth-child(28) {
-	transform: rotateZ(324deg);
-		-o-transform: rotateZ(324deg);
-		-ms-transform: rotateZ(324deg);
-		-webkit-transform: rotateZ(324deg);
-		-moz-transform: rotateZ(324deg);
-}
-.cssload-thing:nth-child(28):before, .cssload-thing:nth-child(28):after {
-	animation: cssload-thing 0.7075s -6.4075s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -6.4075s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -6.4075s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -6.4075s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -6.4075s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(28):before {
-	background: rgba(255, 77, 184, 0.1);
-	animation: cssload-thing 0.95s -0.855s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.855s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.855s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.855s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.855s linear infinite;
-}
-.cssload-thing:nth-child(28):after {
-	background: rgba(255, 77, 184, 0.75);
-}
-.cssload-thing:nth-child(29) {
-	transform: rotateZ(336deg);
-		-o-transform: rotateZ(336deg);
-		-ms-transform: rotateZ(336deg);
-		-webkit-transform: rotateZ(336deg);
-		-moz-transform: rotateZ(336deg);
-}
-.cssload-thing:nth-child(29):before, .cssload-thing:nth-child(29):after {
-	animation: cssload-thing 0.7075s -6.65s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -6.65s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -6.65s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -6.65s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -6.65s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(29):before {
-	background: rgba(255, 77, 148, 0.1);
-	animation: cssload-thing 0.95s -0.8899965s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.8899965s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.8899965s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.8899965s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.8899965s linear infinite;
-}
-.cssload-thing:nth-child(29):after {
-	background: rgba(255, 77, 148, 0.75);
-}
-.cssload-thing:nth-child(30) {
-	transform: rotateZ(348deg);
-		-o-transform: rotateZ(348deg);
-		-ms-transform: rotateZ(348deg);
-		-webkit-transform: rotateZ(348deg);
-		-moz-transform: rotateZ(348deg);
-}
-.cssload-thing:nth-child(30):before, .cssload-thing:nth-child(30):after {
-	animation: cssload-thing 0.7075s -6.8825s ease-in-out infinite alternate-reverse;
-		-o-animation: cssload-thing 0.7075s -6.8825s ease-in-out infinite alternate-reverse;
-		-ms-animation: cssload-thing 0.7075s -6.8825s ease-in-out infinite alternate-reverse;
-		-webkit-animation: cssload-thing 0.7075s -6.8825s ease-in-out infinite alternate-reverse;
-		-moz-animation: cssload-thing 0.7075s -6.8825s ease-in-out infinite alternate-reverse;
-}
-.cssload-thing:nth-child(30):before {
-	background: rgba(255, 77, 112, 0.1);
-	animation: cssload-thing 0.95s -0.9150035s linear infinite;
-		-o-animation: cssload-thing 0.95s -0.9150035s linear infinite;
-		-ms-animation: cssload-thing 0.95s -0.9150035s linear infinite;
-		-webkit-animation: cssload-thing 0.95s -0.9150035s linear infinite;
-		-moz-animation: cssload-thing 0.95s -0.9150035s linear infinite;
-}
-.cssload-thing:nth-child(30):after {
-	background: rgba(255, 77, 112, 0.75);
+#cssload-pgloading:after {
+		content: "";
+		z-index: -1;
+		position: absolute;
+		top: 0; right: 0; bottom: 0; left: 0;
+}
+
+#cssload-pgloading .cssload-bokeh {
+		font-size: 175px;
+		width: 1.8em;
+		height: 1.8em;
+		position: relative;
+		margin: 0 auto;
+		list-style: none;
+		padding:0;
+		border-radius: 50%;
+		-o-border-radius: 50%;
+		-ms-border-radius: 50%;
+		-webkit-border-radius: 50%;
+		-moz-border-radius: 50%;
+}
+
+#cssload-pgloading .cssload-bokeh li {
+		position: absolute;
+		width: .4em;
+		height: .4em;
+		border-radius: 50%;
+		-o-border-radius: 50%;
+		-ms-border-radius: 50%;
+		-webkit-border-radius: 50%;
+		-moz-border-radius: 50%;
+}
+
+#cssload-pgloading .cssload-bokeh li:nth-child(1) {
+		left: 50%;
+		top: 0;
+		margin: 0 0 0 -.2em;
+		background: rgb(0,193,118);
+		transform-origin: 50% 250%;
+		-o-transform-origin: 50% 250%;
+		-ms-transform-origin: 50% 250%;
+		-webkit-transform-origin: 50% 250%;
+		-moz-transform-origin: 50% 250%;
+		animation:
+				cssload-rota 1.13s linear infinite,
+				cssload-opa 3.67s ease-in-out infinite alternate;
+		-o-animation:
+				cssload-rota 1.13s linear infinite,
+				cssload-opa 3.67s ease-in-out infinite alternate;
+		-ms-animation:
+				cssload-rota 1.13s linear infinite,
+				cssload-opa 3.67s ease-in-out infinite alternate;
+		-webkit-animation:
+				cssload-rota 1.13s linear infinite,
+				cssload-opa 3.67s ease-in-out infinite alternate;
+		-moz-animation:
+				cssload-rota 1.13s linear infinite,
+				cssload-opa 3.67s ease-in-out infinite alternate;
+}
+
+#cssload-pgloading .cssload-bokeh li:nth-child(2) {
+		top: 50%;
+		right: 0;
+		margin: -.2em 0 0 0;
+		background: rgb(255,0,60);
+		transform-origin: -150% 50%;
+		-o-transform-origin: -150% 50%;
+		-ms-transform-origin: -150% 50%;
+		-webkit-transform-origin: -150% 50%;
+		-moz-transform-origin: -150% 50%;
+		animation:
+				cssload-rota 1.86s linear infinite,
+				cssload-opa 4.29s ease-in-out infinite alternate;
+		-o-animation:
+				cssload-rota 1.86s linear infinite,
+				cssload-opa 4.29s ease-in-out infinite alternate;
+		-ms-animation:
+				cssload-rota 1.86s linear infinite,
+				cssload-opa 4.29s ease-in-out infinite alternate;
+		-webkit-animation:
+				cssload-rota 1.86s linear infinite,
+				cssload-opa 4.29s ease-in-out infinite alternate;
+		-moz-animation:
+				cssload-rota 1.86s linear infinite,
+				cssload-opa 4.29s ease-in-out infinite alternate;
+}
+
+#cssload-pgloading .cssload-bokeh li:nth-child(3) {
+		left: 50%;
+		bottom: 0;
+		margin: 0 0 0 -.2em;
+		background: rgb(250,190,40);
+		transform-origin: 50% -150%;
+		-o-transform-origin: 50% -150%;
+		-ms-transform-origin: 50% -150%;
+		-webkit-transform-origin: 50% -150%;
+		-moz-transform-origin: 50% -150%;
+		animation:
+				cssload-rota 1.45s linear infinite,
+				cssload-opa 5.12s ease-in-out infinite alternate;
+		-o-animation:
+				cssload-rota 1.45s linear infinite,
+				cssload-opa 5.12s ease-in-out infinite alternate;
+		-ms-animation:
+				cssload-rota 1.45s linear infinite,
+				cssload-opa 5.12s ease-in-out infinite alternate;
+		-webkit-animation:
+				cssload-rota 1.45s linear infinite,
+				cssload-opa 5.12s ease-in-out infinite alternate;
+		-moz-animation:
+				cssload-rota 1.45s linear infinite,
+				cssload-opa 5.12s ease-in-out infinite alternate;
+}
+
+#cssload-pgloading .cssload-bokeh li:nth-child(4) {
+		top: 50%;
+		left: 0;
+		margin: -.2em 0 0 0;
+		background: rgb(136,193,0);
+		transform-origin: 250% 50%;
+		-o-transform-origin: 250% 50%;
+		-ms-transform-origin: 250% 50%;
+		-webkit-transform-origin: 250% 50%;
+		-moz-transform-origin: 250% 50%;
+		animation:
+				cssload-rota 1.72s linear infinite,
+				cssload-opa 5.25s ease-in-out infinite alternate;
+		-o-animation:
+				cssload-rota 1.72s linear infinite,
+				cssload-opa 5.25s ease-in-out infinite alternate;
+		-ms-animation:
+				cssload-rota 1.72s linear infinite,
+				cssload-opa 5.25s ease-in-out infinite alternate;
+		-webkit-animation:
+				cssload-rota 1.72s linear infinite,
+				cssload-opa 5.25s ease-in-out infinite alternate;
+		-moz-animation:
+				cssload-rota 1.72s linear infinite,
+				cssload-opa 5.25s ease-in-out infinite alternate;
 }
 
 
 
-@keyframes cssload-thing {
-	100% {
-		padding: 1em 0;
-	}
+
+
+
+
+@keyframes cssload-rota {
+		from { }
+		to { transform: rotate(360deg); }
 }
 
-@-o-keyframes cssload-thing {
-	100% {
-		padding: 1em 0;
-	}
+@-o-keyframes cssload-rota {
+		from { }
+		to { -o-transform: rotate(360deg); }
 }
 
-@-ms-keyframes cssload-thing {
-	100% {
-		padding: 1em 0;
-	}
+@-ms-keyframes cssload-rota {
+		from { }
+		to { -ms-transform: rotate(360deg); }
 }
 
-@-webkit-keyframes cssload-thing {
-	100% {
-		padding: 1em 0;
-	}
+@-webkit-keyframes cssload-rota {
+		from { }
+		to { -webkit-transform: rotate(360deg); }
 }
 
-@-moz-keyframes cssload-thing {
-	100% {
-		padding: 1em 0;
-	}
+@-moz-keyframes cssload-rota {
+		from { }
+		to { -moz-transform: rotate(360deg); }
+}
+
+@keyframes cssload-opa {
+		0% { }
+		12.0% { opacity: 0.80; }
+		19.5% { opacity: 0.88; }
+		37.2% { opacity: 0.64; }
+		40.5% { opacity: 0.52; }
+		52.7% { opacity: 0.69; }
+		60.2% { opacity: 0.60; }
+		66.6% { opacity: 0.52; }
+		70.0% { opacity: 0.63; }
+		79.9% { opacity: 0.60; }
+		84.2% { opacity: 0.75; }
+		91.0% { opacity: 0.87; }
+}
+
+@-o-keyframes cssload-opa {
+		0% { }
+		12.0% { opacity: 0.80; }
+		19.5% { opacity: 0.88; }
+		37.2% { opacity: 0.64; }
+		40.5% { opacity: 0.52; }
+		52.7% { opacity: 0.69; }
+		60.2% { opacity: 0.60; }
+		66.6% { opacity: 0.52; }
+		70.0% { opacity: 0.63; }
+		79.9% { opacity: 0.60; }
+		84.2% { opacity: 0.75; }
+		91.0% { opacity: 0.87; }
+}
+
+@-ms-keyframes cssload-opa {
+		0% { }
+		12.0% { opacity: 0.80; }
+		19.5% { opacity: 0.88; }
+		37.2% { opacity: 0.64; }
+		40.5% { opacity: 0.52; }
+		52.7% { opacity: 0.69; }
+		60.2% { opacity: 0.60; }
+		66.6% { opacity: 0.52; }
+		70.0% { opacity: 0.63; }
+		79.9% { opacity: 0.60; }
+		84.2% { opacity: 0.75; }
+		91.0% { opacity: 0.87; }
+}
+
+@-webkit-keyframes cssload-opa {
+		0% { }
+		12.0% { opacity: 0.80; }
+		19.5% { opacity: 0.88; }
+		37.2% { opacity: 0.64; }
+		40.5% { opacity: 0.52; }
+		52.7% { opacity: 0.69; }
+		60.2% { opacity: 0.60; }
+		66.6% { opacity: 0.52; }
+		70.0% { opacity: 0.63; }
+		79.9% { opacity: 0.60; }
+		84.2% { opacity: 0.75; }
+		91.0% { opacity: 0.87; }
+}
+
+@-moz-keyframes cssload-opa {
+		0% { }
+		12.0% { opacity: 0.80; }
+		19.5% { opacity: 0.88; }
+		37.2% { opacity: 0.64; }
+		40.5% { opacity: 0.52; }
+		52.7% { opacity: 0.69; }
+		60.2% { opacity: 0.60; }
+		66.6% { opacity: 0.52; }
+		70.0% { opacity: 0.63; }
+		79.9% { opacity: 0.60; }
+		84.2% { opacity: 0.75; }
+		91.0% { opacity: 0.87; }
 }

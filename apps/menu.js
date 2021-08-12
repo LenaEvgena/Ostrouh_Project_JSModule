@@ -2,8 +2,11 @@
 
 import { Controlls } from './Controlls.js';
 import * as SPA from './SPA.js';
+import { showPreloader } from './preloader.js';
 
 export function initMenuPage() {
+  showPreloader();
+
   if (!globalThis.isPaused) {
     globalThis.audioController.startMusic();
   }
