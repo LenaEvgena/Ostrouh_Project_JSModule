@@ -97,6 +97,8 @@ export class MemoryGame {
     this.matchedCardsArray.push(card2);
     card1.classList.add('matched');
     card2.classList.add('matched');
+    this.vibro(true);
+
     this.isBusy = true;
     //убрать карту
     setTimeout(() => {
@@ -113,6 +115,7 @@ export class MemoryGame {
     if (this.matchedCardsArray.length === this.cardsArray.length) {
       setTimeout(() => {
         this.endGame();
+        this.vibro(false);
       }, 800);
     }
   }
@@ -152,6 +155,16 @@ export class MemoryGame {
       let randomInd = Math.floor( Math.random() * (i + 1) );
       cardsArray[randomInd].style.order = i;
       cardsArray[i].style.order = randomInd;
+    }
+  }
+
+  vibro(flag) {
+    if (navigator.vibrate) {
+      if (!flag) {
+        window.navigator.vibrate(300);
+      } else {
+        window.navigator.vibrate([100, 50, 100, 50, 100])
+      }
     }
   }
 
