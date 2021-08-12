@@ -2,7 +2,7 @@
 
 export class Overlay {
   constructor() {
-    this.createOverlay();
+    // this.createOverlay();
   }
 
   createOverlay() {

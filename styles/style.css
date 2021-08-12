@@ -304,7 +304,6 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateZ(0);
 }
 
 .main_button {
@@ -329,7 +328,6 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateZ(0);
 }
 
 .menu_elements {
@@ -397,7 +395,6 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transform: translateZ(0);
 }
 
 .info_container {
@@ -415,6 +412,7 @@ html {
   font-weight: bold;
   line-height: 1.5;
   letter-spacing: 7px;
+  transform: translateZ(0);
 }
 
 .cards_container {
@@ -425,6 +423,7 @@ html {
   align-items: center;
   justify-content: center;
   perspective: 1000px;
+  transform: translateZ(0);
 }
 
 .card {
@@ -432,6 +431,7 @@ html {
   width: 110px;
   height: 110px;
   cursor: pointer;
+  transform: translateZ(0);
 }
 
 .card_face {
@@ -443,6 +443,7 @@ html {
   height: 100%;
   transition: transform 500ms ease-in-out;
   backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .logic_image {
@@ -451,32 +452,39 @@ html {
 
 .bubble {
   width: 110px;
+  transform: translateZ(0);
 }
 
 .animal {
   position: absolute;
   width: 90px;
+  transform: translateZ(0);
 }
 
 .back_image {
   width: 110px;
   filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
+  transform: translateZ(0);
 }
 
 .card_back {
   transform: rotateY(0);
+  transform: translateZ(0);
 }
 
 .card_front {
   transform: rotateY(180deg);
+  transform: translateZ(0);
 }
 
 .card.visible .card_back {
   transform: rotateY(-180deg);
+  transform: translateZ(0);
 }
 
 .card.visible .card_front {
   transform: rotateY(0);
+  transform: translateZ(0);
 }
 
 .card.visible .card_front .animal {
