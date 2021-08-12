@@ -415,7 +415,6 @@ html {
   font-weight: bold;
   line-height: 1.5;
   letter-spacing: 7px;
-  transform: translateZ(0);
 }
 
 .cards_container {
@@ -426,7 +425,6 @@ html {
   align-items: center;
   justify-content: center;
   perspective: 1000px;
-  transform: translateZ(0);
 }
 
 .card {
@@ -445,7 +443,6 @@ html {
   height: 100%;
   transition: transform 500ms ease-in-out;
   backface-visibility: hidden;
-  transform: translateZ(0);
 }
 
 .logic_image {
