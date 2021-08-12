@@ -3,7 +3,7 @@
 export function showPreloader() {
   document.body.appendChild( createPreloader() );
   // document.body.addEventListener('load', hidePreloader());
-  document.body.onload = hidePreloader();
+  window.onload = hidePreloader();
 }
 
 function createPreloader() {
@@ -46,5 +46,5 @@ function hidePreloader() {
         document.body.removeChild(preloader);
       }, 500);
     }
-  }, 600);
+  }, 1000);
 }
