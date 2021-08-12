@@ -55,7 +55,7 @@ export class MemoryGame {
   endGame() {
     clearInterval(this.countDown);
     this.overlay.endGame();
-    globalThis.audioController.vibro(true);;
+    globalThis.audioController.vibro(true);
     globalThis.audioController.stopMusic();
     globalThis.audioController.hooraySound();
     setTimeout(() => {
