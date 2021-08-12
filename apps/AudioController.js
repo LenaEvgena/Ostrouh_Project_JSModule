@@ -52,4 +52,13 @@ export class AudioController {
   dropSound() {
     this.drop.play();
   }
+  vibro(flag) {
+    if (navigator.vibrate) {
+      if (!flag) {
+        window.navigator.vibrate(100);
+      } else {
+        window.navigator.vibrate([100, 50, 100, 50, 100])
+      }
+    }
+  }
 }
