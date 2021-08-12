@@ -431,7 +431,6 @@ html {
   width: 110px;
   height: 110px;
   cursor: pointer;
-  transform: translateZ(0);
 }
 
 .card_face {
@@ -452,39 +451,32 @@ html {
 
 .bubble {
   width: 110px;
-  transform: translateZ(0);
 }
 
 .animal {
   position: absolute;
   width: 90px;
-  transform: translateZ(0);
 }
 
 .back_image {
   width: 110px;
   filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
-  transform: translateZ(0);
 }
 
 .card_back {
   transform: rotateY(0);
-  transform: translateZ(0);
 }
 
 .card_front {
   transform: rotateY(180deg);
-  transform: translateZ(0);
 }
 
 .card.visible .card_back {
   transform: rotateY(-180deg);
-  transform: translateZ(0);
 }
 
 .card.visible .card_front {
   transform: rotateY(0);
-  transform: translateZ(0);
 }
 
 .card.visible .card_front .animal {
