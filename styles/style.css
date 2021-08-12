@@ -304,6 +304,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translateZ(0);
 }
 
 .main_button {
@@ -328,6 +329,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translateZ(0);
 }
 
 .menu_elements {
@@ -395,6 +397,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: translateZ(0);
 }
 
 .info_container {
