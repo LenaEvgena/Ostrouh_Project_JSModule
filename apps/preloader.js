@@ -2,8 +2,8 @@
 
 export function showPreloader() {
   document.body.appendChild( createPreloader() );
-  document.body.addEventListener('load', hidePreloader());
-  // document.body.onload = hidePreloader();
+  // document.body.addEventListener('load', hidePreloader());
+  document.body.onload = hidePreloader();
 }
 
 function createPreloader() {

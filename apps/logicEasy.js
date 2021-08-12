@@ -11,12 +11,4 @@ export function logicEasyGame() {
 
   const memoryGame = new MemoryGame(cards);
   memoryGame.startGame();
-  window.onload = function () {
-    preloader.style.display = 'flex';
-
-    let preloader = document.getElementById('preloader');
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 1000);
-  };
 }

@@ -6,25 +6,6 @@
   }
 }
 
-/* @media only screen and (max-width:840px) {
-  .cards_container {
-    grid-gap: 15px;
-  }
-  .card {
-    width: 100px;
-    height: 100px;
-  }
-  .bubble {
-    width: 100px;
-  }
-  .animal {
-    width: 80px;
-  }
-  .back_image {
-    width: 100px;
-  }
-} */
-
 @media only screen and (max-width:767px) {
   /*main page*/
   .btn_img {
@@ -79,58 +60,54 @@
 }
 
 
-@media only screen and (max-height:750px) {
-  /*logic page*/
-  /* .cards_container {
-    grid-template-columns: repeat(10, auto);
-    grid-gap: 7px;
-  }
-  .card {
-    width: 60px;
-    height: 60px;
-  }
-  .bubble {
-    width: 60px;
-  }
-  .animal {
-    width: 50px;
-  }
-  .back_image {
-    width: 60px;
-  }
+@media only screen and (max-height:770px) {
+  /*colors page*/
   #tasksPoints span {
-    margin: 5px;
+    margin: 6px;
     width: 13px;
     height: 13px;
-  } */
+  }
+  /*logic page*/
+  .game_info {
+    font-size: 7vh;
+    letter-spacing: 5px;
+  }
+  .cards_container {
+    grid-template-columns: repeat(6, auto);
+    grid-gap: 2vh;
+  }
+  .card {
+    width: 11vh;
+    height: 11vh;
+  }
+  .bubble {
+    width: 11vh;
+  }
+  .animal {
+    width: 10vh;
+  }
+  .back_image {
+    width: 11vh;
+  }
+  .info_container {
+    margin-bottom: 4vh;
+  }
 }
+
 @media only screen and (max-height:520px) {
   .btn_img {
     width: 50vh;
   }
+}
 
-  /*logic page*/
-  /* .cards_container {
-    grid-template-columns: repeat(6, auto);
-    grid-gap: 7px;
+@media only screen and (max-height:380px) {
+  .btn_img {
+    width: 50vh;
   }
-  .card {
-    width: 60px;
-    height: 60px;
+  .menu_element {
+    margin: 2.7vh;
+    width: 55vh;
+    height: 18vh;
   }
-  .bubble {
-    width: 60px;
-  }
-  .animal {
-    width: 50px;
-  }
-  .back_image {
-    width: 60px;
-  }
-  #tasksPoints span {
-    margin: 5px;
-    width: 13px;
-    height: 13px;
-  } */
 }
 
