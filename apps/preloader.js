@@ -2,7 +2,8 @@
 
 export function showPreloader() {
   document.body.appendChild( createPreloader() );
-  document.body.onload = hidePreloader();
+  document.body.addEventListener('load', hidePreloader());
+  // document.body.onload = hidePreloader();
 }
 
 function createPreloader() {
@@ -23,7 +24,7 @@ function createPreloader() {
   cssloadBokeh.className = 'cssload-bokeh';
 
   for (let i = 0; i < 4; i++) {
-    const li  = document.createElement('li');
+    const li = document.createElement('li');
     cssloadBokeh.appendChild(li);
   }
 
@@ -43,7 +44,7 @@ function hidePreloader() {
       preloader.classList.add('hide');
       setTimeout(() => {
         document.body.removeChild(preloader);
-      }, 400);
+      }, 500);
     }
-  }, 400);
+  }, 600);
 }
