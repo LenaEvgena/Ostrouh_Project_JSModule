@@ -30,8 +30,8 @@ export class LogicMenu {
       const div = document.createElement('div');
       div.className = 'menu_item';
       div.id = `${level}-${i}`;
-      div.style.width = '300px';
-      div.style.height = '200px';
+      div.style.width = '20vw';
+      div.style.height = '30vh';
       div.style.backgroundSize = 'cover';
       const img = document.createElement('img');
       img.src = `../assets/img/logicmenu/bg${i}.jpg`;
