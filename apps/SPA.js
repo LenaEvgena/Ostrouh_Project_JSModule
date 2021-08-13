@@ -1,20 +1,21 @@
 'use strict';
 
 import { initStartPage } from './script.js';
-// import { initMenuPage } from './menu.js';
-// import { logicEasyGame } from './logicEasy.js';
-// import { logicMediumGame } from './logicMedium.js';
-// import { logicHardGame } from './logicHard.js';
 
 //SPA
 window.onhashchange = renderNewState;
+let levelID = '';
 
 function renderNewState() {
+  const wrapper = document.querySelector('.wrapper');
   const hash = window.location.hash;
   let state = decodeURIComponent(hash.substr(1));
 
   (state === '') ? state = { page: 'Start' } : state = JSON.parse(state);
-  const wrapper = document.querySelector('.wrapper');
+
+  if (state.page.includes('level')) {
+    levelID = state.page;
+  }
 
   switch (state.page) {
     case 'Start':
@@ -55,6 +56,11 @@ function renderNewState() {
       });
       // logicHardGame();
       break;
+    case `${levelID}`:
+      wrapper.innerHTML = '';
+
+      // logicHardGame();
+      break;
   }
 }
 
@@ -92,6 +98,11 @@ export function switchToMenuHard(state) {
 
 export function switchToLogicHard(state) {
   switchToState({ page: 'LogicHard' });
+}
+
+export function switchToArticle(state) {
+  levelID = event.target.id;
+  switchToState({ page: `${levelID}` });
 }
 
 renderNewState();
