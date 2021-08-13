@@ -6,7 +6,6 @@ export class Controlls {
   }
 
   turnBack(callback) {
-    // SPA.switchToMenu();
     callback();
   }
 

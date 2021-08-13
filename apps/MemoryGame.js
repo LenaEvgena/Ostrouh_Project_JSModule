@@ -53,15 +53,15 @@ export class MemoryGame {
     }, 1000);
   }
 
-  endGame(callback) {
+  endGame() {
     clearInterval(this.countDown);
     this.overlay.endGame();
     globalThis.audioController.vibro(true);
     globalThis.audioController.stopMusic();
     globalThis.audioController.hooraySound();
     setTimeout(() => {
-      this.controlls.turnBack(callback);
-    }, 9000)
+      this.controlls.turnBack(this.callback);
+    }, 8000)
   }
 
   openCard(card) {
