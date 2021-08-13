@@ -29,6 +29,13 @@ function renderNewState() {
         module.initMenuPage();
       });
       break;
+    case 'MenuEasy':
+      wrapper.innerHTML = '';
+      import('./menuEasy.js').then(module => {
+        module.logicMenuEasy();
+      });
+      // logicEasyGame();
+      break;
     case 'LogicEasy':
       wrapper.innerHTML = '';
       import('./logicEasy.js').then(module => {
@@ -65,12 +72,24 @@ export function switchToMenu(state) {
   switchToState({ page: "Menu" });
 }
 
+export function switchToMenuEasy(state) {
+  switchToState({ page: 'MenuEasy' });
+}
+
 export function switchToLogicEasy(state) {
   switchToState({ page: 'LogicEasy' });
 }
 
+export function switchToMenuMedium(state) {
+  switchToState({ page: 'MenuMedium' });
+}
+
 export function switchToLogicMedium(state) {
   switchToState({ page: 'LogicMedium' });
+}
+
+export function switchToMenuHard(state) {
+  switchToState({ page: 'MenuHard' });
 }
 
 export function switchToLogicHard(state) {

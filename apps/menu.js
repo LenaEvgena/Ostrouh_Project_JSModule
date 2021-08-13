@@ -27,7 +27,8 @@ export function initMenuPage() {
   });
   easyGame.addEventListener('click', () => {
     globalThis.audioController.clickSound();
-    SPA.switchToLogicEasy();
+    // SPA.switchToLogicEasy();
+    SPA.switchToMenuEasy();
   });
   mediumGame.addEventListener('click', () => {
     globalThis.audioController.clickSound();

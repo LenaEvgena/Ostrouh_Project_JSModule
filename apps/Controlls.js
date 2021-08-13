@@ -33,24 +33,24 @@ export class Controlls {
   }
 
   createMusicButton(parent, controller) {
-    const music_button = document.createElement('img');
-    music_button.src = './assets/img/other/musicbutton.png'
-    music_button.className = 'music_button';
+    const musicButton = document.createElement('img');
+    musicButton.src = './assets/img/other/musicbutton.png'
+    musicButton.className = 'music_button';
 
-    music_button.addEventListener('click', () => {
-      music_button.classList.toggle('clicked');
+    musicButton.addEventListener('click', () => {
+      musicButton.classList.toggle('clicked');
       controller.toggleBgMusic();
       this.updateMusicButton();
     });
-    parent.appendChild(music_button);
+    parent.appendChild(musicButton);
   }
 
   updateMusicButton() {
-    const music_button = document.querySelector('.music_button');
+    const musicButton = document.querySelector('.music_button');
     if(globalThis.isPaused) {
-      music_button.classList.add('clicked');
+      musicButton.classList.add('clicked');
     } else {
-      music_button.classList.remove('clicked');
+      musicButton.classList.remove('clicked');
     }
   }
 
