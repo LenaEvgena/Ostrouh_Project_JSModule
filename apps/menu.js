@@ -27,16 +27,15 @@ export function initMenuPage() {
   });
   easyGame.addEventListener('click', () => {
     globalThis.audioController.clickSound();
-    // SPA.switchToLogicEasy();
     SPA.switchToMenuEasy();
   });
   mediumGame.addEventListener('click', () => {
     globalThis.audioController.clickSound();
-    SPA.switchToLogicMedium();
+    SPA.switchToMenuMedium();
   });
   hardGame.addEventListener('click', () => {
     globalThis.audioController.clickSound();
-    SPA.switchToLogicHard();
+    SPA.switchToMenuHard();
   });
 
   controlls.updateMusicButton(globalThis.audioController);

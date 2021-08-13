@@ -30,31 +30,40 @@ function renderNewState() {
       break;
     case 'MenuEasy':
       wrapper.innerHTML = '';
-      import('./menuEasy.js').then(module => {
+      import('./logicMenuPage.js').then(module => {
         module.logicMenuEasy();
       });
-      // logicEasyGame();
       break;
+    case 'MenuMedium':
+      wrapper.innerHTML = '';
+      import('./logicMenuPage.js').then(module => {
+        module.logicMenuMedium();
+      });
+      break;
+    case 'MenuHard':
+      wrapper.innerHTML = '';
+      import('./logicMenuPage.js').then(module => {
+        module.logicMenuHard();
+      });
+      break;
+
     case 'LogicEasy':
       wrapper.innerHTML = '';
-      import('./logicEasy.js').then(module => {
+      import('./newGames.js').then(module => {
         module.logicEasyGame();
       });
-      // logicEasyGame();
       break;
     case 'LogicMedium':
       wrapper.innerHTML = '';
-      import('./logicMedium.js').then(module => {
+      import('./newGames.js').then(module => {
         module.logicMediumGame();
       });
-      // logicMediumGame();
       break;
     case 'LogicHard':
       wrapper.innerHTML = '';
-      import('./logicHard.js').then(module => {
+      import('./newGames.js').then(module => {
         module.logicHardGame();
       });
-      // logicHardGame();
       break;
     case `${levelID}`:
       wrapper.innerHTML = '';
@@ -80,27 +89,27 @@ export function switchToMenuEasy(state) {
   switchToState({ page: 'MenuEasy' });
 }
 
-export function switchToLogicEasy(state) {
-  switchToState({ page: 'LogicEasy' });
-}
-
 export function switchToMenuMedium(state) {
   switchToState({ page: 'MenuMedium' });
-}
-
-export function switchToLogicMedium(state) {
-  switchToState({ page: 'LogicMedium' });
 }
 
 export function switchToMenuHard(state) {
   switchToState({ page: 'MenuHard' });
 }
 
+export function switchToLogicEasy(state) {
+  switchToState({ page: 'LogicEasy' });
+}
+
+export function switchToLogicMedium(state) {
+  switchToState({ page: 'LogicMedium' });
+}
+
 export function switchToLogicHard(state) {
   switchToState({ page: 'LogicHard' });
 }
 
-export function switchToArticle(state) {
+export function switchToLevel(state) {
   levelID = event.target.id;
   switchToState({ page: `${levelID}` });
 }

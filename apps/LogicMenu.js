@@ -29,7 +29,7 @@ export class LogicMenu {
     for (let i = 0; i < 6; i++) {
       const div = document.createElement('div');
       div.className = 'menu_item';
-      div.id = `level${level}_${i}`;
+      div.id = `level_${level}_${i}`;
       div.style.width = '20vw';
       div.style.height = '30vh';
       div.style.backgroundSize = 'cover';
