@@ -1,6 +1,6 @@
 'use strict';
 
-import { MemoryGame } from './logic.js';
+import { MemoryGame } from './MemoryGame.js';
 import { showPreloader } from './preloader.js';
 
 export function logicHardGame() {

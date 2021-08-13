@@ -2,6 +2,7 @@
 
 import { Controlls } from './Controlls.js';
 import { Overlay } from './Overlay.js';
+import * as SPA from './SPA.js';
 
 export class MemoryGame {
   constructor(images) {
@@ -59,7 +60,7 @@ export class MemoryGame {
     globalThis.audioController.stopMusic();
     globalThis.audioController.hooraySound();
     setTimeout(() => {
-      this.controlls.turnBack();
+      this.controlls.turnBack( SPA.switchToMenu );
     }, 8000)
   }
 
@@ -165,7 +166,7 @@ export class MemoryGame {
 
     const buttons_container = document.createElement('div');
     buttons_container.className = 'buttons_container';
-    this.controlls.createBackArrow(buttons_container);
+    this.controlls.createBackArrow(buttons_container, SPA.switchToMenuEasy);
     this.controlls.createTaskCheckPoint(this.tasksCount, buttons_container);
     logic_game_wrapper.appendChild( buttons_container );
 

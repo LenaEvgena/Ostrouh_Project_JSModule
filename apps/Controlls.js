@@ -1,17 +1,16 @@
 'use strict';
 
-import * as SPA from './SPA.js';
-
 export class Controlls {
   constructor(count) {
     this.count = count;
   }
 
-  turnBack() {
-    SPA.switchToMenu();
+  turnBack(callback) {
+    // SPA.switchToMenu();
+    callback();
   }
 
-  createBackArrow(parent) {
+  createBackArrow(parent, callback) {
     const back_arrow = document.createElement('img');
     back_arrow.src = './assets/img/other/arrow_back.png'
     back_arrow.className = 'back_arrow';
@@ -19,7 +18,7 @@ export class Controlls {
       back_arrow.style.transform = 'scale(0.9)';
       back_arrow.style.cursor = 'pointer';
       globalThis.audioController.clickSound();
-      this.turnBack();
+      this.turnBack(callback);
     });
     parent.appendChild(back_arrow);
   }
@@ -59,7 +58,7 @@ export class Controlls {
     tasksPointsDiv.id = 'tasksPoints';
     for (let i = 0; i < count; i++) {
       const taskPoint = document.createElement('span');
-      taskPoint.style.animationDelay = `${i / 10}s`;
+      taskPoint.style.animationDelay = `${ i / 10 }s`;
       taskPoint.id = 'point';
       taskPoint.style.background = 'url(./assets/img/icons/emptycircle.png)';
       taskPoint.style.backgroundSize = 'cover';
