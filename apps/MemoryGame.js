@@ -2,16 +2,16 @@
 
 import { Controlls } from './Controlls.js';
 import { Overlay } from './Overlay.js';
-import * as SPA from './SPA.js';
 
 export class MemoryGame {
-  constructor(images) {
+  constructor(images, callback) {
     this.images = images;
+    this.callback = callback;
     this.tasksCount = this.images.length;
     this.count = this.tasksCount;
     this.overlay = new Overlay();
     this.controlls = new Controlls(this.tasksCount);
-    this.renderLogicPage();
+    this.renderLogicPage(this.callback);
     this.cardsArray = Array.from(document.querySelectorAll('.card'));
     this.timer = document.querySelector('#timer');
     this.moves = document.querySelector('#flips');
@@ -53,15 +53,15 @@ export class MemoryGame {
     }, 1000);
   }
 
-  endGame() {
+  endGame(callback) {
     clearInterval(this.countDown);
     this.overlay.endGame();
     globalThis.audioController.vibro(true);
     globalThis.audioController.stopMusic();
     globalThis.audioController.hooraySound();
     setTimeout(() => {
-      this.controlls.turnBack( SPA.switchToMenu );
-    }, 8000)
+      this.controlls.turnBack(callback);
+    }, 9000)
   }
 
   openCard(card) {
@@ -158,7 +158,7 @@ export class MemoryGame {
     }
   }
 
-  renderLogicPage() {
+  renderLogicPage(callback) {
     const wrapper = document.querySelector('.wrapper');
     const logic_game_wrapper = document.createElement('div');
     logic_game_wrapper.className = 'logic_game_wrapper';
@@ -166,7 +166,7 @@ export class MemoryGame {
 
     const buttons_container = document.createElement('div');
     buttons_container.className = 'buttons_container';
-    this.controlls.createBackArrow(buttons_container, SPA.switchToMenuEasy);
+    this.controlls.createBackArrow(buttons_container, callback);
     this.controlls.createTaskCheckPoint(this.tasksCount, buttons_container);
     logic_game_wrapper.appendChild( buttons_container );
 

@@ -1,13 +1,13 @@
 'use strict';
 
 import { Controlls } from './Controlls.js';
-import * as SPA from './SPA.js';
 
 export class LogicMenu {
-  constructor(level) {
+  constructor(level, callback) {
     this.controlls = new Controlls();
+    this.callback = callback;
     this.wrapper = document.querySelector('.wrapper');
-    this.renderLogicMenuPage(this.wrapper, level);
+    this.renderLogicMenuPage(this.wrapper, level, this.callback);
     this.init();
   }
 
@@ -19,7 +19,7 @@ export class LogicMenu {
     //что-то со счетом...
   }
 
-  renderLogicMenuPage(parent, level) {
+  renderLogicMenuPage(parent, level, callback) {
     const logic_menu_wrapper = document.createElement('div');
     logic_menu_wrapper.className = 'logic_menu_wrapper';
 
@@ -42,7 +42,7 @@ export class LogicMenu {
 
     const buttons_container = document.createElement('div');
     buttons_container.className = 'buttons_container';
-    this.controlls.createBackArrow(buttons_container,  SPA.switchToMenu );
+    this.controlls.createBackArrow(buttons_container,  callback);
     logic_menu_wrapper.appendChild(buttons_container);
 
     this.controlls.createMusicButton(logic_menu_wrapper, globalThis.audioController);

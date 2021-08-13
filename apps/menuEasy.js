@@ -6,7 +6,7 @@ import * as SPA from './SPA.js';
 
 export function logicMenuEasy() {
   showPreloader();
-  const menuEasy = new LogicMenu('easy');
+  const menuEasy = new LogicMenu('easy', SPA.switchToMenu);
 
   document.querySelector('#easy-0').addEventListener('click', SPA.switchToLogicEasy);
 }
