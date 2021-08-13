@@ -197,6 +197,8 @@ html {
   background-size: cover;
   color:aqua;
   text-shadow: 2px 3px 2px rgb(58, 53, 53);
+
+  /* text-shadow: 0 2px 0 rgb(85, 80, 80); */
   font-weight: bold;
   text-transform: uppercase;
   line-height: 1.5;
@@ -208,7 +210,8 @@ html {
   transform: translateZ(0);
 }
 
-.overlay.visible {
+/* .overlay.visible { */
+.overlay {
   display: flex;
   animation: overlay-grow 500ms forwards;
 }
@@ -246,20 +249,21 @@ html {
   margin: 10px;
   cursor: pointer;
   animation: balloonsFlying 11s linear infinite;
-  transition: all 0.5s;
+  transition: width 0.5s, height 0.5s;
   transform: translateZ(0);
+  opacity: 1;
+  width: 60px;
+  height: 120px;
 }
 
 @keyframes balloonsFlying {
   0% {
     opacity: 0;
-    width: 0;
-    height: 0;
   }
-  5% {
+  2% {
     opacity: 1;
-    width: 5vw;
-    height: 13.5vh;
+    width: 60px;
+    height: 120px;
   }
   100% {
     transform: translateY(-900px);

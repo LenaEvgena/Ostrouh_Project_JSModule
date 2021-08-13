@@ -51,6 +51,7 @@ export class Overlay {
       EO.target.style.background = 'url(./assets/img/other/confetti.png)';
       EO.target.style.backgroundSize = 'cover';
       EO.target.style.width = '150px';
+
       globalThis.audioController.balloonPopSound();
 
       setTimeout(() => {EO.target.style.display = 'none'}, 300);
