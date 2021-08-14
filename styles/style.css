@@ -277,7 +277,7 @@ html {
 }
 
 .main_wrapper {
-  background: url(../assets/img/backgrounds/startbg.jpg);
+  background: url(../assets/img/backgrounds/startbg.png);
   width: 100vw;
   height: 100vh;
   background-size: cover;
@@ -369,7 +369,7 @@ html {
 
 /*start logic page*/
 .logic_game_wrapper {
-  background: url(../assets/img/backgrounds/logicbg.jpg);
+  background: url(../assets/img/backgrounds/logicbg.png);
   width: 100vw;
   height: 100vh;
   background-size: cover;
@@ -436,7 +436,7 @@ html {
 
 .animal {
   position: absolute;
-  width: 90px;
+  width: 80px;
 }
 
 .back_image {
@@ -509,7 +509,7 @@ html {
 
 /*start logicMenu page*/
 .logic_menu_wrapper {
-  background: url(../assets/img/backgrounds/logicbg.jpg);
+  background: url(../assets/img/backgrounds/logicbg.png);
   /* -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px); */
   /* filter: blur(2px); */

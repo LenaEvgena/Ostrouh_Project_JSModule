@@ -34,7 +34,7 @@ export class LogicMenu {
       div.style.height = '30vh';
       div.style.backgroundSize = 'cover';
       const img = document.createElement('img');
-      img.src = `./assets/img/logicmenu/bg${i}.jpg`;
+      img.src = `./assets/img/logicmenu/bg${i}.png`;
       img.id = `${level}-${i}-image`;
       div.appendChild(img);
       logic_menu_container.appendChild(div);
