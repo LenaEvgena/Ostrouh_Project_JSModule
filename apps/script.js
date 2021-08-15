@@ -2,9 +2,11 @@
 import * as SPA from './SPA.js';
 import { AudioController } from './AudioController.js';
 import { showPreloader } from './preloader.js';
+import * as storage from './storage.js';
 
 globalThis.audioController = new AudioController();
 globalThis.isPaused = false;
+globalThis.userID = null;
 
 export function initStartPage() {
   showPreloader();
@@ -20,6 +22,9 @@ export function initStartPage() {
   playButton.addEventListener('touchend', () => playButton.style.transform = 'scale(1.0)');
 
   playButton.addEventListener('click', SPA.switchToMenu);
+  document.getElementById('check_button').addEventListener('click', () => {
+    storage.addPlayer();
+  })
 }
 
 function createMainPage() {
@@ -38,8 +43,32 @@ function createMainPage() {
     globalThis.audioController.clickSound();
   };
   main_button.appendChild(img);
+  main_wrapper.appendChild( createInput() );
 
   return main_wrapper;
 }
 
+function createInput() {
+  const fieldset = document.createElement('fieldset');
+  fieldset.className = 'fieldset';
+  const p = document.createElement('p');
+  p.className = 'form_info';
+  const input = document.createElement('input');
+  input.setAttribute('type', 'text');
+  input.id = 'check_name';
+  input.setAttribute('placeholder', 'Enter your name');
+  const button = document.createElement('button');
+  button.setAttribute('type', 'submit');
+  button.id = 'check_button';
+
+  const checkImage = document.createElement('img');
+  checkImage.src = './assets/img/icons/check-icon.png';
+  checkImage.className = 'check_pic';
+
+  button.appendChild(checkImage);
+  p.appendChild(input);
+  p.appendChild(button);
+  fieldset.appendChild(p);
+  return fieldset;
+}
 

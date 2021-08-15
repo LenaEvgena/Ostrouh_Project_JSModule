@@ -3,6 +3,7 @@
 import { Controlls } from './Controlls.js';
 import * as SPA from './SPA.js';
 import { showPreloader } from './preloader.js';
+import * as storage from './storage.js';
 
 export function initMenuPage() {
   showPreloader();
@@ -52,7 +53,7 @@ export function initMenuPage() {
     menu_elements.appendChild( createMenuElement('redbutton', 'hard') );
 
     controlls.createMusicButton(menu_wrapper, audio);
-    controlls.createScoreButton(menu_wrapper);//+callback
+    controlls.createScoreButton(menu_wrapper, storage.showPlayersList);//+callback
     return menu_wrapper;
   }
 

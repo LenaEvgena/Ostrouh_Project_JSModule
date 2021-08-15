@@ -2,9 +2,11 @@
 
 import { Controlls } from './Controlls.js';
 import { Overlay } from './Overlay.js';
+import * as storage from './storage.js';
 
 export class MemoryGame {
   constructor(images, id, callback) {
+    this.userID = globalThis.userID;
     this.images = images;
     this.id = id;
     console.log(this.id);
@@ -29,7 +31,7 @@ export class MemoryGame {
     this.matchedCardsArray = [];
     setTimeout(() => {
       this.isBusy = false;//можем начинать играть
-      this.shuffleCards(this.cardsArray);
+      // this.shuffleCards(this.cardsArray);
       this.countDown = this.startCountDown();
     }, 500);
 
@@ -56,6 +58,8 @@ export class MemoryGame {
   }
 
   endGame() {
+    storage.addPlayerData(this.userID, this.time, this.flips);
+
     clearInterval(this.countDown);
     globalThis.audioController.stopMusic();
     globalThis.audioController.hooraySound();

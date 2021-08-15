@@ -306,6 +306,45 @@ html {
   filter: drop-shadow(8px 8px 10px green);
   cursor: pointer;
 }
+
+.fieldset {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.form_info {
+  display: flex;
+  overflow: hidden;
+  height: 50px;
+  text-align: center;
+  align-items: center;
+  border: 4px solid;
+  border-image: linear-gradient(135deg, #4bf608 0%, #ecf004 25%, #f15353 50%, #0594e7 75%, #8e16f0 100%) 1;
+  font-size: 20px;
+  font-family: 'Permanent Marker', cursive;
+  font-weight: bold;
+}
+
+#check_name {
+  height: 50px;
+  padding: 15px;
+  background-color: rgb(201, 223, 187);
+}
+
+#check_button {
+  height: 50px;
+  width: 60px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(123, 160, 101);
+}
+
+#check_button:hover {
+  cursor: pointer;
+  background-color: rgb(93, 122, 76);
+}
+
 /*end main page*/
 
 /*start menu*/
