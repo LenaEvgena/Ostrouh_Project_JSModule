@@ -6,6 +6,7 @@ import * as storage from './storage.js';
 
 globalThis.audioController = new AudioController();
 globalThis.isPaused = false;
+globalThis.userName = '';
 globalThis.userID = null;
 
 export function initStartPage() {

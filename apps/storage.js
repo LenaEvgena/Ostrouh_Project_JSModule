@@ -1,6 +1,6 @@
 'use strict';
 
-const AjaxHandlerScript = "http://fe.it-academy.by/AjaxStringStorage2.php";
+const AjaxHandlerScript = "https://fe.it-academy.by/AjaxStringStorage2.php";
 
 function AJAXStorage() {
   let UpdatePassword = Math.random();
@@ -36,7 +36,7 @@ function AJAXStorage() {
       datatype: 'json',
       data: {
         f: 'READ',
-        n: 'OSTROUH_PROJECT_RECORDS'},
+        n: 'OSTROUH_PROJ_RECORDS'},
       cache: false,
       success: readReady,
       error: errorHandler
@@ -59,7 +59,7 @@ function AJAXStorage() {
       datatype: 'json',
       data: {
         f: 'INSERT',
-        n: 'OSTROUH_PROJECT_RECORDS',
+        n: 'OSTROUH_PROJ_RECORDS',
         v: JSON.stringify(self.hash)},
       cache: false,
       success: dataLoaded,
@@ -74,7 +74,7 @@ function AJAXStorage() {
       datatype: 'json',
       data: {
         f: 'LOCKGET',
-        n: 'OSTROUH_PROJECT_RECORDS',
+        n: 'OSTROUH_PROJ_RECORDS',
         p: UpdatePassword},
         cache: false,
         success: updateStorage,
@@ -89,7 +89,7 @@ function AJAXStorage() {
       datatype: 'json',
       data: {
         f: 'UPDATE',
-        n: 'OSTROUH_PROJECT_RECORDS',
+        n: 'OSTROUH_PROJ_RECORDS',
         p: UpdatePassword,
         v: JSON.stringify(self.hash)},
       cache: false,
@@ -121,6 +121,7 @@ const gameStorage = new AJAXStorage();
 export function addPlayer(userID, time = 0, flip = 0) {
   let playerName = document.getElementById('check_name').value.trim() || '';
   //if(!playerName)...
+  globalThis.userName = playerName;
   let usedID = gameStorage.getKeys();
   userID = usedID.length + 1;
   globalThis.userID = userID;
@@ -137,10 +138,12 @@ export function addPlayer(userID, time = 0, flip = 0) {
 }
 
 export function addPlayerData(userID, time = 0, flip = 0) {
+  userID = globalThis.userID;
   let totalTime = time;
   let flips = flip;
   let Hash = {};
 
+  Hash.userName = globalThis.userName;
   Hash.totalTime = totalTime;
   Hash.flips = flips;
   return gameStorage.addValue(userID, Hash);
@@ -174,9 +177,13 @@ export function showPlayersList() {
   if (showInfo) {
     for (let i = 0; i < entries.length; i++) {
       let hash = entries[i];
-      let print1 = 'Player ' + hash[1].userName + '<br>';
-      let print2 = 'Total time ' + hash[1].totalTime + '<br>';
-      let print3 = 'Flips ' + hash[1].flips + '<br>';
+      console.log(hash);
+      let print1 = 'Player ' + hash[1].userName;
+      let print2 = 'Total time ' + hash[1].totalTime;
+      let print3 = 'Flips ' + hash[1].flips;
+      // let print1 = 'Player ' + hash[1].userName + '<br>';
+      // let print2 = 'Total time ' + hash[1].totalTime + '<br>';
+      // let print3 = 'Flips ' + hash[1].flips + '<br>';
 
       resultHTML += `
       ${(i + 1)} ${print1} ${print2} ${print3}`;
