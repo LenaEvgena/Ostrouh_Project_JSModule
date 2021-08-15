@@ -30,7 +30,7 @@ export class LogicMenu {
       const div = document.createElement('div');
       div.className = 'menu_item';
       div.id = `${level}_${i}`;
-
+      div.style.animationDelay = `${ i / 10 }s`;
       const img = document.createElement('img');
       img.className = 'level_image';
       img.src = `./assets/img/logicmenu/bg${i}.png`;

@@ -29,5 +29,8 @@ function addListeners() {
       globalThis.audioController.clickSound();
       SPA.switchToLevel();
     });
+    item.addEventListener('mouseover', () => {
+      globalThis.audioController.slideSound();
+    })
   })
 }

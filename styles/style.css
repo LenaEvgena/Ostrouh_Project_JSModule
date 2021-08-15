@@ -533,11 +533,14 @@ html {
 .menu_item {
   overflow: hidden;
   transition: transform 0.5s;
-  filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
+  filter: drop-shadow(4px 4px 7px rgb(41, 38, 35));
   border: 4px solid;
   border-image: linear-gradient(135deg, #4bf608 0%, #ecf004 25%, #f15353 50%, #0594e7 75%, #8e16f0 100%) 1;
   width: 20vw;
   height: 30vh;
+  transition: 0.5s;
+  animation: menuScale1 4s ease alternate infinite;
+  transform: translateZ(0);
 }
 
 .level_image {
@@ -548,7 +551,15 @@ html {
 }
 
 .menu_item:hover {
-  transform: scale(1.05);
+  filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
 }
 
+@keyframes menuScale1 {
+  90% {
+    transform: scale(1.0)
+  }
+  100% {
+    transform: scale(1.05)
+  }
+}
 /*end logicMenu page*/
