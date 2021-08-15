@@ -389,9 +389,9 @@ html {
 
 .game_info {
   font-family: 'Permanent Marker', cursive;
-  color:rgb(255, 45, 45);
-  text-shadow: 2px 3px 2px rgb(58, 53, 53),
-  4px 5px 4px rgb(252, 247, 247);
+  color:rgb(133, 253, 21);
+  text-shadow: 4px 5px 2px rgb(58, 53, 53),
+  5px 6px 4px rgb(252, 247, 247);
   font-size: 35px;
   font-weight: bold;
   line-height: 1.5;
