@@ -26,8 +26,18 @@ export class Controlls {
     const hint_button = document.createElement('img');
     hint_button.src = './assets/img/other/hint3.png'
     hint_button.className = 'hint_button';
-
     parent.appendChild(hint_button);
+  }
+
+  createScoreButton(parent, callback) {
+    const score_button = document.createElement('img');
+    score_button.src = './assets/img/other/score.png'
+    score_button.className = 'score_button';
+    score_button.addEventListener('click', () => {
+      globalThis.audioController.clickSound();
+      callback();
+    });
+    parent.appendChild(score_button);
   }
 
   createMusicButton(parent, controller) {

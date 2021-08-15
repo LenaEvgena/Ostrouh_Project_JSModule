@@ -146,7 +146,17 @@ html {
   filter: drop-shadow(6px 6px 8px rgb(76, 75, 72));
 }
 
-.back_arrow:hover, .music_button:hover, .hint_button:hover {
+.score_button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 45px;
+  padding: 5px;
+  transition: 0.3s;
+  filter: drop-shadow(6px 6px 8px rgb(76, 75, 72));
+}
+
+.back_arrow:hover, .music_button:hover, .hint_button:hover, .score_button:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
@@ -325,6 +335,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  filter: drop-shadow(4px 4px 7px rgb(41, 38, 35));
   transition: 0.5s;
   animation: menuScale 3s ease alternate infinite;
   transform: translateZ(0);
@@ -341,7 +352,6 @@ html {
 .menu_element span {
   font-family: 'Permanent Marker', cursive;
   color:aqua;
-  /* text-shadow: 2px 3px 2px rgb(58, 53, 53);  */
   text-shadow: 4px 5px 2px rgb(58, 53, 53),
   5px 6px 4px rgb(252, 247, 247);
   font-size: 24px;
@@ -353,7 +363,7 @@ html {
 
 .menu_element:hover{
   transition: 0.3s;
-  filter: drop-shadow(8px 8px 10px rgb(74, 80, 74));
+  filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
   cursor: pointer;
   transform: scale(1.1);
 }

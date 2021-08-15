@@ -52,6 +52,7 @@ export function initMenuPage() {
     menu_elements.appendChild( createMenuElement('redbutton', 'hard') );
 
     controlls.createMusicButton(menu_wrapper, audio);
+    controlls.createScoreButton(menu_wrapper);//+callback
     return menu_wrapper;
   }
 
