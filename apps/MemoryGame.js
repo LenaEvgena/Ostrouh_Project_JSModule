@@ -161,9 +161,11 @@ export class MemoryGame {
   }
 
   renderLogicPage(callback) {
+    let k = this.id.split('_')[1];
     const wrapper = document.querySelector('.wrapper');
     const logic_game_wrapper = document.createElement('div');
     logic_game_wrapper.className = 'logic_game_wrapper';
+    logic_game_wrapper.style.background = `url(../assets/img/logicmenu/bg${k}.png)`;
     logic_game_wrapper.appendChild( this.overlay.createOverlay() );
 
     const buttons_container = document.createElement('div');
