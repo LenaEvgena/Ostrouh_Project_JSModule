@@ -30,45 +30,27 @@ function renderNewState() {
       break;
     case 'MenuEasy':
       wrapper.innerHTML = '';
-      import('./logicMenuPage.js').then(module => {
+      import('./logicMenuPages.js').then(module => {
         module.logicMenuEasy();
       });
       break;
     case 'MenuMedium':
       wrapper.innerHTML = '';
-      import('./logicMenuPage.js').then(module => {
+      import('./logicMenuPages.js').then(module => {
         module.logicMenuMedium();
       });
       break;
     case 'MenuHard':
       wrapper.innerHTML = '';
-      import('./logicMenuPage.js').then(module => {
+      import('./logicMenuPages.js').then(module => {
         module.logicMenuHard();
-      });
-      break;
-
-    case 'LogicEasy':
-      wrapper.innerHTML = '';
-      import('./newGames.js').then(module => {
-        module.logicEasyGame();
-      });
-      break;
-    case 'LogicMedium':
-      wrapper.innerHTML = '';
-      import('./newGames.js').then(module => {
-        module.logicMediumGame();
-      });
-      break;
-    case 'LogicHard':
-      wrapper.innerHTML = '';
-      import('./newGames.js').then(module => {
-        module.logicHardGame();
       });
       break;
     case `${levelID}`:
       wrapper.innerHTML = '';
-
-      // logicHardGame();
+      import('./newGames.js').then(module => {
+        module.openNewGame(levelID);
+      });
       break;
   }
 }
@@ -95,18 +77,6 @@ export function switchToMenuMedium(state) {
 
 export function switchToMenuHard(state) {
   switchToState({ page: 'MenuHard' });
-}
-
-export function switchToLogicEasy(state) {
-  switchToState({ page: 'LogicEasy' });
-}
-
-export function switchToLogicMedium(state) {
-  switchToState({ page: 'LogicMedium' });
-}
-
-export function switchToLogicHard(state) {
-  switchToState({ page: 'LogicHard' });
 }
 
 export function switchToLevel(state) {

@@ -4,8 +4,10 @@ import { Controlls } from './Controlls.js';
 import { Overlay } from './Overlay.js';
 
 export class MemoryGame {
-  constructor(images, callback) {
+  constructor(images, id, callback) {
     this.images = images;
+    this.id = id;
+    console.log(this.id);
     this.callback = callback;
     this.tasksCount = this.images.length;
     this.count = this.tasksCount;
@@ -61,7 +63,7 @@ export class MemoryGame {
     globalThis.audioController.hooraySound();
     setTimeout(() => {
       this.controlls.turnBack(this.callback);
-    }, 8000)
+    }, 8000);
   }
 
   openCard(card) {
@@ -239,3 +241,4 @@ export class MemoryGame {
     return cards_container;
   }
 }
+//может render вставить в preloader???

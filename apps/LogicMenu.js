@@ -29,13 +29,13 @@ export class LogicMenu {
     for (let i = 0; i < 6; i++) {
       const div = document.createElement('div');
       div.className = 'menu_item';
-      div.id = `level_${level}_${i}`;
-      div.style.width = '20vw';
-      div.style.height = '30vh';
-      div.style.backgroundSize = 'cover';
+      div.id = `${level}_${i}`;
+
       const img = document.createElement('img');
+      img.className = 'level_image';
       img.src = `./assets/img/logicmenu/bg${i}.png`;
-      img.id = `${level}-${i}-image`;
+      img.id = `level_${i}_${level}`;
+
       div.appendChild(img);
       logic_menu_container.appendChild(div);
     }
