@@ -167,29 +167,26 @@ export function addPlayerData(userID, time = 0, flip = 0) {
 export function showPlayersList() {
   let showInfo = gameStorage.getKeys();
   console.log(showInfo);
-  console.log(globalThis.userID);
+  let entries = Object.entries(gameStorage.hash);
 
   let resultHTML = '';
 
   if (showInfo) {
-    for (let i = 0; i < showInfo.length; i++) {
-      let print1 = 'Player ' + gameStorage.getValue(showInfo.playerName) + '<br>';
-      let print2 = 'Total time ' + showInfo.totalTime + '<br>';
-      let print3 = 'Flips ' + showInfo.flips + '<br>';
+    for (let i = 0; i < entries.length; i++) {
+      let hash = entries[i];
+      let print1 = 'Player ' + hash[1].userName + '<br>';
+      let print2 = 'Total time ' + hash[1].totalTime + '<br>';
+      let print3 = 'Flips ' + hash[1].flips + '<br>';
 
-      resultHTML += `${(i + 1)} ${print1} ${print2} ${print3}`;
+      resultHTML += `
+      ${(i + 1)} ${print1} ${print2} ${print3}`;
     }
   } else {
     resultHTML = 'The list is empty';
   }
-
   console.log(resultHTML);
 
   // alert(resultHTML);
   // document.getElementById('message').innerHTML = resultHTML;
 }
-
-    // <input type='button' value='Добавить напиток' onclick='addDrink()'>
-    // <input type='button' value='Показать информацию о напитке' onclick='showDrinkInfo()'>
-    // <input type='button' value='Показать меню напитков' onclick='showPlayersList()'>
     // <div id="message" class="drink-info"></div>
