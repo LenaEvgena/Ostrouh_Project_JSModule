@@ -229,8 +229,8 @@ th {
   font-size: 25px;
   text-decoration: underline;
   text-decoration-style: double;
-  padding: 5px;
-  padding-bottom: 12px;
+  padding: 5px 5px 25px 5px;
+  font-weight: bold;
 }
 
 .back_arrow:hover, .music_button:hover, .hint_button:hover, .score_button:hover {
@@ -386,7 +386,7 @@ th {
 
 .fieldset {
   position: absolute;
-  top: 50px;
+  top: 30px;
 }
 
 .form_info {

@@ -136,8 +136,8 @@ export function addPlayerData(userID, time, flip) {
 export function showPlayersList() {
   let showInfo = gameStorage.getKeys();
   let entries = Object.entries(gameStorage.hash).reverse();
-  if (entries.length > 20) {
-    entries = entries.slice(0, 20);
+  if (entries.length > 15) {
+    entries = entries.slice(0, 15);
   }
   let resultHTML = `
     <table>
@@ -193,3 +193,6 @@ function EscapeHTML(text) {
     .split("'").join("&#039;");
   return text;
 }
+
+
+

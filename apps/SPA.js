@@ -85,3 +85,23 @@ export function switchToLevel(state) {
 }
 
 renderNewState();
+
+function checkUser() {
+  if (globalThis.userID == undefined) {
+    setTimeout(() => {
+      initStartPage();
+    }, 500);
+  }
+}
+
+console.log(globalThis.userID);
+
+window.onbeforeunload = (EO) => {
+  EO = EO || window.event;
+  EO.preventDefault();
+  EO.returnValue = 'Несохраненные данные будут утеряны!';
+};
+
+// window.onload = () => {
+//   checkUser();
+// }
