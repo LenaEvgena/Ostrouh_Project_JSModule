@@ -30,7 +30,7 @@ function AJAXStorage() {
       datatype: 'json',
       data: {
         f: 'READ',
-        n: 'OSTROUH_PROJ_RECORDS'},
+        n: 'OSTROUH_PROJ_REC'},
       cache: false,
       success: readReady,
       error: errorHandler
@@ -53,7 +53,7 @@ function AJAXStorage() {
       datatype: 'json',
       data: {
         f: 'INSERT',
-        n: 'OSTROUH_PROJ_RECORDS',
+        n: 'OSTROUH_PROJ_REC',
         v: JSON.stringify(self.hash)},
       cache: false,
       success: dataLoaded,
@@ -68,7 +68,7 @@ function AJAXStorage() {
       datatype: 'json',
       data: {
         f: 'LOCKGET',
-        n: 'OSTROUH_PROJ_RECORDS',
+        n: 'OSTROUH_PROJ_REC',
         p: UpdatePassword},
         cache: false,
         success: updateStorage,
@@ -83,7 +83,7 @@ function AJAXStorage() {
       datatype: 'json',
       data: {
         f: 'UPDATE',
-        n: 'OSTROUH_PROJ_RECORDS',
+        n: 'OSTROUH_PROJ_REC',
         p: UpdatePassword,
         v: JSON.stringify(self.hash)},
       cache: false,
@@ -135,7 +135,10 @@ export function addPlayerData(userID, time, flip) {
 
 export function showPlayersList() {
   let showInfo = gameStorage.getKeys();
-  let entries = Object.entries(gameStorage.hash);
+  let entries = Object.entries(gameStorage.hash).reverse();
+  if (entries.length > 20) {
+    entries = entries.slice(0, 20);
+  }
   let resultHTML = `
     <table>
       <tr>
@@ -146,17 +149,15 @@ export function showPlayersList() {
       </tr>`;
 
   if (showInfo) {
-    let k = 0;
-    for (let i = entries.length - 1; i > entries.length - 21; i--) {
+    for (let i = 0; i < entries.length; i++) {
       let hash = entries[i];
       resultHTML += `
         <tr>
-          <td>${(k + 1)}.</td>
+          <td>${(i + 1)}.</td>
           <td>${EscapeHTML(hash[1].userName)}</td>
           <td>${hash[1].totalTime}</td>
           <td>${hash[1].flips}</td>
         </tr>`;
-        k += 1;
     }
     resultHTML += `</table>`;
   } else {
