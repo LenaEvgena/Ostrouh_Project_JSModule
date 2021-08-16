@@ -29,17 +29,6 @@ export class Controlls {
     parent.appendChild(hint_button);
   }
 
-  createScoreButton(parent, callback) {
-    const score_button = document.createElement('img');
-    score_button.src = './assets/img/other/score.png'
-    score_button.className = 'score_button';
-    score_button.addEventListener('click', () => {
-      globalThis.audioController.clickSound();
-      callback();
-    });
-    parent.appendChild(score_button);
-  }
-
   createMusicButton(parent, controller) {
     const musicButton = document.createElement('img');
     musicButton.src = './assets/img/other/musicbutton.png'
@@ -87,5 +76,30 @@ export class Controlls {
       point.style.background = 'url(./assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
     }
+  }
+
+  createScoreButton(parent, callback) {
+    const score_button = document.createElement('img');
+    score_button.src = './assets/img/other/score.png'
+    score_button.className = 'score_button';
+    score_button.addEventListener('click', () => {
+      globalThis.audioController.clickSound();
+      callback();
+    });
+    parent.appendChild(score_button);
+    parent.appendChild(this.createScoreList());
+  }
+
+  createScoreList() {
+    const list = document.createElement('div');
+    list.className = 'list';
+    let modal = document.createElement('div');
+    modal.className = 'list_modal';
+    let table = document.createElement('div');
+    table.className = 'list_table';
+
+    modal.appendChild(table);
+    list.appendChild(modal);
+    return list;
   }
 }

@@ -247,4 +247,3 @@ export class MemoryGame {
     return cards_container;
   }
 }
-//может render вставить в preloader???

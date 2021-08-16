@@ -9,7 +9,6 @@ function AJAXStorage() {
   self.hash = {};
 
   self.addValue = function(userID, Hash) {
-    // self.hash[key] = value;
     self.hash[userID] = Hash;
     lockStorage();
   };
@@ -95,15 +94,6 @@ function AJAXStorage() {
 
   function dataLoaded(data) {
     console.log("Данные загружены:" + data.result);
-    // let records = [];
-    // if (data.result != '') {
-    //   records = JSON.parse(data.result);
-    // }
-    // if (!records.length) {
-    //   records = [];
-    // }
-    // let userName = document.getElementById('check_name').value;
-
   }
 
   function errorHandler(jqXHR, StatusStr, ErrorStr) {
@@ -146,27 +136,59 @@ export function addPlayerData(userID, time, flip) {
 export function showPlayersList() {
   let showInfo = gameStorage.getKeys();
   let entries = Object.entries(gameStorage.hash);
-  let resultHTML = '';
+  let resultHTML = `
+    <table>
+      <tr>
+        <th></th>
+        <th>Player</th>
+        <th>Total time</th>
+        <th>Flips</th>
+      </tr>`;
 
   if (showInfo) {
-    for (let i = 0; i < entries.length; i++) {
+    let k = 0;
+    for (let i = entries.length - 1; i > entries.length - 21; i--) {
       let hash = entries[i];
-      let print1 = 'Player: ' + hash[1].userName;
-      let print2 = 'Total time: ' + hash[1].totalTime;
-      let print3 = 'Flips: ' + hash[1].flips;
-      // let print1 = 'Player ' + hash[1].userName + '<br>';
-      // let print2 = 'Total time ' + hash[1].totalTime + '<br>';
-      // let print3 = 'Flips ' + hash[1].flips + '<br>';
-
       resultHTML += `
-      ${(i + 1)} ${print1} ${print2} ${print3}`;
+        <tr>
+          <td>${(k + 1)}.</td>
+          <td>${EscapeHTML(hash[1].userName)}</td>
+          <td>${hash[1].totalTime}</td>
+          <td>${hash[1].flips}</td>
+        </tr>`;
+        k += 1;
     }
+    resultHTML += `</table>`;
   } else {
     resultHTML = 'The list is empty';
   }
-  console.log(resultHTML);
 
-  // alert(resultHTML);
-  // document.getElementById('message').innerHTML = resultHTML;
+  showScoreTable(resultHTML);
 }
-    // <div id="message" class="drink-info"></div>
+
+function showScoreTable(result) {
+  const list = document.querySelector('.list');
+  list.classList.toggle('visible');
+  document.querySelector('.list_table').innerHTML = result;
+
+  list.addEventListener('click', (e) => {
+    const isClickInside = document.querySelector('.list_modal').contains(e.target);
+    if (isClickInside) {
+      return;
+    } else {
+      list.classList.remove('visible');
+    }
+  });
+}
+
+function EscapeHTML(text) {
+  if (!text)
+    return text;
+  text = text.toString()
+    .split("&").join("&amp;")
+    .split("<").join("&lt;")
+    .split(">").join("&gt;")
+    .split('"').join("&quot;")
+    .split("'").join("&#039;");
+  return text;
+}

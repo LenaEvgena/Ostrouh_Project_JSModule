@@ -154,6 +154,82 @@ html {
   padding: 5px;
   transition: 0.3s;
   filter: drop-shadow(6px 6px 8px rgb(76, 75, 72));
+  z-index: 1001;
+}
+
+.list {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  background-size: cover;
+  z-index: 1000;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  transform: translateZ(0);
+}
+
+.list.visible {
+  display: flex;
+  animation: list-grow 500ms forwards;
+}
+
+@keyframes list-grow {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(173, 146, 131, 0.596);
+  }
+}
+
+.list_modal {
+  position: absolute;
+  /* left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0; */
+  width: 60vw;
+  height: 60vh;
+  margin: 0 auto;
+  z-index: 1001;
+  text-align: center;
+  align-items: center;
+  border: 4px solid;
+  border-image: linear-gradient(135deg, #4bf608 0%, #ecf004 25%, #f15353 50%, #0594e7 75%, #8e16f0 100%) 1;
+  background-color: rgb(201, 223, 187);
+  overflow: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: 0 0;
+}
+
+.list_table {
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: 0.8px;
+  font-size: 15px;
+  color: #045820;
+  font-family: 'Permanent Marker', cursive;
+}
+
+th {
+  font-size: 19px;
+  text-decoration: underline;
+  text-decoration-style: double;
+  padding: 5px;
+  padding-bottom: 12px;
 }
 
 .back_arrow:hover, .music_button:hover, .hint_button:hover, .score_button:hover {
@@ -206,8 +282,8 @@ html {
   font-family: 'Permanent Marker', cursive;
   background-size: cover;
   color:rgb(133, 253, 21);
-  text-shadow: 4px 5px 2px rgb(58, 53, 53),
-  5px 6px 4px rgb(252, 247, 247);
+  text-shadow: 4px 2px 2px rgb(58, 53, 53),
+  5px 4px 4px rgb(252, 247, 247);
   font-weight: bold;
   text-transform: uppercase;
   line-height: 1.5;
@@ -330,20 +406,6 @@ html {
   padding: 15px;
   background-color: rgb(201, 223, 187);
 }
-
-/* #check_button {
-  height: 50px;
-  width: 60px;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(123, 160, 101);
-}
-
-#check_button:hover {
-  cursor: pointer;
-  background-color: rgb(93, 122, 76);
-} */
-
 /*end main page*/
 
 /*start menu*/
@@ -390,8 +452,8 @@ html {
 .menu_element span {
   font-family: 'Permanent Marker', cursive;
   color:aqua;
-  text-shadow: 4px 5px 2px rgb(58, 53, 53),
-  5px 6px 4px rgb(252, 247, 247);
+  text-shadow: 4px 2px 2px rgb(58, 53, 53),
+  5px 4px 4px rgb(252, 247, 247);
   font-size: 24px;
   font-weight: bold;
   text-transform: uppercase;
@@ -439,8 +501,8 @@ html {
 .game_info {
   font-family: 'Permanent Marker', cursive;
   color:rgb(133, 253, 21);
-  text-shadow: 4px 5px 2px rgb(58, 53, 53),
-  5px 6px 4px rgb(252, 247, 247);
+  text-shadow: 4px 2px 2px rgb(58, 53, 53),
+  5px 4px 4px rgb(252, 247, 247);
   font-size: 35px;
   font-weight: bold;
   line-height: 1.5;
