@@ -137,50 +137,28 @@ export function addPlayer(userID, time = 0, flip = 0) {
   }
 }
 
-export function addPlayerData(userID, time = 0, flip = 0) {
+export function addPlayerData(userID, time, flip) {
   userID = globalThis.userID;
-  let totalTime = time;
-  let flips = flip;
-  let Hash = {};
+  let Hash = gameStorage.getValue(userID);
+  let totalTime = time + Hash.totalTime;
+  let flips = flip + Hash.flips;
 
-  Hash.userName = globalThis.userName;
   Hash.totalTime = totalTime;
   Hash.flips = flips;
   return gameStorage.addValue(userID, Hash);
 }
 
-    // function showDrinkInfo() {
-    //   var drinkName = prompt('Введите название напитка:').toLowerCase().trim();
-    //   var getDrinkInfo = (drinkName) ? gameStorage.getValue(drinkName) : 0;
-    //   var resultHTML = '';
-
-    //   if (getDrinkInfo) {
-    //     var print1 = 'Напиток: ' + drinkName + '<br>';
-    //     var print2 = 'Алкогольный: ' + getDrinkInfo.alcohol + '<br>';
-    //     var print3 = 'Рецепт приготовления: ' + getDrinkInfo.recipe + '<br>';
-
-    //     resultHTML = print1 + print2 + print3;
-    //   } else {
-    //     resultHTML = 'Ошибка! Нет такого напитка';
-    //   }
-    //   document.getElementById('message').innerHTML = resultHTML;
-    // }
-
-
 export function showPlayersList() {
   let showInfo = gameStorage.getKeys();
-  console.log(showInfo);
   let entries = Object.entries(gameStorage.hash);
-
   let resultHTML = '';
 
   if (showInfo) {
     for (let i = 0; i < entries.length; i++) {
       let hash = entries[i];
-      console.log(hash);
-      let print1 = 'Player ' + hash[1].userName;
-      let print2 = 'Total time ' + hash[1].totalTime;
-      let print3 = 'Flips ' + hash[1].flips;
+      let print1 = 'Player: ' + hash[1].userName;
+      let print2 = 'Total time: ' + hash[1].totalTime;
+      let print3 = 'Flips: ' + hash[1].flips;
       // let print1 = 'Player ' + hash[1].userName + '<br>';
       // let print2 = 'Total time ' + hash[1].totalTime + '<br>';
       // let print3 = 'Flips ' + hash[1].flips + '<br>';

@@ -309,8 +309,7 @@ html {
 
 .fieldset {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  top: 50px;
 }
 
 .form_info {
@@ -332,7 +331,7 @@ html {
   background-color: rgb(201, 223, 187);
 }
 
-#check_button {
+/* #check_button {
   height: 50px;
   width: 60px;
   align-items: center;
@@ -343,7 +342,7 @@ html {
 #check_button:hover {
   cursor: pointer;
   background-color: rgb(93, 122, 76);
-}
+} */
 
 /*end main page*/
 
