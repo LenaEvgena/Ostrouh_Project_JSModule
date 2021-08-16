@@ -23,8 +23,15 @@ export function initStartPage() {
   playButton.addEventListener('touchend', () => playButton.style.transform = 'scale(1.0)');
 
   playButton.addEventListener('click', () => {
-    storage.addPlayer();
-    SPA.switchToMenu();
+    if (document.getElementById('check_name').value === '') {
+      document.getElementById('check_name').placeholder = 'Please, enter your name :)';
+      setTimeout(() => {
+        document.getElementById('check_name').placeholder = 'Enter your name';
+      }, 500);
+    } else {
+      storage.addPlayer();
+      SPA.switchToMenu();
+    }
   });
 }
 
@@ -58,17 +65,8 @@ function createInput() {
   input.setAttribute('type', 'text');
   input.id = 'check_name';
   input.setAttribute('placeholder', 'Enter your name');
-  // const button = document.createElement('button');
-  // button.setAttribute('type', 'submit');
-  // button.id = 'check_button';
 
-  // const checkImage = document.createElement('img');
-  // checkImage.src = './assets/img/icons/check-icon.png';
-  // checkImage.className = 'check_pic';
-
-  // button.appendChild(checkImage);
   p.appendChild(input);
-  // p.appendChild(button);
   fieldset.appendChild(p);
   return fieldset;
 }

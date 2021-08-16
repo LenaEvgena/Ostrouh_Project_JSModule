@@ -14,11 +14,6 @@ function AJAXStorage() {
     lockStorage();
   };
 
-  // self.deleteValue = function(key) {
-  //   delete self.hash[key];
-  //   lockStorage();
-  // };
-
   self.getValue = function(key) {
     return self.hash[key];
   };
