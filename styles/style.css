@@ -158,7 +158,7 @@ html {
 }
 
 .list {
-  display: none;
+  visibility: hidden;
   position: fixed;
   left: 0;
   top: 0;
@@ -172,12 +172,17 @@ html {
   overflow: hidden;
   align-items: center;
   justify-content: center;
+  animation: list-hide 500ms;
   transform: translateZ(0);
 }
 
 .list.visible {
-  display: flex;
+  visibility: visible;
   animation: list-grow 500ms forwards;
+}
+
+.list.visible .list_modal{
+  animation: modal-appear 0.5s linear forwards;
 }
 
 @keyframes list-grow {
@@ -189,12 +194,20 @@ html {
   }
 }
 
+@keyframes list-hide {
+  from {
+    background-color: rgba(173, 146, 131, 0.596);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
 .list_modal {
+  visibility: hidden;
+  top: 50%;
+  left: 50%;
   position: absolute;
-  /* left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0; */
   width: 75vw;
   height: 75vh;
   margin: 0 auto;
@@ -207,9 +220,12 @@ html {
   font-size: 20px;
   color: #045820;
   font-family: 'Permanent Marker', cursive;
-  line-height: 1.2;
+  line-height: 1.3;
   letter-spacing: 0.8px;
   overflow: scroll;
+  transition: 0.5s;
+  animation: modal-hide 0.5s linear;
+  transform: translateZ(0);
 }
 
 ::-webkit-scrollbar {
@@ -232,6 +248,31 @@ th {
   padding: 5px 5px 25px 5px;
   font-weight: bold;
 }
+
+@keyframes modal-appear {
+  0% {
+    transform: translate(-50%, -200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+@keyframes modal-hide {
+  0% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    transform: translate(-50%, -200%);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 
 .back_arrow:hover, .music_button:hover, .hint_button:hover, .score_button:hover {
   transform: scale(1.1);
