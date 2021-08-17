@@ -105,6 +105,11 @@ html {
   font-display: swap;
 }
 
+::-webkit-scrollbar {
+  width: 0;
+  background: 0 0;
+}
+
 /* controlls and overlay*/
 .buttons_container {
   position: absolute;
@@ -185,24 +190,6 @@ html {
   animation: modal-appear 0.5s linear forwards;
 }
 
-@keyframes list-grow {
-  from {
-    background-color: rgba(0, 0, 0, 0);
-  }
-  to {
-    background-color: rgba(173, 146, 131, 0.596);
-  }
-}
-
-@keyframes list-hide {
-  from {
-    background-color: rgba(173, 146, 131, 0.596);
-  }
-  to {
-    background-color: rgba(0, 0, 0, 0);
-  }
-}
-
 .list_modal {
   visibility: hidden;
   position: absolute;
@@ -228,11 +215,6 @@ html {
   transform: translateZ(0);
 }
 
-::-webkit-scrollbar {
-  width: 0;
-  background: 0 0;
-}
-
 .list_table {
   margin: 20px;
 }
@@ -252,31 +234,6 @@ th {
 td {
   padding: 2px;
 }
-
-@keyframes modal-appear {
-  0% {
-    transform: translate(-50%, -200%);
-    opacity: 0;
-  }
-  100% {
-    transform: translate(-50%, -50%);
-    opacity: 1;
-    visibility: visible;
-  }
-}
-@keyframes modal-hide {
-  0% {
-    transform: translate(-50%, -50%);
-    opacity: 1;
-    visibility: visible;
-  }
-  100% {
-    transform: translate(-50%, -200%);
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
 
 .back_arrow:hover, .music_button:hover, .hint_button:hover, .score_button:hover {
   transform: scale(1.1);
@@ -304,15 +261,6 @@ td {
   filter: drop-shadow(2px 2px 4px rgb(24, 23, 23));
   animation: pointJump 3s ease-in-out alternate infinite;
   transform: translateZ(0);
-}
-
-@keyframes pointJump {
-  90% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-10px);
-  }
 }
 
 .overlay {
@@ -358,9 +306,89 @@ td {
 }
 
 .overlay.visible {
-  /* .overlay { */
   visibility: visible;
   animation: overlay-grow 500ms forwards;
+}
+
+.balloonsContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  width: 100vw;
+  transform: translateZ(0);
+}
+
+#balloons {
+  position: relative;
+  display: flex;
+  transition: all 0.5s;
+  transform: translateZ(0);
+}
+
+#balloons span {
+  display: flex;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+  animation: balloonsFlying 11s linear infinite;
+  transition: width 0.5s, height 0.5s;
+  transform: translateZ(0);
+  opacity: 1;
+  width: 60px;
+  height: 120px;
+}
+
+@keyframes modal-appear {
+  0% {
+    transform: translate(-50%, -200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes modal-hide {
+  0% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    transform: translate(-50%, -200%);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes list-grow {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(173, 146, 131, 0.596);
+  }
+}
+
+@keyframes list-hide {
+  from {
+    background-color: rgba(173, 146, 131, 0.596);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes pointJump {
+  90% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes overlay-grow {
@@ -393,35 +421,6 @@ td {
   100% {
     transform: translateY(-300%);
   }
-}
-
-.balloonsContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 900;
-  width: 100vw;
-  transform: translateZ(0);
-}
-
-#balloons {
-  position: relative;
-  display: flex;
-  transition: all 0.5s;
-  transform: translateZ(0);
-}
-
-#balloons span {
-  display: flex;
-  position: relative;
-  margin: 10px;
-  cursor: pointer;
-  animation: balloonsFlying 11s linear infinite;
-  transition: width 0.5s, height 0.5s;
-  transform: translateZ(0);
-  opacity: 1;
-  width: 60px;
-  height: 120px;
 }
 
 @keyframes balloonsFlying {
@@ -469,7 +468,8 @@ td {
 
 .fieldset {
   position: absolute;
-  top: 30px;
+  top: 5%;
+  min-width: 290px;
 }
 
 .form_info {
@@ -486,8 +486,9 @@ td {
 }
 
 #check_name {
+  width: 100%;
   height: 50px;
-  padding: 15px;
+  padding: 10px;
   background-color: rgb(201, 223, 187);
 }
 /*end main page*/
@@ -561,6 +562,60 @@ td {
   }
 }
 /*end menu*/
+
+/*start logicMenu page*/
+.logic_menu_wrapper {
+  background: url(../assets/img/backgrounds/logicbg.png);
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateZ(0);
+}
+
+.logic_menu_container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 30px;
+}
+
+.menu_item {
+  overflow: hidden;
+  transition: transform 0.5s;
+  filter: drop-shadow(4px 4px 7px rgb(41, 38, 35));
+  border: 4px solid;
+  border-image: linear-gradient(135deg, #4bf608 0%, #ecf004 25%, #f15353 50%, #0594e7 75%, #8e16f0 100%) 1;
+  width: 20vw;
+  height: 30vh;
+  transition: 0.5s;
+  animation: menuScale1 4s ease alternate infinite;
+  transform: translateZ(0);
+}
+
+.level_image {
+  width: auto;
+  height: 100%;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.menu_item:hover {
+  filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
+}
+
+@keyframes menuScale1 {
+  90% {
+    transform: scale(1.0)
+  }
+  100% {
+    transform: scale(1.05)
+  }
+}
+/*end logicMenu page*/
 
 /*start logic page*/
 .logic_game_wrapper {
@@ -701,60 +756,3 @@ td {
   }
 }
 /*end logic page*/
-
-/*start logicMenu page*/
-.logic_menu_wrapper {
-  background: url(../assets/img/backgrounds/logicbg.png);
-  /* -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px); */
-  /* filter: blur(2px); */
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transform: translateZ(0);
-}
-
-.logic_menu_container {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  grid-gap: 30px;
-}
-
-.menu_item {
-  overflow: hidden;
-  transition: transform 0.5s;
-  filter: drop-shadow(4px 4px 7px rgb(41, 38, 35));
-  border: 4px solid;
-  border-image: linear-gradient(135deg, #4bf608 0%, #ecf004 25%, #f15353 50%, #0594e7 75%, #8e16f0 100%) 1;
-  width: 20vw;
-  height: 30vh;
-  transition: 0.5s;
-  animation: menuScale1 4s ease alternate infinite;
-  transform: translateZ(0);
-}
-
-.level_image {
-  width: auto;
-  height: 100%;
-  cursor: pointer;
-  opacity: 1;
-}
-
-.menu_item:hover {
-  filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
-}
-
-@keyframes menuScale1 {
-  90% {
-    transform: scale(1.0)
-  }
-  100% {
-    transform: scale(1.05)
-  }
-}
-/*end logicMenu page*/
