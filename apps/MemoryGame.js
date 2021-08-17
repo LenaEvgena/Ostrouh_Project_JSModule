@@ -8,8 +8,8 @@ export class MemoryGame {
   constructor(images, id, callback) {
     this.userID = globalThis.userID;
     this.images = images;
-    this.id = id;
-    console.log(this.id);
+    this.levelId = id;
+    console.log('this.levelId:', this.levelId);
     this.callback = callback;
     this.tasksCount = this.images.length;
     this.count = this.tasksCount;
@@ -58,7 +58,7 @@ export class MemoryGame {
   }
 
   endGame() {
-    storage.addPlayerData(this.userID, this.time, this.flips);
+    storage.addPlayerData(this.userID, this.levelId, this.time, this.flips);
 
     clearInterval(this.countDown);
     globalThis.audioController.stopMusic();
@@ -165,7 +165,7 @@ export class MemoryGame {
   }
 
   renderLogicPage(callback) {
-    let k = this.id.split('_')[1];
+    let k = this.levelId.split('_')[1]; //for bg images
     const wrapper = document.querySelector('.wrapper');
     const logic_game_wrapper = document.createElement('div');
     logic_game_wrapper.className = 'logic_game_wrapper';
