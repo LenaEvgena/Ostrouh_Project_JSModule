@@ -103,8 +103,8 @@ function AJAXStorage() {
 
 const gameStorage = new AJAXStorage();
 
-export function addPlayer(userID, time = 0, flip = 0) {
-  let playerName = document.getElementById('check_name').value.trim() || '';
+export function addPlayer(userID, time = 0, flip = 0, score = 0) {
+  let playerName = document.getElementById('check_name').value.trim();
   //if(!playerName)...
   globalThis.userName = playerName;
   let usedID = gameStorage.getKeys();
@@ -116,20 +116,28 @@ export function addPlayer(userID, time = 0, flip = 0) {
   Hash.userName = playerName;
 
   if (playerName) {
+    Hash.score = score;
     Hash.totalTime = totalTime;
     Hash.flips = flips;
     return gameStorage.addValue(userID, Hash);
   }
 }
 
-export function addPlayerData(userID, time, flip) {
+export function addPlayerData(userID, time, flip, _score) {
   userID = globalThis.userID;
   let Hash = gameStorage.getValue(userID);
+  let score = _score;
   let totalTime = time + Hash.totalTime;
   let flips = flip + Hash.flips;
 
+  if (time <= 30) score = 30 + Hash.score;
+  if (time > 30 && time <= 40) score = 20 + Hash.score;
+  if (time > 40) score = 5 + Hash.score;
+
+
   Hash.totalTime = totalTime;
   Hash.flips = flips;
+  Hash.score = score;
   return gameStorage.addValue(userID, Hash);
 }
 
@@ -144,7 +152,8 @@ export function showPlayersList() {
       <tr>
         <th></th>
         <th>Player</th>
-        <th>Total time</th>
+        <th>Score</th>
+        <th>Time</th>
         <th>Flips</th>
       </tr>`;
 
@@ -155,6 +164,7 @@ export function showPlayersList() {
         <tr>
           <td>${(i + 1)}.</td>
           <td>${EscapeHTML(hash[1].userName)}</td>
+          <td>${hash[1].score}</td>
           <td>${hash[1].totalTime}</td>
           <td>${hash[1].flips}</td>
         </tr>`;

@@ -87,14 +87,12 @@ export function switchToLevel(state) {
 renderNewState();
 
 function checkUser() {
-  if (globalThis.userID == undefined) {
+  if (globalThis.userID === undefined || globalThis.userID === null || globalThis.userID === '') {
     setTimeout(() => {
       initStartPage();
     }, 500);
   }
 }
-
-console.log(globalThis.userID);
 
 window.onbeforeunload = (EO) => {
   EO = EO || window.event;
