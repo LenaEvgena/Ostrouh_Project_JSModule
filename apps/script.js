@@ -23,16 +23,20 @@ export function initStartPage() {
   playButton.addEventListener('touchend', () => playButton.style.transform = 'scale(1.0)');
 
   playButton.addEventListener('click', () => {
-    if (document.getElementById('check_name').value === '') {
-      document.getElementById('check_name').placeholder = 'Please, enter your name :)';
-      setTimeout(() => {
-        document.getElementById('check_name').placeholder = 'Enter your name';
-      }, 500);
-    } else {
-      storage.addPlayer();
-      SPA.switchToMenu();
-    }
+    setUser();
   });
+}
+
+function setUser() {
+  if (document.getElementById('check_name').value === '') {
+    document.getElementById('check_name').placeholder = 'Please, enter your name :)';
+    setTimeout(() => {
+      document.getElementById('check_name').placeholder = 'Enter your name';
+    }, 500);
+  } else {
+    storage.addPlayer();
+    SPA.switchToMenu();
+  }
 }
 
 function createMainPage() {

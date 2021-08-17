@@ -12,7 +12,11 @@ export class Overlay {
     span.className = 'overlay_text';
     span.textContent = 'excellent!!!';
 
+    let score_message = document.createElement('span');
+    score_message.className = 'score_message';
+
     overlay.appendChild(span);
+    overlay.appendChild(score_message);
     overlay.appendChild( this.createBalloons() );
     return overlay;
   }

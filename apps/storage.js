@@ -181,6 +181,7 @@ export function addPlayerData(userID, levelID, _time, _flips) {
   Hash.totalTime += _time;
   Hash.totalFlips += _flips;
 
+  document.querySelector('.score_message').textContent = `+${_score}`;
   return gameStorage.addValue(userID, Hash);
 }
 
