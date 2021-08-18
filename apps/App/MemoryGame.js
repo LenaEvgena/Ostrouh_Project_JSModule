@@ -168,7 +168,7 @@ export class MemoryGame {
     const wrapper = document.querySelector('.wrapper');
     const logic_game_wrapper = document.createElement('div');
     logic_game_wrapper.className = 'logic_game_wrapper';
-    logic_game_wrapper.style.background = `url(../assets/img/logicmenu/bg${k}.png)`;
+    logic_game_wrapper.style.background = `url(../../assets/img/logicmenu/bg${k}.png)`;
     logic_game_wrapper.appendChild( this.overlay.createOverlay() );
 
     const buttons_container = document.createElement('div');
@@ -227,7 +227,7 @@ export class MemoryGame {
 
       const back_image = document.createElement('img');
       back_image.className = 'back_image';
-      back_image.src = '../assets/img/bubbles/coloredbig.png';
+      back_image.src = '../../assets/img/bubbles/coloredbig.png';
       card_back.appendChild(back_image);
 
       const card_front = document.createElement('div');
@@ -235,12 +235,12 @@ export class MemoryGame {
 
       const bubble = document.createElement('img');
       bubble.classList.add('bubble', 'logic_image');
-      bubble.src = '../assets/img/bubbles/pink.png';
+      bubble.src = '../../assets/img/bubbles/pink.png';
       card_front.appendChild(bubble);
 
       const animal = document.createElement('img');
       animal.classList.add('animal', 'logic_image');
-      animal.src = `../assets/img/logic/${doubleArray[i]}.png`;
+      animal.src = `../../assets/img/logic/${doubleArray[i]}.png`;
       card_front.appendChild(animal);
 
       card.appendChild(card_back);
