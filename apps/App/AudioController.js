@@ -2,14 +2,14 @@
 
 export class AudioController {
   constructor() {
-    this.bgMusic = new Audio('./../assets/sounds/bgmusic.mp3');
-    this.slide = new Audio('./../assets/sounds/slide.mp3');
-    this.flip = new Audio('./../assets/sounds/flip.mp3');
-    this.click = new Audio('./../assets/sounds/click2.mp3');
-    this.balloonPop = new Audio('./../assets/sounds/balloonpop.mp3');
-    this.hooray = new Audio('./../assets/sounds/hooray.mp3');
-    this.cardPop = new Audio('./../assets/sounds/cardpop.mp3');
-    this.drop = new Audio('./../assets/sounds/drop1.mp3');
+    this.bgMusic = new Audio('./../../assets/sounds/bgmusic.mp3');
+    this.slide = new Audio('./../../assets/sounds/slide.mp3');
+    this.flip = new Audio('./../../assets/sounds/flip.mp3');
+    this.click = new Audio('./../../assets/sounds/click2.mp3');
+    this.balloonPop = new Audio('./../../assets/sounds/balloonpop.mp3');
+    this.hooray = new Audio('./../../assets/sounds/hooray.mp3');
+    this.cardPop = new Audio('./../../assets/sounds/cardpop.mp3');
+    this.drop = new Audio('./../../assets/sounds/drop1.mp3');
 
     this.balloonPop.volume = 0.2;
     this.bgMusic.volume = 0.03;
