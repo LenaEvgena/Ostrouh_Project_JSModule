@@ -1,107 +1,7 @@
 'use strict';
-import * as SPA from './SPA.js';
+
 import { Overlay } from './Overlay.js';
-
-const AjaxHandlerScript = "https://fe.it-academy.by/AjaxStringStorage2.php";
-
-function AJAXStorage() {
-  let UpdatePassword = Math.random();
-
-  const self = this;
-  self.userHash = {};
-
-  self.addValue = function(userID, userHash) {
-    self.userHash[userID] = userHash;
-    lockStorage();
-  };
-
-  self.getValue = function(key) {
-    return self.userHash[key];
-  };
-
-  self.getKeys = function() {
-    return Object.keys(self.userHash);
-  };
-
-  update();
-
-  function update() {
-    $.ajax({
-      url: AjaxHandlerScript,
-      type: 'POST',
-      datatype: 'json',
-      data: {
-        f: 'READ',
-        n: 'OSTROUH_RECORDS'},
-      cache: false,
-      success: readReady,
-      error: errorHandler
-    })
-  };
-
-  function readReady(data) {
-    if (data) {
-      self.userHash = JSON.parse(data.result);
-      console.log(data.result);
-    } else {
-      initStorage();
-    }
-  };
-
-  function initStorage() {
-    $.ajax({
-      url: AjaxHandlerScript,
-      type: 'POST',
-      datatype: 'json',
-      data: {
-        f: 'INSERT',
-        n: 'OSTROUH_RECORDS',
-        v: JSON.stringify(self.userHash)},
-      cache: false,
-      success: dataLoaded,
-      error: errorHandler
-    })
-  };
-
-  function lockStorage() {
-    $.ajax({
-      url: AjaxHandlerScript,
-      type: 'POST',
-      datatype: 'json',
-      data: {
-        f: 'LOCKGET',
-        n: 'OSTROUH_RECORDS',
-        p: UpdatePassword},
-        cache: false,
-        success: updateStorage,
-        error: errorHandler
-    })
-  };
-
-  function updateStorage() {
-    $.ajax({
-      url: AjaxHandlerScript,
-      type: 'POST',
-      datatype: 'json',
-      data: {
-        f: 'UPDATE',
-        n: 'OSTROUH_RECORDS',
-        p: UpdatePassword,
-        v: JSON.stringify(self.userHash)},
-      cache: false,
-      success: dataLoaded,
-      error: errorHandler
-    })
-  };
-
-  function dataLoaded(data) {
-    console.log("Данные загружены:" + data.result);
-  }
-
-  function errorHandler(jqXHR, StatusStr, ErrorStr) {
-    alert(StatusStr + ' ' + ErrorStr);
-  };
-}
+import { AJAXStorage } from './AJAXStorage.js';
 
 const gameStorage = new AJAXStorage();
 const overlay = new Overlay();
@@ -283,7 +183,6 @@ export function checkUser() {
   if (localStorage.userID) {
     userID = Number(localStorage.userID);
     userHash = gameStorage.getValue(userID);
-    console.log(userHash);
   } else{
     loadModal();
   }
@@ -294,6 +193,13 @@ function loadModal() {
   document.querySelector('.modal_overlay').classList.add('visible');
   document.querySelector('#check_button').addEventListener('click', () => {
     askAndSetName();
+  });
+  document.querySelector('#check_name').addEventListener('keydown', (EO) => {
+    if (EO.keyCode === 13) askAndSetName();
+    document.querySelector('#check_button').style.backgroundColor = 'rgb(93, 122, 76)';
+    setTimeout(() => {
+      document.querySelector('#check_button').style.backgroundColor = '';
+    }, 400);
   });
 }
 
@@ -319,3 +225,5 @@ export function setUser(callback) {
     }, 100);
   }
 }
+
+window.onstorage = () => checkUser();

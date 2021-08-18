@@ -51,4 +51,3 @@ export class LogicMenu {
     parent.appendChild(logic_menu_wrapper)
   }
 }
-//слушатели на каждуюю картинку

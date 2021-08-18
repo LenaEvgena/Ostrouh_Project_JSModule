@@ -60,15 +60,3 @@ function createInput() {
   fieldset.appendChild(p);
   return fieldset;
 }
-
-// function setUser(callback) {
-//   if (document.getElementById('check_name').value === '') {
-//     document.getElementById('check_name').placeholder = 'Please, enter your name :)';
-//     setTimeout(() => {
-//       document.getElementById('check_name').placeholder = 'Enter your name';
-//     }, 500);
-//   } else {
-//     storage.addPlayer();
-//     callback();
-//   }
-// }

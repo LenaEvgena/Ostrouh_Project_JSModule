@@ -30,7 +30,7 @@ export class MemoryGame {
     this.matchedCardsArray = [];
     setTimeout(() => {
       this.isBusy = false;//можем начинать играть
-      // this.shuffleCards(this.cardsArray);
+      this.shuffleCards(this.cardsArray);
       this.countDown = this.startCountDown();
     }, 500);
 
