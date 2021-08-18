@@ -1,9 +1,14 @@
 'use strict';
 
 import { initStartPage } from './script.js';
+import { checkUser } from './storage.js';
 
 //SPA
-window.onhashchange = renderNewState;
+window.onhashchange = () => {
+  renderNewState();
+  // checkUser();
+};
+
 let levelID = '';
 
 function renderNewState() {
@@ -25,6 +30,7 @@ function renderNewState() {
     case 'Menu':
       wrapper.innerHTML = '';
       import('./menu.js').then(module => {
+        checkUser();
         module.initMenuPage();
       });
       break;
@@ -32,23 +38,27 @@ function renderNewState() {
       wrapper.innerHTML = '';
       import('./logicMenuPages.js').then(module => {
         module.logicMenuEasy();
+        checkUser();
       });
       break;
     case 'MenuMedium':
       wrapper.innerHTML = '';
       import('./logicMenuPages.js').then(module => {
         module.logicMenuMedium();
+        checkUser();
       });
       break;
     case 'MenuHard':
       wrapper.innerHTML = '';
       import('./logicMenuPages.js').then(module => {
         module.logicMenuHard();
+        checkUser();
       });
       break;
     case `${levelID}`:
       wrapper.innerHTML = '';
       import('./newGames.js').then(module => {
+        checkUser();
         module.openNewGame(levelID);
       });
       break;
@@ -86,20 +96,9 @@ export function switchToLevel(state) {
 
 renderNewState();
 
-function checkUser() {
-  if (globalThis.userID === undefined || globalThis.userID === null || globalThis.userID === '') {
-    setTimeout(() => {
-      initStartPage();
-    }, 500);
-  }
-}
-
 window.onbeforeunload = (EO) => {
   EO = EO || window.event;
   EO.preventDefault();
   EO.returnValue = 'Несохраненные данные будут утеряны!';
 };
 
-// window.onload = () => {
-//   checkUser();
-// }

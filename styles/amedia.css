@@ -55,24 +55,24 @@
     font-size: 4.5vh;
     letter-spacing: 5px;
   }
-  .cards_container {
+  /* .cards_container {
     grid-template-columns: repeat(4, auto);
     grid-gap: 1.5vh;
-  }
+  } */
 }
 
 @media only screen and (max-width:380px) {
-  .cards_container {
-    grid-gap: 1.5vw;
-  }
-
   .list_modal {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   th {
-    font-size: 15px;
+    font-size: 16px;
   }
+
+  /* .cards_container {
+    grid-gap: 1.5vw;
+  } */
 }
 
 
@@ -84,11 +84,14 @@
     height: 13px;
   }
   /*logic page*/
+  .info_container {
+    margin-bottom: 4vh;
+  }
   .game_info {
     font-size: 4.5vh;
     letter-spacing: 5px;
   }
-  .cards_container {
+  /* .cards_container {
     grid-template-columns: repeat(4, auto);
     grid-gap: 1.5vh;
   }
@@ -96,25 +99,20 @@
     width: 11vh;
     height: 11vh;
   }
-  .bubble {
+  .bubble, .back_image{
     width: 11vh;
   }
   .animal {
     width: 10vh;
-  }
-  .back_image {
-    width: 11vh;
-  }
-  .info_container {
-    margin-bottom: 4vh;
-  }
+  } */
+
 }
 
 @media only screen and (max-height:520px) {
   .btn_img {
     width: 50vh;
   }
-  .card {
+  /* .card {
     width: 8vw;
     height: 8vw;
   }
@@ -123,7 +121,7 @@
   }
   .animal {
     width: 6vw;
-  }
+  } */
 }
 
 @media only screen and (max-height:380px) {
@@ -135,7 +133,11 @@
     width: 55vh;
     height: 18vh;
   }
-  .card {
+  .game_info {
+    font-size: 6vh;
+    letter-spacing: 5px;
+  }
+  /* .card {
     width: 9vw;
     height: 9vw;
   }
@@ -144,6 +146,6 @@
   }
   .animal {
     width: 7vw;
-  }
+  } */
 }
 

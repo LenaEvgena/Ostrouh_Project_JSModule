@@ -6,16 +6,15 @@ import * as storage from './storage.js';
 
 export class MemoryGame {
   constructor(images, id, callback) {
-    this.userID = globalThis.userID;
+    this.userID = localStorage.userID;
     this.images = images;
     this.levelId = id;
-    console.log('this.levelId:', this.levelId);
     this.callback = callback;
     this.tasksCount = this.images.length;
     this.count = this.tasksCount;
     this.overlay = new Overlay();
     this.controlls = new Controlls(this.tasksCount);
-    this.renderLogicPage(this.callback);
+    this.renderLogicPage(this.callback, this.images);
     this.cardsArray = Array.from(document.querySelectorAll('.card'));
     this.timer = document.querySelector('#timer');
     this.moves = document.querySelector('#flips');
@@ -58,9 +57,9 @@ export class MemoryGame {
   }
 
   endGame() {
+    clearInterval(this.countDown);
     storage.addPlayerData(this.userID, this.levelId, this.time, this.flips);
 
-    clearInterval(this.countDown);
     globalThis.audioController.stopMusic();
     globalThis.audioController.hooraySound();
     this.overlay.endGame();
@@ -186,6 +185,8 @@ export class MemoryGame {
     wrapper.appendChild( logic_game_wrapper );
   }
 
+
+
   createInfoBlock() {
     const info_container = document.createElement('div');
     info_container.className = 'info_container';
@@ -215,7 +216,7 @@ export class MemoryGame {
     cards_container.className = 'cards_container';
     cards_container.appendChild( this.createInfoBlock() );
 
-    const doubleArray = array.concat(array);
+    const doubleArray = [...array, ...array];
 
     for (let i = 0; i < doubleArray.length; i++) {
       const card = document.createElement('div');
@@ -223,6 +224,7 @@ export class MemoryGame {
 
       const card_back = document.createElement('div');
       card_back.classList.add('card_back', 'card_face');
+
       const back_image = document.createElement('img');
       back_image.className = 'back_image';
       back_image.src = './assets/img/bubbles/coloredbig.png';
@@ -230,6 +232,7 @@ export class MemoryGame {
 
       const card_front = document.createElement('div');
       card_front.classList.add('card_front', 'card_face');
+
       const bubble = document.createElement('img');
       bubble.classList.add('bubble', 'logic_image');
       bubble.src = './assets/img/bubbles/pink.png';
@@ -243,7 +246,69 @@ export class MemoryGame {
       card.appendChild(card_back);
       card.appendChild(card_front);
       cards_container.appendChild(card);
+
+      this.fitPositions(array, cards_container, card, back_image, bubble, animal);
+
+      window.addEventListener('onorientationchange', () => {
+        if (window.orientation == 90 || window.orientation == -90) {
+      this.fitPositions(array, cards_container, card, back_image, bubble, animal);
+        }
+      });
+
     }
     return cards_container;
   }
+
+  fitPositions(array, container, card, back, bubble, animal) {
+    let ww = window.innerWidth;
+    let hw = window.innerHeight;
+
+    if (array.length <= 6) {
+      if (ww <= 380) {
+        container.style.gridTemplateColumns = 'repeat(3, auto)';
+        container.style.gridGap = '1.5vw';
+        card.style.width = card.style.height = back.style.width = bubble.style.width = '100px';
+        animal.style.width = '65px';
+      }
+      if (hw <= 380) {
+        container.style.gridTemplateColumns = 'repeat(4, auto)';
+        container.style.gridGap = '1.1vw';
+        card.style.width = card.style.height = back.style.width = bubble.style.width = '80px';
+        animal.style.width = '65px';
+      }
+    }
+
+    if (array.length > 6 && array.length <= 8) {
+      if (ww <= 380) {
+        container.style.gridTemplateColumns = 'repeat(4, auto)';
+        container.style.gridGap = '1.5vw';
+        card.style.width = card.style.height = back.style.width = bubble.style.width = '80px';
+        animal.style.width = '60px';
+      }
+      if (hw <= 380) {
+        container.style.gridTemplateColumns = 'repeat(6, auto)';
+        container.style.gridGap = '1.1vw';
+        card.style.width = card.style.height = back.style.width = bubble.style.width = '80px';
+        animal.style.width = '65px';
+      }
+    }
+
+    if (array.length <= 15) {
+      // if (ww <= 380) {
+      //   container.style.gridTemplateColumns = 'repeat(4, auto)';
+      //   container.style.gridGap = '1.5vw';
+      //   card.style.width = card.style.height = back.style.width = bubble.style.width = '100px';
+      //   animal.style.width = '65px';
+      // }
+      // if (hw <= 380) {
+      //   container.style.gridTemplateColumns = 'repeat(4, auto)';
+      //   container.style.gridGap = '1.1vw';
+      //   card.style.width = card.style.height = back.style.width = bubble.style.width = '80px';
+      //   animal.style.width = '65px';
+      // }
+    }
+
+
+  }
 }
+

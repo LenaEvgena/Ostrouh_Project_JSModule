@@ -93,9 +93,9 @@ export class Controlls {
   createScoreList() {
     const list = document.createElement('div');
     list.className = 'list';
-    let modal = document.createElement('div');
+    const modal = document.createElement('div');
     modal.className = 'list_modal';
-    let table = document.createElement('div');
+    const table = document.createElement('div');
     table.className = 'list_table';
 
     modal.appendChild(table);

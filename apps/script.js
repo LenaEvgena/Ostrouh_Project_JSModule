@@ -6,8 +6,6 @@ import * as storage from './storage.js';
 
 globalThis.audioController = new AudioController();
 globalThis.isPaused = false;
-globalThis.userName = '';
-globalThis.userID = null;
 
 export function initStartPage() {
   showPreloader();
@@ -23,20 +21,8 @@ export function initStartPage() {
   playButton.addEventListener('touchend', () => playButton.style.transform = 'scale(1.0)');
 
   playButton.addEventListener('click', () => {
-    setUser();
+    storage.setUser(SPA.switchToMenu);
   });
-}
-
-function setUser() {
-  if (document.getElementById('check_name').value === '') {
-    document.getElementById('check_name').placeholder = 'Please, enter your name :)';
-    setTimeout(() => {
-      document.getElementById('check_name').placeholder = 'Enter your name';
-    }, 500);
-  } else {
-    storage.addPlayer();
-    SPA.switchToMenu();
-  }
 }
 
 function createMainPage() {
@@ -75,3 +61,14 @@ function createInput() {
   return fieldset;
 }
 
+// function setUser(callback) {
+//   if (document.getElementById('check_name').value === '') {
+//     document.getElementById('check_name').placeholder = 'Please, enter your name :)';
+//     setTimeout(() => {
+//       document.getElementById('check_name').placeholder = 'Enter your name';
+//     }, 500);
+//   } else {
+//     storage.addPlayer();
+//     callback();
+//   }
+// }
