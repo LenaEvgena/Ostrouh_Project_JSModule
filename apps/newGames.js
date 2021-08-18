@@ -1,6 +1,6 @@
 'use strict';
 
-import { MemoryGame } from './MemoryGame.js';
+import { MemoryGame } from './App/MemoryGame.js';
 import { showPreloader } from './preloader.js';
 import * as SPA from './SPA.js';
 

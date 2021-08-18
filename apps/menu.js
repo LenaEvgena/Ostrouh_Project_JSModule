@@ -1,6 +1,6 @@
 'use strict';
 
-import { Controlls } from './Controlls.js';
+import { Controlls } from './App/Controlls.js';
 import * as SPA from './SPA.js';
 import { showPreloader } from './preloader.js';
 import * as storage from './storage.js';

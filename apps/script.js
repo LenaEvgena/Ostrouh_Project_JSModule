@@ -1,6 +1,6 @@
 'use strict';
 import * as SPA from './SPA.js';
-import { AudioController } from './AudioController.js';
+import { AudioController } from './App/AudioController.js';
 import { showPreloader } from './preloader.js';
 import * as storage from './storage.js';
 

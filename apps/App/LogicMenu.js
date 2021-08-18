@@ -33,7 +33,7 @@ export class LogicMenu {
       div.style.animationDelay = `${ i / 10 }s`;
       const img = document.createElement('img');
       img.className = 'level_image';
-      img.src = `./assets/img/logicmenu/bg${i}.png`;
+      img.src = `../assets/img/logicmenu/bg${i}.png`;
       img.id = `level_${i}_${level}`;
 
       div.appendChild(img);

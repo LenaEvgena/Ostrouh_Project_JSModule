@@ -1,7 +1,7 @@
 'use strict';
 
-import { Overlay } from './Overlay.js';
-import { AJAXStorage } from './AJAXStorage.js';
+import { Overlay } from './App/Overlay.js';
+import { AJAXStorage } from './App/AJAXStorage.js';
 
 const gameStorage = new AJAXStorage();
 const overlay = new Overlay();

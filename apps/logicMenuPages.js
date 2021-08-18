@@ -1,7 +1,7 @@
 'use strict';
 
 import { showPreloader } from './preloader.js';
-import { LogicMenu } from './LogicMenu.js';
+import { LogicMenu } from './App/LogicMenu.js';
 import * as SPA from './SPA.js';
 
 export function logicMenuEasy() {

@@ -2,7 +2,6 @@
 
 export function showPreloader() {
   document.body.appendChild( createPreloader() );
-  // document.body.addEventListener('load', hidePreloader());
   window.onload = hidePreloader();
 }
 
