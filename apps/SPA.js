@@ -6,7 +6,6 @@ import { checkUser } from './storage.js';
 //SPA
 window.onhashchange = () => {
   renderNewState();
-  // checkUser();
 };
 
 let levelID = '';
