@@ -79,7 +79,7 @@ html {
 
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
-@font-face {
+/* @font-face {
   font-family: 'Georgia';
   src: url('assets/fonts/Georgia/Georgia-Bold.eot');
   src: local('Georgia Bold'), local('Georgia-Bold'),
@@ -103,7 +103,7 @@ html {
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-}
+} */
 
 ::-webkit-scrollbar {
   width: 0;
