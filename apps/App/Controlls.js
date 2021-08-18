@@ -11,7 +11,7 @@ export class Controlls {
 
   createBackArrow(parent, callback) {
     const back_arrow = document.createElement('img');
-    back_arrow.src = '/../assets/img/other/arrow_back.png'
+    back_arrow.src = '../../assets/img/other/arrow_back.png'
     back_arrow.className = 'back_arrow';
     back_arrow.addEventListener('click', () => {
       back_arrow.style.transform = 'scale(0.9)';
@@ -24,14 +24,14 @@ export class Controlls {
 
   createHintButton(parent) {
     const hint_button = document.createElement('img');
-    hint_button.src = '/../assets/img/other/hint3.png'
+    hint_button.src = '../../assets/img/other/hint3.png'
     hint_button.className = 'hint_button';
     parent.appendChild(hint_button);
   }
 
   createMusicButton(parent, controller) {
     const musicButton = document.createElement('img');
-    musicButton.src = '/../assets/img/other/musicbutton.png'
+    musicButton.src = '../../assets/img/other/musicbutton.png'
     musicButton.className = 'music_button';
 
     musicButton.addEventListener('click', () => {
@@ -58,7 +58,7 @@ export class Controlls {
       const taskPoint = document.createElement('span');
       taskPoint.style.animationDelay = `${ i / 10 }s`;
       taskPoint.id = 'point';
-      taskPoint.style.background = 'url(/../assets/img/icons/emptycircle.png)';
+      taskPoint.style.background = 'url(../../assets/img/icons/emptycircle.png)';
       taskPoint.style.backgroundSize = 'cover';
       tasksPointsDiv.appendChild(taskPoint);
     }
@@ -70,17 +70,17 @@ export class Controlls {
     let point = points[count];
 
     if (count != 0) {
-      point.style.background = 'url(/../assets/img/icons/redcircle.png)';
+      point.style.background = 'url(../../assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
     } else {
-      point.style.background = 'url(/../assets/img/icons/redcircle.png)';
+      point.style.background = 'url(../../assets/img/icons/redcircle.png)';
       point.style.backgroundSize = 'cover';
     }
   }
 
   createScoreButton(parent, callback) {
     const score_button = document.createElement('img');
-    score_button.src = '/../assets/img/other/score.png'
+    score_button.src = '../../assets/img/other/score.png'
     score_button.className = 'score_button';
     score_button.addEventListener('click', () => {
       globalThis.audioController.clickSound();
