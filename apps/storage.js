@@ -92,8 +92,9 @@ export function showPlayersList() {
   let showInfo = gameStorage.getKeys();
   let entries = Object.entries(gameStorage.userHash).reverse();
 
-  if (entries.length > 10) {
-    entries = entries.slice(0, 10);
+  let rangedPlayers = rangePlayers(entries);
+  if (rangedPlayers.length > 15) {
+    rangedPlayers = rangedPlayers.slice(0, 15);
   }
 
   let resultHTML = `
@@ -108,8 +109,8 @@ export function showPlayersList() {
       </tr>`;
 
   if (showInfo) {
-    for (let i = 0; i < entries.length; i++) {
-      let player = entries[i][1];
+    for (let i = 0; i < rangedPlayers.length; i++) {
+      let player = rangedPlayers[i][1];
       resultHTML += `
         <tr>
           <td>${(i + 1)}.</td>
@@ -148,9 +149,19 @@ export function showPlayersList() {
   } else {
     resultHTML = 'The list is empty';
   }
-
   showScoreTable(resultHTML);
 }
+
+function rangePlayers(data) {
+  let players = data;
+  let byScore = players.slice(0);
+  byScore.sort(function (a, b) {
+    let x = a[1].totalScore;
+    let y = b[1].totalScore;
+    return x > y ? -1 : x < y ? 1 : 0;
+  });
+  return byScore;
+};
 
 function showScoreTable(result) {
   const list = document.querySelector('.list');

@@ -1,5 +1,6 @@
 'use strict';
 const AjaxHandlerScript = "https://fe.it-academy.by/AjaxStringStorage2.php";
+const storageName = 'OSTROUH_SCORE_TABLE';
 
 export function AJAXStorage() {
   let UpdatePassword = Math.random();
@@ -29,7 +30,7 @@ export function AJAXStorage() {
       datatype: 'json',
       data: {
         f: 'READ',
-        n: 'OSTROUH_RECORDS'},
+        n: storageName},
       cache: false,
       success: readReady,
       error: errorHandler
@@ -52,7 +53,7 @@ export function AJAXStorage() {
       datatype: 'json',
       data: {
         f: 'INSERT',
-        n: 'OSTROUH_RECORDS',
+        n: storageName,
         v: JSON.stringify(self.userHash)},
       cache: false,
       success: dataLoaded,
@@ -67,7 +68,7 @@ export function AJAXStorage() {
       datatype: 'json',
       data: {
         f: 'LOCKGET',
-        n: 'OSTROUH_RECORDS',
+        n: storageName,
         p: UpdatePassword},
         cache: false,
         success: updateStorage,
@@ -82,7 +83,7 @@ export function AJAXStorage() {
       datatype: 'json',
       data: {
         f: 'UPDATE',
-        n: 'OSTROUH_RECORDS',
+        n: storageName,
         p: UpdatePassword,
         v: JSON.stringify(self.userHash)},
       cache: false,
