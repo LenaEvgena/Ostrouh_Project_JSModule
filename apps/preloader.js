@@ -4,6 +4,7 @@ export function LoadPageData(array, numOfFiles) {//загружаем данны
 
   let pageIsLoaded = false; //загрузились ли все данные
   let filesLoaded = 0; // кол-во загруж. файлов
+  let progress = 0;
 
   showPreloader(numOfFiles);
 
@@ -21,12 +22,13 @@ export function LoadPageData(array, numOfFiles) {//загружаем данны
     );
   }
 
-  function Progress(EO) { //установить % загрузки в зависимости от количества файлов
+  function Progress(EO) {
     // console.log(EO);
-    if (EO.lengthComputable) {
-      let percent = Math.round(EO.loaded / EO.total * 100);
-      document.getElementById('load_perc').innerText =`${percent}%`;
-    }
+    // if (EO.lengthComputable) {
+      // let percent = Math.round(EO.loaded / EO.total * 100);
+      // document.getElementById('load_perc').innerText =`${percent}%`;
+      // console.log(percent);
+    // }
   }
 
   function Success() {
@@ -34,8 +36,11 @@ export function LoadPageData(array, numOfFiles) {//загружаем данны
     filesLoaded++;
   }
 
-  function Complete() {
-    console.log(filesLoaded);
+  function Complete() { //установить % загрузки в зависимости от количества файлов
+    let percent = 100 / numOfFiles;
+    progress = progress + percent;
+    document.getElementById('load_perc').innerText =`${Math.round(progress)}%`;
+
     showPreloader(numOfFiles);
   }
 
