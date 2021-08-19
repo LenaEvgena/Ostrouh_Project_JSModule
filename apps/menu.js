@@ -2,11 +2,12 @@
 
 import { Controlls } from './App/Controlls.js';
 import * as SPA from './SPA.js';
-import { showPreloader } from './preloader.js';
+import { LoadPageData } from './preloader.js';
 import * as storage from './storage.js';
 
 export function initMenuPage() {
-  showPreloader();
+  let imagesArray = ['./assets/img/backgrounds/menubg.png', './assets/img/menu/greenbutton.png', './assets/img/menu/orangebutton.png', './assets/img/menu/redbutton.png'];
+  LoadPageData(imagesArray, imagesArray.length);
 
   if (!globalThis.isPaused) {
     globalThis.audioController.startMusic();
@@ -45,6 +46,7 @@ export function initMenuPage() {
   function createMenuPage(controlls, audio) {
     const menu_wrapper = document.createElement('div');
     menu_wrapper.className = 'menu_wrapper';
+    menu_wrapper.style.background = 'url(../assets/img/backgrounds/menubg.png)';
     const menu_elements = document.createElement('div');
     menu_elements.className = 'menu_elements';
     menu_wrapper.appendChild(menu_elements);
@@ -53,7 +55,7 @@ export function initMenuPage() {
     menu_elements.appendChild( createMenuElement('redbutton', 'hard') );
 
     controlls.createMusicButton(menu_wrapper, audio);
-    controlls.createScoreButton(menu_wrapper, storage.showPlayersList);//+callback
+    controlls.createScoreButton(menu_wrapper, storage.showPlayersList);
     return menu_wrapper;
   }
 

@@ -29,8 +29,8 @@ function renderNewState() {
     case 'Menu':
       wrapper.innerHTML = '';
       import('./menu.js').then(module => {
-        checkUser();
         module.initMenuPage();
+        checkUser();
       });
       break;
     case 'MenuEasy':
@@ -57,8 +57,8 @@ function renderNewState() {
     case `${levelID}`:
       wrapper.innerHTML = '';
       import('./newGames.js').then(module => {
-        checkUser();
         module.openNewGame(levelID);
+        checkUser();
       });
       break;
   }

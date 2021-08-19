@@ -79,32 +79,6 @@ html {
 
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
-/* @font-face {
-  font-family: 'Georgia';
-  src: url('assets/fonts/Georgia/Georgia-Bold.eot');
-  src: local('Georgia Bold'), local('Georgia-Bold'),
-    url('assets/fonts/Georgia/Georgia-Bold.eot?#iefix') format('embedded-opentype'),
-    url('assets/fonts/Georgia/Georgia-Bold.woff2') format('woff2'),
-    url('assets/fonts/Georgia/Georgia-Bold.woff') format('woff'),
-    url('assets/fonts/Georgia/Georgia-Bold.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Georgia';
-  src: url('assets/fonts/Georgia/Georgia.eot');
-  src: local('Georgia'),
-    url('assets/fonts/Georgia/Georgia.eot?#iefix') format('embedded-opentype'),
-    url('assets/fonts/Georgia/Georgia.woff2') format('woff2'),
-    url('assets/fonts/Georgia/Georgia.woff') format('woff'),
-    url('assets/fonts/Georgia/Georgia.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-} */
-
 ::-webkit-scrollbar {
   width: 0;
   background: 0 0;
@@ -359,13 +333,11 @@ td {
 }
 
 .modal_overlay.visible {
-/* .modal_overlay { */
   visibility: visible;
   animation: list-grow 500ms forwards;
 }
 
 .modal_overlay.visible .modal {
-/* .modal_overlay .modal { */
   animation: modal-appear 0.5s linear forwards;
 }
 
@@ -514,7 +486,7 @@ td {
 }
 
 .main_wrapper {
-  background: url(../assets/img/backgrounds/startbg.png);
+  /* background: url(../assets/img/backgrounds/startbg.png); */
   width: 100vw;
   height: 100vh;
   background-size: cover;
@@ -565,7 +537,6 @@ td {
 /*start menu*/
 .menu_wrapper {
   position: relative;
-  background: url(../assets/img/backgrounds/menubg.png);
   width: 100vw;
   height: 100vh;
   background-size: cover;
@@ -634,7 +605,6 @@ td {
 
 /*start logicMenu page*/
 .logic_menu_wrapper {
-  background: url(../assets/img/backgrounds/logicbg.png);
   width: 100vw;
   height: 100vh;
   background-size: cover;

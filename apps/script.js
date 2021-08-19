@@ -1,14 +1,16 @@
 'use strict';
 import * as SPA from './SPA.js';
 import { AudioController } from './App/AudioController.js';
-import { showPreloader } from './preloader.js';
+import { LoadPageData } from './preloader.js';
 import * as storage from './storage.js';
 
 globalThis.audioController = new AudioController();
 globalThis.isPaused = false;
 
 export function initStartPage() {
-  showPreloader();
+  let imagesArray = ['./assets/img/backgrounds/startbg.png', './assets/img/main/play_btn400.png'];
+
+  LoadPageData(imagesArray, imagesArray.length);
 
   const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createMainPage() );
@@ -28,6 +30,7 @@ export function initStartPage() {
 function createMainPage() {
   const main_wrapper = document.createElement('div');
   main_wrapper.className = 'main_wrapper';
+  main_wrapper.style.background = 'url(./assets/img/backgrounds/startbg.png)';
 
   const main_button = document.createElement('div');
   main_button.className = 'main_button';

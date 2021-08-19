@@ -22,6 +22,7 @@ export class LogicMenu {
   renderLogicMenuPage(parent, level, callback) {
     const logic_menu_wrapper = document.createElement('div');
     logic_menu_wrapper.className = 'logic_menu_wrapper';
+    logic_menu_wrapper.style.background = 'url(assets/img/backgrounds/logicbg.png)';
 
     const logic_menu_container = document.createElement('div');
     logic_menu_container.className = 'logic_menu_container';

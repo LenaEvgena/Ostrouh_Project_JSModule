@@ -63,9 +63,9 @@ export function addPlayerData(userID, levelID, _time, _flips) {
       break;
 
     case 'medium':
-      if (time <= 40) _score = 30;
-      if (time > 40 && time <= 50) _score = 15;
-      if (time > 50) _score = 5;
+      if (time <= 50) _score = 30;
+      if (time > 50 && time <= 60) _score = 15;
+      if (time > 60) _score = 5;
       userHash.medium.score += _score;
       userHash.medium.time += _time;
       userHash.medium.flips += _flips;
@@ -90,7 +90,7 @@ export function addPlayerData(userID, levelID, _time, _flips) {
 
 export function showPlayersList() {
   let showInfo = gameStorage.getKeys();
-  let entries = Object.entries(gameStorage.userHash).reverse();
+  let entries = Object.entries(gameStorage.userHash);
 
   let rangedPlayers = rangePlayers(entries);
   if (rangedPlayers.length > 15) {
