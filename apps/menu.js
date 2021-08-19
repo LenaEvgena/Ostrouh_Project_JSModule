@@ -46,7 +46,7 @@ export function initMenuPage() {
   function createMenuPage(controlls, audio) {
     const menu_wrapper = document.createElement('div');
     menu_wrapper.className = 'menu_wrapper';
-    menu_wrapper.style.background = 'url(../assets/img/backgrounds/menubg.png)';
+    menu_wrapper.style.background = 'url(assets/img/backgrounds/menubg.png)';
     const menu_elements = document.createElement('div');
     menu_elements.className = 'menu_elements';
     menu_wrapper.appendChild(menu_elements);
