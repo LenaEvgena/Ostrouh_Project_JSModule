@@ -22,7 +22,7 @@ export function LoadPageData(array, numOfFiles) {//загружаем данны
     );
   }
 
-  function Progress(EO) {
+  function Progress() {
     // console.log(EO);
     // if (EO.lengthComputable) {
       // let percent = Math.round(EO.loaded / EO.total * 100);
@@ -65,9 +65,9 @@ export function LoadPageData(array, numOfFiles) {//загружаем данны
           preloader.classList.add('hide');
           setTimeout(() => {
             document.body.removeChild(preloader);
-          }, 300);
+          }, 400);
         }
-    }, 500);
+    }, 600);
   }
 
   function createPreloader() {
