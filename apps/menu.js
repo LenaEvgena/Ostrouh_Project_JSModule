@@ -6,7 +6,7 @@ import { LoadPageData } from './preloader.js';
 import * as storage from './storage.js';
 
 export function initMenuPage() {
-  LoadPageData('json/mainMenu.json', 4);
+  LoadPageData('json/mainMenu.json', 10);
 
   if (!globalThis.isPaused) {
     globalThis.audioController.startMusic();

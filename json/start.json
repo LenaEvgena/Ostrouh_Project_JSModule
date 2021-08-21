@@ -1,6 +1,7 @@
 
 [
-  "./assets/img/backgrounds/startbg.png", "./assets/img/main/play_btn400.png",
+  "./assets/img/backgrounds/startbg.png",
+  "./assets/img/main/play_btn400.png",
   "./assets/img/backgrounds/menubg.png"
 ]
 

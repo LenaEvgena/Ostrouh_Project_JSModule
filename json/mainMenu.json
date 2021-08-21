@@ -1,5 +1,8 @@
 [
   "./assets/img/backgrounds/logicbg.png", "./assets/img/menu/greenbutton.png",
-  "./assets/img/menu/orangebutton.png", "./assets/img/menu/redbutton.png"
+  "./assets/img/menu/orangebutton.png", "./assets/img/menu/redbutton.png",
+  "./assets/img/logicmenu/bg0.png", "./assets/img/logicmenu/bg1.png",
+  "./assets/img/logicmenu/bg2.png", "./assets/img/logicmenu/bg3.png",
+  "./assets/img/logicmenu/bg4.png", "./assets/img/logicmenu/bg5.png"
 ]
 
