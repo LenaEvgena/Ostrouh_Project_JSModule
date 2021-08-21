@@ -15,8 +15,7 @@ export function addPlayer(userID, totalTime = 0, totalFlips = 0, totalScore = 0)
   userID = usedID.length + 1;
   localStorage.setItem('userID', userID);
   localStorage.setItem('userName', playerName);
-
-  greeting.textContent = `Hello, ${localStorage.getItem('userName')}! :)`;
+  if (greeting) greeting.textContent = `Hello, ${localStorage.getItem('userName')}! :)`;
 
   userHash = {};
   userHash.userName = localStorage.userName;
