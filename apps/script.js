@@ -8,9 +8,9 @@ globalThis.audioController = new AudioController();
 globalThis.isPaused = false;
 
 export function initStartPage() {
-  let imagesArray = ['./assets/img/backgrounds/startbg.png', './assets/img/main/play_btn400.png'];
+  // let imagesArray = ['./assets/img/backgrounds/startbg.png', './assets/img/main/play_btn400.png'];
 
-  LoadPageData(imagesArray, imagesArray.length);
+  LoadPageData('json/start.json', 3);
 
   const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createMainPage() );

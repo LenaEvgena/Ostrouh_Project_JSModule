@@ -1,6 +1,8 @@
 'use strict';
+let PreloadedImagesH = {}; // ключ - имя предзагруженного изображения
+console.log(PreloadedImagesH);
 
-export function LoadPageData(array, numOfFiles) {//загружаем данные для работы
+export function LoadPageData(file, numOfFiles) {//загружаем данные для работы
 
   let pageIsLoaded = false; //загрузились ли все данные
   let filesLoaded = 0; // кол-во загруж. файлов
@@ -8,44 +10,39 @@ export function LoadPageData(array, numOfFiles) {//загружаем данны
 
   showPreloader(numOfFiles);
 
-  for (let j = 0; j < array.length; j++) {
-    $.ajax(`${array[j]}`,
+    $.ajax(`${file}`,
       {
         type: 'GET',
-        contentType: 'image/png',
+        dataType: 'json',
         cache: false,
         success: Success,
-        complete: Complete,
         error: ErrorHandler,
-        xhrFields: {onprogress: Progress}
       }
     );
-  }
 
-  function Progress() {
-    // console.log(EO);
-    // if (EO.lengthComputable) {
-      // let percent = Math.round(EO.loaded / EO.total * 100);
-      // document.getElementById('load_perc').innerText =`${percent}%`;
-      // console.log(percent);
-    // }
-  }
-
-  function Success() {
+  function Success(data) {
     console.log('Данные загруженны через AJAX!');
-    filesLoaded++;
-  }
-
-  function Complete() { //установить % загрузки в зависимости от количества файлов
     let percent = 100 / numOfFiles;
-    progress = progress + percent;
-    document.getElementById('load_perc').innerText =`${Math.round(progress)}%`;
-
+    data.forEach( item => {
+      preloadImage(item);
+      filesLoaded++;
+      progress += percent;
+      // console.log(progress);
+      document.getElementById('load_perc').innerText =`${Math.round(progress)}%`;
+    })
+    console.log(filesLoaded);
     showPreloader(numOfFiles);
   }
 
   function ErrorHandler(jqXHR, StatusStr, ErrorStr) {
     alert(StatusStr + ' ' + ErrorStr);
+  }
+
+  function preloadImage(FN) {
+    if (FN in PreloadedImagesH) return;// если такое изображение уже предзагружалось - ничего не делаем
+    let image = new Image();// предзагружаем - создаём невидимое изображение
+    image.src = FN;
+    PreloadedImagesH[FN]=true; // запоминаем, что изображение уже предзагружалось
   }
 
   function showPreloader(numOfFiles) {
@@ -59,15 +56,17 @@ export function LoadPageData(array, numOfFiles) {//загружаем данны
   }
 
   function hidePreloader() {
-    setTimeout(() => {
-      let preloader = document.getElementById('preloader');
-        if (!preloader.classList.contains('hide')) {
-          preloader.classList.add('hide');
-          setTimeout(() => {
-            document.body.removeChild(preloader);
-          }, 400);
-        }
-    }, 600);
+    let preloader = document.getElementById('preloader');
+    // window.onload = () => {
+      setTimeout(() => {
+          if (!preloader.classList.contains('hide')) {
+            preloader.classList.add('hide');
+            setTimeout(() => {
+              document.body.removeChild(preloader);
+            }, 400);
+          }
+      }, 600);
+    // }
   }
 
   function createPreloader() {

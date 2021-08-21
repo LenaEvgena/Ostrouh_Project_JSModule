@@ -6,8 +6,7 @@ import { LoadPageData } from './preloader.js';
 import * as storage from './storage.js';
 
 export function initMenuPage() {
-  let imagesArray = ['./assets/img/backgrounds/menubg.png', './assets/img/menu/greenbutton.png', './assets/img/menu/orangebutton.png', './assets/img/menu/redbutton.png'];
-  LoadPageData(imagesArray, imagesArray.length);
+  LoadPageData('json/mainMenu.json', 4);
 
   if (!globalThis.isPaused) {
     globalThis.audioController.startMusic();
