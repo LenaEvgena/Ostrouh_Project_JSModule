@@ -1,6 +1,5 @@
 'use strict';
-let PreloadedImagesH = {}; // ключ - имя предзагруженного изображения
-console.log(PreloadedImagesH);
+globalThis.PreloadedImagesH = {}; // ключ - имя предзагруженного изображения
 
 export function LoadPageData(file, numOfFiles) {//загружаем данные для работы
 
@@ -25,12 +24,14 @@ export function LoadPageData(file, numOfFiles) {//загружаем данны�
     let percent = 100 / numOfFiles;
     data.forEach( item => {
       preloadImage(item);
-      filesLoaded++;
       progress += percent;
       // console.log(progress);
       document.getElementById('load_perc').innerText =`${Math.round(progress)}%`;
+      filesLoaded++;
     })
     console.log(filesLoaded);
+    console.log(globalThis.PreloadedImagesH);
+
     showPreloader(numOfFiles);
   }
 
@@ -39,10 +40,10 @@ export function LoadPageData(file, numOfFiles) {//загружаем данны�
   }
 
   function preloadImage(FN) {
-    if (FN in PreloadedImagesH) return;// если такое изображение уже предзагружалось - ничего не делаем
+    if (FN in globalThis.PreloadedImagesH) return;// если такое изображение уже предзагружалось - ничего не делаем
     let image = new Image();// предзагружаем - создаём невидимое изображение
     image.src = FN;
-    PreloadedImagesH[FN]=true; // запоминаем, что изображение уже предзагружалось
+    globalThis.PreloadedImagesH[FN]=true; // запоминаем, что изображение уже предзагружалось
   }
 
   function showPreloader(numOfFiles) {
