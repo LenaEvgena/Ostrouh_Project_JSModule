@@ -58,16 +58,14 @@ export function LoadPageData(file, numOfFiles) {//загружаем данны�
 
   function hidePreloader() {
     let preloader = document.getElementById('preloader');
-    // window.onload = () => {
-      setTimeout(() => {
-          if (!preloader.classList.contains('hide')) {
-            preloader.classList.add('hide');
-            setTimeout(() => {
-              document.body.removeChild(preloader);
-            }, 400);
-          }
-      }, 600);
-    // }
+    setTimeout(() => {
+        if (!preloader.classList.contains('hide')) {
+          preloader.classList.add('hide');
+          setTimeout(() => {
+            document.body.removeChild(preloader);
+          }, 400);
+        }
+    }, 600);
   }
 
   function createPreloader() {
