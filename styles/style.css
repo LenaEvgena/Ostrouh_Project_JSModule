@@ -547,6 +547,20 @@ td {
   transform: translateZ(0);
 }
 
+.greeting {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-family: 'Permanent Marker', cursive;
+  color:rgb(1, 243, 243);
+  text-shadow: 4px 2px 2px rgb(24, 22, 22),
+  5px 4px 4px rgb(252, 247, 247);
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: 4px;
+}
+
 .menu_elements {
   display: flex;
   flex-direction: column;

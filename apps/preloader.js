@@ -29,8 +29,8 @@ export function LoadPageData(file, numOfFiles) {//загружаем данны�
       document.getElementById('load_perc').innerText =`${Math.round(progress)}%`;
       filesLoaded++;
     })
-    console.log(filesLoaded);
-    console.log(globalThis.PreloadedImagesH);
+    // console.log(filesLoaded);
+    // console.log(globalThis.PreloadedImagesH);
 
     showPreloader(numOfFiles);
   }

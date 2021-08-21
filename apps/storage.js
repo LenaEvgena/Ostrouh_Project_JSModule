@@ -10,11 +10,13 @@ let userHash = {};
 
 export function addPlayer(userID, totalTime = 0, totalFlips = 0, totalScore = 0) {
   let playerName = document.getElementById('check_name').value.trim() || 'unknown';
-
   let usedID = gameStorage.getKeys();
+  const greeting = document.querySelector('.greeting');
   userID = usedID.length + 1;
   localStorage.setItem('userID', userID);
   localStorage.setItem('userName', playerName);
+
+  greeting.textContent = `Hello, ${localStorage.getItem('userName')}! :)`;
 
   userHash = {};
   userHash.userName = localStorage.userName;
@@ -238,3 +240,4 @@ export function setUser(callback) {
 }
 
 window.onstorage = () => checkUser();
+

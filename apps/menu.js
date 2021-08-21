@@ -20,6 +20,8 @@ export function initMenuPage() {
   const easyGame = document.getElementById('easy');
   const mediumGame = document.getElementById('medium');
   const hardGame = document.getElementById('hard');
+  const greeting = document.querySelector('.greeting');
+  greeting.textContent = `Hello, ${localStorage.getItem('userName')}! :)`;
 
   buttons.forEach(button => {
     button.addEventListener('mouseover', () => {
@@ -48,6 +50,10 @@ export function initMenuPage() {
     menu_wrapper.style.background = 'url(./assets/img/backgrounds/menubg.png)';
     const menu_elements = document.createElement('div');
     menu_elements.className = 'menu_elements';
+    const greeting = document.createElement('div');
+    greeting.className = 'greeting';
+
+    menu_wrapper.appendChild(greeting);
     menu_wrapper.appendChild(menu_elements);
     menu_elements.appendChild( createMenuElement('greenbutton', 'easy') );
     menu_elements.appendChild( createMenuElement('orangebutton', 'medium') );
