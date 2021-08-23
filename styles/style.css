@@ -516,7 +516,7 @@ td {
 .fieldset {
   position: absolute;
   top: 5%;
-  min-width: 290px;
+  width: 300px;
 }
 
 .form_info {
