@@ -34,6 +34,7 @@ export class MemoryGame {
       this.countDown = this.startCountDown();
     }, 500);
 
+    this.fitPositions(this.images);
     this.controlls.updateMusicButton(globalThis.audioController);
     this.timer.innerText = this.time;
     this.moves.innerText = this.flips;
@@ -185,8 +186,6 @@ export class MemoryGame {
     wrapper.appendChild( logic_game_wrapper );
   }
 
-
-
   createInfoBlock() {
     const info_container = document.createElement('div');
     info_container.className = 'info_container';
@@ -246,69 +245,158 @@ export class MemoryGame {
       card.appendChild(card_back);
       card.appendChild(card_front);
       cards_container.appendChild(card);
-
-      this.fitPositions(array, cards_container, card, back_image, bubble, animal);
-
-      // window.addEventListener('onorientationchange', () => {
-      //   if (window.orientation == 90 || window.orientation == -90) {
-      // this.fitPositions(array, cards_container, card, back_image, bubble, animal);
-      //   }
-      // });
-
     }
     return cards_container;
   }
 
-  fitPositions(array, container, card, back, bubble, animal) {
+  fitPositions(array) {
+    const cards_container = document.querySelector('.cards_container');
+    const info_container = document.querySelector('.info_container');
+    const infoblock = document.querySelectorAll('.game_info');
+    const cards = document.querySelectorAll('.card');
+    const back_images = document.querySelectorAll('.back_image');
+    const bubbles = document.querySelectorAll('.bubble');
+    const animals = document.querySelectorAll('.animal');
     let ww = window.innerWidth;
     let hw = window.innerHeight;
 
     if (array.length <= 6) {
-      if (ww <= 380) {
-        container.style.gridTemplateColumns = 'repeat(3, auto)';
-        container.style.gridGap = '1.5vw';
-        card.style.width = card.style.height = back.style.width = bubble.style.width = '100px';
-        animal.style.width = '65px';
+      if ((ww / hw) > (hw / ww)) { // landscape orientation
+        if (ww <= 767) {
+          cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
+          cards_container.style.gridGap = '1.1vw';
+          infoblock.forEach(info => {info.style.fontSize = '3.5vw'});
+          cards.forEach(card => {card.style.width = card.style.height = '85px'});
+          back_images.forEach(back_image => {back_image.style.width = '85px'});
+          bubbles.forEach(bubble => {bubble.style.width = '85px'});
+          animals.forEach(animal => {animal.style.width = '65px'});
+        }
+        if (ww >= 768 && ww <= 1279) {
+          cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
+          cards_container.style.gridGap = '1vw';
+          info_container.style.marginBottom = '20px';
+          infoblock.forEach(info => {info.style.fontSize = '6vw'});
+          cards.forEach(card => {card.style.width = card.style.height = '160px'});
+          back_images.forEach(back_image => {back_image.style.width = '160px'});
+          bubbles.forEach(bubble => {bubble.style.width = '160px'});
+          animals.forEach(animal => {animal.style.width = '130px'});
+        }
       }
-      if (hw <= 380) {
-        container.style.gridTemplateColumns = 'repeat(4, auto)';
-        container.style.gridGap = '1.1vw';
-        card.style.width = card.style.height = back.style.width = bubble.style.width = '80px';
-        animal.style.width = '65px';
+      if ((hw / ww) > (ww / hw)) { // portrait orientation
+        if (ww <= 767) {
+          cards_container.style.gridTemplateColumns = 'repeat(3, auto)';
+          cards_container.style.gridGap = '1.5vw';
+          info_container.style.marginBottom = '15px';
+          infoblock.forEach(info => {info.style.fontSize = '7vw'});
+          cards.forEach(card => {card.style.width = card.style.height = '100px'});
+          back_images.forEach(back_image => {back_image.style.width = '100px'});
+          bubbles.forEach(bubble => {bubble.style.width = '100px'});
+          animals.forEach(animal => {animal.style.width = '80px'});
+        }
+        if (ww >= 768 && ww <= 1279) {
+          cards_container.style.gridTemplateColumns = 'repeat(3, auto)';
+          cards_container.style.gridGap = '1.2vw';
+          info_container.style.marginBottom = '15px';
+          infoblock.forEach(info => {info.style.fontSize = '6.5vw'});
+          cards.forEach(card => {card.style.width = card.style.height = '170px'});
+          back_images.forEach(back_image => {back_image.style.width = '170px'});
+          bubbles.forEach(bubble => {bubble.style.width = '170px'});
+          animals.forEach(animal => {animal.style.width = '140px'})
+        }
       }
     }
 
     if (array.length > 6 && array.length <= 8) {
-      if (ww <= 380) {
-        container.style.gridTemplateColumns = 'repeat(4, auto)';
-        container.style.gridGap = '1.5vw';
-        card.style.width = card.style.height = back.style.width = bubble.style.width = '80px';
-        animal.style.width = '60px';
+      if ((ww / hw) > (hw / ww)) { // landscape orientation
+        if (ww <= 767) {
+          cards_container.style.gridTemplateColumns = 'repeat(6, auto)';
+          cards_container.style.gridGap = '1.1vw';
+          infoblock.forEach(info => {info.style.fontSize = '4vw'});
+          cards.forEach(card => {card.style.width = card.style.height = '80px'});
+          back_images.forEach(back_image => {back_image.style.width = '80px'});
+          bubbles.forEach(bubble => {bubble.style.width = '80px'});
+          animals.forEach(animal => {animal.style.width = '60px'});
+        }
+        if (ww >= 768 && ww <= 1279) {
+          cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
+          cards_container.style.gridGap = '1vw';
+          infoblock.forEach(info => {info.style.fontSize = '4.5vw'});
+          cards.forEach(card => {card.style.width = card.style.height = '140px'});
+          back_images.forEach(back_image => {back_image.style.width = '140px'});
+          bubbles.forEach(bubble => {bubble.style.width = '140px'});
+          animals.forEach(animal => {animal.style.width = '120px'});
+        }
       }
-      if (hw <= 380) {
-        container.style.gridTemplateColumns = 'repeat(6, auto)';
-        container.style.gridGap = '1.1vw';
-        card.style.width = card.style.height = back.style.width = bubble.style.width = '80px';
-        animal.style.width = '65px';
+      if ((hw / ww) > (ww / hw)) { // portrait orientation
+        if (ww <= 767) {
+          cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
+          cards_container.style.gridGap = '1.5vw';
+          info_container.style.marginBottom = '15px';
+          infoblock.forEach(info => {info.style.fontSize = '8vw'});
+          cards.forEach(card => {card.style.width = card.style.height = '85px'});
+          back_images.forEach(back_image => {back_image.style.width = '85px'});
+          bubbles.forEach(bubble => {bubble.style.width = '85px'});
+          animals.forEach(animal => {animal.style.width = '65px'});
+        }
+        if (ww >= 768 && ww <= 1279) {
+          cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
+          cards_container.style.gridGap = '1.2vw';
+          info_container.style.marginBottom = '15px';
+          infoblock.forEach(info => {info.style.fontSize = '7vw'});
+          cards.forEach(card => {card.style.width = card.style.height = '150px'});
+          back_images.forEach(back_image => {back_image.style.width = '150px'});
+          bubbles.forEach(bubble => {bubble.style.width = '150px'});
+          animals.forEach(animal => {animal.style.width = '125px'});
+        }
       }
     }
 
-    if (array.length <= 15) {
-      // if (ww <= 380) {
-      //   container.style.gridTemplateColumns = 'repeat(4, auto)';
-      //   container.style.gridGap = '1.5vw';
-      //   card.style.width = card.style.height = back.style.width = bubble.style.width = '100px';
-      //   animal.style.width = '65px';
-      // }
-      // if (hw <= 380) {
-      //   container.style.gridTemplateColumns = 'repeat(4, auto)';
-      //   container.style.gridGap = '1.1vw';
-      //   card.style.width = card.style.height = back.style.width = bubble.style.width = '80px';
-      //   animal.style.width = '65px';
-      // }
+    if (array.length > 8 && array.length <= 15) {
+      if ((ww / hw) > (hw / ww)) { // landscape orientation
+        if (ww <= 767) {
+          cards_container.style.gridTemplateColumns = 'repeat(8, auto)';
+          cards_container.style.gridGap = '0.6vw';
+          infoblock.forEach(info => {info.style.fontSize = '4vw'});
+          cards.forEach(card => {card.style.width = card.style.height = '60px'});
+          back_images.forEach(back_image => {back_image.style.width = '60px'});
+          bubbles.forEach(bubble => {bubble.style.width = '60px'});
+          animals.forEach(animal => {animal.style.width = '45px'});
+        }
+        if (ww >= 768 && ww <= 1279) {
+          cards_container.style.gridTemplateColumns = 'repeat(6, auto)';
+          cards_container.style.gridGap = '0.6vw';
+          info_container.style.marginBottom = '10px';
+          infoblock.forEach(info => {info.style.fontSize = '4vw'});
+          cards.forEach(card => {card.style.width = card.style.height = '115px'});
+          back_images.forEach(back_image => {back_image.style.width = '115px'});
+          bubbles.forEach(bubble => {bubble.style.width = '115px'});
+          animals.forEach(animal => {animal.style.width = '95px'});
+        }
+      }
+
+      if ((hw / ww) > (ww / hw)) { // portrait orientation
+        if (ww <= 767) {
+          cards_container.style.gridTemplateColumns = 'repeat(5, auto)';
+          cards_container.style.gridGap = '1.5vw';
+          info_container.style.marginBottom = '15px';
+          infoblock.forEach(info => {info.style.fontSize = '7vw'});
+          cards.forEach(card => {card.style.width = card.style.height = '65px'});
+          back_images.forEach(back_image => {back_image.style.width = '65px'});
+          bubbles.forEach(bubble => {bubble.style.width = '65px'});
+          animals.forEach(animal => {animal.style.width = '50px'});
+        }
+        if (ww > 767 && ww <= 1279) {
+          cards_container.style.gridTemplateColumns = 'repeat(5, auto)';
+          cards_container.style.gridGap = '1vw';
+          info_container.style.marginBottom = '10px';
+          infoblock.forEach(info => {info.style.fontSize = '6vw'});
+          cards.forEach(card => {card.style.width = card.style.height = '125px'});
+          back_images.forEach(back_image => {back_image.style.width = '125px'});
+          bubbles.forEach(bubble => {bubble.style.width = '125px'});
+          animals.forEach(animal => {animal.style.width = '100px'});
+        }
+      }
     }
-
-
   }
 }
 

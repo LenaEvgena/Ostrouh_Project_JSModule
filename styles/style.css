@@ -26,6 +26,12 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
   background-color: rgb(203, 243, 215);
+  font-size: 100%;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 ol, ul {
 	list-style: none;
@@ -52,11 +58,11 @@ table {
 	outline: 0;
 	padding: 0;
 	margin: 0;
-
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  -khtml-user-select: none;
   -webkit-user-select: none;
-  /* user-select -- это нестандартное свойство */
-  -moz-user-select: none;
-  /* поэтому нужны префиксы */
+  user-select: none;
   -ms-user-select: none;
 	}
 html, body {
@@ -66,9 +72,6 @@ html, body {
 html {
 	font-size: 1em;
 }
-body {
-	font-size: 100%;
-	}
 a img, :link img, :visited img {
 	border: 0;
 }
@@ -82,6 +85,10 @@ html {
 ::-webkit-scrollbar {
   width: 0;
   background: 0 0;
+}
+::-moz-scrollbar {
+width: 0px;
+height: 0px;
 }
 
 /* controlls and overlay*/
@@ -175,7 +182,7 @@ html {
   z-index: 1001;
   text-align: center;
   align-items: center;
-  border: 4px solid;
+  border: 6px solid;
   border-image: linear-gradient(135deg, #4bf608 0%, #ecf004 25%, #f15353 50%, #0594e7 75%, #8e16f0 100%) 1;
   background-color: rgb(201, 223, 187);
   font-size: 18px;
@@ -228,7 +235,7 @@ td {
 #tasksPoints span {
   display: block;
   margin: 10px;
-  float: left;
+  float: right;
   width: 20px;
   height: 20px;
   transition: 0.3s;
@@ -486,7 +493,6 @@ td {
 }
 
 .main_wrapper {
-  /* background: url(../assets/img/backgrounds/startbg.png); */
   width: 100vw;
   height: 100vh;
   background-size: cover;
@@ -519,7 +525,7 @@ td {
   height: 50px;
   text-align: center;
   align-items: center;
-  border: 4px solid;
+  border: 6px solid;
   border-image: linear-gradient(135deg, #4bf608 0%, #ecf004 25%, #f15353 50%, #0594e7 75%, #8e16f0 100%) 1;
   font-size: 20px;
   font-family: 'Permanent Marker', cursive;
@@ -640,7 +646,7 @@ td {
   overflow: hidden;
   transition: transform 0.5s;
   filter: drop-shadow(4px 4px 7px rgb(41, 38, 35));
-  border: 4px solid;
+  border: 6px solid;
   border-image: linear-gradient(135deg, #4bf608 0%, #ecf004 25%, #f15353 50%, #0594e7 75%, #8e16f0 100%) 1;
   width: 20vw;
   height: 30vh;
@@ -675,6 +681,7 @@ td {
   width: 100vw;
   height: 100vh;
   background-size: cover;
+  /* background-repeat: no-repeat; */
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -687,7 +694,6 @@ td {
   grid-column: 1 / -1;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25px;
 }
 
 .game_info {
@@ -698,14 +704,12 @@ td {
   font-size: 35px;
   font-weight: bold;
   line-height: 1.5;
-  letter-spacing: 7px;
+  letter-spacing: 6px;
 }
 
 .cards_container {
   display: grid;
-  grid-template-columns: repeat(6, auto);
-  grid-gap: 1vw;
-  margin: 20px auto;
+  margin: 0 auto;
   align-items: center;
   justify-content: center;
   perspective: 1000px;

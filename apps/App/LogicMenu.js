@@ -16,7 +16,6 @@ export class LogicMenu {
       globalThis.audioController.startMusic();
     }
     this.controlls.updateMusicButton(globalThis.audioController);
-    //что-то со счетом...
   }
 
   renderLogicMenuPage(parent, level, callback) {
