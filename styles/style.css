@@ -32,6 +32,7 @@ body {
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+  scrollbar-width: none;
 }
 ol, ul {
 	list-style: none;
@@ -235,7 +236,7 @@ td {
 #tasksPoints span {
   display: block;
   margin: 10px;
-  float: right;
+  float: left;
   width: 20px;
   height: 20px;
   transition: 0.3s;
@@ -282,7 +283,7 @@ td {
   font-size: 10vw;
   color: rgb(255, 196, 0);
   z-index: 1001;
-  animation: message-grow 4s linear infinite;
+  animation: message-grow 5s linear infinite;
   transform: translateZ(0);
 }
 
@@ -481,7 +482,7 @@ td {
     height: 120px;
   }
   100% {
-    transform: translateY(-900px);
+    transform: translateY(-1000%);
   }
 }
 
@@ -575,7 +576,7 @@ td {
 .menu_element {
   margin: 20px;
   width: 295px;
-  height: 96px;
+  height: 97px;
   background-size: cover;
   display: flex;
   align-items: center;
