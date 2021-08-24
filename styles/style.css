@@ -32,7 +32,6 @@ body {
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
-  scrollbar-width: none;
 }
 ol, ul {
 	list-style: none;
@@ -72,6 +71,7 @@ html, body {
 	}
 html {
 	font-size: 1em;
+  overflow: -moz-scrollbars-none;
 }
 a img, :link img, :visited img {
 	border: 0;
