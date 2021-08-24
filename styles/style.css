@@ -72,13 +72,11 @@ html, body {
 html {
 	font-size: 1em;
   overflow: -moz-scrollbars-none;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 a img, :link img, :visited img {
 	border: 0;
-}
-html {
-  box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
