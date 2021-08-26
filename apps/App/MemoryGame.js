@@ -23,6 +23,9 @@ export class MemoryGame {
   }
 
   startGame() {
+    if (this.countDown) {
+      clearInterval(this.countDown);
+    }
     this.time = 0;
     this.flips = 0;
     this.isBusy = true;//ч-л выполняется, играть нельзя
@@ -257,10 +260,10 @@ export class MemoryGame {
     const back_images = document.querySelectorAll('.back_image');
     const bubbles = document.querySelectorAll('.bubble');
     const animals = document.querySelectorAll('.animal');
-    let ww = window.screen.width;
-    let hw = window.screen.height;
-    // let ww = window.innerWidth;
-    // let hw = window.innerHeight;
+    // let ww = window.screen.width;
+    // let hw = window.screen.height;
+    let ww = window.innerWidth;
+    let hw = window.innerHeight;
 
     if (array.length <= 6) {
       if ((ww / hw) > 1) { // landscape orientation
