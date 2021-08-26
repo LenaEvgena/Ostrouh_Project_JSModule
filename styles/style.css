@@ -281,7 +281,7 @@ td {
   font-size: 10vw;
   color: rgb(255, 196, 0);
   z-index: 1001;
-  animation: message-grow 5s linear infinite;
+  animation: message-grow 4s linear infinite;
   transform: translateZ(0);
 }
 

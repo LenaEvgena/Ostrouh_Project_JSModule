@@ -61,9 +61,9 @@ export class MemoryGame {
   }
 
   endGame() {
+    document.querySelector('.logic_game_wrapper').appendChild( this.overlay.createOverlay() );
     clearInterval(this.countDown);
     storage.addPlayerData(this.userID, this.levelId, this.time, this.flips);
-
     globalThis.audioController.stopMusic();
     globalThis.audioController.hooraySound();
     this.overlay.endGame();
@@ -173,7 +173,7 @@ export class MemoryGame {
     const logic_game_wrapper = document.createElement('div');
     logic_game_wrapper.className = 'logic_game_wrapper';
     logic_game_wrapper.style.background = `url(assets/img/logicmenu/bg${k}.png)`;
-    logic_game_wrapper.appendChild( this.overlay.createOverlay() );
+    // logic_game_wrapper.appendChild( this.overlay.createOverlay() );
 
     const buttons_container = document.createElement('div');
     buttons_container.className = 'buttons_container';
