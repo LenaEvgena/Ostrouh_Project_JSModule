@@ -40,13 +40,22 @@ export function initMenuPage() {
   });
 
   easyGame.addEventListener('touchstart', (EO) => {
-    addHandler(SPA.switchToMenuEasy, EO);
+    easyGame.style.transform = 'scale(0.8)';
+    setTimeout(() => {
+      addHandler(SPA.switchToMenuEasy, EO);
+    }, 300);
   });
   mediumGame.addEventListener('touchstart', (EO) => {
-    addHandler(SPA.switchToMenuMedium, EO);
+    mediumGame.style.transform = 'scale(0.8)';
+    setTimeout(() => {
+      addHandler(SPA.switchToMenuMedium, EO);
+    }, 300);
   });
   hardGame.addEventListener('touchstart', (EO) => {
-    addHandler(SPA.switchToMenuHard, EO);
+    easyGame.style.transform = 'scale(0.8)';
+    setTimeout(() => {
+      addHandler(SPA.switchToMenuHard, EO);
+    }, 300);
   });
 
   controlls.updateMusicButton(globalThis.audioController);

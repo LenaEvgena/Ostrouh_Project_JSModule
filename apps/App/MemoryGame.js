@@ -60,7 +60,11 @@ export class MemoryGame {
     document.querySelector('.hint_button').addEventListener('touchstart', (EO) => {
       EO = EO || window.event;
       EO.preventDefault();
+      document.querySelector('.hint_button').style.transform = 'scale(1.05)';
       this.hintCards(this.cardsArray);
+      setTimeout(() => {
+        document.querySelector('.hint_button').style.transform = 'scale(1)';
+      }, 300);
     });
   }
 
