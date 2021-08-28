@@ -17,18 +17,19 @@ export function initStartPage() {
 
   playButton.addEventListener('mousedown', () => playButton.style.transform = 'scale(0.9)');
   playButton.addEventListener('mouseup', () => playButton.style.transform = 'scale(1.0)');
+  playButton.addEventListener('click', () => {
+    storage.setUser(SPA.switchToMenu);
+  });
 
   playButton.addEventListener('touchstart', (EO) => {
     EO = EO || window.event;
     EO.preventDefault();
     playButton.style.transform = 'scale(0.9)';
     playButton.style.transition = '0.3s';
+    storage.setUser(SPA.switchToMenu);
   });
   playButton.addEventListener('touchend', () => playButton.style.transform = 'scale(1.0)');
 
-  playButton.addEventListener('click', () => {
-    storage.setUser(SPA.switchToMenu);
-  });
 }
 
 function createMainPage() {
