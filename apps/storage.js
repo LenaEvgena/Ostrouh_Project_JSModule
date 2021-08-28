@@ -94,8 +94,8 @@ export function showPlayersList() {
   let entries = Object.entries(gameStorage.userHash);
 
   let rangedPlayers = rangePlayers(entries);
-  if (rangedPlayers.length > 15) {
-    rangedPlayers = rangedPlayers.slice(0, 15);
+  if (rangedPlayers.length > 10) {
+    rangedPlayers = rangedPlayers.slice(0, 10);
   }
 
   let resultHTML = `

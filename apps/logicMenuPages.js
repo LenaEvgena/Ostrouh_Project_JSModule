@@ -32,6 +32,12 @@ function addListeners() {
       globalThis.audioController.clickSound();
       SPA.switchToLevel();
     });
+    item.addEventListener('touchstart', (EO) => {
+      EO = EO || window.event;
+      EO.preventDefault();
+      globalThis.audioController.clickSound();
+      SPA.switchToLevel();
+    });
     item.addEventListener('mouseover', () => {
       globalThis.audioController.slideSound();
     })

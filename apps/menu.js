@@ -28,52 +28,67 @@ export function initMenuPage() {
       globalThis.audioController.slideSound();
     })
   });
-  easyGame.addEventListener('click', () => {
-    globalThis.audioController.clickSound();
-    SPA.switchToMenuEasy();
+
+  easyGame.addEventListener('click', (EO) => {
+    addHandler(SPA.switchToMenuEasy, EO);
   });
-  mediumGame.addEventListener('click', () => {
-    globalThis.audioController.clickSound();
-    SPA.switchToMenuMedium();
+  mediumGame.addEventListener('click', (EO) => {
+    addHandler(SPA.switchToMenuMedium, EO);
   });
-  hardGame.addEventListener('click', () => {
-    globalThis.audioController.clickSound();
-    SPA.switchToMenuHard();
+  hardGame.addEventListener('click', (EO) => {
+    addHandler(SPA.switchToMenuHard, EO);
+  });
+
+  easyGame.addEventListener('touchstart', (EO) => {
+    addHandler(SPA.switchToMenuEasy, EO);
+  });
+  mediumGame.addEventListener('touchstart', (EO) => {
+    addHandler(SPA.switchToMenuMedium, EO);
+  });
+  hardGame.addEventListener('touchstart', (EO) => {
+    addHandler(SPA.switchToMenuHard, EO);
   });
 
   controlls.updateMusicButton(globalThis.audioController);
 }
 
-  function createMenuPage(controlls, audio) {
-    const menu_wrapper = document.createElement('div');
-    menu_wrapper.className = 'menu_wrapper';
-    menu_wrapper.style.background = 'url(./assets/img/backgrounds/menubg.png)';
-    const menu_elements = document.createElement('div');
-    menu_elements.className = 'menu_elements';
-    const greeting = document.createElement('div');
-    greeting.className = 'greeting';
+function addHandler(switchCallback, EO) {
+  EO = EO || window.event;
+  EO.preventDefault();
+  globalThis.audioController.clickSound();
+  switchCallback();
+}
 
-    menu_wrapper.appendChild(greeting);
-    menu_wrapper.appendChild(menu_elements);
-    menu_elements.appendChild( createMenuElement('greenbutton', 'easy') );
-    menu_elements.appendChild( createMenuElement('orangebutton', 'medium') );
-    menu_elements.appendChild( createMenuElement('redbutton', 'hard') );
+function createMenuPage(controlls, audio) {
+  const menu_wrapper = document.createElement('div');
+  menu_wrapper.className = 'menu_wrapper';
+  menu_wrapper.style.background = 'url(./assets/img/backgrounds/menubg.png)';
+  const menu_elements = document.createElement('div');
+  menu_elements.className = 'menu_elements';
+  const greeting = document.createElement('div');
+  greeting.className = 'greeting';
 
-    controlls.createMusicButton(menu_wrapper, audio);
-    controlls.createScoreButton(menu_wrapper, storage.showPlayersList);
-    return menu_wrapper;
-  }
+  menu_wrapper.appendChild(greeting);
+  menu_wrapper.appendChild(menu_elements);
+  menu_elements.appendChild( createMenuElement('greenbutton', 'easy') );
+  menu_elements.appendChild( createMenuElement('orangebutton', 'medium') );
+  menu_elements.appendChild( createMenuElement('redbutton', 'hard') );
 
-  function createMenuElement(image, id) {
-    const div = document.createElement('div');
-    div.className = 'menu_element';
-    div.id = id;
-    div.style.backgroundImage = `url(./assets/img/menu/${image}.png)`;
+  controlls.createMusicButton(menu_wrapper, audio);
+  controlls.createScoreButton(menu_wrapper, storage.showPlayersList);
+  return menu_wrapper;
+}
 
-    const span = document.createElement('span');
-    span.textContent = id;
-    div.appendChild(span);
-    return div;
-  }
+function createMenuElement(image, id) {
+  const div = document.createElement('div');
+  div.className = 'menu_element';
+  div.id = id;
+  div.style.backgroundImage = `url(./assets/img/menu/${image}.png)`;
+
+  const span = document.createElement('span');
+  span.textContent = id;
+  div.appendChild(span);
+  return div;
+}
 
 

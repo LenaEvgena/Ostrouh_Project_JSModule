@@ -47,10 +47,21 @@ export class MemoryGame {
         //переворот карты
         this.openCard(card);
       });
+      card.addEventListener('touchstart', (EO) => {
+        EO = EO || window.event;
+        EO.preventDefault();
+        //переворот карты
+        this.openCard(card);
+      });
     });
     document.querySelector('.hint_button').addEventListener('click', () => {
       this.hintCards(this.cardsArray);
-    })
+    });
+    document.querySelector('.hint_button').addEventListener('touchstart', (EO) => {
+      EO = EO || window.event;
+      EO.preventDefault();
+      this.hintCards(this.cardsArray);
+    });
   }
 
   startCountDown() {
@@ -173,7 +184,6 @@ export class MemoryGame {
     const logic_game_wrapper = document.createElement('div');
     logic_game_wrapper.className = 'logic_game_wrapper';
     logic_game_wrapper.style.background = `url(assets/img/logicmenu/bg${k}.png)`;
-    // logic_game_wrapper.appendChild( this.overlay.createOverlay() );
 
     const buttons_container = document.createElement('div');
     buttons_container.className = 'buttons_container';
@@ -194,7 +204,7 @@ export class MemoryGame {
     info_container.className = 'info_container';
     const time = document.createElement('div');
     time.className = 'game_info';
-    time.textContent = 'Time:';
+    time.textContent = 'Time: ';
     const spanT = document.createElement('span');
     spanT.id = 'timer';
     spanT.textContent = '0';
@@ -202,7 +212,7 @@ export class MemoryGame {
 
     const flips = document.createElement('div');
     flips.className = 'game_info';
-    flips.textContent = 'Flips:';
+    flips.textContent = 'Flips: ';
     const spanF = document.createElement('span');
     spanF.id = 'flips';
     spanF.textContent = '0';

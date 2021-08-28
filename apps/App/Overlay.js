@@ -29,7 +29,7 @@ export class Overlay {
     this.drawBalloons(balloons);
     this.drawBalloons(balloons);
     balloonsContainer.appendChild(balloons);
-    this.tapBalloons(balloons);
+    this.tapBalloonsHandler(balloons);
     return balloonsContainer;
   }
 
@@ -48,18 +48,23 @@ export class Overlay {
     }
   }
 
-  tapBalloons(container) {
+  tapBalloonsHandler(container) {
     container.addEventListener('click', (EO) => {
-      EO = EO || window.EO;
-      EO.preventDefault();
-      EO.target.style.background = 'url(assets/img/other/confetti.png)';
-      EO.target.style.backgroundSize = 'cover';
-      EO.target.style.width = '150px';
-
-      globalThis.audioController.balloonPopSound();
-
-      setTimeout(() => {EO.target.style.display = 'none'}, 300);
+      this.tapBalloons(EO);
     });
+    container.addEventListener('touchstart', (EO) => {
+      this.tapBalloons(EO);
+    });
+  }
+
+  tapBalloons(EO) {
+    EO = EO || window.event;
+    EO.preventDefault();
+    EO.target.style.background = 'url(assets/img/other/confetti.png)';
+    EO.target.style.backgroundSize = 'cover';
+    EO.target.style.width = '150px';
+    globalThis.audioController.balloonPopSound();
+    setTimeout(() => {EO.target.style.display = 'none'}, 300);
   }
 
   endGame() {

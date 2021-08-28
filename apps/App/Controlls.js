@@ -39,6 +39,13 @@ export class Controlls {
       controller.toggleBgMusic();
       this.updateMusicButton();
     });
+    musicButton.addEventListener('touchstart', (EO) => {
+      EO = EO || window.event;
+      EO.preventDefault();
+      musicButton.classList.toggle('clicked');
+      controller.toggleBgMusic();
+      this.updateMusicButton();
+    });
     parent.appendChild(musicButton);
   }
 
@@ -83,6 +90,12 @@ export class Controlls {
     score_button.src = 'assets/img/other/score.png'
     score_button.className = 'score_button';
     score_button.addEventListener('click', () => {
+      globalThis.audioController.clickSound();
+      callback();
+    });
+    score_button.addEventListener('touchstart', (EO) => {
+      EO = EO || window.event;
+      EO.preventDefault();
       globalThis.audioController.clickSound();
       callback();
     });
