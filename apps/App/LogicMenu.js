@@ -15,7 +15,7 @@ export class LogicMenu {
     if (!globalThis.isPaused) {
       globalThis.audioController.startMusic();
     }
-    this.controlls.updateMusicButton(globalThis.audioController);
+    this.controlls.updateMusicButton();
   }
 
   renderLogicMenuPage(parent, level, callback) {

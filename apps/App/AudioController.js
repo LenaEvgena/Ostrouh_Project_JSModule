@@ -24,7 +24,7 @@ export class AudioController {
   }
   toggleBgMusic() {
     if(this.bgMusic.paused) {
-      this.bgMusic.play();
+      this.startMusic();
       globalThis.isPaused = false;
     } else {
       this.bgMusic.pause();

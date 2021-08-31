@@ -55,6 +55,7 @@ export class Controlls {
       musicButton.classList.add('clicked');
     } else {
       musicButton.classList.remove('clicked');
+      globalThis.audioController.startMusic();
     }
   }
 

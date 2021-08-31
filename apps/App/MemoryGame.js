@@ -26,6 +26,7 @@ export class MemoryGame {
     if (this.countDown) {
       clearInterval(this.countDown);
     }
+    window.addEventListener('orientationchange', () => {this.fitPositions(this.images)});
     // this.fitPositions(this.images);
     this.time = 0;
     this.flips = 0;
@@ -37,7 +38,7 @@ export class MemoryGame {
       this.shuffleCards(this.cardsArray);
       this.countDown = this.startCountDown();
     }, 500);
-    this.controlls.updateMusicButton(globalThis.audioController);
+    this.controlls.updateMusicButton();
     this.timer.innerText = this.time;
     this.moves.innerText = this.flips;
     this.cardsArray.forEach(card => {
@@ -276,18 +277,17 @@ export class MemoryGame {
 
     let ww = window.innerWidth;
     let hw = window.innerHeight;
-    let orientation = screen.orientation.type;
-    console.log('ww-', ww, 'hw-', hw);
-    console.log((ww / hw));
+    let orientation = window.orientation;
+    // console.log('ww-', ww, 'hw-', hw);
+    // console.log((ww / hw));
     console.log((orientation));
 
     if (array.length <= 6) {
-      if (orientation === 'portrait-primary') { // portrait orientation
-      // if ((ww / hw) < 1) { // portrait orientation
+      if (orientation === 0) { // portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(3, auto)';
           cards_container.style.gridGap = '1.5vw';
-          info_container.style.marginBottom = '15px';
+          info_container.style.marginBottom = '13px';
           infoblock.forEach(info => {info.style.fontSize = '25px'});
           cards.forEach(card => {card.style.width = card.style.height = '100px'});
           back_images.forEach(back_image => {back_image.style.width = '100px'});
@@ -314,10 +314,10 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '180px'});
           animals.forEach(animal => {animal.style.width = '150px'});
         }
-      } else if (orientation === 'landscape-primary') { // landscape orientation
+      } else { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
-          cards_container.style.gridGap = '1.1vw';
+          cards_container.style.gridGap = '1vw';
           infoblock.forEach(info => {info.style.fontSize = '22px'});
           cards.forEach(card => {card.style.width = card.style.height = '85px'});
           back_images.forEach(back_image => {back_image.style.width = '85px'});
@@ -348,8 +348,7 @@ export class MemoryGame {
     }
 
     if (array.length > 6 && array.length <= 8) {
-      if (orientation === 'portrait-primary') {// portrait orientation
-        // if ((ww / hw) < 1) { // portrait orientation
+      if (orientation === 0) {// portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
           cards_container.style.gridGap = '1.5vw';
@@ -380,8 +379,7 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '180px'});
           animals.forEach(animal => {animal.style.width = '150px'});
         }
-      } else if (orientation === 'landscape-primary') {// landscape orientation
-        // if ((ww / hw) >= 1) { // landscape orientation
+      } else {// landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(6, auto)';
           cards_container.style.gridGap = '1.1vw';
@@ -414,8 +412,7 @@ export class MemoryGame {
     }
 
     if (array.length > 8 && array.length <= 15) {
-      if (orientation === 'portrait-primary') { // portrait orientation
-      // if ((ww / hw) < 1) { // portrait orientation
+      if (orientation === 0) { // portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(5, auto)';
           cards_container.style.gridGap = '1.5vw';
@@ -446,8 +443,7 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '180px'});
           animals.forEach(animal => {animal.style.width = '150px'});
         }
-      } else if (orientation === 'landscape-primary') { // landscape orientation
-      // if ((ww / hw) >= 1) { // landscape orientation
+      } else { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(8, auto)';
           cards_container.style.gridGap = '0.6vw';
