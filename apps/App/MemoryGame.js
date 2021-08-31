@@ -27,8 +27,8 @@ export class MemoryGame {
     if (this.countDown) {
       clearInterval(this.countDown);
     }
-    // window.addEventListener('orientationchange', () => {this.fitPositions(this.images)});
-    this.fitPositions(this.images);
+    window.addEventListener('onresize', () => {this.fitPositions(this.images)});
+    // this.fitPositions(this.images);
     this.time = 0;
     this.flips = 0;
     this.isBusy = true;//ч-л выполняется, играть нельзя
@@ -83,7 +83,7 @@ export class MemoryGame {
     globalThis.audioController.hooraySound();
     this.overlay.endGame();
     globalThis.audioController.vibro(true);
-    window.removeEventListener('orientationchange', () => {this.fitPositions(this.images)});
+    window.removeEventListener('onresize', () => {this.fitPositions(this.images)});
 
     setTimeout(() => {
       this.controlls.turnBack(this.callback);
@@ -203,8 +203,8 @@ export class MemoryGame {
 
     logic_game_wrapper.appendChild( this.createCard(this.images) );
     wrapper.appendChild( logic_game_wrapper );
-    // this.fitPositions(this.images);
-    window.addEventListener('orientationchange', () => {this.fitPositions(this.images)});
+    this.fitPositions(this.images);
+    // window.addEventListener('orientationchange', () => {this.fitPositions(this.images)});
   }
 
   createInfoBlock() {
@@ -281,13 +281,13 @@ export class MemoryGame {
 
     let ww = window.innerWidth;
     // let hw = window.innerHeight;
-    let orientation = window.orientation;
+    let orientation = screen.orientation.type;
     // console.log('ww-', ww, 'hw-', hw);
     // console.log((ww / hw));
     console.log(orientation);
 
     if (array.length <= 6) {
-      if (orientation === 0) { // portrait orientation
+      if (orientation === 'portrait-primary') { // portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(3, auto)';
           cards_container.style.gridGap = '1.5vw';
@@ -319,7 +319,7 @@ export class MemoryGame {
           animals.forEach(animal => {animal.style.width = '150px'});
         }
       }
-      if (orientation === 90 || orientation === -90) { // landscape orientation
+      if (orientation === 'landscape-primary') { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
           cards_container.style.gridGap = '1vw';
@@ -353,7 +353,7 @@ export class MemoryGame {
     }
 
     if (array.length > 6 && array.length <= 8) {
-      if (orientation === 0) {// portrait orientation
+      if (orientation === 'portrait-primary') {// portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
           cards_container.style.gridGap = '1.5vw';
@@ -385,7 +385,7 @@ export class MemoryGame {
           animals.forEach(animal => {animal.style.width = '150px'});
         }
       }
-      if (orientation === 90 || orientation === -90) {// landscape orientation
+      if (orientation === 'landscape-primary') {// landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(6, auto)';
           cards_container.style.gridGap = '1.1vw';
@@ -418,7 +418,7 @@ export class MemoryGame {
     }
 
     if (array.length > 8 && array.length <= 15) {
-      if (orientation === 0) { // portrait orientation
+      if (orientation === 'portrait-primary') { // portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(5, auto)';
           cards_container.style.gridGap = '1.5vw';
@@ -450,7 +450,7 @@ export class MemoryGame {
           animals.forEach(animal => {animal.style.width = '150px'});
         }
       }
-      if (orientation === 90 || orientation === -90) { // landscape orientation
+      if (orientation === 'landscape-primary') { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(8, auto)';
           cards_container.style.gridGap = '0.6vw';
