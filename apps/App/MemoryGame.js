@@ -26,6 +26,7 @@ export class MemoryGame {
     if (this.countDown) {
       clearInterval(this.countDown);
     }
+    this.fitPositions(this.images);
     this.time = 0;
     this.flips = 0;
     this.isBusy = true;//ч-л выполняется, играть нельзя
@@ -33,15 +34,12 @@ export class MemoryGame {
     this.matchedCardsArray = [];
     setTimeout(() => {
       this.isBusy = false;//можем начинать играть
-      // this.shuffleCards(this.cardsArray);
+      this.shuffleCards(this.cardsArray);
       this.countDown = this.startCountDown();
     }, 500);
-
-    this.fitPositions(this.images);
     this.controlls.updateMusicButton(globalThis.audioController);
     this.timer.innerText = this.time;
     this.moves.innerText = this.flips;
-
     this.cardsArray.forEach(card => {
       card.addEventListener('click', () => {
         //переворот карты
@@ -163,6 +161,7 @@ export class MemoryGame {
 
   hintCards(cardsArray) {
     this.isBusy = true;
+    this.checkingCard = null;
     cardsArray.forEach(card => {
       card.classList.add('visible');
     });
