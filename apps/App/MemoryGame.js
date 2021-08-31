@@ -198,8 +198,8 @@ export class MemoryGame {
     this.controlls.createHintButton(logic_game_wrapper);
 
     logic_game_wrapper.appendChild( this.createCard(this.images) );
-
     wrapper.appendChild( logic_game_wrapper );
+    this.fitPositions(this.images);
   }
 
   createInfoBlock() {
