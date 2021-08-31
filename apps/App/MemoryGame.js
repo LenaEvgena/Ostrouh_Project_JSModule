@@ -26,7 +26,7 @@ export class MemoryGame {
     if (this.countDown) {
       clearInterval(this.countDown);
     }
-    this.fitPositions(this.images);
+    // this.fitPositions(this.images);
     this.time = 0;
     this.flips = 0;
     this.isBusy = true;//ч-л выполняется, играть нельзя
