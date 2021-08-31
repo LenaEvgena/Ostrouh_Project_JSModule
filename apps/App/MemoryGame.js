@@ -277,11 +277,13 @@ export class MemoryGame {
     // let hw = window.screen.height;
     let ww = window.innerWidth;
     let hw = window.innerHeight;
+    let orientation = window.orientation;
     console.log('ww-', ww, 'hw-', hw);
     console.log((ww / hw));
 
     if (array.length <= 6) {
-      if ((ww / hw) >= 1) { // landscape orientation
+      if (orientation === 90 || orientation === -90) { // landscape orientation
+      // if ((ww / hw) >= 1) { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
           cards_container.style.gridGap = '1.1vw';
@@ -312,7 +314,8 @@ export class MemoryGame {
           animals.forEach(animal => {animal.style.width = '145px'});
         }
       }
-      if ((ww / hw) < 1) { // portrait orientation
+      if (orientation === 0) { // portrait orientation
+      // if ((ww / hw) < 1) { // portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(3, auto)';
           cards_container.style.gridGap = '1.5vw';
