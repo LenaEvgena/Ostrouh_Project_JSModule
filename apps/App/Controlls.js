@@ -14,9 +14,9 @@ export class Controlls {
     back_arrow.src = 'assets/img/other/arrow_back.png'
     back_arrow.className = 'back_arrow';
     back_arrow.addEventListener('click', () => {
+      globalThis.audioController.clickSound();
       back_arrow.style.transform = 'scale(0.9)';
       back_arrow.style.cursor = 'pointer';
-      globalThis.audioController.clickSound();
       this.turnBack(callback);
     });
     parent.appendChild(back_arrow);
@@ -35,16 +35,16 @@ export class Controlls {
     musicButton.className = 'music_button';
 
     musicButton.addEventListener('click', () => {
+      this.updateMusicButton();
       musicButton.classList.toggle('clicked');
       controller.toggleBgMusic();
-      this.updateMusicButton();
     });
     musicButton.addEventListener('touchstart', (EO) => {
       EO = EO || window.event;
       EO.preventDefault();
+      this.updateMusicButton();
       musicButton.classList.toggle('clicked');
       controller.toggleBgMusic();
-      this.updateMusicButton();
     });
     parent.appendChild(musicButton);
   }
@@ -75,14 +75,8 @@ export class Controlls {
   taskIsDone(count) {
     const points = Array.from(document.querySelectorAll('#point'));
     let point = points[count];
-
-    if (count != 0) {
-      point.style.background = 'url(assets/img/icons/redcircle.png)';
-      point.style.backgroundSize = 'cover';
-    } else {
-      point.style.background = 'url(assets/img/icons/redcircle.png)';
-      point.style.backgroundSize = 'cover';
-    }
+    point.style.background = 'url(assets/img/icons/redcircle.png)';
+    point.style.backgroundSize = 'cover';
   }
 
   createScoreButton(parent, callback) {

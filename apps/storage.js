@@ -52,6 +52,7 @@ export function addPlayerData(userID, levelID, _time, _flips) {
   let _score;
   let time = _time;
   let level = levelID.split('_')[2];
+  let praiseWord = '';
 
   switch (level) {
     case 'easy':
@@ -74,7 +75,7 @@ export function addPlayerData(userID, levelID, _time, _flips) {
 
     case 'hard':
       if (time <= 70) _score = 30;
-      if (time > 70 && time <= 80) _score = 20;
+      if (time > 70 && time <= 80) _score = 15;
       if (time > 80) _score = 5;
       userHash.hard.score += _score;
       userHash.hard.time += _time;
@@ -85,6 +86,11 @@ export function addPlayerData(userID, levelID, _time, _flips) {
   userHash.totalTime += _time;
   userHash.totalFlips += _flips;
 
+  if (_score === 5) praiseWord = 'good!!!';
+  if (_score === 15) praiseWord = 'excellent!!!';
+  if (_score === 30) praiseWord = 'awesome!!!';
+
+  document.querySelector('.overlay_text').textContent = `${praiseWord}`;
   document.querySelector('.score_message').textContent = `+${_score}`;
   return gameStorage.addValue(userID, userHash);
 }

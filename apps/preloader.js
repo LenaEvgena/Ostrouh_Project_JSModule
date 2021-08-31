@@ -1,38 +1,37 @@
 'use strict';
 globalThis.PreloadedImagesH = {}; // ключ - имя предзагруженного изображения
 
-export function LoadPageData(file, numOfFiles) {//загружаем данные для работы
+export function LoadPageData(file) {//загружаем данные для работы
 
   let pageIsLoaded = false; //загрузились ли все данные
   let filesLoaded = 0; // кол-во загруж. файлов
+  let filesToLoad = null; // количество нужных файлов
   let progress = 0;
 
-  showPreloader(numOfFiles);
+  showPreloader();
 
-    $.ajax(`${file}`,
-      {
-        type: 'GET',
-        dataType: 'json',
-        cache: false,
-        success: Success,
-        error: ErrorHandler,
-      }
-    );
+  $.ajax(`${file}`,
+    {
+      type: 'GET',
+      dataType: 'json',
+      cache: false,
+      success: Success,
+      error: ErrorHandler,
+    }
+  );
 
   function Success(data) {
-    console.log('Данные загруженны через AJAX!');
-    let percent = 100 / numOfFiles;
-    data.forEach( item => {
+    // console.log('Данные загруженны через AJAX!', data);
+    filesToLoad = data.length;
+    let percent = 100 / filesToLoad;
+    data.forEach(item => {
       preloadImage(item);
       progress += percent;
       // console.log(progress);
       document.getElementById('load_perc').innerText =`${Math.round(progress)}%`;
       filesLoaded++;
     })
-    // console.log(filesLoaded);
-    // console.log(globalThis.PreloadedImagesH);
-
-    showPreloader(numOfFiles);
+    showPreloader();
   }
 
   function ErrorHandler(jqXHR, StatusStr, ErrorStr) {
@@ -43,15 +42,15 @@ export function LoadPageData(file, numOfFiles) {//загружаем данны�
     if (FN in globalThis.PreloadedImagesH) return;// если такое изображение уже предзагружалось - ничего не делаем
     let image = new Image();// предзагружаем - создаём невидимое изображение
     image.src = FN;
-    globalThis.PreloadedImagesH[FN]=true; // запоминаем, что изображение уже предзагружалось
+    globalThis.PreloadedImagesH[FN] = true; // запоминаем, что изображение уже предзагружалось
   }
 
-  function showPreloader(numOfFiles) {
+  function showPreloader() {
     if (!pageIsLoaded) {
       document.body.appendChild( createPreloader() );
       pageIsLoaded = true;
     }
-    if (numOfFiles === filesLoaded) {
+    if (filesToLoad === filesLoaded) {
       hidePreloader();
     }
   }
@@ -59,12 +58,12 @@ export function LoadPageData(file, numOfFiles) {//загружаем данны�
   function hidePreloader() {
     let preloader = document.getElementById('preloader');
     setTimeout(() => {
-        if (!preloader.classList.contains('hide')) {
-          preloader.classList.add('hide');
-          setTimeout(() => {
-            document.body.removeChild(preloader);
-          }, 400);
-        }
+      if (!preloader.classList.contains('hide')) {
+        preloader.classList.add('hide');
+        setTimeout(() => {
+          document.body.removeChild(preloader);
+        }, 400);
+      }
     }, 600);
   }
 

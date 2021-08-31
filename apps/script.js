@@ -8,28 +8,26 @@ globalThis.audioController = new AudioController();
 globalThis.isPaused = false;
 
 export function initStartPage() {
-  LoadPageData('json/start.json', 3);
-
+  LoadPageData('json/start.json');
   const wrapper = document.querySelector('.wrapper');
   wrapper.appendChild( createMainPage() );
-
   const playButton = document.querySelector('.btn_img');
 
   playButton.addEventListener('mousedown', () => playButton.style.transform = 'scale(0.9)');
   playButton.addEventListener('mouseup', () => playButton.style.transform = 'scale(1.0)');
   playButton.addEventListener('click', () => {
+    globalThis.audioController.clickSound();
     storage.setUser(SPA.switchToMenu);
   });
-
   playButton.addEventListener('touchstart', (EO) => {
     EO = EO || window.event;
     EO.preventDefault();
+    globalThis.audioController.clickSound();
     playButton.style.transform = 'scale(0.9)';
     playButton.style.transition = '0.3s';
     storage.setUser(SPA.switchToMenu);
   });
   playButton.addEventListener('touchend', () => playButton.style.transform = 'scale(1.0)');
-
 }
 
 function createMainPage() {
@@ -45,9 +43,6 @@ function createMainPage() {
   img.src = './assets/img/main/play_btn400.png';
   img.className = 'btn_img';
   img.alt = 'play_icon';
-  img.onclick = () => {
-    globalThis.audioController.clickSound();
-  };
   main_button.appendChild(img);
   main_wrapper.appendChild( createInput() );
 

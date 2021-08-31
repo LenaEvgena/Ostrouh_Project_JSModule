@@ -22,24 +22,21 @@ export function openNewGame(id) {
 const images = ['cat', 'cow', 'croco', 'dog', 'elef', 'girrafe', 'horse', 'lamb', 'lion', 'monkey', 'panda', 'pig', 'squirrel', 'turkey', 'zebra'];
 
 function logicEasyGame(id) {
-  LoadPageData('json/bubble.json', 17);
-
+  LoadPageData('json/bubble.json');
   const cards = images.sort(() => Math.random() - 0.5).slice(0, 6);
   const easyGame = new MemoryGame(cards, id, SPA.switchToMenuEasy);
   easyGame.startGame();
 }
 
 function logicMediumGame(id) {
-  LoadPageData('json/bubble.json', 17);
-
+  LoadPageData('json/bubble.json');
   const cards = images.sort(() => Math.random() - 0.5).slice(0, 8);
   const mediumGame = new MemoryGame(cards, id, SPA.switchToMenuMedium);
   mediumGame.startGame();
 }
 
 function logicHardGame(id) {
-  LoadPageData('json/bubble.json', 17);
-
+  LoadPageData('json/bubble.json');
   const hardGame = new MemoryGame(images, id, SPA.switchToMenuHard);
   hardGame.startGame();
 }

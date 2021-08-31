@@ -10,7 +10,6 @@ export class Overlay {
     overlay.className = 'overlay';
     let span = document.createElement('span');
     span.className = 'overlay_text';
-    span.textContent = 'excellent!!!';
 
     let score_message = document.createElement('span');
     score_message.className = 'score_message';

@@ -5,22 +5,19 @@ import { LogicMenu } from './App/LogicMenu.js';
 import * as SPA from './SPA.js';
 
 export function logicMenuEasy() {
-  LoadPageData('json/menu.json', 6);
-
+  LoadPageData('json/menu.json');
   const easyMenu = new LogicMenu('easy', SPA.switchToMenu);
   addListeners();
 }
 
 export function logicMenuMedium() {
-  LoadPageData('json/menu.json', 6);
-
+  LoadPageData('json/menu.json');
   const mediumMenu = new LogicMenu('medium', SPA.switchToMenu);
   addListeners();
 }
 
 export function logicMenuHard() {
-  LoadPageData('json/menu.json', 6);
-
+  LoadPageData('json/menu.json');
   const hardMenu = new LogicMenu('hard', SPA.switchToMenu);
   addListeners();
 }

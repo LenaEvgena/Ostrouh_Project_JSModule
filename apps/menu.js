@@ -12,9 +12,8 @@ export function initMenuPage() {
     globalThis.audioController.startMusic();
   }
   const controlls = new Controlls();
-
   const wrapper = document.querySelector('.wrapper');
-  wrapper.appendChild( createMenuPage(controlls, globalThis.audioController) );
+  wrapper.appendChild(createMenuPage(controlls, globalThis.audioController));
 
   const buttons = Array.from(document.querySelectorAll('.menu_element'));
   const easyGame = document.getElementById('easy');
@@ -23,49 +22,48 @@ export function initMenuPage() {
   const greeting = document.querySelector('.greeting');
   greeting.textContent = `Hello, ${localStorage.getItem('userName')}! :)`;
 
+  controlls.updateMusicButton(globalThis.audioController);
+
   buttons.forEach(button => {
     button.addEventListener('mouseover', () => {
       globalThis.audioController.slideSound();
     })
   });
 
-  easyGame.addEventListener('click', (EO) => {
-    addHandler(SPA.switchToMenuEasy, EO);
-  });
-  mediumGame.addEventListener('click', (EO) => {
-    addHandler(SPA.switchToMenuMedium, EO);
-  });
-  hardGame.addEventListener('click', (EO) => {
-    addHandler(SPA.switchToMenuHard, EO);
-  });
-
   easyGame.addEventListener('touchstart', (EO) => {
     easyGame.style.transform = 'scale(0.8)';
-    setTimeout(() => {
-      addHandler(SPA.switchToMenuEasy, EO);
-    }, 300);
+    addHandler(SPA.switchToMenuEasy, EO);
   });
   mediumGame.addEventListener('touchstart', (EO) => {
     mediumGame.style.transform = 'scale(0.8)';
-    setTimeout(() => {
-      addHandler(SPA.switchToMenuMedium, EO);
-    }, 300);
+    addHandler(SPA.switchToMenuMedium, EO);
   });
   hardGame.addEventListener('touchstart', (EO) => {
-    easyGame.style.transform = 'scale(0.8)';
-    setTimeout(() => {
-      addHandler(SPA.switchToMenuHard, EO);
-    }, 300);
+    hardGame.style.transform = 'scale(0.8)';
+    addHandler(SPA.switchToMenuHard, EO);
   });
 
-  controlls.updateMusicButton(globalThis.audioController);
+  easyGame.addEventListener('click', (EO) => {
+    easyGame.style.transform = 'scale(0.8)';
+    addHandler(SPA.switchToMenuEasy, EO);
+  });
+  mediumGame.addEventListener('click', (EO) => {
+    mediumGame.style.transform = 'scale(0.8)';
+    addHandler(SPA.switchToMenuMedium, EO);
+  });
+  hardGame.addEventListener('click', (EO) => {
+    hardGame.style.transform = 'scale(0.8)';
+    addHandler(SPA.switchToMenuHard, EO);
+  });
 }
 
 function addHandler(switchCallback, EO) {
   EO = EO || window.event;
   EO.preventDefault();
   globalThis.audioController.clickSound();
-  switchCallback();
+  setTimeout(() => {
+    switchCallback();
+  }, 200);
 }
 
 function createMenuPage(controlls, audio) {
@@ -79,9 +77,9 @@ function createMenuPage(controlls, audio) {
 
   menu_wrapper.appendChild(greeting);
   menu_wrapper.appendChild(menu_elements);
-  menu_elements.appendChild( createMenuElement('greenbutton', 'easy') );
-  menu_elements.appendChild( createMenuElement('orangebutton', 'medium') );
-  menu_elements.appendChild( createMenuElement('redbutton', 'hard') );
+  menu_elements.appendChild(createMenuElement('greenbutton', 'easy'));
+  menu_elements.appendChild(createMenuElement('orangebutton', 'medium'));
+  menu_elements.appendChild(createMenuElement('redbutton', 'hard'));
 
   controlls.createMusicButton(menu_wrapper, audio);
   controlls.createScoreButton(menu_wrapper, storage.showPlayersList);
