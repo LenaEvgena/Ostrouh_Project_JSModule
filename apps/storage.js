@@ -169,7 +169,7 @@ function rangePlayers(data) {
     return x > y ? -1 : x < y ? 1 : 0;
   });
   return byScore;
-};
+}
 
 function showScoreTable(result) {
   const list = document.querySelector('.list');

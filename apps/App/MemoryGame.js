@@ -277,9 +277,11 @@ export class MemoryGame {
     // let hw = window.screen.height;
     let ww = window.innerWidth;
     let hw = window.innerHeight;
+    console.log('ww-', ww, 'hw-', hw);
+    console.log((ww / hw));
 
     if (array.length <= 6) {
-      if ((ww / hw) > 1) { // landscape orientation
+      if ((ww / hw) >= 1) { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
           cards_container.style.gridGap = '1.1vw';
@@ -310,7 +312,7 @@ export class MemoryGame {
           animals.forEach(animal => {animal.style.width = '145px'});
         }
       }
-      if ((hw / ww) > 1) { // portrait orientation
+      if ((ww / hw) < 1) { // portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(3, auto)';
           cards_container.style.gridGap = '1.5vw';
@@ -345,7 +347,7 @@ export class MemoryGame {
     }
 
     if (array.length > 6 && array.length <= 8) {
-      if ((ww / hw) > 1) { // landscape orientation
+      if ((ww / hw) >= 1) { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(6, auto)';
           cards_container.style.gridGap = '1.1vw';
@@ -375,7 +377,7 @@ export class MemoryGame {
           animals.forEach(animal => {animal.style.width = '135px'});
         }
       }
-      if ((hw / ww) > 1) { // portrait orientation
+      if ((ww / hw) < 1) { // portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
           cards_container.style.gridGap = '1.5vw';
@@ -410,7 +412,7 @@ export class MemoryGame {
     }
 
     if (array.length > 8 && array.length <= 15) {
-      if ((ww / hw) > 1) { // landscape orientation
+      if ((ww / hw) >= 1) { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(8, auto)';
           cards_container.style.gridGap = '0.6vw';
@@ -442,7 +444,7 @@ export class MemoryGame {
         }
       }
 
-      if ((hw / ww) > 1) { // portrait orientation
+      if ((ww / hw) < 1) { // portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(5, auto)';
           cards_container.style.gridGap = '1.5vw';
