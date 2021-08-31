@@ -314,7 +314,7 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '180px'});
           animals.forEach(animal => {animal.style.width = '150px'});
         }
-      } else if (orientation === 90) { // landscape orientation
+      } else { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
           cards_container.style.gridGap = '1vw';
@@ -379,7 +379,7 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '180px'});
           animals.forEach(animal => {animal.style.width = '150px'});
         }
-      } else if (orientation === 90) {// landscape orientation
+      } else {// landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(6, auto)';
           cards_container.style.gridGap = '1.1vw';
@@ -443,7 +443,7 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '180px'});
           animals.forEach(animal => {animal.style.width = '150px'});
         }
-      } else if (orientation === 90) { // landscape orientation
+      } else { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(8, auto)';
           cards_container.style.gridGap = '0.6vw';
