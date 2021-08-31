@@ -27,7 +27,10 @@ export class MemoryGame {
     if (this.countDown) {
       clearInterval(this.countDown);
     }
-    window.addEventListener('onresize', () => {this.fitPositions(this.images)});
+    window.addEventListener('orientationchange', () => {
+      this.fitPositions(this.images);
+      console.log(screen.orientation);
+    });
     // this.fitPositions(this.images);
     this.time = 0;
     this.flips = 0;
@@ -83,7 +86,7 @@ export class MemoryGame {
     globalThis.audioController.hooraySound();
     this.overlay.endGame();
     globalThis.audioController.vibro(true);
-    window.removeEventListener('onresize', () => {this.fitPositions(this.images)});
+    // window.removeEventListener('orientationchange', () => {this.fitPositions(this.images)});
 
     setTimeout(() => {
       this.controlls.turnBack(this.callback);
