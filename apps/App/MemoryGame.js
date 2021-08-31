@@ -15,6 +15,7 @@ export class MemoryGame {
     this.overlay = new Overlay();
     this.controlls = new Controlls(this.tasksCount);
     this.renderLogicPage(this.callback, this.images);
+    this.fitPositions(this.images);
     this.cardsArray = Array.from(document.querySelectorAll('.card'));
     this.timer = document.querySelector('#timer');
     this.moves = document.querySelector('#flips');
@@ -26,7 +27,7 @@ export class MemoryGame {
     if (this.countDown) {
       clearInterval(this.countDown);
     }
-    window.addEventListener('orientationchange', () => {this.fitPositions(this.images)});
+    // window.addEventListener('orientationchange', () => {this.fitPositions(this.images)});
     // this.fitPositions(this.images);
     this.time = 0;
     this.flips = 0;
@@ -200,7 +201,8 @@ export class MemoryGame {
 
     logic_game_wrapper.appendChild( this.createCard(this.images) );
     wrapper.appendChild( logic_game_wrapper );
-    this.fitPositions(this.images);
+    // this.fitPositions(this.images);
+    window.addEventListener('orientationchange', () => {this.fitPositions(this.images)});
   }
 
   createInfoBlock() {
@@ -280,7 +282,7 @@ export class MemoryGame {
     let orientation = window.orientation;
     // console.log('ww-', ww, 'hw-', hw);
     // console.log((ww / hw));
-    console.log((orientation));
+    console.log(orientation);
 
     if (array.length <= 6) {
       if (orientation === 0) { // portrait orientation
@@ -314,7 +316,8 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '180px'});
           animals.forEach(animal => {animal.style.width = '150px'});
         }
-      } else { // landscape orientation
+      }
+      if (orientation === 90) { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
           cards_container.style.gridGap = '1vw';
@@ -379,7 +382,8 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '180px'});
           animals.forEach(animal => {animal.style.width = '150px'});
         }
-      } else {// landscape orientation
+      }
+      if (orientation === 90) {// landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(6, auto)';
           cards_container.style.gridGap = '1.1vw';
@@ -443,7 +447,8 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '180px'});
           animals.forEach(animal => {animal.style.width = '150px'});
         }
-      } else { // landscape orientation
+      }
+      if (orientation === 90) { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(8, auto)';
           cards_container.style.gridGap = '0.6vw';
