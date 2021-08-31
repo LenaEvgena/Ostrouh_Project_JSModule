@@ -27,8 +27,8 @@ export class MemoryGame {
     if (this.countDown) {
       clearInterval(this.countDown);
     }
-    window.addEventListener('orientationchange', () => {this.fitPositions(this.images)});
-    // this.fitPositions(this.images);
+    // window.addEventListener('orientationchange', () => {this.fitPositions(this.images)});
+    this.fitPositions(this.images);
     this.time = 0;
     this.flips = 0;
     this.isBusy = true;//ч-л выполняется, играть нельзя
@@ -203,8 +203,8 @@ export class MemoryGame {
 
     logic_game_wrapper.appendChild( this.createCard(this.images) );
     wrapper.appendChild( logic_game_wrapper );
-    this.fitPositions(this.images);
-    // window.addEventListener('orientationchange', () => {this.fitPositions(this.images)});
+    // this.fitPositions(this.images);
+    window.addEventListener('orientationchange', () => {this.fitPositions(this.images)});
   }
 
   createInfoBlock() {
@@ -287,7 +287,7 @@ export class MemoryGame {
     console.log(orientation);
 
     if (array.length <= 6) {
-      if (orientation === 0 || orientation === 180 || orientation === -180) { // portrait orientation
+      if (orientation === 0) { // portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(3, auto)';
           cards_container.style.gridGap = '1.5vw';
@@ -353,7 +353,7 @@ export class MemoryGame {
     }
 
     if (array.length > 6 && array.length <= 8) {
-      if (orientation === 0 || orientation === 180 || orientation === -180) {// portrait orientation
+      if (orientation === 0) {// portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
           cards_container.style.gridGap = '1.5vw';
@@ -418,7 +418,7 @@ export class MemoryGame {
     }
 
     if (array.length > 8 && array.length <= 15) {
-      if (orientation === 0 || orientation === 180 || orientation === -180) { // portrait orientation
+      if (orientation === 0) { // portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(5, auto)';
           cards_container.style.gridGap = '1.5vw';
