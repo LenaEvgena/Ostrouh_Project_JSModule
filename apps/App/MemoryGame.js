@@ -87,7 +87,7 @@ export class MemoryGame {
   }
 
   openCard(card) {
-    if(card !== this.checkingCard && !this.isBusy && !this.matchedCardsArray.includes(card)) {//можем ли мы открыть карту, послюусловие - т.к. неверно работает при нажатии на уже скрытую карту
+    if(card !== this.checkingCard && !this.isBusy && !this.matchedCardsArray.includes(card)) {//можем ли мы открыть карту, посл.условие - т.к. неверно работает при нажатии на уже скрытую карту
       card.classList.add('visible');
       //sound
       globalThis.audioController.clickSound();

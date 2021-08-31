@@ -49,42 +49,43 @@ export function addPlayerData(userID, levelID, _time, _flips) {
   userID = localStorage.userID;
   userHash = gameStorage.getValue(userID) || {};
 
-  let _score;
+  let _score = 0;
   let time = _time;
+  let flips = _flips;
   let level = levelID.split('_')[2];
   let praiseWord = '';
 
   switch (level) {
     case 'easy':
       if (time <= 20) _score = 30;
-      if (time > 20 && time <= 30) _score = 15;
+      if (time > 20 && time <= 35) _score = 15;
       if (time > 35) _score = 5;
       userHash.easy.score += _score;
-      userHash.easy.time += _time;
-      userHash.easy.flips += _flips;
+      userHash.easy.time += time;
+      userHash.easy.flips += flips;
       break;
 
     case 'medium':
       if (time <= 50) _score = 30;
-      if (time > 50 && time <= 60) _score = 15;
-      if (time > 60) _score = 5;
+      if (time > 50 && time <= 65) _score = 15;
+      if (time > 65) _score = 5;
       userHash.medium.score += _score;
-      userHash.medium.time += _time;
-      userHash.medium.flips += _flips;
+      userHash.medium.time += time;
+      userHash.medium.flips += flips;
       break;
 
     case 'hard':
       if (time <= 70) _score = 30;
-      if (time > 70 && time <= 80) _score = 15;
-      if (time > 80) _score = 5;
+      if (time > 70 && time <= 85) _score = 15;
+      if (time > 85) _score = 5;
       userHash.hard.score += _score;
-      userHash.hard.time += _time;
-      userHash.hard.flips += _flips;
+      userHash.hard.time += time;
+      userHash.hard.flips += flips;
       break;
   }
   userHash.totalScore += _score;
-  userHash.totalTime += _time;
-  userHash.totalFlips += _flips;
+  userHash.totalTime += time;
+  userHash.totalFlips += flips;
 
   if (_score === 5) praiseWord = 'good!!!';
   if (_score === 15) praiseWord = 'excellent!!!';
