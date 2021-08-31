@@ -63,3 +63,11 @@
   }
 }
 
+@media screen and (orientation: landscape) {
+  #tasksPoints span {
+    margin: 4px;
+    width: 10px;
+    height: 10px;
+  }
+
+}
