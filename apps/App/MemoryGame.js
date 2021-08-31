@@ -273,17 +273,16 @@ export class MemoryGame {
     const back_images = document.querySelectorAll('.back_image');
     const bubbles = document.querySelectorAll('.bubble');
     const animals = document.querySelectorAll('.animal');
-    // let ww = window.screen.width;
-    // let hw = window.screen.height;
+
     let ww = window.innerWidth;
     let hw = window.innerHeight;
-    let orientation = window.orientation;
+    let orientation = screen.orientation.type;
     console.log('ww-', ww, 'hw-', hw);
     console.log((ww / hw));
     console.log((orientation));
 
     if (array.length <= 6) {
-      if (orientation === 0) { // portrait orientation
+      if (orientation === 'portrait-primary') { // portrait orientation
       // if ((ww / hw) < 1) { // portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(3, auto)';
@@ -315,7 +314,7 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '180px'});
           animals.forEach(animal => {animal.style.width = '150px'});
         }
-      } else { // landscape orientation
+      } else if (orientation === 'landscape-primary') { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
           cards_container.style.gridGap = '1.1vw';
@@ -349,7 +348,7 @@ export class MemoryGame {
     }
 
     if (array.length > 6 && array.length <= 8) {
-      if (orientation === 0) {// portrait orientation
+      if (orientation === 'portrait-primary') {// portrait orientation
         // if ((ww / hw) < 1) { // portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
@@ -381,7 +380,7 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '180px'});
           animals.forEach(animal => {animal.style.width = '150px'});
         }
-      } else {// landscape orientation
+      } else if (orientation === 'landscape-primary') {// landscape orientation
         // if ((ww / hw) >= 1) { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(6, auto)';
@@ -415,7 +414,7 @@ export class MemoryGame {
     }
 
     if (array.length > 8 && array.length <= 15) {
-      if (orientation === 0) { // portrait orientation
+      if (orientation === 'portrait-primary') { // portrait orientation
       // if ((ww / hw) < 1) { // portrait orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(5, auto)';
@@ -447,7 +446,7 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '180px'});
           animals.forEach(animal => {animal.style.width = '150px'});
         }
-      } else { // landscape orientation
+      } else if (orientation === 'landscape-primary') { // landscape orientation
       // if ((ww / hw) >= 1) { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(8, auto)';
