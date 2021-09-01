@@ -27,9 +27,9 @@ export class MemoryGame {
     if (this.countDown) {
       clearInterval(this.countDown);
     };
-    window.addEventListener('orientationchange', () => {
-      this.fitPositions(this.images);
-    });
+    // window.addEventListener('orientationchange', () => {
+    //   this.fitPositions(this.images);
+    // });
     this.time = 0;
     this.flips = 0;
     this.isBusy = true;//ч-л выполняется, играть нельзя
@@ -205,9 +205,9 @@ export class MemoryGame {
 
     logic_game_wrapper.appendChild( this.createCard(this.images) );
     wrapper.appendChild( logic_game_wrapper );
-    // window.addEventListener('orientationchange', () => {
-    //   this.fitPositions(this.images);
-    // });
+    window.addEventListener('orientationchange', () => {
+      this.fitPositions(this.images);
+    });
   }
 
   createInfoBlock() {
@@ -292,7 +292,7 @@ export class MemoryGame {
 
     if (array.length <= 6) {
       if (orientation === 'portrait-primary') { // portrait orientation
-        if (ww <= 380) {
+        if (ww <= 400) {
           cards_container.style.gridTemplateColumns = 'repeat(3, auto)';
           cards_container.style.gridGap = '1.5vw';
           info_container.style.marginBottom = '13px';
@@ -302,7 +302,7 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '100px'});
           animals.forEach(animal => {animal.style.width = '80px'});
         }
-        if (ww > 380 && ww <= 768) {
+        if (ww > 400 && ww <= 768) {
           cards_container.style.gridTemplateColumns = 'repeat(3, auto)';
           cards_container.style.gridGap = '1.2vw';
           info_container.style.marginBottom = '15px';
@@ -312,16 +312,6 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '170px'});
           animals.forEach(animal => {animal.style.width = '140px'})
         }
-        // if (ww > 1279) {
-        //   cards_container.style.gridTemplateColumns = 'repeat(3, auto)';
-        //   cards_container.style.gridGap = '1vw';
-        //   info_container.style.marginBottom = '25px';
-        //   infoblock.forEach(info => {info.style.fontSize = '50px'});
-        //   cards.forEach(card => {card.style.width = card.style.height = '180px'});
-        //   back_images.forEach(back_image => {back_image.style.width = '180px'});
-        //   bubbles.forEach(bubble => {bubble.style.width = '180px'});
-        //   animals.forEach(animal => {animal.style.width = '150px'});
-        // }
       } else { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
@@ -357,7 +347,7 @@ export class MemoryGame {
 
     if (array.length > 6 && array.length <= 8) {
       if (orientation === 'portrait-primary') {// portrait orientation
-        if (ww <= 767) {
+        if (ww <= 400) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
           cards_container.style.gridGap = '1.5vw';
           info_container.style.marginBottom = '15px';
@@ -367,7 +357,7 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '85px'});
           animals.forEach(animal => {animal.style.width = '65px'});
         }
-        if (ww > 380 && ww <= 768) {
+        if (ww > 400 && ww <= 768) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
           cards_container.style.gridGap = '1.2vw';
           info_container.style.marginBottom = '15px';
@@ -377,16 +367,7 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '150px'});
           animals.forEach(animal => {animal.style.width = '125px'});
         }
-        // if (ww > 1279) {
-        //   cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
-        //   cards_container.style.gridGap = '1vw';
-        //   info_container.style.marginBottom = '15px';
-        //   infoblock.forEach(info => {info.style.fontSize = '6vw'});
-        //   cards.forEach(card => {card.style.width = card.style.height = '180px'});
-        //   back_images.forEach(back_image => {back_image.style.width = '180px'});
-        //   bubbles.forEach(bubble => {bubble.style.width = '180px'});
-        //   animals.forEach(animal => {animal.style.width = '150px'});
-        // }
+
       } else {// landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(6, auto)';
@@ -421,7 +402,7 @@ export class MemoryGame {
 
     if (array.length > 8 && array.length <= 15) {
       if (orientation === 'portrait-primary') { // portrait orientation
-        if (ww <= 767) {
+        if (ww <= 400) {
           cards_container.style.gridTemplateColumns = 'repeat(5, auto)';
           cards_container.style.gridGap = '1.5vw';
           info_container.style.marginBottom = '15px';
@@ -431,7 +412,7 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '65px'});
           animals.forEach(animal => {animal.style.width = '50px'});
         }
-        if (ww > 380 && ww <= 768) {
+        if (ww > 400 && ww <= 768) {
           cards_container.style.gridTemplateColumns = 'repeat(5, auto)';
           cards_container.style.gridGap = '1vw';
           info_container.style.marginBottom = '10px';
@@ -441,16 +422,6 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '125px'});
           animals.forEach(animal => {animal.style.width = '100px'});
         }
-        // if (ww > 1279) {
-        //   cards_container.style.gridTemplateColumns = 'repeat(6, auto)';
-        //   cards_container.style.gridGap = '1vw';
-        //   info_container.style.marginBottom = '20px';
-        //   infoblock.forEach(info => {info.style.fontSize = '6vw'});
-        //   cards.forEach(card => {card.style.width = card.style.height = '180px'});
-        //   back_images.forEach(back_image => {back_image.style.width = '180px'});
-        //   bubbles.forEach(bubble => {bubble.style.width = '180px'});
-        //   animals.forEach(animal => {animal.style.width = '150px'});
-        // }
       } else { // landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(8, auto)';
