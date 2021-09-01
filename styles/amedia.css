@@ -69,5 +69,13 @@
     width: 10px;
     height: 10px;
   }
-
+  .card {
+    height: 85px;
+  }
+  .card, .bubble, .back_image {
+    width: 85px;
+  }
+  .animal {
+    width: 65px;
+  }
 }

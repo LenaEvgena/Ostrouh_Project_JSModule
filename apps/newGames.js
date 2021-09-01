@@ -26,9 +26,6 @@ function logicEasyGame(id) {
   const cards = images.sort(() => Math.random() - 0.5).slice(0, 6);
   const easyGame = new MemoryGame(cards, id, SPA.switchToMenuEasy);
   easyGame.startGame();
-  window.addEventListener('orientationchange', () => {
-    easyGame.fitPositions(cards);
-  });
 }
 
 function logicMediumGame(id) {
@@ -36,16 +33,10 @@ function logicMediumGame(id) {
   const cards = images.sort(() => Math.random() - 0.5).slice(0, 8);
   const mediumGame = new MemoryGame(cards, id, SPA.switchToMenuMedium);
   mediumGame.startGame();
-  window.addEventListener('orientationchange', () => {
-    mediumGame.fitPositions(cards);
-  });
 }
 
 function logicHardGame(id) {
   LoadPageData('json/bubble.json');
   const hardGame = new MemoryGame(images, id, SPA.switchToMenuHard);
   hardGame.startGame();
-  window.addEventListener('orientationchange', () => {
-    hardGame.fitPositions(images);
-  });
 }
