@@ -715,12 +715,12 @@ td {
 }
 
 .card, .bubble, .back_image {
-  width: 120px;
+  /* width: 120px; */
 }
 
 .card {
   position: relative;
-  height: 120px;
+  /* height: 120px; */
   cursor: pointer;
 }
 
@@ -741,7 +741,7 @@ td {
 
 .animal {
   position: absolute;
-  width: 95px;
+  /* width: 95px; */
 }
 
 .back_image {

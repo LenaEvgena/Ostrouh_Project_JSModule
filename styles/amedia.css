@@ -63,13 +63,14 @@
   }
 }
 
-@media screen and (orientation: landscape) {
+@media screen and (max-width:1280px) and (orientation: landscape) {
   #tasksPoints span {
     margin: 4px;
     width: 10px;
     height: 10px;
   }
-  /* .card {
+}
+/* .card {
     height: 85px;
   }
   .card, .bubble, .back_image {
@@ -78,4 +79,3 @@
   .animal {
     width: 65px;
   } */
-}
