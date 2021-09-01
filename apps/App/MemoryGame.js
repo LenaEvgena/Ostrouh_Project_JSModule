@@ -26,9 +26,6 @@ export class MemoryGame {
     if (this.countDown) {
       clearInterval(this.countDown);
     };
-    window.addEventListener('orientationchange', () => {
-      this.fitPositions(this.images);
-    });
     this.time = 0;
     this.flips = 0;
     this.isBusy = true;//ч-л выполняется, играть нельзя
@@ -65,6 +62,9 @@ export class MemoryGame {
       setTimeout(() => {
         document.querySelector('.hint_button').style.transform = 'scale(1)';
       }, 300);
+    });
+    window.addEventListener('orientationchange', () => {
+      this.fitPositions(this.images);
     });
   }
 
@@ -281,8 +281,6 @@ export class MemoryGame {
 
     let ww = screen.width;
     let hw = screen.height;
-    // let ww = window.innerWidth;
-    // let hw = window.innerHeight;
     let orientation = screen.orientation.type;
     console.log('ww-', ww, 'hw-', hw);
     console.log(orientation);
@@ -308,6 +306,16 @@ export class MemoryGame {
           back_images.forEach(back_image => {back_image.style.width = '170px'});
           bubbles.forEach(bubble => {bubble.style.width = '170px'});
           animals.forEach(animal => {animal.style.width = '140px'})
+        }
+        if (ww > 1279) {
+          cards_container.style.gridTemplateColumns = 'repeat(3, auto)';
+          cards_container.style.gridGap = '1vw';
+          info_container.style.marginBottom = '25px';
+          infoblock.forEach(info => {info.style.fontSize = '50px'});
+          cards.forEach(card => {card.style.width = card.style.height = '180px'});
+          back_images.forEach(back_image => {back_image.style.width = '180px'});
+          bubbles.forEach(bubble => {bubble.style.width = '180px'});
+          animals.forEach(animal => {animal.style.width = '150px'});
         }
       } else { // landscape orientation
         if (ww <= 767) {
@@ -364,7 +372,16 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '150px'});
           animals.forEach(animal => {animal.style.width = '125px'});
         }
-
+        if (ww > 1279) {
+          cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
+          cards_container.style.gridGap = '1vw';
+          info_container.style.marginBottom = '15px';
+          infoblock.forEach(info => {info.style.fontSize = '6vw'});
+          cards.forEach(card => {card.style.width = card.style.height = '180px'});
+          back_images.forEach(back_image => {back_image.style.width = '180px'});
+          bubbles.forEach(bubble => {bubble.style.width = '180px'});
+          animals.forEach(animal => {animal.style.width = '150px'});
+        }
       } else {// landscape orientation
         if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(6, auto)';
@@ -418,6 +435,16 @@ export class MemoryGame {
           back_images.forEach(back_image => {back_image.style.width = '125px'});
           bubbles.forEach(bubble => {bubble.style.width = '125px'});
           animals.forEach(animal => {animal.style.width = '100px'});
+        }
+        if (ww > 1279) {
+          cards_container.style.gridTemplateColumns = 'repeat(6, auto)';
+          cards_container.style.gridGap = '1vw';
+          info_container.style.marginBottom = '20px';
+          infoblock.forEach(info => {info.style.fontSize = '6vw'});
+          cards.forEach(card => {card.style.width = card.style.height = '180px'});
+          back_images.forEach(back_image => {back_image.style.width = '180px'});
+          bubbles.forEach(bubble => {bubble.style.width = '180px'});
+          animals.forEach(animal => {animal.style.width = '150px'});
         }
       } else { // landscape orientation
         if (ww <= 767) {
