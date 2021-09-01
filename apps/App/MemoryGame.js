@@ -15,7 +15,6 @@ export class MemoryGame {
     this.overlay = new Overlay();
     this.controlls = new Controlls(this.tasksCount);
     this.renderLogicPage(this.callback, this.images);
-    this.fitPositions(this.images);
     this.cardsArray = Array.from(document.querySelectorAll('.card'));
     this.timer = document.querySelector('#timer');
     this.moves = document.querySelector('#flips');
@@ -27,9 +26,9 @@ export class MemoryGame {
     if (this.countDown) {
       clearInterval(this.countDown);
     };
-    // window.addEventListener('orientationchange', () => {
-    //   this.fitPositions(this.images);
-    // });
+    window.addEventListener('orientationchange', () => {
+      this.fitPositions(this.images);
+    });
     this.time = 0;
     this.flips = 0;
     this.isBusy = true;//ч-л выполняется, играть нельзя
@@ -205,9 +204,7 @@ export class MemoryGame {
 
     logic_game_wrapper.appendChild( this.createCard(this.images) );
     wrapper.appendChild( logic_game_wrapper );
-    window.addEventListener('orientationchange', () => {
-      this.fitPositions(this.images);
-    });
+    this.fitPositions(this.images);
   }
 
   createInfoBlock() {
