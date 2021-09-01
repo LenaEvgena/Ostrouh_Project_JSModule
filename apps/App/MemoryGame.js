@@ -273,10 +273,12 @@ export class MemoryGame {
     const bubbles = document.querySelectorAll('.bubble');
     const animals = document.querySelectorAll('.animal');
 
-    let ww = window.innerWidth;
+    let ww = screen.width;
+    let hw = screen.height;
+    // let ww = window.innerWidth;
     // let hw = window.innerHeight;
     let orientation = screen.orientation.type;
-    // console.log('ww-', ww, 'hw-', hw);
+    console.log('ww-', ww, 'hw-', hw);
     // console.log((ww / hw));
     console.log(orientation);
 
