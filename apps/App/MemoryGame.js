@@ -289,7 +289,7 @@ export class MemoryGame {
 
     if (array.length <= 6) {
       if (orientation === 'portrait-primary') { // portrait orientation
-        if (ww <= 400) {
+        if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(3, auto)';
           cards_container.style.gridGap = '1.5vw';
           info_container.style.marginBottom = '13px';
@@ -299,7 +299,7 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '100px'});
           animals.forEach(animal => {animal.style.width = '80px'});
         }
-        if (ww > 400 && ww <= 768) {
+        if (ww > 767 && ww <= 1279) {
           cards_container.style.gridTemplateColumns = 'repeat(3, auto)';
           cards_container.style.gridGap = '1.2vw';
           info_container.style.marginBottom = '15px';
@@ -344,7 +344,7 @@ export class MemoryGame {
 
     if (array.length > 6 && array.length <= 8) {
       if (orientation === 'portrait-primary') {// portrait orientation
-        if (ww <= 400) {
+        if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
           cards_container.style.gridGap = '1.5vw';
           info_container.style.marginBottom = '15px';
@@ -354,7 +354,7 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '85px'});
           animals.forEach(animal => {animal.style.width = '65px'});
         }
-        if (ww > 400 && ww <= 768) {
+        if (ww > 767 && ww <= 1279) {
           cards_container.style.gridTemplateColumns = 'repeat(4, auto)';
           cards_container.style.gridGap = '1.2vw';
           info_container.style.marginBottom = '15px';
@@ -399,7 +399,7 @@ export class MemoryGame {
 
     if (array.length > 8 && array.length <= 15) {
       if (orientation === 'portrait-primary') { // portrait orientation
-        if (ww <= 400) {
+        if (ww <= 767) {
           cards_container.style.gridTemplateColumns = 'repeat(5, auto)';
           cards_container.style.gridGap = '1.5vw';
           info_container.style.marginBottom = '15px';
@@ -409,7 +409,7 @@ export class MemoryGame {
           bubbles.forEach(bubble => {bubble.style.width = '65px'});
           animals.forEach(animal => {animal.style.width = '50px'});
         }
-        if (ww > 400 && ww <= 768) {
+        if (ww > 767 && ww <= 1279) {
           cards_container.style.gridTemplateColumns = 'repeat(5, auto)';
           cards_container.style.gridGap = '1vw';
           info_container.style.marginBottom = '10px';
