@@ -26,6 +26,10 @@ function logicEasyGame(id) {
   const cards = images.sort(() => Math.random() - 0.5).slice(0, 6);
   const easyGame = new MemoryGame(cards, id, SPA.switchToMenuEasy);
   easyGame.startGame();
+  if ('orientation' in screen) {
+    console.log('supported!');
+    screen.orientation.lock('portrait');
+  }
 }
 
 function logicMediumGame(id) {
