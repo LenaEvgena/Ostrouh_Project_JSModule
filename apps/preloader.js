@@ -26,12 +26,25 @@ export function LoadPageData(file) {//загружаем данные для р�
     let percent = 100 / filesToLoad;
     data.forEach(item => {
       preloadImage(item);
-      progress += percent;
+      // progress += percent;
       // console.log(progress);
-      document.getElementById('load_perc').innerText =`${Math.round(progress)}%`;
+      // document.getElementById('load_perc').innerText =`${Math.round(progress)}%`;
       filesLoaded++;
     })
+    count();
     showPreloader();
+
+    function count() {
+      do {
+        progress += percent;
+        console.log(progress);
+        document.getElementById('load_perc').innerText =`${Math.round(progress)}%`;
+      } while (Math.round(progress) % 2 != 0);
+
+      if (Math.round(progress) < 100) {
+        setTimeout(count);
+      }
+    }
   }
 
   function ErrorHandler(jqXHR, StatusStr, ErrorStr) {
