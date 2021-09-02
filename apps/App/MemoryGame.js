@@ -31,11 +31,11 @@ export class MemoryGame {
     this.isBusy = true;//ч-л выполняется, играть нельзя
     this.checkingCard = null;
     this.matchedCardsArray = [];
-    setTimeout(() => {
+    this.delay(500).then(() => {
       this.isBusy = false;//можем начинать играть
       this.shuffleCards(this.cardsArray);
       this.countDown = this.startCountDown();
-    }, 500);
+    })
     this.controlls.updateMusicButton();
     this.timer.innerText = this.time;
     this.moves.innerText = this.flips;
@@ -68,6 +68,12 @@ export class MemoryGame {
     });
   }
 
+  delay(ms) {
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, ms);
+    })
+  }
+
   startCountDown() {
     return setInterval(() => {
       this.time++;
@@ -86,9 +92,7 @@ export class MemoryGame {
     window.removeEventListener('orientationchange', () => {
       this.fitPositions(this.images);
     });
-    setTimeout(() => {
-      this.controlls.turnBack(this.callback);
-    }, 8000);
+    this.delay(8000).then(() => {this.controlls.turnBack(this.callback)});
   }
 
   openCard(card) {
@@ -128,7 +132,7 @@ export class MemoryGame {
     card2.classList.add('matched');
     this.isBusy = true;
     //убрать карту
-    setTimeout(() => {
+    this.delay(800).then(() => {
       globalThis.audioController.vibro(false);
       globalThis.audioController.cardPopSound();
       card1.style.opacity = '0';
@@ -138,24 +142,21 @@ export class MemoryGame {
       this.isBusy = false;
       this.count--;
       this.controlls.taskIsDone(this.count);
-    }, 800);
+    });
     //win
     if (this.matchedCardsArray.length === this.cardsArray.length) {
-      setTimeout(() => {
-        this.endGame();
-      }, 800);
+      this.delay(800).then(() => {this.endGame()});
     }
   }
 
   notMatched(card1, card2) {
     this.isBusy = true;
-    setTimeout(() => {
+    this.delay(800).then(() => {
       globalThis.audioController.flipSound();
-
       this.closeCard(card1);
       this.closeCard(card2);
       this.isBusy = false;
-    }, 800);
+    })
     //обнуляем карту
     this.checkingCard = null;
   }
@@ -170,12 +171,12 @@ export class MemoryGame {
     cardsArray.forEach(card => {
       card.classList.add('visible');
     });
-    setTimeout(() => {
+    this.delay(4000).then(() => {
       this.isBusy = false;
       cardsArray.forEach(card => {
         card.classList.remove('visible');
       });
-    }, 4000);
+    });
   }
 
   shuffleCards(cardsArray) { //Fisher-Yates алгоритм
@@ -280,10 +281,9 @@ export class MemoryGame {
     const animals = document.querySelectorAll('.animal');
 
     let ww = screen.width;
-    let hw = screen.height;
     let orientation = screen.orientation.type;
-    console.log('ww-', ww, 'hw-', hw);
-    console.log(orientation);
+    // console.log('ww-', ww, 'hw-', hw);
+    // console.log(orientation);
 
     if (array.length <= 6) {
       if (orientation === 'portrait-primary') { // portrait orientation

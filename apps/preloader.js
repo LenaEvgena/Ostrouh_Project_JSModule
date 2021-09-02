@@ -37,7 +37,7 @@ export function LoadPageData(file) {//загружаем данные для р�
     function count() {
       do {
         progress += percent;
-        console.log(progress);
+        // console.log(progress);
         document.getElementById('load_perc').innerText =`${Math.round(progress)}%`;
       } while (Math.round(progress) % 2 != 0);
 
