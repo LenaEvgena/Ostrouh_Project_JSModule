@@ -1,6 +1,6 @@
 'use strict';
 const AjaxHandlerScript = "https://fe.it-academy.by/AjaxStringStorage2.php";
-const storageName = 'OSTROUH_SCORETABLE';
+const storageName = 'OSTROUH_TABLE_SCORE';
 
 export function AJAXStorage() {
   let UpdatePassword = Math.random();

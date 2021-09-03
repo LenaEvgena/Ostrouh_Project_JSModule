@@ -1,4 +1,5 @@
 'use strict';
+
 globalThis.PreloadedImagesH = {}; // ключ - имя предзагруженного изображения
 
 export function LoadPageData(file) {//загружаем данные для работы
@@ -26,15 +27,12 @@ export function LoadPageData(file) {//загружаем данные для р�
     let percent = 100 / filesToLoad;
     data.forEach(item => {
       preloadImage(item);
-      // progress += percent;
-      // console.log(progress);
-      // document.getElementById('load_perc').innerText =`${Math.round(progress)}%`;
       filesLoaded++;
     })
     count();
     showPreloader();
 
-    function count() {
+    function count() { //разделяем задачу на части для индикации процесса
       do {
         progress += percent;
         // console.log(progress);

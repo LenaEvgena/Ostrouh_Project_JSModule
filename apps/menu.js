@@ -6,7 +6,7 @@ import { LoadPageData } from './preloader.js';
 import * as storage from './storage.js';
 
 export function initMenuPage() {
-  LoadPageData('json/mainMenu.json', 10);
+  LoadPageData('json/mainMenu.json');
 
   if (!globalThis.isPaused) {
     globalThis.audioController.startMusic();
@@ -22,7 +22,7 @@ export function initMenuPage() {
   const greeting = document.querySelector('.greeting');
   greeting.textContent = `Hello, ${localStorage.getItem('userName')}! :)`;
 
-  controlls.updateMusicButton(globalThis.audioController);
+  controlls.updateMusicButton();
 
   buttons.forEach(button => {
     button.addEventListener('mouseover', () => {
