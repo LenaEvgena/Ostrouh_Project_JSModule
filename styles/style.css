@@ -1,0 +1,806 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+  background-color: rgb(203, 243, 215);
+  font-size: 100%;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+* {
+	vertical-align: baseline;
+	font-weight: inherit;
+	font-family: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	border: 0 none;
+	outline: 0;
+	padding: 0;
+	margin: 0;
+  -moz-user-select: -moz-none;
+  -o-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -ms-user-select: none;
+	}
+html, body {
+	padding: 0;
+	margin: 0;
+	}
+html {
+	font-size: 1em;
+  overflow: -moz-scrollbars-none;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+a img, :link img, :visited img {
+	border: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+::-webkit-scrollbar {
+  width: 0;
+  background: 0 0;
+}
+::-moz-scrollbar {
+width: 0px;
+height: 0px;
+}
+
+/* controlls and overlay*/
+.buttons_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  z-index: 800;
+}
+
+.back_arrow {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 45px;
+  padding: 5px;
+  transition: 0.3s;
+  filter: drop-shadow(6px 6px 8px rgb(76, 75, 72));
+}
+
+.music_button {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  width: 45px;
+  padding: 5px;
+  transition: 0.3s;
+  filter: drop-shadow(6px 6px 8px rgb(76, 75, 72));
+}
+
+.hint_button {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 45px;
+  padding: 5px;
+  transition: 0.3s;
+  filter: drop-shadow(6px 6px 8px rgb(76, 75, 72));
+}
+
+.score_button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 45px;
+  padding: 5px;
+  transition: 0.3s;
+  filter: drop-shadow(6px 6px 8px rgb(76, 75, 72));
+  z-index: 1001;
+}
+
+.list {
+  visibility: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  background-size: cover;
+  z-index: 1000;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  animation: list-hide 500ms;
+  transform: translateZ(0);
+}
+
+.list.visible {
+  visibility: visible;
+  animation: list-grow 500ms forwards;
+}
+
+.list.visible .list_modal{
+  animation: modal-appear 0.5s linear forwards;
+}
+
+.list_modal {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 600px;
+  height: 80vh;
+  margin: 0 auto;
+  z-index: 1001;
+  text-align: center;
+  align-items: center;
+  border: 6px solid;
+  border-image: linear-gradient(135deg, #4bf608 0%, #ecf004 25%, #f15353 50%, #0594e7 75%, #8e16f0 100%) 1;
+  background-color: rgb(201, 223, 187);
+  font-size: 18px;
+  color: #045820;
+  font-family: 'Permanent Marker', cursive;
+  line-height: 1;
+  letter-spacing: 0.8px;
+  overflow: scroll;
+  transition: 0.5s;
+  animation: modal-hide 0.5s linear;
+  transform: translateZ(0);
+}
+
+.list_table {
+  margin: 20px;
+}
+
+table {
+  margin: 0 auto;
+}
+
+th {
+  font-size: 22px;
+  text-decoration: underline;
+  text-decoration-style: double;
+  padding: 25px 5px 25px 5px;
+  font-weight: bold;
+}
+
+td {
+  padding: 2px;
+}
+
+.back_arrow:hover, .music_button:hover, .hint_button:hover, .score_button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.music_button.clicked {
+  opacity: 0.6;
+  transform: scale(0.9);
+}
+
+#tasksPoints {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+#tasksPoints span {
+  display: block;
+  margin: 10px;
+  float: left;
+  width: 20px;
+  height: 20px;
+  transition: 0.3s;
+  filter: drop-shadow(2px 2px 4px rgb(24, 23, 23));
+  animation: pointJump 3s ease-in-out alternate infinite;
+  transform: translateZ(0);
+}
+
+.overlay {
+  visibility: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+  z-index: 1000;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  transform: translateZ(0);
+  font-family: 'Permanent Marker', cursive;
+  text-shadow: 4px 2px 2px rgb(58, 53, 53),
+  5px 4px 4px rgb(252, 247, 247);
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: 8px;
+}
+
+.overlay_text {
+  color:rgb(133, 253, 21);
+  animation: overlay-text-grow 500ms forwards;
+}
+
+.score_message {
+  position: absolute;
+  top: 70%;
+  font-size: 10vw;
+  color: rgb(255, 196, 0);
+  z-index: 1001;
+  animation: message-grow 4s linear infinite;
+  transform: translateZ(0);
+}
+
+.overlay.visible {
+  visibility: visible;
+  animation: overlay-grow 500ms forwards;
+}
+
+.balloonsContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  width: 100vw;
+  transform: translateZ(0);
+}
+
+#balloons {
+  position: relative;
+  display: flex;
+  transition: all 0.5s;
+  transform: translateZ(0);
+}
+
+#balloons span {
+  display: flex;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+  animation: balloonsFlying 11s linear infinite;
+  transition: width 0.5s, height 0.5s;
+  transform: translateZ(0);
+  opacity: 1;
+  width: 60px;
+  height: 120px;
+}
+
+.modal_overlay {
+  visibility: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  background-size: cover;
+  z-index: 1000;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  animation: list-hide 500ms;
+  transform: translateZ(0);
+}
+
+.modal_overlay.visible {
+  visibility: visible;
+  animation: list-grow 500ms forwards;
+}
+
+.modal_overlay.visible .modal {
+  animation: modal-appear 0.5s linear forwards;
+}
+
+.modal {
+  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 320px;
+  height: 50px;
+  margin: 0 auto;
+  z-index: 1001;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  border: 4px solid;
+  border-image: linear-gradient(135deg, #4bf608 0%, #ecf004 25%, #f15353 50%, #0594e7 75%, #8e16f0 100%) 1;
+  background-color: rgb(201, 223, 187);
+  font-size: 20px;
+  color: #045820;
+  font-family: 'Permanent Marker', cursive;
+  line-height: 1;
+  letter-spacing: 0.8px;
+  overflow: hidden;
+  transition: 0.5s;
+  animation: modal-hide 0.5s linear;
+  transform: translateZ(0);
+}
+
+#check_button {
+  height: 50px;
+  width: 60px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(123, 160, 101);
+}
+
+#check_button:hover {
+  cursor: pointer;
+  background-color: rgb(93, 122, 76);
+}
+
+@keyframes modal-appear {
+  0% {
+    transform: translate(-50%, -200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes modal-hide {
+  0% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    transform: translate(-50%, -200%);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes list-grow {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(173, 146, 131, 0.596);
+  }
+}
+
+@keyframes list-hide {
+  from {
+    background-color: rgba(173, 146, 131, 0.596);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes pointJump {
+  90% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes overlay-grow {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(173, 146, 131, 0.596);
+  }
+}
+
+@keyframes overlay-text-grow {
+  from {
+    font-size: 0;
+  }
+  to {
+    font-size: 8vw;
+  }
+}
+
+@keyframes message-grow {
+  0% {
+    font-size: 0;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    font-size: 10vw;
+  }
+  100% {
+    transform: translateY(-300%);
+  }
+}
+
+@keyframes balloonsFlying {
+  0% {
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+    width: 60px;
+    height: 120px;
+  }
+  100% {
+    transform: translateY(-1000%);
+  }
+}
+
+/*start main page*/
+.wrapper {
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+}
+
+.main_wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateZ(0);
+}
+
+.main_button {
+  margin: 0 auto;
+}
+
+.btn_img:hover {
+  transition: 0.3s;
+  filter: drop-shadow(8px 8px 10px green);
+  cursor: pointer;
+}
+
+.fieldset {
+  position: absolute;
+  top: 5%;
+  width: 300px;
+}
+
+.form_info {
+  display: flex;
+  overflow: hidden;
+  height: 50px;
+  text-align: center;
+  align-items: center;
+  border: 6px solid;
+  border-image: linear-gradient(135deg, #4bf608 0%, #ecf004 25%, #f15353 50%, #0594e7 75%, #8e16f0 100%) 1;
+  font-size: 20px;
+  font-family: 'Permanent Marker', cursive;
+  font-weight: bold;
+}
+
+#check_name {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  background-color: rgb(201, 223, 187);
+}
+/*end main page*/
+
+/*start menu*/
+.menu_wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateZ(0);
+}
+
+.greeting {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-family: 'Permanent Marker', cursive;
+  color:rgb(1, 243, 243);
+  text-shadow: 4px 2px 2px rgb(24, 22, 22),
+  5px 4px 4px rgb(252, 247, 247);
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: 4px;
+}
+
+.menu_elements {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu_element {
+  margin: 20px;
+  width: 295px;
+  height: 97px;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(4px 4px 7px rgb(41, 38, 35));
+  transition: 0.5s;
+  animation: menuScale 3s ease alternate infinite;
+  transform: translateZ(0);
+}
+
+.menu_element:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.menu_element:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.menu_element span {
+  font-family: 'Permanent Marker', cursive;
+  color:aqua;
+  text-shadow: 4px 2px 2px rgb(58, 53, 53),
+  5px 4px 4px rgb(252, 247, 247);
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.5;
+  letter-spacing: 8px;
+}
+
+.menu_element:hover{
+  transition: 0.3s;
+  filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+@keyframes menuScale {
+  90% {
+    transform: scale(1.0)
+  }
+  100% {
+    transform: scale(1.1)
+  }
+}
+/*end menu*/
+
+/*start logicMenu page*/
+.logic_menu_wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateZ(0);
+}
+
+.logic_menu_container {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 30px;
+}
+
+.menu_item {
+  overflow: hidden;
+  transition: transform 0.5s;
+  filter: drop-shadow(4px 4px 7px rgb(41, 38, 35));
+  border: 6px solid;
+  border-image: linear-gradient(135deg, #4bf608 0%, #ecf004 25%, #f15353 50%, #0594e7 75%, #8e16f0 100%) 1;
+  width: 20vw;
+  height: 30vh;
+  transition: 0.5s;
+  animation: menuScale1 4s ease alternate infinite;
+  transform: translateZ(0);
+}
+
+.level_image {
+  width: auto;
+  height: 100%;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.menu_item:hover {
+  filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
+}
+
+@keyframes menuScale1 {
+  90% {
+    transform: scale(1.0)
+  }
+  100% {
+    transform: scale(1.05)
+  }
+}
+/*end logicMenu page*/
+
+/*start logic page*/
+.logic_game_wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateZ(0);
+}
+
+.info_container {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.game_info {
+  font-family: 'Permanent Marker', cursive;
+  color:rgb(133, 253, 21);
+  text-shadow: 4px 2px 2px rgb(58, 53, 53),
+  5px 4px 4px rgb(252, 247, 247);
+  font-size: 35px;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: 6px;
+}
+
+.cards_container {
+  display: grid;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.card {
+  position: relative;
+  cursor: pointer;
+}
+
+.card_face {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transition: transform 500ms ease-in-out;
+  backface-visibility: hidden;
+}
+
+.logic_image {
+  filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
+}
+
+.animal {
+  position: absolute;
+}
+
+.back_image {
+  filter: drop-shadow(8px 8px 10px rgb(41, 38, 35));
+}
+
+.card_back {
+  transform: rotateY(0);
+}
+
+.card_front {
+  transform: rotateY(180deg);
+}
+
+.card.visible .card_back {
+  transform: rotateY(-180deg);
+}
+
+.card.visible .card_front {
+  transform: rotateY(0);
+}
+
+.card.visible .card_front .animal {
+  animation: dance2 1.5s linear infinite 500ms;
+  transform: translateZ(0);
+}
+
+.card.matched .card_front .animal {
+  animation: dance1 1s linear infinite 500ms;
+  transform: translateZ(0);
+}
+
+@keyframes dance {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-8deg);
+  }
+  75% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes dance1 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-7%);
+  }
+  75% {
+    transform: translateY(7%);
+  }
+}
+
+@keyframes dance2 {
+  0%, 100% {
+    transform: scale(0.95);
+  }
+  25% {
+    transform: scale(0.9);
+  }
+  75% {
+    transform: scale(1);
+  }
+}
+/*end logic page*/

@@ -1,0 +1,81 @@
+@media only screen and (min-width:1280px) {
+  .menu_element {
+    margin: 40px;
+    width: 400px;
+    height: 131px;
+  }
+  .menu_element span {
+    font-size: 40px;
+  }
+}
+
+@media only screen and (max-width:767px) {
+  .btn_img {
+    width: 33vw;
+  }
+  #tasksPoints span {
+    margin: 6px;
+    width: 13px;
+    height: 13px;
+  }
+}
+
+@media only screen and (max-width:450px) {
+  #tasksPoints span {
+    margin: 3px;
+    width: 9px;
+    height: 9px;
+  }
+  .menu_element {
+    width: 66vw;
+    height: 21vw;
+  }
+}
+
+@media only screen and (max-width:380px) {
+  #tasksPoints span {
+    margin: 4px;
+    width: 10px;
+    height: 10px;
+  }
+  .list_modal {
+    font-size: 14px;
+  }
+  th {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-height:520px) {
+  .btn_img {
+    width: 50vh;
+  }
+}
+
+@media only screen and (max-height:380px) {
+  .btn_img {
+    width: 50vh;
+  }
+  .menu_element {
+    margin: 2.7vh;
+    width: 55vh;
+    height: 18vh;
+  }
+}
+
+@media screen and (max-width:1280px) and (orientation: landscape) {
+  #tasksPoints span {
+    margin: 4px;
+    width: 10px;
+    height: 10px;
+  }
+}
+/* .card {
+    height: 85px;
+  }
+  .card, .bubble, .back_image {
+    width: 85px;
+  }
+  .animal {
+    width: 65px;
+  } */
